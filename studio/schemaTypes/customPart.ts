@@ -10,6 +10,7 @@ export const customPart = defineType({
   type: 'document',
   title: 'Custom part',
   icon: AsteriskIcon,
+  description: 'Bespoke component part',
   fields: [
     defineField({
       type: 'string',

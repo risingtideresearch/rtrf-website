@@ -9,6 +9,7 @@ export const component = defineType({
   type: 'document',
   title: 'Component part',
   icon: ColorWheelIcon,
+  description: 'Off the shelf part',
   fields: [
     defineField({
       type: 'string',

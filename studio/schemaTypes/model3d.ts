@@ -14,6 +14,7 @@ export const model3d = defineType({
     defineField({
       type: 'file',
       name: 'model',
+      description: 'GLTF model',
       options: {
         accept: 'model/gltf+json',
       },

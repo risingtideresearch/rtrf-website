@@ -11,6 +11,7 @@ export const anatomy = defineType({
   title: 'Anatomy',
   type: 'document',
   icon: VersionsIcon,
+  description: 'Anatomical part or system with component parts',
   fields: [
     defineField({name: 'title', type: 'string'}),
     defineField({
@@ -34,8 +35,6 @@ export const anatomy = defineType({
       type: 'reference',
       to: [{type: 'boat'}],
     }),
-    schematics,
-    models,
     defineField({
       name: 'parts',
       type: 'array',
@@ -56,6 +55,8 @@ export const anatomy = defineType({
         },
       ],
     }),
+    schematics,
+    models,
   ],
   orderings: [
     {

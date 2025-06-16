@@ -16,6 +16,9 @@ export const timeline = defineType({
         {
           type: 'customPart',
         },
+        {
+          type: 'anatomy',
+        }
       ],
     }),
     defineField({
