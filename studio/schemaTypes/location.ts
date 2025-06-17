@@ -14,9 +14,6 @@ export const location = defineType({
     defineField({
       type: 'geopoint',
       name: 'location',
-      options: {
-        
-      }
     }),
   ],
 })

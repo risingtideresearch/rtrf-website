@@ -77,7 +77,7 @@ export const anatomy = defineType({
       subtitle: 'parent.title',
     },
     prepare: ({title, subtitle, boat}) => ({
-      title: `${boat} ${title}`,
+      title: `${boat || ''} ${title}`,
       subtitle: subtitle ? `— ${subtitle}` : '',
     }),
   },
