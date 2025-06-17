@@ -1,5 +1,5 @@
 {
-  "name": "rtbw-website-sanity-nextjs",
+  "name": "rtrf-website-sanity-nextjs",
   "description": "",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",

@@ -4,7 +4,7 @@ Codebase for https://rising-tide.sanity.studio
 ## Local development
 
 ### Add .env file
-Make a copy of .env.example and add to the top level directory as .env. Once you are added to the Sanity project, the project ID can be found in https://www.sanity.io/manage → Rising Tide Boat Works → project id. Anything prefixed with `SANITY_STUDIO` will be deployed to production.
+Make a copy of .env.example and add to the top level directory as .env. Once you are added to the Sanity project, the project ID can be found in https://www.sanity.io/manage → Rising Tide Research Foundation → project id. Anything prefixed with `SANITY_STUDIO` will be deployed to production.
 
 ```
 SANITY_STUDIO_PROJECT_ID="<paste your project ID here>" # Required - The ID of your Sanity project
@@ -24,7 +24,11 @@ npm run dev
 
 This will serve the project from http://localhost:3333/.
 
-### Deploy from command line
+## Deploy from command line
+Deploy local schema to studio instance.
 ```
 npx sanity deploy
 ```
+
+## Check usage stats at
+https://<projectId>.api.sanity.io/v1/data/stats/<datasetName>

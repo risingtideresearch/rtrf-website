@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rising Tide Boat Works",
+  title: "Rising Tide Research Foundation",
   description: "",
 };
 

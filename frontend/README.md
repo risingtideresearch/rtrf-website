@@ -8,9 +8,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Local development
 
 ### Add .env file
-Make a copy of .env.example and add to the top level directory as .env. Once you are added to the Sanity project, the project ID can be found in https://www.sanity.io/manage → Rising Tide Boat Works → project id.
+Make a copy of .env.example and add to the top level directory as .env. Once you are added to the Sanity project, the project ID can be found in https://www.sanity.io/manage → Rising Tide Research Foundation → project id.
 
-Read token can be created under Rising Tide Boat Works → API → Tokens.
+Read token can be created under Rising Tide Research Foundation → API → Tokens.
 
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID="<paste your project here>" # Required - The ID of your Sanity project
