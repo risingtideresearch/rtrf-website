@@ -1,4 +1,4 @@
-export const testQuery = `
+export const hierarchyQuery = `
 *[_type=="anatomy"]{
     _id,
     title,
@@ -10,6 +10,19 @@ export const testQuery = `
         _id,
         title,
         componentPart,
+    }
+}   
+`;
+
+export const schematicsQuery = `
+*[_type=="schematic"]{
+    _id,
+    title,
+    layers[]{
+        layerName,
+        photo{
+            asset->{...}
+        }
     }
 }   
 `;

@@ -22,7 +22,7 @@ export const anatomy = defineType({
       options: {
         filter: ({document}) => {
           return {
-            filter: '!defined(parent) && _rev != $rev',
+            filter: '_rev != $rev',
             params: {
               rev: document._rev,
             },
