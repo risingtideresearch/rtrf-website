@@ -36,7 +36,7 @@ export default async function AnatomyHierarchy() {
       {d.parts?.map((part: any) => (
         <div key={part._id} style={{ margin: "0 0 0 2rem" }}>
           <span style={{ fontSize: "0.75rem", textTransform: "uppercase" }}>
-            {part.componentPart ? part.componentPart : part.title}{" "}
+            {part.title}{" "}
           </span>
         </div>
       ))}

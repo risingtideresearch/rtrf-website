@@ -16,13 +16,13 @@ export const component = defineType({
     defineField({
       type: 'string',
       name: 'title',
-      description: 'Manufacturer and model name',
+      description: 'Type of component',
     }),
     defineField({
       type: 'string',
       name: 'componentPart',
       title: 'Component part',
-      description: 'Type of component',
+      description: 'Manufacturer and model name',
     }),
     defineField({
       type: 'image',

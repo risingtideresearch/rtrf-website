@@ -18,12 +18,12 @@ export const schemaTypes = [
   anatomy,
   customPart,
   component,
+  connector,
   material,
   model3d,
   schematic,
   person,
   timeline,
   location,
-  connector,
   powerBudget,
 ]

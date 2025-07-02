@@ -22,7 +22,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
             params: {id: `_id`},
             options: {perspective: 'previewDrafts'},
           })
-          .title('Connectors'),
+          .title('Connections'),
       ])
     case `model3d`:
     case `schematic`:

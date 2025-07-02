@@ -5,7 +5,7 @@ import { documentation } from './shared/documentation'
 export const connector = defineType({
   name: 'connector',
   type: 'document',
-  title: 'Connector',
+  title: 'Connection',
   icon: SchemaIcon,
   fields: [
     // defineField({
@@ -44,13 +44,11 @@ export const connector = defineType({
   ],
   preview: {
     select: {
-      from: 'componentFrom.componentPart',
-      fromCustom: 'componentFrom.title',
-      to: 'componentTo.componentPart',
-      toCustom: 'componentTo.title',
+      from: 'componentFrom.title',
+      to: 'componentTo.title',
     },
-    prepare: ({from, to, fromCustom, toCustom}) => ({
-      title: `${from || fromCustom} to ${(to || toCustom).toLowerCase()}`,
+    prepare: ({from, to}) => ({
+      title: `${from} to ${(to).toLowerCase()}`,
     }),
   },
 })

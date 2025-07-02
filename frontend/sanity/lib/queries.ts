@@ -14,6 +14,19 @@ export const hierarchyQuery = `
 }   
 `;
 
+export const connectorsQuery = `
+*[_type=="connector"] {
+    title,
+    description,
+    componentFrom->{
+        ...
+    },
+    componentTo->{
+        ...
+    },
+}
+`;
+
 export const schematicsQuery = `
 *[_type=="schematic"]{
     _id,

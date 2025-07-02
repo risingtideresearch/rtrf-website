@@ -1,11 +1,11 @@
 import {defineField, defineType} from 'sanity'
-import { PiSailboat } from "react-icons/pi";
+import { TbSpeedboat } from "react-icons/tb";
 
 export const boat = defineType({
   name: 'boat',
   type: 'document',
   title: 'Boat',
-  icon: PiSailboat,
+  icon: TbSpeedboat,
   fields: [
     defineField({
       type: 'string',

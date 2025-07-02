@@ -77,8 +77,8 @@ export const powerBudget = defineType({
   ],
   preview: {
     select: {
-      title: 'component.componentPart',
-      subtitle: 'component.title',
+      title: 'component.title',
+      subtitle: 'component.component',
     },
   },
 })
