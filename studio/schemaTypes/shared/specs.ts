@@ -43,6 +43,14 @@ export const specs = defineField({
                 title: 'mm',
                 value: 'mm',
               },
+              {
+                title: 'lb',
+                value: 'lb'
+              },
+              {
+                title: 'W',
+                value: 'W'
+              }
             ],
           },
         }),

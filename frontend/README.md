@@ -30,3 +30,6 @@ npm run dev
 ```
 
 This will serve the project from [http://localhost:3000](http://localhost:3000).
+
+### Dev notes
+`page.tsx` is a reserved filename used in routing, e.g. `anatomy/[slug]/page.tsx`.

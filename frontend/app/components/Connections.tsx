@@ -12,23 +12,30 @@ export default async function Connections() {
 
   return (
     <div style={{ padding: "1rem" }}>
-      {data.map((connection: any) => {
-        return (
-          <div>
-            {getTitle(connection?.componentFrom)} &harr;{" "}
-            {getTitle(connection?.componentTo)}
-            <p
-              style={{
-                margin: "0 0 0 1rem",
-                textTransform: "uppercase",
-                fontSize: "0.75rem",
-              }}
-            >
-              {connection.description || ""}
-            </p>
-          </div>
-        );
-      })}
+      <h3 style={{ marginBottom: "1rem" }}>All connections</h3>
+      <div>
+        {data
+          .sort((a, b) =>
+            getTitle(a.componentFrom).localeCompare(getTitle(b.componentFrom)),
+          )
+          .map((connection: any) => {
+            return (
+              <div key={connection._id}>
+                {getTitle(connection?.componentFrom)} &harr;{" "}
+                {getTitle(connection?.componentTo)}
+                <p
+                  style={{
+                    margin: "0 0 0 1rem",
+                    textTransform: "uppercase",
+                    fontSize: "0.75rem",
+                  }}
+                >
+                  {connection.description || ""}
+                </p>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

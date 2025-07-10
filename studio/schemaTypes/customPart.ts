@@ -17,12 +17,15 @@ export const customPart = defineType({
       name: 'title',
       description: 'Name',
     }),
-    // defineField({
-    //   type: 'string',
-    //   name: 'componentPart',
-    //   title: 'Component part',
-    //   description: 'Type of component'
-    // }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 200, 
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+      },
+    }),
     defineField({
       type: 'array',
       name: 'componentParts',
@@ -33,6 +36,21 @@ export const customPart = defineType({
           to: [
             {
               type: 'component',
+            },
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      type: 'array',
+      name: 'materials',
+      of: [
+        defineField({
+          type: 'reference',
+          name: 'material',
+          to: [
+            {
+              type: 'material',
             },
           ],
         }),

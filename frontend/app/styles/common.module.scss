@@ -1,0 +1,23 @@
+.table {
+  display: grid;
+  border: 1px solid;
+  border-bottom: none;
+  grid-template-columns: 1fr;
+  max-width: 30rem;
+  align-items: center;
+  margin: 1rem 0;
+
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid;
+
+    > p, > div {
+      padding: 0.25rem;
+
+      &:first-child {
+        border-right: 1px solid;
+      }
+    }
+  }
+}

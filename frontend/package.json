@@ -26,6 +26,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "jsdom": "^26.1.0",
+    "sass": "^1.89.2",
     "typescript": "^5"
   }
 }

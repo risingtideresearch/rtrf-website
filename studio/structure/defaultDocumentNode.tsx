@@ -1,4 +1,4 @@
-import type {DefaultDocumentNodeResolver} from 'sanity/structure'
+import {defaultInitialValueTemplateItems, type DefaultDocumentNodeResolver} from 'sanity/structure'
 import DocumentsPane from 'sanity-plugin-documents-pane'
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {
@@ -10,19 +10,11 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
         S.view
           .component(DocumentsPane)
           .options({
-            query: `*[(_type == "anatomy") && references($id)]`,
+            query: `*[(_type in ["anatomy", "connector", "timeline", "material"]) && references($id)]`,
             params: {id: `_id`},
             options: {perspective: 'previewDrafts'},
           })
           .title('Part of'),
-        S.view
-          .component(DocumentsPane)
-          .options({
-            query: `*[(_type == "connector") && references($id)]`,
-            params: {id: `_id`},
-            options: {perspective: 'previewDrafts'},
-          })
-          .title('Connections'),
       ])
     case `model3d`:
     case `schematic`:

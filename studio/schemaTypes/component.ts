@@ -25,6 +25,15 @@ export const component = defineType({
       description: 'Manufacturer and model name',
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 200, 
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+      },
+    }),
+    defineField({
       type: 'image',
       name: 'image',
     }),

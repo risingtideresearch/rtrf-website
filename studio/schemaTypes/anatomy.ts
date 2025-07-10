@@ -15,6 +15,15 @@ export const anatomy = defineType({
   fields: [
     defineField({name: 'title', type: 'string'}),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 200, 
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+      },
+    }),
+    defineField({
       name: 'boat',
       type: 'reference',
       to: [{type: 'boat'}],

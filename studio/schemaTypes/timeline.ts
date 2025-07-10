@@ -44,6 +44,10 @@ export const timeline = defineType({
               type: 'date',
             }),
             defineField({
+              name: 'end',
+              type: 'date',
+            }),
+            defineField({
               type: 'reference',
               name: 'location',
               to: [{type: 'location'}],

@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {link} from './shared/link'
-import { RiArticleLine } from "react-icons/ri";
+import {RiArticleLine} from 'react-icons/ri'
 
 export const article = defineType({
   name: 'article',
@@ -12,37 +12,53 @@ export const article = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'content',
+      name: 'sections',
       type: 'array',
       of: [
         defineField({
-          type: 'block',
-          name: 'child',
-          styles: [],
-          // of: [
-          // ],
-        }),
-        defineField({
-          type: 'reference',
-          name: 'plan',
-          title: 'Schematic',
-          to: [{type: 'schematic'}],
-        }),
-        // defineField({
-        //   type: 'reference',
-        //   name: 'component',
-        //   title: 'Component',
-        //   to: [{type: 'component'}],
-        // }),
-        defineField({
-          type: 'reference',
-          name: 'model3d',
-          title: '3D Model',
-          to: [{type: 'model3d'}],
-        }),
-        defineField({
-          type: 'image',
-          name: 'photo',
+          name: 'content',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'subtitle',
+              type: 'string',
+            }),
+            defineField({
+              name: 'sectionContent',
+              type: 'array',
+              of: [
+                defineField({
+                  type: 'block',
+                  name: 'child',
+                  styles: [],
+                  // of: [
+                  // ],
+                }),
+                defineField({
+                  type: 'reference',
+                  name: 'plan',
+                  title: 'Schematic',
+                  to: [{type: 'schematic'}],
+                }),
+                // defineField({
+                //   type: 'reference',
+                //   name: 'component',
+                //   title: 'Component',
+                //   to: [{type: 'component'}],
+                // }),
+                defineField({
+                  type: 'reference',
+                  name: 'model3d',
+                  title: '3D Model',
+                  to: [{type: 'model3d'}],
+                }),
+                defineField({
+                  type: 'image',
+                  name: 'photo',
+                }),
+              ],
+            }),
+          ],
         }),
       ],
     }),
