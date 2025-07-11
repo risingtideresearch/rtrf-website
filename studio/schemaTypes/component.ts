@@ -37,6 +37,10 @@ export const component = defineType({
       type: 'image',
       name: 'image',
     }),
+    defineField({
+      type: 'number',
+      name: 'count',
+    }),
     link,
     specs,
     models,

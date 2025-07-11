@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/sanity/lib/live";
-import { connectorsQuery, hierarchyQuery } from "@/sanity/lib/queries";
+import { connectionsQuery, hierarchyQuery } from "@/sanity/lib/queries";
 
 export default async function PartsAndConnections() {
   const { data } = await sanityFetch({
@@ -66,7 +66,7 @@ export default async function PartsAndConnections() {
   const inner = buildHierarchy(data).map((d, i) => item(d));
 
   const connections = await sanityFetch({
-    query: connectorsQuery,
+    query: connectionsQuery,
   });
 
   let lineCount = {};

@@ -2,7 +2,7 @@ import {anatomy} from './anatomy'
 import {article} from './article'
 import {boat} from './boat'
 import {component} from './component'
-import {connector} from './connector'
+import {connection} from './connection'
 import {customPart} from './customPart'
 import {location} from './location'
 import { material } from './material'
@@ -18,7 +18,7 @@ export const schemaTypes = [
   anatomy,
   customPart,
   component,
-  connector,
+  connection,
   material,
   model3d,
   schematic,

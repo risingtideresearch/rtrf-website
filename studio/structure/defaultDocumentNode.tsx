@@ -10,7 +10,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
         S.view
           .component(DocumentsPane)
           .options({
-            query: `*[(_type in ["anatomy", "connector", "timeline", "material"]) && references($id)]`,
+            query: `*[(_type in ["anatomy", "connection", "timeline", "material"]) && references($id)]`,
             params: {id: `_id`},
             options: {perspective: 'previewDrafts'},
           })

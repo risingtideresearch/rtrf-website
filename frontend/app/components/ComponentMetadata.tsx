@@ -5,28 +5,46 @@ import { DepartureMono } from "../layout";
 import styles from "./../styles/common.module.scss";
 import Link from "next/link";
 import { Image } from "next-sanity/image";
-import { PortableText } from "next-sanity";
+import Timeline from "./Timeline";
 
 interface IComponentMetadataProps {
   slug: string;
+  indexing: { anatomy: string[]; parts: string[] };
 }
 
 export default async function ComponentMetadata({
   slug,
+  indexing,
 }: IComponentMetadataProps) {
   const { data } = await sanityFetch({
     query: componentPartQuery(slug),
   });
 
-  const { component, connections, anatomy } = data;
+  const { component, connections, anatomy, timelines } = data;
 
-  console.log(data);
+  console.log(data, indexing);
 
   return (
     <>
+      {anatomy ? (
+        <div style={{ textAlign: "right" }}>
+          <h6>System</h6>
+          {anatomy.map((d) => {
+            return (
+              <p>
+                <Link key={d.slug} href={`/anatomy/${d?.slug}`}>
+                  {d?.title}
+                </Link>
+              </p>
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
       <div className={styles.table}>
         {component.image ? (
-          <div style={{ padding: "0.5rem", margin: "0 0 0 auto" }}>
+          <div style={{ padding: "0.5rem" }}>
             <Image
               style={{ display: "block" }}
               src={component.image.url}
@@ -39,15 +57,18 @@ export default async function ComponentMetadata({
           <></>
         )}
         <div>
-          <p
-            style={{
-              textTransform: "uppercase",
-              fontSize: "0.625rem",
-              fontWeight: "bold",
-            }}
-          >
-            part
+          <div>
+            <h6>No.</h6>
+          </div>
+          <p className={DepartureMono.className}>
+            {indexing.parts.indexOf(component._id) + 1}
+            {component._type == "customPart" ? "*" : ""}
           </p>
+        </div>
+        <div>
+          <div>
+            <h6>name</h6>
+          </div>
           <p>{component.title}</p>
         </div>
         {component.componentPart ? (
@@ -62,6 +83,27 @@ export default async function ComponentMetadata({
               mfg
             </p>
             <p>{component.componentPart}</p>
+          </div>
+        ) : (
+          <div>
+            <div>
+              <h6>Type</h6>
+            </div>
+            <p>Custom part</p>
+          </div>
+        )}
+        {component.count ? (
+          <div>
+            <p
+              style={{
+                textTransform: "uppercase",
+                fontSize: "0.625rem",
+                fontWeight: "bold",
+              }}
+            >
+              count
+            </p>
+            <p>{component.count}</p>
           </div>
         ) : (
           <></>
@@ -103,16 +145,13 @@ export default async function ComponentMetadata({
           <></>
         )}
       </div>
-      {/* <AnatomyHierarchy slug={anatomy[0]?.slug} /> */}
 
       {connections ? (
         <div>
-          <h3>
-            Connections
-          </h3>
-          {connections.map((d) => {
+          <h3>Connections</h3>
+          {connections.map((d, i) => {
             return (
-              <div>
+              <div key={i}>
                 <p
                   className={DepartureMono.className}
                   style={{
@@ -136,7 +175,18 @@ export default async function ComponentMetadata({
                   )}
                 </p>
 
-                <p style={{ fontSize: "0.875rem" }}>{d.description}</p>
+                <p style={{ fontSize: "0.875rem" }}>
+                  <span
+                    className={DepartureMono.className}
+                    style={{
+                      fontSize: "0.75rem",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    &nbsp;&nbsp;
+                  </span>
+                  {d.description}
+                </p>
               </div>
             );
           })}
@@ -145,30 +195,13 @@ export default async function ComponentMetadata({
         <></>
       )}
 
-      {anatomy ? (
-        <div className={styles.table}>
-          <div>
-            <p
-              style={{
-                textTransform: "uppercase",
-                fontSize: "0.625rem",
-                fontWeight: "bold",
-              }}
-            >
-              Part of
-            </p>
-
-            <div>
-              {anatomy.map((d) => {
-                return (
-                  <p>
-                    <Link href={`/anatomy/${d?.slug}`}>{d?.title}&nbsp;</Link>
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+      {timelines.length > 0 ? (
+        <section>
+          <h3>Timeline</h3>
+          {timelines.map((timeline) => {
+            return <Timeline data={timeline} />;
+          })}
+        </section>
       ) : (
         <></>
       )}

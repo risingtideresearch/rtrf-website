@@ -77,9 +77,12 @@ export default function RootLayout({
               Solander 38
             </h1>
           </Link>
-          <Link href="/anatomy">Anatomy</Link>
+          <div style={{ display: 'inline-flex', flexDirection: 'row', gap: '1rem'}}>
+            <Link href="/part">Parts</Link>
+            <Link href="/anatomy">Anatomy</Link>
+          </div>
         </header>
-        <main style={{ padding: "5rem 0 10rem 0" }}>{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

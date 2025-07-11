@@ -24,6 +24,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding: 5rem 0.25rem 10rem 0.25rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -35,9 +41,20 @@ h3 {
   margin: 0 0 0.5rem 0;
 }
 
+h6 {
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+section {
+  margin: 2rem 0;
 }
 
 .parts-and-connections svg {

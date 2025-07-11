@@ -1,9 +1,9 @@
 import { sanityFetch } from "@/sanity/lib/live";
-import { connectorsQuery } from "@/sanity/lib/queries";
+import { connectionsQuery } from "@/sanity/lib/queries";
 
 export default async function Connections() {
   const { data } = await sanityFetch({
-    query: connectorsQuery,
+    query: connectionsQuery,
   });
 
   function getTitle(component: any) {

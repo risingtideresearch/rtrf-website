@@ -3,7 +3,7 @@
   border: 1px solid;
   border-bottom: none;
   grid-template-columns: 1fr;
-  max-width: 30rem;
+  max-width: 35rem;
   align-items: center;
   margin: 1rem 0;
 
@@ -12,12 +12,29 @@
     grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid;
 
-    > p, > div {
+    > p,
+    > div {
       padding: 0.25rem;
+      display: flex;
+      align-items: flex-start;
 
       &:first-child {
         border-right: 1px solid;
       }
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  font-size: 0.875rem;
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 1rem;
+    > div:first-child {
+      text-align: right;
     }
   }
 }

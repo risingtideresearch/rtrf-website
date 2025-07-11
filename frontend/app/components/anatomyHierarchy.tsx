@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { hierarchyQuery } from "@/sanity/lib/queries";
 import Link from "next/link";
 import { DepartureMono } from "../layout";
+import { buildHierarchy, romanize } from "../util/utils";
 
 interface IAnatomyHierarchyProps {
   slug?: string;
@@ -10,7 +11,7 @@ interface IAnatomyHierarchyProps {
 export default async function AnatomyHierarchy({
   slug,
 }: IAnatomyHierarchyProps) {
-  let { data } = await sanityFetch({
+  const { data } = await sanityFetch({
     query: hierarchyQuery,
   });
 
@@ -31,58 +32,42 @@ export default async function AnatomyHierarchy({
     });
   }
 
-  function buildHierarchy(data: any[]) {
-    const map = new Map();
-    const roots: any[] = [];
-
-    data.forEach((item: any) => {
-      map.set(item._id, { ...item, children: [], y: 0 });
-    });
-
-    data.forEach((item) => {
-      if (item.parent && item.parent._id) {
-        const parent = map.get(item.parent._id);
-        if (parent) {
-          parent.children.push(map.get(item._id));
-        } else {
-          roots.push(map.get(item._id));
-        }
-      } else {
-        roots.push(map.get(item._id));
-      }
-    });
-
-    return roots;
-  }
-
-  const item = (d: any) => {
+  const item = (d: any, indexing: {anatomy: [], parts: []}) => {
     return (
       <div key={d._id}>
         <Link href={`/anatomy/${d.slug}`} style={{ fontWeight: "bold" }}>
+          <h6>{romanize(indexing.anatomy.indexOf(d._id) + 1)}&nbsp;</h6>
           {d.title}
         </Link>
-        {d.parts?.map((part: any) => (
-          <div key={part._id} style={{ margin: "0 0 0 1.625rem" }}>
-            <Link
-              href={`/part/${part.slug}`}
-              className={DepartureMono.className}
-              style={{
-                fontSize: "0.75rem",
-                textTransform: "uppercase",
-                background: part.slug == slug ? "yellow" : "",
-              }}
-            >
-              {part._type == "customPart" ? "*" : <>&nbsp;</>}
-              {part.title}{" "}
-            </Link>
-          </div>
-        ))}
+        {d.parts?.map((part: any) => {
+          const index = indexing.parts.indexOf(part._id) + 1;
+          return (
+            <div key={part._id} style={{ margin: "0 0 0 2rem" }}>
+              <Link
+                href={`/part/${part.slug}`}
+                className={DepartureMono.className}
+                style={{
+                  fontSize: "0.75rem",
+                  textTransform: "uppercase",
+                  background: part.slug == slug ? "yellow" : "",
+                }}
+              >
+                {index < 10 ? <>&nbsp;</> : ""}
+                {index}
+                {part._type == "customPart" ? "*" : <>&nbsp;</>}
+                {part.title}{" "}
+              </Link>
+            </div>
+          );
+        })}
         <div key={d._id} style={{ margin: "0.75rem 0 0 2rem" }}>
-          {d.children.map((child: any) => item(child))}
+          {d.children.map((child: any) => item(child, indexing))}
         </div>
       </div>
     );
   };
+
+  const { roots, indexing } = buildHierarchy(data)
 
   return (
     <div style={{ padding: "1rem" }}>
@@ -93,7 +78,7 @@ export default async function AnatomyHierarchy({
       ) : (
         <></>
       )}
-      {buildHierarchy(data).map((d) => item(d))}
+      {roots.map((d) => item(d, indexing))}
     </div>
   );
 }

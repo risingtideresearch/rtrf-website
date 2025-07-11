@@ -18,8 +18,39 @@ export const hierarchyQuery = `
 }   
 `;
 
-export const connectorsQuery = `
-*[_type=="connector"] {
+export const allPartsQuery = `
+*[_type in ["customPart", "component"]]{
+  ...,
+  "slug": slug.current,
+  "image": image.asset->{
+    metadata,
+    url
+  },
+  "connections": *[
+    _type == "connection" &&
+    (references(^._id))
+  ]{
+    _id,
+    _type,
+    description,
+    componentFrom->{
+      "slug": slug.current,
+      title,
+      _id,
+      _type
+    },
+    componentTo->{
+      "slug": slug.current,
+      title,
+      _id,
+      _type
+    }
+  }
+}
+`;
+
+export const connectionsQuery = `
+*[_type=="connection"] {
     title,
     description,
     componentFrom->{
@@ -58,7 +89,7 @@ export const componentPartQuery = (slug: string) => `
     }
   },
   "connections": *[
-    _type =="connector" &&
+    _type =="connection" &&
     references(*[(_type in ["customPart", "component"]) && slug.current == "${slug}"][0]._id)
   ] {
     _type,
@@ -88,12 +119,21 @@ export const componentPartQuery = (slug: string) => `
   ] {
     ...
   },
-  "timeline": *[
+  "timelines": *[
     _type =="timeline" &&
     references(*[(_type in ["customPart", "component"]) && slug.current == "${slug}"][0]._id)
   ] {
-    ...
+    ...,
+    timeline[] {
+      ...,
+      media[] {
+        asset->{
+          url,
+          metadata
+        }
+      }
+    }
   }
 }
 
-`
+`;

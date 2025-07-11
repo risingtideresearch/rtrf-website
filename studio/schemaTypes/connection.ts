@@ -1,9 +1,9 @@
 import {defineField, defineType} from 'sanity'
 import {SchemaIcon} from '@sanity/icons'
-import { documentation } from './shared/documentation'
+import {documentation} from './shared/documentation'
 
-export const connector = defineType({
-  name: 'connector',
+export const connection = defineType({
+  name: 'connection',
   type: 'document',
   title: 'Connection',
   icon: SchemaIcon,
@@ -40,6 +40,24 @@ export const connector = defineType({
       type: 'text',
       name: 'description',
     }),
+    defineField({
+      type: 'array',
+      name: 'using',
+      of: [
+        defineField({
+          type: 'reference',
+          name: 'part',
+          to: [
+            {
+              type: 'component',
+            },
+            {
+              type: 'customPart',
+            },
+          ],
+        }),
+      ],
+    }),
     documentation,
   ],
   preview: {
@@ -48,7 +66,7 @@ export const connector = defineType({
       to: 'componentTo.title',
     },
     prepare: ({from, to}) => ({
-      title: `${from} to ${(to).toLowerCase()}`,
+      title: `${from} to ${to.toLowerCase()}`,
     }),
   },
 })
