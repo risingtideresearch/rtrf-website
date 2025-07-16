@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Link from "next/link";
-import localFont from "next/font/local";
+import { DepartureMono, GeistSans } from "./_fonts";
 
-export const DepartureMono = localFont({
-  src: "./fonts/DepartureMono-1.500.woff2",
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rising Tide Research Foundation",
@@ -28,10 +14,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log(DepartureMono);
+  
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${GeistSans.variable} ${DepartureMono.variable}`}>
         <header
           style={{
             position: "fixed",
@@ -67,11 +53,10 @@ export default function RootLayout({
               <path d="M6 8h8l2 3"></path>
             </svg>
             <h1
-              className={DepartureMono.className}
+              className={'uppercase-mono'}
               style={{
                 fontSize: "1rem",
                 color: "darkgreen",
-                textTransform: "uppercase",
               }}
             >
               Solander 38

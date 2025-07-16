@@ -30,10 +30,11 @@
   font-size: 0.875rem;
   > div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 4rem 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    padding: 1rem;
-    > div:first-child {
+    padding: 5rem 0;
+    > div:first-child,
+    > div:nth-child(2) {
       text-align: right;
     }
   }

@@ -1,24 +1,23 @@
-import { DepartureMono } from "../layout";
 import styles from "./../styles/timeline.module.scss";
 import { Image } from "./Image";
 
 export default async function Timeline({ data }) {
-  console.log(data);
   return (
     <div className={styles.timeline}>
       {data.timeline?.map((event, i) => {
         return (
           <>
             <div key={event._id} className={styles.event}>
-              <p className={DepartureMono.className} style={{ fontSize: '0.675rem'}}>{event.dates.start}</p>
+              <p className={"uppercase-mono"} style={{ fontSize: "0.75rem" }}>
+                ├─{event.dates.start}
+              </p>
 
-              <p>{event.title}</p>
+              <p style={{ fontSize: "0.875rem" }}>{event.title}</p>
 
               {event.media?.map((media) => {
                 return (
-                  <div key={media._id} style={{position: 'relative'}}>
+                  <div key={media._id} style={{ position: "relative" }}>
                     <Image
-                      style={{ position: "absolute" }}
                       src={media.asset.url}
                       height={120 / media.asset.metadata.dimensions.aspectRatio}
                       width={120}
@@ -30,14 +29,10 @@ export default async function Timeline({ data }) {
             </div>
             {i < data.timeline.length - 1 ? (
               <div
-                style={{
-                  height: "2rem",
-                  width: "1rem",
-                  borderLeft: "1px solid #000",
-                  margin: "-0.25rem 1rem 0.25rem 0",
-                }}
-                className={DepartureMono.className} 
+                className={"uppercase-mono"}
+                style={{ fontSize: "0.75rem" }}
               >
+                │<br/>│<br/>│
               </div>
             ) : (
               <></>

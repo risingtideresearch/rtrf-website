@@ -1,6 +1,5 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { componentPartQuery } from "@/sanity/lib/queries";
-import { DepartureMono } from "../layout";
 
 import styles from "./../styles/common.module.scss";
 import Link from "next/link";
@@ -9,12 +8,12 @@ import Timeline from "./Timeline";
 
 interface IComponentMetadataProps {
   slug: string;
-  indexing: { anatomy: string[]; parts: string[] };
+  componentIndex: { anatomy: string[]; parts: string[] };
 }
 
 export default async function ComponentMetadata({
   slug,
-  indexing,
+  componentIndex,
 }: IComponentMetadataProps) {
   const { data } = await sanityFetch({
     query: componentPartQuery(slug),
@@ -22,17 +21,17 @@ export default async function ComponentMetadata({
 
   const { component, connections, anatomy, timelines } = data;
 
-  console.log(data, indexing);
+  console.log(data, componentIndex);
 
   return (
     <>
       {anatomy ? (
         <div style={{ textAlign: "right" }}>
-          <h6>System</h6>
+          <h6>Anatomical system</h6>
           {anatomy.map((d) => {
             return (
-              <p>
-                <Link key={d.slug} href={`/anatomy/${d?.slug}`}>
+              <p key={d.slug}>
+                <Link href={`/anatomy/${d?.slug}`}>
                   {d?.title}
                 </Link>
               </p>
@@ -48,8 +47,8 @@ export default async function ComponentMetadata({
             <Image
               style={{ display: "block" }}
               src={component.image.url}
-              width={component.image.metadata.dimensions.aspectRatio * 240}
-              height={240}
+              width={Math.min(component.image.metadata.dimensions.aspectRatio * 240, 500)}
+              height={Math.min(component.image.metadata.dimensions.aspectRatio * 240, 500) / component.image.metadata.dimensions.aspectRatio}
               alt={component.image.altText}
             />
           </div>
@@ -60,8 +59,8 @@ export default async function ComponentMetadata({
           <div>
             <h6>No.</h6>
           </div>
-          <p className={DepartureMono.className}>
-            {indexing.parts.indexOf(component._id) + 1}
+          <p className={'uppercase-mono'}>
+            {componentIndex.parts.indexOf(component._id) + 1}
             {component._type == "customPart" ? "*" : ""}
           </p>
         </div>
@@ -153,22 +152,22 @@ export default async function ComponentMetadata({
             return (
               <div key={i}>
                 <p
-                  className={DepartureMono.className}
+                  className={'uppercase-mono'}
                   style={{
-                    fontSize: "0.75rem",
+                    fontSize: "0.875rem",
                     textTransform: "uppercase",
                   }}
                 >
                   {d.componentTo?.slug != component.slug ? (
                     <Link href={`/part/${d.componentTo?.slug}`}>
-                      &rarr; {d.componentTo?.title}&nbsp;
+                      ──→ {d.componentTo?.title}
                     </Link>
                   ) : (
                     <></>
                   )}
                   {d.componentFrom?.slug != component.slug ? (
                     <Link href={`/part/${d.componentFrom?.slug}`}>
-                      &rarr; {d.componentFrom?.title}&nbsp;
+                      ──→ {d.componentFrom?.title}
                     </Link>
                   ) : (
                     <></>
@@ -177,7 +176,7 @@ export default async function ComponentMetadata({
 
                 <p style={{ fontSize: "0.875rem" }}>
                   <span
-                    className={DepartureMono.className}
+                    className={'uppercase-mono'}
                     style={{
                       fontSize: "0.75rem",
                       textTransform: "uppercase",
@@ -199,7 +198,7 @@ export default async function ComponentMetadata({
         <section>
           <h3>Timeline</h3>
           {timelines.map((timeline) => {
-            return <Timeline data={timeline} />;
+            return <Timeline key={timeline._id} data={timeline} />;
           })}
         </section>
       ) : (

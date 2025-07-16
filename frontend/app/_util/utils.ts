@@ -1,3 +1,6 @@
+import { sanityFetch } from "@/sanity/lib/live";
+import { anatomyQuery } from "@/sanity/lib/queries";
+
 /**
  *
  * @param num
@@ -54,7 +57,7 @@ export function buildHierarchy(data: any[]) {
   const map = new Map();
   const roots: any[] = [];
 
-  const indexing = {
+  const componentIndex = {
     anatomy: [] as string[], 
     parts: [] as string[],  
   };
@@ -77,11 +80,11 @@ export function buildHierarchy(data: any[]) {
   });
 
   function traverse(node: any) {
-    indexing.anatomy.push(node._id);
+    componentIndex.anatomy.push(node._id);
 
     if (node.parts && Array.isArray(node.parts)) {
       node.parts.forEach((part: any) => {
-        indexing.parts.push(part._id);
+        componentIndex.parts.push(part._id);
       });
     }
 
@@ -92,5 +95,12 @@ export function buildHierarchy(data: any[]) {
 
   roots.forEach(traverse);
 
-  return { roots, indexing };
+  return { roots, componentIndex, map };
+}
+
+export async function fetchHierarchyWithIndexing() {
+  const { data } = await sanityFetch({ query: anatomyQuery });
+  const { roots, componentIndex, map } = buildHierarchy(data);
+
+  return { roots, componentIndex, data, map }
 }

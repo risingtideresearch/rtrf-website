@@ -1,4 +1,4 @@
-import AnatomyHierarchy from "@/app/components/AnatomyHierarchy"
+import AnatomySystem from "@/app/_components/AnatomySystem"
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -26,7 +26,7 @@ export default async function Page({
   
   return (
     <div>
-      <AnatomyHierarchy slug={slug} />
+      <AnatomySystem slug={slug} />
     </div>
   )
 }

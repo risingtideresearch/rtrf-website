@@ -1,4 +1,4 @@
-import AnatomyHierarchy from "@/app/components/AnatomyHierarchy";
+import AnatomyHierarchy from "@/app/_components/AnatomyHierarchy";
 import { sanityFetch } from "@/sanity/lib/live";
 import { allPartsQuery } from "@/sanity/lib/queries";
 

@@ -1,10 +1,10 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { schematicsQuery } from "@/sanity/lib/queries";
-import XMLtoSVG from "./components/XMLtoSVG";
-import Connections from "./components/Connections";
-import AnatomyHierarchy from "./components/AnatomyHierarchy";
-import Layers from "./components/Layers";
-import PartsAndConnections from "./components/PartsAndConnections";
+import XMLtoSVG from "./_components/XMLtoSVG";
+import Connections from "./_components/Connections";
+import AnatomyHierarchy from "./_components/AnatomyHierarchy";
+import Layers from "./_components/Layers";
+import PartsAndConnections from "./_components/PartsAndConnections";
 
 export default async function Page() {
   const { data } = await sanityFetch({

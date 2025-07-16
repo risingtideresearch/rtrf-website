@@ -1,9 +1,9 @@
 import { sanityFetch } from "@/sanity/lib/live";
-import { connectionsQuery, hierarchyQuery } from "@/sanity/lib/queries";
+import { connectionsQuery, anatomyQuery } from "@/sanity/lib/queries";
 
 export default async function PartsAndConnections() {
   const { data } = await sanityFetch({
-    query: hierarchyQuery,
+    query: anatomyQuery,
   });
 
   const map = new Map();

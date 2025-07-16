@@ -1,7 +1,5 @@
-import ComponentPart from "@/app/components/ComponentMetadata";
-import { buildHierarchy } from "@/app/util/utils";
-import { sanityFetch } from "@/sanity/lib/live";
-import { hierarchyQuery } from "@/sanity/lib/queries";
+import ComponentPart from "@/app/_components/ComponentMetadata";
+import { fetchHierarchyWithIndexing } from "@/app/_util/utils";
 
 export default async function Page({
   params,
@@ -9,16 +7,11 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  const { data } = await sanityFetch({
-    query: hierarchyQuery,
-  });
-
-  const { indexing } = buildHierarchy(data)
+  const { componentIndex } = await fetchHierarchyWithIndexing();
 
   return (
     <div>
-      <ComponentPart slug={slug} indexing={indexing} />
+      <ComponentPart slug={slug} componentIndex={componentIndex} />
     </div>
   );
 }

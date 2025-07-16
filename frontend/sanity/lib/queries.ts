@@ -1,4 +1,7 @@
-export const hierarchyQuery = `
+/**
+ * 
+ */
+export const anatomyQuery = `
 *[_type=="anatomy"]{
     _id,
     title,
@@ -14,10 +17,24 @@ export const hierarchyQuery = `
         _type,
         componentPart,
         "slug": slug.current,
+    },
+    schematics[]->{
+      ...,
+      layers[]{
+        ...,
+        "image": photo.asset->{
+          metadata,
+          url
+        },
+        part->
+      }
     }
 }   
 `;
 
+/**
+ * 
+ */
 export const allPartsQuery = `
 *[_type in ["customPart", "component"]]{
   ...,
@@ -25,6 +42,12 @@ export const allPartsQuery = `
   "image": image.asset->{
     metadata,
     url
+  },
+  "anatomy": *[
+    _type == "anatomy" &&
+    (references(^._id))
+  ]{
+    _id,
   },
   "connections": *[
     _type == "connection" &&
@@ -49,6 +72,9 @@ export const allPartsQuery = `
 }
 `;
 
+/**
+ * 
+ */
 export const connectionsQuery = `
 *[_type=="connection"] {
     title,
@@ -62,6 +88,9 @@ export const connectionsQuery = `
 }
 `;
 
+/**
+ * 
+ */
 export const schematicsQuery = `
 *[_type=="schematic"]{
     _id,
@@ -75,6 +104,9 @@ export const schematicsQuery = `
 }   
 `;
 
+/**
+ * 
+ */
 export const componentPartQuery = (slug: string) => `
 {
   "component": *[(_type in ["customPart", "component"]) && slug.current == "${slug}"][0] {
@@ -98,11 +130,13 @@ export const componentPartQuery = (slug: string) => `
         "slug": slug.current,
         title,
         _type,
+        _id,
     },
     componentTo->{
         "slug": slug.current,
         title,
         _type,
+        _id,
     }
   },
   "anatomy": *[
