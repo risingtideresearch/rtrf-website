@@ -16,34 +16,117 @@ export default async function AnatomySystem({ slug }: IAnatomySystemProps) {
 
   const thisSystem = map.values().find((d) => d.slug == slug);
 
+  console.log(thisSystem);
+
+  const connections = (part) => {
+    let longest = part.title.length;
+
+    const markup = (
+      <span style={{ display: "inline-flex", flexDirection: "column" }}>
+        {part.connections.map((connection, i) => {
+          return (
+            <>
+              {connection.componentFrom._id != part._id &&
+                connection.componentFrom.anatomy
+                  .filter((anat) => anat._id != thisSystem._id)
+                  .map((anat) => {
+                    longest = Math.max(
+                      anat.title.length,
+                      Math.max(connection.componentFrom.title.length, longest),
+                    );
+                    return (
+                      <span
+                        key={anat._id}
+                        style={{
+                          display: "inline-flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        ┆
+                        <br />
+                        ┆
+                        <br />
+                        └┐
+                        <Link href={`/part/${connection.componentFrom.slug}`}>
+                          &nbsp;├─{connection.componentFrom.title}
+                        </Link>
+                        <Link href={`/anatomy/${anat.slug}`}>
+                          &nbsp;&nbsp;&nbsp;({anat.title})
+                        </Link>
+                      </span>
+                    );
+                  })}
+              {connection.componentTo._id != part._id &&
+                connection.componentTo.anatomy
+                  .filter((anat) => anat._id != thisSystem._id)
+                  .map((anat) => {
+                    longest = Math.max(
+                      anat.title.length,
+                      Math.max(connection.componentTo.title.length, longest),
+                    );
+                    return (
+                      <span
+                        key={anat._id}
+                        style={{
+                          display: "inline-flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        ┆
+                        <br />
+                        ┆
+                        <br />
+                        └┐
+                        <Link href={`/part/${connection.componentTo.slug}`}>
+                          &nbsp;├─{connection.componentTo.title}
+                        </Link>
+                        <Link href={`/anatomy/${anat.slug}`}>
+                          &nbsp;&nbsp;&nbsp;({anat.title})
+                        </Link>
+                      </span>
+                    );
+                  })}
+            </>
+          );
+        })}
+      </span>
+    );
+
+    return {
+      markup,
+      longest,
+    };
+  };
+
   return (
     <>
       <div>
         <div>
-          {/* {thisSystem.parent ? (
-            <div>
-              <Link href={`/anatomy/${thisSystem.parent.slug}`}>
-                {thisSystem.parent.title}
-              </Link>
-              <span>- - -</span>
-            </div>
-          ) : (
-            <></>
-          )} */}
-          <h3>
-            <Link href={`/anatomy/${thisSystem.slug}`}>{thisSystem.title}</Link>
-          </h3>
+          <p className="uppercase-mono" style={{ fontSize: "0.75rem" }}>
+            ┌─{thisSystem.title.split("").map((d) => "─")}─┐
+            <br />│ {thisSystem.title} │{/* <br /> */}
+            {/* └─{thisSystem.title.split("").map((d) => "─")}─┘ */}
+          </p>
         </div>
-        {/* <span className="uppercase-mono" style={{ fontSize: "0.75rem" }}>
-          {thisSystem.parts.map((part) => (
-            <>
-              ───
-              <Link key={part._id} href={`/part/${part.slug}`}>
-                {part.title}
-              </Link>
-            </>
-          ))}
-        </span> */}
+        <div className="uppercase-mono" style={{ fontSize: "0.75rem" }}>
+          {thisSystem.parts.map((part, i) => {
+            const { markup, longest } = connections(part);
+            return (
+              <span key={part._id} style={{ display: "inline-flex" }}>
+                <span
+                  style={{ display: "inline-flex", flexDirection: "column" }}
+                >
+                  {i == 0 ? "├" : "┌"}─
+                  {Array.from({ length: longest + 1 }, (v, i) => i).map(
+                    (_) => "─",
+                  )}
+                  ─<Link href={`/part/${part.slug}`}>│{part.title}&nbsp;</Link>
+                  {markup}
+                </span>
+              </span>
+            );
+          })}
+        </div>
         {thisSystem.schematics?.map((schematic) => {
           return <Schematic key={schematic._id} data={schematic} />;
         })}

@@ -11,7 +11,7 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { componentIndex } = await fetchHierarchyWithIndexing();
+  const { componentIndex, map } = await fetchHierarchyWithIndexing();
   const parts = await sanityFetch({
     query: allPartsQuery,
   });
@@ -23,7 +23,11 @@ export default async function Page({
   return (
     <div>
       {/* <PartCatalog componentIndex={componentIndex} /> */}
-      <PartCatalogGrid componentIndex={componentIndex} parts={parts.data} anatomies={anatomies.data} />
+      <PartCatalogGrid
+        componentIndex={componentIndex}
+        parts={parts.data}
+        anatomies={anatomies.data}
+      />
     </div>
   );
 }

@@ -66,7 +66,7 @@ export const connection = defineType({
       to: 'componentTo.title',
     },
     prepare: ({from, to}) => ({
-      title: `${from} to ${to.toLowerCase()}`,
+      title: `${from} to ${to.startsWith('DC') ? to : to.toLowerCase()}`,
     }),
   },
 })

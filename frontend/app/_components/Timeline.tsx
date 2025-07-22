@@ -8,31 +8,33 @@ export default async function Timeline({ data }) {
         return (
           <>
             <div key={event._id} className={styles.event}>
-              <p className={"uppercase-mono"} style={{ fontSize: "0.75rem" }}>
-                ├─{event.dates.start}
+              <p>
+                <span className={"uppercase-mono"} style={{ fontSize: "0.75rem" }}>• </span>{event.dates.start}
               </p>
 
-              <p style={{ fontSize: "0.875rem" }}>{event.title}</p>
-
-              {event.media?.map((media) => {
-                return (
-                  <div key={media._id} style={{ position: "relative" }}>
-                    <Image
-                      src={media.asset.url}
-                      height={120 / media.asset.metadata.dimensions.aspectRatio}
-                      width={120}
-                      alt={media.asset.altText}
-                    />
-                  </div>
-                );
-              })}
+              {event.media ? (
+                event.media.map((media) => {
+                  return (
+                    <div key={media._id} style={{ position: "relative" }}>
+                      <p>{event.title}</p>
+                      <Image
+                        src={media.asset.url}
+                        height={700}
+                        width={
+                          700 * media.asset.metadata.dimensions.aspectRatio
+                        }
+                        alt={media.asset.altText}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <p>{event.title}</p>
+              )}
             </div>
             {i < data.timeline.length - 1 ? (
-              <div
-                className={"uppercase-mono"}
-                style={{ fontSize: "0.75rem" }}
-              >
-                │<br/>│<br/>│
+              <div className={"uppercase-mono"} style={{ fontSize: "0.75rem" }}>
+                │<br />│<br />│
               </div>
             ) : (
               <></>

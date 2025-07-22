@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 export const anatomyQuery = `
 *[_type=="anatomy"]{
@@ -17,6 +17,42 @@ export const anatomyQuery = `
         _type,
         componentPart,
         "slug": slug.current,
+        "connections":*[
+          _type == "connection" &&
+          (references(^._id))
+        ]{
+          _id,
+          _type,
+          description,
+          componentFrom->{
+            "slug": slug.current,
+            title,
+            "anatomy":*[
+              _type == "anatomy" &&
+              (references(^._id))
+            ]{
+              _id,
+              title,  
+              "slug": slug.current,
+            },
+            _id,
+            _type
+          },
+          componentTo->{
+            "slug": slug.current,
+            title,
+            "anatomy":*[
+              _type == "anatomy" &&
+              (references(^._id))
+            ]{
+              _id,
+              title,  
+              "slug": slug.current,
+            },
+            _id,
+            _type
+          }
+        },
     },
     schematics[]->{
       ...,
@@ -33,7 +69,7 @@ export const anatomyQuery = `
 `;
 
 /**
- * 
+ *
  */
 export const allPartsQuery = `
 *[_type in ["customPart", "component"]]{
@@ -73,7 +109,7 @@ export const allPartsQuery = `
 `;
 
 /**
- * 
+ *
  */
 export const connectionsQuery = `
 *[_type=="connection"] {
@@ -89,12 +125,13 @@ export const connectionsQuery = `
 `;
 
 /**
- * 
+ *
  */
 export const schematicsQuery = `
 *[_type=="schematic"]{
     _id,
     title,
+    part->,
     layers[]{
         layerName,
         photo{
@@ -105,7 +142,7 @@ export const schematicsQuery = `
 `;
 
 /**
- * 
+ *
  */
 export const componentPartQuery = (slug: string) => `
 {
