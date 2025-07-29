@@ -1,6 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {ColorWheelIcon} from '@sanity/icons'
 import { partMetadata } from './shared/partMetadata'
+import { link } from './shared/link'
 
 export const component = defineType({
   name: 'component',
@@ -20,6 +21,8 @@ export const component = defineType({
       title: 'Component part',
       description: 'Manufacturer and model name',
     }),
+
+    link,
     ...partMetadata,
   ],
   preview: {

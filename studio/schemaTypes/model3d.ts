@@ -11,6 +11,7 @@ export const model3d = defineType({
       type: 'string',
       name: 'title',
     }),
+
     defineField({
       type: 'file',
       name: 'model',

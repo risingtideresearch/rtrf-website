@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {VersionsIcon} from '@sanity/icons'
-import {schematics} from './shared/schematics'
-import {models} from './shared/models'
+// import {schematics} from './shared/schematics'
+// import {models} from './shared/models'
 
 // Install lucide.dev icons with "npm install lucide-react"
 // import {TagIcon} from 'lucide-react'
@@ -64,8 +64,8 @@ export const anatomy = defineType({
         },
       ],
     }),
-    schematics,
-    models,
+    // schematics,
+    // models,
   ],
   orderings: [
     {

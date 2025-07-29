@@ -62,12 +62,13 @@ export default function RootLayout({
               Solander 38
             </h1>
           </Link>
-          <div style={{ display: 'inline-flex', flexDirection: 'row', gap: '1rem'}}>
+          {/* <div style={{ display: 'inline-flex', flexDirection: 'row', gap: '1rem'}}>
             <Link href="/part">Parts</Link>
             <Link href="/anatomy">Anatomy</Link>
-          </div>
+          </div> */}
         </header>
-        <main>{children}</main>
+        {/* <main>{children}</main> */}
+        {children}
       </body>
     </html>
   );

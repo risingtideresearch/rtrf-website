@@ -1,0 +1,32 @@
+export const models = await fetch("models/export_manifest.json")
+  .then((res) => res.json())
+  .then((data) => {
+    return data.exported_layers
+      .filter((d) => d.file_size > 0)
+      .map((d) => "models/" + d.filename);
+  });
+
+// [
+//   // "models/HULLS, INTERNALS, ETC.__CTR BEAM FROM EXIST. PART MSMTS__ctr beam outside surfaces.gltf",
+//   // "models/HULLS, INTERNALS, ETC.__deck.gltf",
+//   // "models/HULLS, INTERNALS, ETC.__hull.gltf",
+//   // "models/HULLS, INTERNALS, ETC.__steering shelf concepts__P&S rudder shelf.gltf",
+//   // "models/PROPULSION__20W Bell Marine Motor___2.5D_ from 20W technical dwg.gltf",
+//   // "models/PROPULSION__MOTOR MOUNT__marks.gltf",
+//   // "models/PROPULSION__MOTOR MOUNT__surfs.gltf",
+//   "models/PROPULSION__propeller & strut.gltf",
+//   // "models/PROPULSION__rudder assembly__foil top wedge contoured.gltf",
+//   // "models/PROPULSION__rudder assembly__rudder shaft & foil.gltf",
+//   // "models/PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.gltf",
+//   // "models/PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.gltf",
+//   // "models/PROPULSION__rudder assembly__SS sleeve.gltf",
+//   // "models/PROPULSION__rudder assembly__SS thrust bearing, polished top.gltf",
+//   // "models/PROPULSION__rudder assembly__stock CL.gltf",
+//   // "models/PROPULSION__rudder assembly__Turcite bushings.gltf",
+//   // "models/PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.gltf",
+//   // "models/PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.gltf",
+//   // "models/PROPULSION__SHAFTLINE COMPONENTS__shaft__CL.gltf",
+//   // "models/PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.gltf",
+//   // "models/PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.gltf",
+//   // "models/Superstructure.gltf",
+//];

@@ -1,6 +1,6 @@
 import { defineField } from "sanity";
 
-export const link = defineField({
+export const figure = defineField({
   type: 'object',
   name: 'figure',
   fields: [

@@ -1,0 +1,198 @@
+{
+  "exported_layers": [
+    {
+      "layer_name": "Superstructure",
+      "filename": "Superstructure.gltf",
+      "file_size": 14173968,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": "manual"
+    },
+    {
+      "layer_name": "PROPULSION::propeller & strut",
+      "filename": "PROPULSION__propeller & strut.glb",
+      "file_size": 14173968,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::Cutless Bearing brass \"Bale\" size",
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb",
+      "file_size": 103384,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::PSS shaft seal 02-100-200::surfs",
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.glb",
+      "file_size": 243128,
+      "object_count": 6,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::stern tube 2\" OD X 1.5\" ID GRP source from fisheries supply",
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.glb",
+      "file_size": 147696,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::surfs",
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.glb",
+      "file_size": 148672,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::CL",
+      "filename": "",
+      "file_size": 0,
+      "object_count": 0,
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::foil top wedge contoured",
+      "filename": "PROPULSION__rudder assembly__foil top wedge contoured.glb",
+      "file_size": 95676,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::rudder shaft & foil",
+      "filename": "PROPULSION__rudder assembly__rudder shaft & foil.glb",
+      "file_size": 964192,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::stock CL",
+      "filename": "",
+      "file_size": 0,
+      "object_count": 0,
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::Turcite bushings",
+      "filename": "PROPULSION__rudder assembly__Turcite bushings.glb",
+      "file_size": 285752,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::SS thrust bearing, polished top",
+      "filename": "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb",
+      "file_size": 61784,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::SS sleeve",
+      "filename": "PROPULSION__rudder assembly__SS sleeve.glb",
+      "file_size": 129816,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::Rudder tube::G10 tube 3\" OD X 2.75\" ID",
+      "filename": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb",
+      "file_size": 134312,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::Rudder tube::Molded tube ends for turc bushings",
+      "filename": "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.glb",
+      "file_size": 583932,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::MOTOR MOUNT::marks",
+      "filename": "PROPULSION__MOTOR MOUNT__marks.glb",
+      "file_size": 21608,
+      "object_count": 180,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::MOTOR MOUNT::surfs",
+      "filename": "PROPULSION__MOTOR MOUNT__surfs.glb",
+      "file_size": 400344,
+      "object_count": 12,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "PROPULSION::20W Bell Marine Motor::\"2.5D\" from 20W technical dwg",
+      "filename": "PROPULSION__20W Bell Marine Motor___2.5D_ from 20W technical dwg.glb",
+      "file_size": 2980712,
+      "object_count": 7674,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "HULLS, INTERNALS, ETC.::hull",
+      "filename": "HULLS, INTERNALS, ETC.__hull.glb",
+      "file_size": 376900,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "HULLS, INTERNALS, ETC.::deck",
+      "filename": "HULLS, INTERNALS, ETC.__deck.glb",
+      "file_size": 1319592,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "HULLS, INTERNALS, ETC.::steering shelf concepts::P&S rudder shelf",
+      "filename": "HULLS, INTERNALS, ETC.__steering shelf concepts__P&S rudder shelf.glb",
+      "file_size": 31764,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "HULLS, INTERNALS, ETC.::CTR BEAM FROM EXIST. PART MSMTS::ctr beam outside surfaces",
+      "filename": "HULLS, INTERNALS, ETC.__CTR BEAM FROM EXIST. PART MSMTS__ctr beam outside surfaces.glb",
+      "file_size": 889588,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "BASELINES",
+      "filename": "",
+      "file_size": 0,
+      "object_count": 0,
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    }
+  ],
+  "export_info": {
+    "total_layers_found": 33,
+    "export_path": "/Users/shelby/Documents/_/rtrf documentation/exports glb",
+    "timestamp": "2025-07-28 23:49:02",
+    "format": "GLB",
+    "successful_exports": 19,
+    "failed_exports": 0,
+    "skipped_exports": 3,
+    "total_file_size": 23092820
+  }
+}

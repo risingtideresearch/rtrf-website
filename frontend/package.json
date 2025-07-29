@@ -29,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "jsdom": "^26.1.0",
+    "react-range-slider-input": "^3.2.1",
     "sass": "^1.89.2",
     "three": "^0.178.0",
     "typescript": "^5"

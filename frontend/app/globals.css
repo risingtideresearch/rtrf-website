@@ -84,6 +84,20 @@ section {
   width: 2rem;
 }
 
+button {
+  background: var(--background);
+  padding: 0.25em;
+}
+
+div.range-slider {
+  background: var(--foreground);
+}
+
+.range-slider div.range-slider__thumb {
+  width: 1rem ;
+  height: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

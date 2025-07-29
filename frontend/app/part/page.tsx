@@ -21,13 +21,15 @@ export default async function Page({
   });
 
   return (
-    <div>
-      {/* <PartCatalog componentIndex={componentIndex} /> */}
-      <PartCatalogGrid
-        componentIndex={componentIndex}
-        parts={parts.data}
-        anatomies={anatomies.data}
-      />
-    </div>
+    <main>
+      <div>
+        {/* <PartCatalog componentIndex={componentIndex} /> */}
+        <PartCatalogGrid
+          componentIndex={componentIndex}
+          parts={parts.data}
+          anatomies={anatomies.data}
+        />
+      </div>
+    </main>
   );
 }

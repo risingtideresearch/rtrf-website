@@ -1,10 +1,12 @@
 import {defineField} from 'sanity'
-import {link} from './link'
-import {models} from './models'
+// import {models} from './models'
 import {scale} from './scale'
 import {schematics} from './schematics'
 import {specs} from './specs'
 import {documentation} from './documentation'
+import models from './../export_manifest.json';
+
+console.log(models)
 
 /**
  * Shared metadata fields between component and custom parts
@@ -44,9 +46,23 @@ export const partMetadata = [
       }),
     ],
   }),
-  link,
   specs,
-  models,
+  // models,
+  defineField({
+    name: 'model',
+    type: 'string',
+    options: {
+      layout: 'dropdown',
+      list: models.exported_layers.map(layer => {
+        return (
+          {
+            value: layer.layer_name,
+            title: layer.layer_name,
+          }
+        )
+      }),
+    },
+  }),
   schematics,
   documentation,
 ]
