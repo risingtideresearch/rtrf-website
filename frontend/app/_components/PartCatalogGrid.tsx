@@ -110,6 +110,8 @@ export default function PartCatalogGrid({ componentIndex, parts, anatomies }) {
     return true;
   };
 
+  console.log(parts.reduce((acc, curr) => { acc[curr.slug] = ''; return acc} , {}))
+
   return (
     <>
       <PartCatalogFilters
