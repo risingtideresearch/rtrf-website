@@ -1,0 +1,41 @@
+.page {
+  display: grid;
+  grid-template-columns: 1fr 34rem;
+  gap: 0;
+  background: var(--background);
+
+  > div {
+    min-height: 100svh;
+    position: relative;
+  }
+
+  > div:first-child {
+    width: calc(100vw - 34rem);
+  }
+
+  > div:nth-child(2) {
+    width: 34rem;
+    background: var(--background);
+    border-left: var(--foreground) 1px solid;
+  }
+}
+
+.collapsed {
+  grid-template-columns: 1fr 2rem;
+
+  > div:first-child {
+    width: calc(100vw - 2rem);
+  }
+
+  > div:nth-child(2) {
+    width: 2rem;
+  }
+}
+
+.navigation-drawer {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 0 1rem 4rem 1rem;
+  position: absolute;
+}

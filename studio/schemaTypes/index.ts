@@ -6,11 +6,12 @@ import {connection} from './connection'
 import {customPart} from './customPart'
 import {location} from './location'
 import { material } from './material'
-import {model3d} from './model3d'
+// import {model3d} from './model3d'
 import {person} from './person'
 import {powerBudget} from './powerBudget'
-import {schematic} from './schematic'
+// import {schematic} from './schematic'
 import {timeline} from './timeline'
+import {annotation} from './annotation'
 
 export const schemaTypes = [
   boat,
@@ -20,10 +21,11 @@ export const schemaTypes = [
   component,
   connection,
   material,
-  model3d,
-  schematic,
+  // model3d,
+  // schematic,
   person,
   timeline,
   location,
   powerBudget,
+  annotation,
 ]

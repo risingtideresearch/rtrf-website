@@ -1,10 +1,10 @@
 import {defineField} from 'sanity'
 // import {models} from './models'
 import {scale} from './scale'
-import {schematics} from './schematics'
+// import {schematics} from './schematics'
 import {specs} from './specs'
 import {documentation} from './documentation'
-import models from './../export_manifest.json';
+import models from './../../../frontend/public/models/export_manifest.json';
 
 console.log(models)
 
@@ -63,6 +63,6 @@ export const partMetadata = [
       }),
     },
   }),
-  schematics,
+  // schematics,
   documentation,
 ]

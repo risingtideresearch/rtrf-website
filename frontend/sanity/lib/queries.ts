@@ -72,7 +72,7 @@ export const anatomyQuery = `
  *
  */
 export const allPartsQuery = `
-*[_type in ["customPart", "component"]]{
+*[_type in ["component"]]{
   ...,
   "slug": slug.current,
   "image": image.asset->{
@@ -124,6 +124,13 @@ export const connectionsQuery = `
 }
 `;
 
+export const materialsQuery = `
+*[_type=="material"] {
+    name,
+    aka[]
+}
+`;
+
 /**
  *
  */
@@ -138,6 +145,17 @@ export const schematicsQuery = `
             asset->{...}
         }
     }
+}   
+`;
+
+/**
+ *
+ */
+export const annotationsQuery = `
+*[_type=="annotation"]{
+    _id,
+    note,
+    position
 }   
 `;
 

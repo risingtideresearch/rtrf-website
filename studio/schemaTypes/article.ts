@@ -34,24 +34,24 @@ export const article = defineType({
                   // of: [
                   // ],
                 }),
-                defineField({
-                  type: 'reference',
-                  name: 'plan',
-                  title: 'Schematic',
-                  to: [{type: 'schematic'}],
-                }),
+                // defineField({
+                //   type: 'reference',
+                //   name: 'plan',
+                //   title: 'Schematic',
+                //   to: [{type: 'schematic'}],
+                // }),
                 // defineField({
                 //   type: 'reference',
                 //   name: 'component',
                 //   title: 'Component',
                 //   to: [{type: 'component'}],
                 // }),
-                defineField({
-                  type: 'reference',
-                  name: 'model3d',
-                  title: '3D Model',
-                  to: [{type: 'model3d'}],
-                }),
+                // defineField({
+                //   type: 'reference',
+                //   name: 'model3d',
+                //   title: '3D Model',
+                //   to: [{type: 'model3d'}],
+                // }),
                 defineField({
                   type: 'image',
                   name: 'photo',

@@ -2,8 +2,8 @@ import {defineField, defineType} from 'sanity'
 import {AsteriskIcon} from '@sanity/icons'
 import {documentation} from './shared/documentation'
 import {team} from './shared/team'
-import { models } from './shared/models'
-import { schematics } from './shared/schematics'
+// import { models } from './shared/models'
+// import { schematics } from './shared/schematics'
 import { partMetadata } from './shared/partMetadata'
 
 export const customPart = defineType({

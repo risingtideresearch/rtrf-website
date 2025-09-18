@@ -5,7 +5,7 @@ import time
 import json
 
 def sanitize_filename(name):
-    return re.sub(r'[<>:"/\\|?*]', '_', name)
+    return re.sub(r'[<>:"/\\|?*]#', '_', name)
 
 def export_all_layers_to_glb():
     # Clear any existing selections first
@@ -38,7 +38,7 @@ def export_all_layers_to_glb():
         print(f"Processing layer {i+1}/{len(layers)}: {layer}")
         
         # Skip layers with "CL" or "baseline" in the name
-        if "CL" in layer or "baseline" in layer.lower():
+        if "CL" in layer or "baseline" in layer.lower() or "CTR DECK TRACKS" in layer:
             print(f"  Skipping layer '{layer}' (contains CL or baseline)")
             manifest["exported_layers"].append({
                 "layer_name": layer,
@@ -46,7 +46,7 @@ def export_all_layers_to_glb():
                 "file_size": 0,
                 "object_count": 0,
                 "export_method": "skipped",
-                "notes": "Skipped - contains CL or baseline"
+                "notes": "Skipped - contains CL or baseline or CTR DECK TRACKS"
             })
             continue
         
@@ -83,28 +83,51 @@ def export_all_layers_to_glb():
             print(f"  Found {len(already_meshes)} objects that are already meshes")
             mesh_objs.extend(already_meshes)
         
-        # For non-mesh objects, try to convert them
+        # For non-mesh objects, try to convert them with better error handling
         non_meshes = [obj for obj in selected if rs.ObjectType(obj) != 32]
         if non_meshes:
             print(f"  Converting {len(non_meshes)} non-mesh objects...")
             rs.UnselectAllObjects()
             rs.SelectObjects(non_meshes)
             
-            # Try the mesh command
-            result = rs.Command("_-Mesh _Enter _Enter", echo=False)
-            print(f"  Mesh command result: {result}")
-            
-            # Wait and check what's selected
-            time.sleep(0.2)
-            rs.Redraw()
-            new_meshes = rs.SelectedObjects()
-            
-            if new_meshes:
-                print(f"  Mesh command created {len(new_meshes)} new objects")
-                mesh_objs.extend(new_meshes)
-            else:
-                print("  Mesh command didn't create new objects, trying alternative...")
-                # Try using the original objects directly
+            # Try meshing with safer parameters to avoid crashes
+            try:
+                print("  Attempting mesh conversion with default settings...")
+                result = rs.Command("_-Mesh _Pause _Enter", echo=False)
+                print(f"  Mesh command result: {result}")
+                
+                # Wait longer for mesh calculation to complete
+                time.sleep(0.5)
+                rs.Redraw()
+                new_meshes = rs.SelectedObjects()
+                
+                if new_meshes:
+                    print(f"  Mesh command created {len(new_meshes)} new objects")
+                    mesh_objs.extend(new_meshes)
+                else:
+                    print("  Mesh command didn't create new objects, trying simpler approach...")
+                    # Try with simplified mesh settings
+                    rs.UnselectAllObjects()
+                    rs.SelectObjects(non_meshes)
+                    
+                    # Use simpler mesh command
+                    result2 = rs.Command("_-Mesh _Simple _Enter", echo=False)
+                    time.sleep(1.0)
+                    rs.Redraw()
+                    simple_meshes = rs.SelectedObjects()
+                    
+                    if simple_meshes:
+                        print(f"  Simple mesh created {len(simple_meshes)} objects")
+                        mesh_objs.extend(simple_meshes)
+                    else:
+                        print("  Mesh conversion failed, using original objects for export...")
+                        # As last resort, try to export the original objects
+                        rs.SelectObjects(non_meshes)
+                        mesh_objs.extend(non_meshes)
+                        
+            except Exception as e:
+                print(f"  Mesh conversion error: {e}")
+                print("  Using original objects for export...")
                 rs.SelectObjects(non_meshes)
                 mesh_objs.extend(non_meshes)
         
@@ -253,12 +276,22 @@ def export_all_layers_to_glb():
         # Clean up only if we created new mesh objects
         newly_created = [obj for obj in mesh_objs if obj not in objs]
         if newly_created:
-            rs.DeleteObjects(newly_created)
-            print(f"  Cleaned up {len(newly_created)} temporary mesh objects")
+            print(f"  Cleaning up {len(newly_created)} temporary mesh objects")
+            try:
+                rs.DeleteObjects(newly_created)
+            except Exception as e:
+                print(f"  Warning: Could not clean up temporary objects: {e}")
+        
+        # Force garbage collection to free memory
+        import gc
+        gc.collect()
         
         # Final cleanup for this iteration
         rs.UnselectAllObjects()
         rs.Redraw()
+        
+        # Add a small delay between layers to prevent overwhelming the system
+        time.sleep(0.1)
     
     # Final cleanup
     rs.UnselectAllObjects()

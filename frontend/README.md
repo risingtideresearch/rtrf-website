@@ -22,7 +22,7 @@ SANITY_API_READ_TOKEN="<paste your token here>" # Required - The read token for 
 
 ### Install dependencies and run locally
 ```bash
-npx install
+yarn install
 ```
 
 ```bash
