@@ -1,39 +1,73 @@
 "use client";
 
-import { useMemo } from "react";
-import { CanvasAndControls } from "./three-d/CanvasAndControls";
-import {
-  getSystemMap,
-  models,
-  materialIndex,
-} from "./three-d/util";
+import { useCallback, useState } from "react";
+import { Units } from "./three-d/util";
+import { Plane, Vector3, Box3 } from "three";
+import { Canvas3D } from "./three-d/Canvas3D";
+import { ClippingPlaneControls } from "./three-d/ClippingPlaneControls";
 
-const containerStyle = {
-  backgroundImage:
-    "repeating-linear-gradient(0deg,#eee 0px,#eee 1px,transparent 1px,transparent 20px), repeating-linear-gradient( 90deg, #eee 0px, #eee 1px, transparent 1px, transparent 20px)",
-  backgroundSize: "20px 20px",
+export type ControlSettings = {
+  transparent: boolean;
+  expand: boolean;
+  units: Units;
 };
 
-export default function ThreeDContainer({ active, content }) {
-  const systems = useMemo(() => getSystemMap(models), []);
+export interface ClippingPlanes {
+  [key: string]: Plane;
+}
 
-  const filteredLayers = useMemo(() => {
-    if (active) {
-      if (active.type == "system") {
-        return systems[active.key]?.children || [];
-      } else if (active.type == "material") {
-        return materialIndex.grouped_materials
-          .find((mat) => mat.name == active.key)
-          .associated_layers.sort()
-          .map((child) => "models/" + child.layer_name + ".glb");
-      }
-    }
-    return models;
-  }, [active, systems]);
+const INITIAL_CLIPPING_PLANES: ClippingPlanes = {
+  x1: new Plane(new Vector3(1, 0, 0), 13),
+  x2: new Plane(new Vector3(-1, 0, 0), 2),
+  y1: new Plane(new Vector3(0, 1, 0), 10),
+  y2: new Plane(new Vector3(0, -1, 0), 10),
+  z1: new Plane(new Vector3(0, 0, 1), 5),
+  z2: new Plane(new Vector3(0, 0, -1), 5),
+};
+
+const INITIAL_SETTINGS: ControlSettings = {
+  transparent: false,
+  units: Units.Feet,
+  expand: false,
+};
+
+export default function ThreeDContainer({
+  content,
+  setActiveAnnotation,
+  filteredLayers,
+}) {
+  const [settings, setSettings] = useState<ControlSettings>(INITIAL_SETTINGS);
+  const [clippingPlanes, setClippingPlanes] = useState<ClippingPlanes>(
+    INITIAL_CLIPPING_PLANES
+  );
+  const [scalingBoundingBox, setScalingBoundingBox] = useState<Box3 | null>(
+    null
+  );
+
+  const handleSetClippingPlane = useCallback((dir: string, value: Plane) => {
+    setClippingPlanes((prev) => ({
+      ...prev,
+      [dir]: value,
+    }));
+  }, []);
 
   return (
-    <div style={containerStyle}>
-      <CanvasAndControls filteredLayers={filteredLayers} content={content} />
-    </div>
+    <>
+      <Canvas3D
+        clippingPlanes={clippingPlanes}
+        filteredLayers={filteredLayers}
+        settings={settings}
+        scalingBoundingBox={scalingBoundingBox}
+        setScalingBoundingBox={setScalingBoundingBox}
+        content={content}
+        setActiveAnnotation={setActiveAnnotation}
+      />
+
+      <ClippingPlaneControls
+        settings={settings}
+        setSettings={setSettings}
+        setClippingPlane={handleSetClippingPlane}
+      />
+    </>
   );
 }

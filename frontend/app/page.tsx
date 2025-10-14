@@ -1,12 +1,13 @@
 import Link from "next/link";
-import Navigation from "./components/Navigation";
 import { tempPhotoMapping } from "./temp-utils";
+// import TableOfContents from "./articles/TableOfContents";
+import styles from "./home.module.scss";
+import Navigation from '@/app/components/Navigation';
 
 export default async function Page() {
   return (
     <div>
       <Navigation />
-
       <main>
         <div className="narrow">
           <h1 className="uppercase-mono">Solander 38</h1>
@@ -21,9 +22,7 @@ export default async function Page() {
               alt="Solander 38"
               src={tempPhotoMapping.default.url}
             />
-            <figcaption>
-              {tempPhotoMapping.default.caption}
-            </figcaption>
+            <figcaption>{tempPhotoMapping.default.caption}</figcaption>
           </figure>
           <p>
             The Solander 38 was designed to bring the self-sufficiency and low
@@ -37,14 +36,28 @@ export default async function Page() {
             into shore power.
           </p>
         </div>
-        <div className="big-nav">
+        {/* <div className="medium">
+          <Link href={"/anatomy"} style={{ display: "block" }}>
+            <img
+              src={"images/solander38-1.png"}
+              style={{ display: "block", width: "100%" }}
+            />
+            <div className="narrow">Anatomy &#8594;</div>
+          </Link>
+        </div> */}
+        {/* <div className="big-nav">
           <p>
             <Link href={"/anatomy"}>Anatomy &#8594;</Link>
           </p>
           <p>
             <Link href={"/parts"}>Parts &#8594;</Link>
           </p>
-        </div>
+        </div> */}
+        {/* <section className="wide">
+          <div className={`${styles.toc}`}>
+            <TableOfContents />
+          </div>
+        </section> */}
       </main>
     </div>
   );

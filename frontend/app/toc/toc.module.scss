@@ -1,0 +1,32 @@
+.toc {
+  padding: 0 0.5rem;
+  margin-left: 0.5rem;
+  width: max-content;
+  border: 1px solid;
+  position: fixed;
+  z-index: 1;
+  top: 6rem;
+  width: 15rem;
+  p {
+    margin: 0;
+    padding-left: 0.5rem;
+  }
+
+  ol {
+    padding: 0 0 0 1.25rem;
+  }
+
+  li {
+    font-size: 0.75rem;
+  }
+
+  ul {
+    margin: 0 0 1.5rem 2rem;
+    padding: 0;
+
+    li {
+      list-style-type: disc;
+      margin: 0.5rem 0;
+    }
+  }
+}

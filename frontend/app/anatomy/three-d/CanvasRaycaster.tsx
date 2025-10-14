@@ -1,6 +1,8 @@
+"use client";
+
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useEffect } from "react";
 
 interface ClippingPlanes {
   [key: string]: THREE.Plane;
@@ -17,11 +19,30 @@ export function CanvasRaycaster({
   clippingPlanes,
   setHovered,
 }: CanvasRaycasterProps) {
-  const { camera, scene } = useThree();
+  const { camera, scene, gl } = useThree();
   const raycaster = useRef(new THREE.Raycaster());
   const mouse = useRef(new THREE.Vector2());
   const hoveredObject = useRef<THREE.Object3D | null>(null);
   const originalColor = useRef<THREE.Color | null>(null);
+  const isActive = useRef(true);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    isActive.current = true;
+    return () => {
+      isActive.current = false;
+      // Reset any hovered objects on unmount
+      if (hoveredObject.current && originalColor.current) {
+        const material = (hoveredObject.current as THREE.Mesh)
+          .material as THREE.MeshBasicMaterial;
+        if (material && material.color) {
+          material.color.copy(originalColor.current);
+        }
+      }
+      hoveredObject.current = null;
+      originalColor.current = null;
+    };
+  }, []);
 
   const findParentLayer = (
     object: THREE.Object3D
@@ -29,19 +50,6 @@ export function CanvasRaycaster({
     let current = object;
 
     while (current) {
-      // if (
-      //   current.name &&
-      //   (current.name.includes("layer") ||
-      //     current.name.includes("Layer") ||
-      //     current.userData?.isLayer)
-      // ) {
-      //   return {
-      //     name: current.name,
-      //     url: current.userData?.url || current.userData?.originalUrl,
-      //     layer: current,
-      //   };
-      // }
-
       if (current.userData?.url) {
         return {
           name: current.userData.layerName,
@@ -88,15 +96,24 @@ export function CanvasRaycaster({
   };
 
   const onMouseMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    if (!isActive.current || typeof window === 'undefined') return;
+    
+    const canvas = gl.domElement;
+    if (!canvas) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    
+    mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
   };
 
   const onMouseLeave = () => {
+    if (!isActive.current) return;
     resetHoveredObject();
   };
 
   const onPointerDown = () => {
+    if (!isActive.current) return;
     if (hoveredObject.current) {
       const layerInfo = findParentLayer(hoveredObject.current);
       // onSelect?.(layerInfo.name, hoveredObject.current, layerInfo.url);
@@ -108,10 +125,10 @@ export function CanvasRaycaster({
 
     for (const [_key, plane] of Object.entries(clippingPlanes)) {
       if (plane.distanceToPoint(point) < 0) {
-        return true; // Point is clipped
+        return true;
       }
     }
-    return false; // Point is visible
+    return false;
   };
 
   const filterClippedIntersections = (
@@ -122,13 +139,10 @@ export function CanvasRaycaster({
     return intersects.filter((intersect) => {
       const { point, object } = intersect;
 
-      // Check if the intersection point is clipped
       if (isPointClipped(point)) {
         return false;
       }
 
-      // Additional check: verify the object itself isn't completely clipped
-      // by testing the object's bounding box against clipping planes
       const box = new THREE.Box3().setFromObject(object);
       const center = box.getCenter(new THREE.Vector3());
 
@@ -157,12 +171,13 @@ export function CanvasRaycaster({
   };
 
   useFrame(() => {
+    if (!isActive.current || typeof window === 'undefined' || !scene || !camera) return;
+    
     raycaster.current.setFromCamera(mouse.current, camera);
 
     const intersects = raycaster.current.intersectObjects(scene.children, true);
 
-    // const visibleIntersects = filterClippedIntersections(intersects);
-    const visibleIntersects = intersects;
+    const visibleIntersects = filterClippedIntersections(intersects);
 
     if (visibleIntersects.length > 0) {
       const layerInfo = findParentLayer(visibleIntersects[0].object);

@@ -1,0 +1,456 @@
+{
+  "unique_materials": [
+    "Alum 5052",
+    "Alum 6061",
+    "Aluminum",
+    "Bronze",
+    "Carbon fiber",
+    "Catalyst (4)",
+    "Composite sandwich",
+    "Composite sandwich (hull)",
+    "Composite sandwich (internals)",
+    "Default_Material",
+    "Fiberglass",
+    "Matte Brass",
+    "Matte Stainless Steel",
+    "Plastic",
+    "Polished Stainless Steel",
+    "Reg number dummy",
+    "SOLANDER 38",
+    "Solar panels",
+    "Starboard (HDPE)",
+    "Windows & portlights",
+    "Wood",
+    "logo blk"
+  ],
+  "material_index": {
+    "PROPULSION__rudder assembly__Turcite bushings.glb": [
+      "Default_Material"
+    ],
+    "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.glb": [
+      "Matte Stainless Steel"
+    ],
+    "BODY__INTERNALS__4_ ID wireway tubes.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard.glb": [
+      "Starboard (HDPE)"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum.glb": [
+      "Alum 5052"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE.glb": [
+      "Alum 6061"
+    ],
+    "BODY__HULLS & DECKS__DECAL SURFACES.glb": [
+      "Catalyst (4)",
+      "logo blk",
+      "SOLANDER 38",
+      "Reg number dummy"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2.glb": [
+      "Alum 5052"
+    ],
+    "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh.glb": [
+      "Plastic"
+    ],
+    "BODY__HULLS & DECKS__INSIDE DECK.glb": [
+      "Composite sandwich"
+    ],
+    "PROPULSION__MOTOR MOUNT__marks.glb": [
+      "Default_Material"
+    ],
+    "BODY__HULLS & DECKS__HATCHES__aft steering hatches.glb": [
+      "Composite sandwich"
+    ],
+    "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb": [
+      "Matte Brass"
+    ],
+    "OUTFITTING_INTERIOR__radar & antenna.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE.glb": [
+      "Alum 6061"
+    ],
+    "BODY__HULLS & DECKS__MESH hull.glb": [
+      "Composite sandwich (hull)"
+    ],
+    "CONTROL__STEERING__STEERING SHELVES__port dummy shelf.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE.glb": [
+      "Aluminum"
+    ],
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK.glb": [
+      "Aluminum"
+    ],
+    "BODY__CTR BEAM__ctr beam console bhd.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel).glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb": [
+      "Default_Material"
+    ],
+    "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__strng tunnels.glb": [
+      "Fiberglass"
+    ],
+    "PROPULSION__propeller & strut.glb": [
+      "Bronze"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE.glb": [
+      "Wood"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_).glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array.glb": [
+      "Fiberglass"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb": [
+      "Wood"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb": [
+      "Default_Material"
+    ],
+    "BODY__INTERNALS__soles & bhds.glb": [
+      "Composite sandwich (internals)"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges.glb": [
+      "Alum 5052"
+    ],
+    "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions).glb": [
+      "Alum 5052"
+    ],
+    "BODY__HULLS & DECKS__INSIDE HULL.glb": [
+      "Composite sandwich"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl.glb": [
+      "Fiberglass"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates.glb": [
+      "Fiberglass"
+    ],
+    "WATER_HEATING SYSTEMS__heat pump.glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb": [
+      "Default_Material"
+    ],
+    "BODY__HULLS & DECKS__MESH deck.glb": [
+      "Composite sandwich"
+    ],
+    "PROPULSION__MOTOR MOUNT__surfs.glb": [
+      "Alum 5052"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets.glb": [
+      "Alum 5052"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025.glb": [
+      "Default_Material"
+    ],
+    "BODY__CTR BEAM__ctr beam outside surfaces.glb": [
+      "Composite sandwich"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb": [
+      "Aluminum"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE.glb": [
+      "Alum 6061"
+    ],
+    "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb": [
+      "Default_Material"
+    ],
+    "PROPULSION__rudder assembly__rudder shaft & foil.glb": [
+      "Carbon fiber"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb": [
+      "Matte Stainless Steel"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb": [
+      "Wood"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs.glb": [
+      "Alum 5052"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS.glb": [
+      "Alum 5052"
+    ],
+    "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.glb": [
+      "Composite sandwich"
+    ],
+    "PROPULSION__rudder assembly__foil top wedge contoured.glb": [
+      "Carbon fiber"
+    ],
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC.glb": [
+      "Alum 6061"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES.glb": [
+      "Alum 5052"
+    ],
+    "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb": [
+      "Default_Material"
+    ],
+    "PROPULSION__rudder assembly__SS sleeve.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal.glb": [
+      "Aluminum"
+    ],
+    "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__WINDOWS__window panes.glb": [
+      "Windows & portlights"
+    ],
+    "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge.glb": [
+      "Fiberglass"
+    ],
+    "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer.glb": [
+      "Default_Material"
+    ],
+    "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP.glb": [
+      "Solar panels"
+    ],
+    "BODY__CTR BEAM__ctr beam inside surfaces.glb": [
+      "Composite sandwich"
+    ],
+    "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__dehumidifer.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb": [
+      "Wood"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount.glb": [
+      "Alum 5052"
+    ],
+    "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum.glb": [
+      "Alum 5052"
+    ],
+    "BODY__INTERNALS__stringers.glb": [
+      "Composite sandwich (internals)"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS.glb": [
+      "Matte Stainless Steel"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates.glb": [
+      "Alum 5052"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb": [
+      "Alum 6061"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate.glb": [
+      "Alum 6061"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb": [
+      "Default_Material"
+    ],
+    "BODY__HULLS & DECKS__hull & dk constr.glb": [
+      "Default_Material"
+    ],
+    "BODY__CTR BEAM__scuppers.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__cleats.glb": [
+      "Default_Material",
+      "Polished Stainless Steel"
+    ],
+    "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH.glb": [
+      "Default_Material"
+    ],
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN.glb": [
+      "Aluminum"
+    ],
+    "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb": [
+      "Default_Material",
+      "Aluminum"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb": [
+      "Alum 6061"
+    ],
+    "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs.glb": [
+      "Aluminum"
+    ],
+    "BODY__CTR BEAM__fwd beam hatches (approx).glb": [
+      "Composite sandwich"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__PLATING.glb": [
+      "Alum 5052"
+    ],
+    "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb": [
+      "Default_Material"
+    ],
+    "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs.glb": [
+      "Bronze"
+    ],
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull).glb": [
+      "Default_Material"
+    ],
+    "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf.glb": [
+      "Composite sandwich"
+    ],
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map.glb": [
+      "Default_Material"
+    ],
+    "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb": [
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Alum 6061",
+      "Alum 5052",
+      "Default_Material",
+      "Windows & portlights",
+      "Bronze",
+      "Matte Stainless Steel",
+      "Composite sandwich",
+      "Matte Brass",
+      "Composite sandwich (internals)",
+      "Default_Material",
+      "Aluminum",
+      "Default_Material",
+      "Default_Material",
+      "Wood",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Carbon fiber",
+      "Fiberglass",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Polished Stainless Steel",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Default_Material",
+      "Composite sandwich (hull)",
+      "Solar panels",
+      "Default_Material",
+      "Starboard (HDPE)",
+      "Plastic",
+      "Catalyst (4)",
+      "logo blk",
+      "SOLANDER 38",
+      "Reg number dummy"
+    ],
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE.glb": [
+      "Alum 6061"
+    ],
+    "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb": [
+      "Windows & portlights"
+    ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb": [
+      "Default_Material"
+    ],
+    "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb": [
+      "Default_Material"
+    ],
+    "OUTFITTING_INTERIOR__helm seat.glb": [
+      "Default_Material"
+    ]
+  }
+}

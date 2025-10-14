@@ -22,13 +22,13 @@ export function ClippingPlaneControls({
   const [collapsed, setCollapsed] = useState(true);
   return (
     <div
+      className="pane"
       style={{
-        position: 'fixed',
-        width: 'max-content',
-        border: '1px solid',
-        backdropFilter: 'blur(15px)',
-        top: "3rem",
-        left: "0.5rem",
+        position: "fixed",
+        width: "max-content",
+        border: "1px solid",
+        top: "0.5rem",
+        right: "0.5rem",
         display: "flex",
         flexDirection: "column",
       }}
@@ -44,7 +44,7 @@ export function ClippingPlaneControls({
         <></>
       ) : (
         <>
-        <label
+          <label
             style={{
               display: "inline-flex",
               gap: "0.5rem",
@@ -111,7 +111,7 @@ export function ClippingPlaneControls({
             style={{
               display: "grid",
               textTransform: "uppercase",
-              fontSize: '0.75rem',
+              fontSize: "0.75rem",
               gridTemplateColumns: "3rem 1fr 5rem",
               width: "25rem",
               gap: "1rem",
@@ -142,7 +142,7 @@ export function ClippingPlaneControls({
             style={{
               display: "grid",
               textTransform: "uppercase",
-              fontSize: '0.75rem',
+              fontSize: "0.75rem",
               gridTemplateColumns: "3rem 1fr 5rem",
               width: "25rem",
               gap: "1rem",
@@ -172,7 +172,7 @@ export function ClippingPlaneControls({
             style={{
               display: "grid",
               textTransform: "uppercase",
-              fontSize: '0.75rem',
+              fontSize: "0.75rem",
               gridTemplateColumns: "3rem 1fr 5rem",
               width: "25rem",
               gap: "1rem",

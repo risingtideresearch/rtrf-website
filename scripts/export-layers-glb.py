@@ -1,14 +1,10 @@
 import rhinoscriptsyntax as rs
 import os
-import re
 import time
 import json
-
-def sanitize_filename(name):
-    return re.sub(r'[<>:"/\\|?*]#', '_', name)
+from util import sanitize_filename
 
 def export_all_layers_to_glb():
-    # Clear any existing selections first
     rs.UnselectAllObjects()
     
     export_path = rs.BrowseForFolder(rs.WorkingFolder(), 'Destination', 'Export GLB')
@@ -23,7 +19,6 @@ def export_all_layers_to_glb():
     
     print(f"Found {len(layers)} layers to process...")
     
-    # Initialize manifest data
     manifest = {
         "exported_layers": [],
         "export_info": {
@@ -38,7 +33,7 @@ def export_all_layers_to_glb():
         print(f"Processing layer {i+1}/{len(layers)}: {layer}")
         
         # Skip layers with "CL" or "baseline" in the name
-        if "CL" in layer or "baseline" in layer.lower() or "CTR DECK TRACKS" in layer:
+        if "CL" in layer or "baseline" in layer.lower():
             print(f"  Skipping layer '{layer}' (contains CL or baseline)")
             manifest["exported_layers"].append({
                 "layer_name": layer,
@@ -46,7 +41,7 @@ def export_all_layers_to_glb():
                 "file_size": 0,
                 "object_count": 0,
                 "export_method": "skipped",
-                "notes": "Skipped - contains CL or baseline or CTR DECK TRACKS"
+                "notes": "Skipped - contains CL or baseline"
             })
             continue
         

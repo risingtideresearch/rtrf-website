@@ -22,74 +22,83 @@ export function Model3D({
   clippingPlanes,
   settings,
 }: Model3DProps) {
-  const { scene } = useGLTF(url);
+  const { scene } = useGLTF("/models/" + url);
   const ref = useRef<Group>(null);
-  
-  // Store original positions for each child to restore when expand is disabled
+
   const originalPositions = useRef<Map<string, Vector3>>(new Map());
-  
-  // Reusable objects for calculations
+
   const tempBox = useRef(new Box3());
   const tempSize = useRef(new Vector3());
 
-  // Memoize layer name to avoid recalculation
   const layerName = useMemo(
-    () => url.replace("models/", "").replace(".glb", ""),
+    () => url.replace(".glb", ""),
     [url]
   );
 
-  // Memoize material configuration function
-  const configureMaterial = useCallback((mat) => {
-    mat.side = DoubleSide;
-    mat.clippingPlanes = clippingPlanes;
-    // mat.clipShadows = true;
-    // mat.transparent = settings.transparent;
-    // mat.opacity = settings.transparent ? TRANSPARENT_OPACITY : OPAQUE_OPACITY;
+  const configureMaterial = useCallback(
+    (mat) => {
+      mat.side = DoubleSide;
+      mat.clippingPlanes = clippingPlanes;
+      // mat.clipShadows = true;
+      // mat.transparent = settings.transparent;
+      // mat.opacity = settings.transparent ? TRANSPARENT_OPACITY : OPAQUE_OPACITY;
 
-    // if (isSpecialPlating) {
-    //   (mat.color as Color).set(1, 1, 1);
-    // }
+      // if (isSpecialPlating) {
+      //   (mat.color as Color).set(1, 1, 1);
+      // }
 
-    if (mat.name == 'Plastic') {
-      (mat.color as Color).set(1, 0.3, 0);
-    }
-
-    if (mat.color.r < 0.1 && mat.color.g < 0.1 && mat.color.b < 0.1) {
-      (mat.color as Color).set(0.2, 0.2, 0.2);
-    }
-    
-    if ("metalness" in mat && "roughness" in mat) {
-      if (mat.name.includes('Alum')) {
-        mat.metalness = 1.0;
-        mat.roughness = 0.2;
-      } else if (mat.name.includes('Gelcoat')) {
-        mat.metalness = 0.6;
-        mat.roughness = 0.15;
-      } else if (mat.name.includes('Painted FRP')) {
-        mat.metalness = 1.0;
-        mat.roughness = 0.3;
-      } else if (mat.name.includes('Wood') || mat.name.includes('Plastic')) {
-        mat.metalness = 1.0;
-        mat.roughness = 1.0;
-      } else if (mat.name == 'Windows & portlights') {
-        mat.metalness = 1;
-        mat.transparent = true;
-        // (mat.color as Color).set(1, 1, 1);
-        mat.opacity = 0.1;
+      if (mat.name == "Plastic") {
+        (mat.color as Color).set(1, 0.3, 0);
       }
-    }
-  }, [clippingPlanes, settings.transparent, url]);
+
+      if (mat.color.r < 0.1 && mat.color.g < 0.1 && mat.color.b < 0.1) {
+        (mat.color as Color).set(0.2, 0.2, 0.2);
+      }
+
+      if ("metalness" in mat && "roughness" in mat) {
+        if (mat.name.includes("Alum")) {
+          mat.metalness = 1.0;
+          mat.roughness = 0.2;
+        } else if (mat.name.includes("Gelcoat")) {
+          mat.metalness = 0.6;
+          mat.roughness = 0.15;
+        } else if (mat.name.includes("Painted FRP")) {
+          mat.metalness = 1.0;
+          mat.roughness = 0.3;
+        } else if (mat.name.includes("Wood") || mat.name.includes("Plastic")) {
+          mat.metalness = 1.0;
+          mat.roughness = 1.0;
+        } else if (mat.name == "Windows & portlights") {
+          mat.metalness = 1;
+          mat.transparent = true;
+          // (mat.color as Color).set(1, 1, 1);
+          mat.opacity = 0.1;
+        }
+      }
+
+      // if (url.indexOf("BODY") > -1) {
+      //   mat.transparent = true;
+      //   mat.opacity = 0.3;
+      // }
+
+      // console.log(url);
+    },
+    [clippingPlanes, settings.transparent, url]
+  );
 
   // Memoize mesh configuration function
-  const configureMesh = useCallback((mesh: Mesh) => {
-    const materials = Array.isArray(mesh.material)
-      ? mesh.material
-      : [mesh.material];
+  const configureMesh = useCallback(
+    (mesh: Mesh) => {
+      const materials = Array.isArray(mesh.material)
+        ? mesh.material
+        : [mesh.material];
 
-    materials.forEach(configureMaterial);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-  }, [configureMaterial]);
+      materials.forEach(configureMaterial);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+    },
+    [configureMaterial]
+  );
 
   // Initialize positions and configure scene
   useEffect(() => {
@@ -132,7 +141,7 @@ export function Model3D({
         tempBox.current.setFromObject(child);
         const size = tempBox.current.getSize(tempSize.current);
         const explosionDistance = size.y * EXPLOSION_MULTIPLIER;
-        
+
         // Apply explosion offset while preserving original X and Z
         child.position.set(
           originalPos.x,
@@ -159,7 +168,9 @@ export function Model3D({
 
         materials.forEach((mat) => {
           mat.transparent = settings.transparent;
-          mat.opacity = settings.transparent ? TRANSPARENT_OPACITY : OPAQUE_OPACITY;
+          mat.opacity = settings.transparent
+            ? TRANSPARENT_OPACITY
+            : OPAQUE_OPACITY;
           mat.clippingPlanes = clippingPlanes;
         });
       }
@@ -172,7 +183,6 @@ export function Model3D({
       object={scene}
       dispose={null}
       position={ORIGINAL_POSITION}
-      onPointerEnter={(e) => console.log(e.target)}
     />
   );
 }

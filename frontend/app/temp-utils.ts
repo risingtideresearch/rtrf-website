@@ -16,5 +16,11 @@ export const tempPhotoMapping = {
         width: 4032,
         height: 3024,
         caption: "Underside of superstructure and solar panels, looking up from deck"
+    },
+    "PROPULSION": {
+        url: "https://cdn.sanity.io/images/qjczz6gi/production/d633a00637ff89c251874c2eefc3db6cd2baea0a-5712x4284.jpg",
+        width: 5712,
+        height: 4284,
+        caption: "Rudder, prop strut, and shaftline"
     }
 }

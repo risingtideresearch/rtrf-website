@@ -52,7 +52,14 @@ const imageBuilder = createImageUrlBuilder({
 // }
 
 export async function fetchAnnotations() {
-  const { data } = await sanityFetch({ query: annotationsQuery });
+  let { data } = await sanityFetch({ query: annotationsQuery });
+
+  data = data.map((annotation, i) => ({
+    ...annotation, 
+    i: i + 1
+  }))
+
+  console.log(data)
 
   return { data }
 }

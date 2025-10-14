@@ -3,7 +3,6 @@ import AnnotationsList from "./AnnotationsList";
 import AnatomyMaterials from "./AnatomyMaterials";
 import AnatomySystems from "./AnatomySystems";
 import { tempPhotoMapping } from "../temp-utils";
-
 export interface IAnatomyDrawerSection {
   navTo: (to: { key: string; type: "system" | "material" } | null) => void;
   active: {
@@ -30,7 +29,7 @@ export default function AnatomyDrawer({
   console.log(img, active);
 
   return (
-    <div className={styles["navigation-drawer"]}>
+    <div className={styles["navigation-drawer"]} key={active?.key || 'default'}>
       {!active ? (
         <>
           <h6>Solander 38</h6>
@@ -60,27 +59,11 @@ export default function AnatomyDrawer({
 
       <AnatomySystems navTo={navTo} active={active} />
       <AnatomyMaterials navTo={navTo} active={active} />
-      {!active && (
-        <>
-          <AnnotationsList
-            content={content.annotations}
-            navTo={navTo}
-            active={active}
-          />
-
-          <h6>Research</h6>
-          <p
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <span>Rudder study</span>
-            <span>Brant R. Savander, Ph.D., P.E.</span>
-          </p>
-        </>
-      )}
+      <AnnotationsList
+        content={content.annotations}
+        navTo={navTo}
+        active={active}
+        />
     </div>
   );
 }

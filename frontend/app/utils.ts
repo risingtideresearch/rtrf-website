@@ -5,7 +5,7 @@ export async function fetchHierarchyWithIndexing() {
   const { data } = await sanityFetch({ query: anatomyQuery });
   const { roots, componentIndex, map } = buildHierarchy(data);
 
-  return { roots, componentIndex, data, map }
+  return { roots, componentIndex, data, map };
 }
 
 /**
@@ -16,8 +16,8 @@ export function buildHierarchy(data: unknown[]) {
   const roots: unknown[] = [];
 
   const componentIndex = {
-    anatomy: [] as string[], 
-    parts: [] as string[],  
+    anatomy: [] as string[],
+    parts: [] as string[],
   };
 
   data.forEach((item: unknown) => {

@@ -20,10 +20,7 @@ function TubeLine({ line, radius = 0.002 }: TubeLineArgs) {
       point &&
       isFinite(point.x) &&
       isFinite(point.y) &&
-      isFinite(point.z) &&
-      point.x !== 0 &&
-      point.y !== 0 &&
-      point.z !== 0;
+      isFinite(point.z)
 
     if (!isValid) {
       console.warn(`Invalid point detected in line ${line.key}:`, point);

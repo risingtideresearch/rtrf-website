@@ -1,6 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {link} from './shared/link'
 import {RiArticleLine} from 'react-icons/ri'
+import DrawingDropdownInput from '../components/DrawingDropdownInput'
 
 export const article = defineType({
   name: 'article',
@@ -53,8 +54,33 @@ export const article = defineType({
                 //   to: [{type: 'model3d'}],
                 // }),
                 defineField({
-                  type: 'image',
-                  name: 'photo',
+                  name: 'imageSet',
+                  type: 'object',
+                  fields: [
+                    {
+                      type: 'string',
+                      name: 'caption'
+                    },
+                    defineField({
+                      name: 'imageSet',
+                      type: 'array',
+                      of: [
+                        {
+                          type: 'object',
+                          name: 'drawingImage',
+                          fields: [
+                            defineField({
+                              name: 'drawing',
+                              type: 'string',
+                              components: {
+                                input: DrawingDropdownInput,
+                              },
+                            }),
+                          ],
+                        },
+                      ],
+                    }),
+                  ],
                 }),
               ],
             }),
@@ -62,10 +88,10 @@ export const article = defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'bibliography',
-      type: 'array',
-      of: [link],
-    }),
+    // defineField({
+    //   name: 'bibliography',
+    //   type: 'array',
+    //   of: [link],
+    // }),
   ],
 })

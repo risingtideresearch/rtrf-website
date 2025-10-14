@@ -1,47 +1,163 @@
 "use client";
 
-import { useState } from "react";
-import AnatomyDrawer from "./AnatomyDrawer";
+import { useContext, useEffect, useMemo, useState } from "react";
+// import AnatomyDrawer from "./AnatomyDrawer";
 import ThreeDContainer from "./ThreeDContainer";
-import styles from './page.module.scss';
-import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
+// import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
+import { TOCContext } from "../toc/TableOfContents";
+import AnnotationsList from "./AnnotationsList";
+import { processModels, getSystemMap } from "./three-d/util";
 
 interface IAnatomy {
   content: {
-    annotations: Array<unknown>
-  }
+    annotations: Array<unknown>;
+    models_manifest: unknown;
+    materials_index: unknown;
+  };
 }
 
-export default function Anatomy({
-  content
-}: IAnatomy) {
-  const [collapsed, setCollapsed] = useState(false);
-  const [active, setActive] = useState<{
-    key: string;
-    type: "system" | "material";
-  } | null>(null);
+export default function Anatomy({ content }: IAnatomy) {
+  const toc = useContext(TOCContext);
+  const [expandAnnotations, setExpandAnnotations] = useState(false);
+  const [activeAnnotation, setActiveAnnotation] = useState<unknown>(null);
+  const [search, setSearch] = useState("");
+  const memoModels = useMemo(() => processModels(content.models_manifest), []);
+  const systems = useMemo(() => getSystemMap(memoModels), [memoModels]);
 
-  function navTo(to: { key: string; type: "system" | "material" }) {
-    if (to) {
-      setActive({
-        ...to,
-      });
-    } else {
-      setActive(null);
+  const active =
+    toc.mode == "system"
+      ? toc.section != "overview"
+        ? toc.section == "water-heating-systems"
+          ? {
+              type: "system",
+              key: "water_heating systems".toUpperCase(),
+            }
+          : toc.section == "outfitting-interior"
+          ? {
+              type: "system",
+              key: toc.section.replaceAll("-", "_").toUpperCase(),
+            }
+          : {
+              type: "system",
+              key: toc.section.replaceAll("-", " ").toUpperCase(),
+            }
+        : null
+      : {
+          type: toc.mode,
+          key: toc.section,
+        };
+
+  // useEffect(() => {
+  //   if (toc.mode == "system") {
+  //     window.history.pushState(null, "", `/anatomy/${toc.section}`);
+  //   } else {
+  //     window.history.pushState(null, "", `/anatomy/overview`);
+  //   }
+  // }, [toc.section]);
+
+  const filteredLayers = useMemo(() => {
+    // for overview, show everything
+    let arr: string[] = memoModels.map((m) => m.filename) || [];
+
+    if (active && active.key != "overview") {
+      if (active.type == "system") {
+        arr = systems[active.key]?.children;
+      } else if (active.type == "material") {
+        console.log(content.materials_index);
+        arr = arr.filter((m) =>
+          (content.materials_index.material_index[m] || []).includes(active.key)
+        );
+      }
     }
-  }
+
+    if (activeAnnotation && activeAnnotation.relatedModels) {
+      return arr.filter((layer) => {
+        return activeAnnotation.relatedModels.includes(layer);
+      });
+    }
+    if (search) {
+      return arr.filter((layer) => {
+        return layer.toLowerCase().includes(search.toLowerCase());
+      });
+    }
+    return arr;
+  }, [active, systems, search, activeAnnotation?._id]);
+
+  const filteredContent = useMemo(
+    () => ({
+      ...content,
+      annotations: activeAnnotation
+        ? [activeAnnotation]
+        : content.annotations.filter((note) => {
+            // show annotation only when assocated model(s) are visible
+            return note.relatedModels.find((model) =>
+              filteredLayers.includes(model)
+            );
+          }),
+    }),
+    [filteredLayers]
+  );
+
+  useEffect(() => {
+    if (activeAnnotation && !expandAnnotations) {
+      setExpandAnnotations(true);
+    }
+    if (activeAnnotation) {
+      setSearch("");
+    }
+  }, [activeAnnotation]);
 
   return (
-    <div className={`${styles.page} ${collapsed ? styles.collapsed : '' }`}>
-      <div>
-        <ThreeDContainer active={active} content={content}  />
-      </div>
-      <div>
-        <button style={{ position: 'absolute', right: 1, color: 'black', zIndex: 1 }} onClick={() => setCollapsed(prev => !prev)}>
+    <div>
+      <input
+        type="text"
+        placeholder="search"
+        value={search}
+        style={{
+          border: "1px solid",
+          position: "fixed",
+          top: "3.25rem",
+          left: "0.5rem",
+          width: "15rem",
+          zIndex: "1",
+        }}
+        onChange={(e) => {
+          const val = e.target.value;
+          setSearch(val);
+        }}
+      />
+      <ThreeDContainer
+        content={filteredContent}
+        setActiveAnnotation={(note) =>
+          setActiveAnnotation((prev) =>
+            !prev || prev?._id != note._id ? note : null
+          )
+        }
+        filteredLayers={filteredLayers}
+      />
+      <AnnotationsList
+        content={filteredContent.annotations}
+        setActiveAnnotation={(note) => setActiveAnnotation(note)}
+        expand={expandAnnotations}
+        setExpand={setExpandAnnotations}
+      />
+      {/* <div>
+        <button
+          style={{ position: "absolute", right: 1, color: "black", zIndex: 1 }}
+          onClick={() => setCollapsed((prev) => !prev)}
+        >
           {collapsed ? <BiExpandAlt size={18} /> : <BiCollapseAlt size={18} />}
-        </button>
-        {collapsed ? <></> : <AnatomyDrawer content={content} navTo={navTo} active={active} />}
-      </div>
+        </button> */}
+      {/* {collapsed ? (
+          <></>
+        ) : (
+          <AnatomyDrawer
+            content={filteredContent}
+            navTo={navTo}
+            active={active}
+          />
+        )} */}
+      {/* </div> */}
     </div>
   );
 }

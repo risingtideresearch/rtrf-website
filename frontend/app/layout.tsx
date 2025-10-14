@@ -6,6 +6,7 @@ import "./globals.scss";
 export const metadata: Metadata = {
   title: "Rising Tide Research Foundation",
   description: "",
+  icons: "/rising-tide.svg"
 };
 
 export default function RootLayout({

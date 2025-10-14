@@ -154,8 +154,11 @@ export const schematicsQuery = `
 export const annotationsQuery = `
 *[_type=="annotation"]{
     _id,
+    system,
     note,
-    position
+    position,
+    related[],
+    relatedModels[]
 }   
 `;
 

@@ -13,7 +13,6 @@ import {
 } from "@/sanity/lib/queries";
 import { fetchHierarchyWithIndexing } from "./../utils";
 import PartCatalogGrid from "./PartCatalogGrid";
-import Navigation from "../components/Navigation";
 
 export default async function Page() {
   // const { data } = await sanityFetch({
@@ -37,7 +36,6 @@ export default async function Page() {
 
   return (
     <>
-      <Navigation />
       <PartCatalogGrid
         componentIndex={componentIndex}
         parts={parts.data}
