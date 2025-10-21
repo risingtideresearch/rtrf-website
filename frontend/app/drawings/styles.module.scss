@@ -17,6 +17,16 @@
     --border-color: #000;
     text-decoration: none;
   }
+
+  p {
+    max-width: 100%;
+  }
+}
+
+.focused-view {
+  h3 {
+    margin: 0;
+  }
 }
 
 .focused-header {
@@ -44,6 +54,7 @@
     }
     p {
       &:first-child {
+        max-width: 100%;
         flex: 1 1 auto;
       }
     }

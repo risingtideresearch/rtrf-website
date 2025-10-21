@@ -3,18 +3,18 @@ import path from "path";
 import { fetchAnnotations } from "@/sanity/lib/utils";
 import Anatomy from "./Anatomy";
 import TableOfContents from "@/app/toc/TableOfContents";
-import Navigation from "../components/Navigation";
 import styles from "./page.module.scss";
+import Navigation from "../components/Navigation";
 
 export default async function Page() {
-  const annotations = await fetchAnnotations();
-
   const modelsManifestPath = path.join(
     process.cwd(),
     "public/models/export_manifest.json"
   );
   const modelsManifestData = await fs.readFile(modelsManifestPath, "utf8");
   const models_manifest = JSON.parse(modelsManifestData);
+
+  const annotations = await fetchAnnotations(models_manifest);
 
   const materialsIndexPath = path.join(
     process.cwd(),
@@ -29,7 +29,7 @@ export default async function Page() {
         modes={["system", "material"]}
         materials={materials_index.unique_materials}
       >
-        <Navigation />
+        <Navigation forceNav={true} />
         <Anatomy
           content={{
             annotations: annotations.data,

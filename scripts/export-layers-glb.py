@@ -1,8 +1,18 @@
 import rhinoscriptsyntax as rs
 import os
+import re
 import time
 import json
-from util import sanitize_filename
+import shutil
+
+def sanitize_filename(name):
+    sanitized = re.sub(r'[<>:"/\\|?*#]', '_', name)
+    sanitized = sanitized.strip(' .')
+    
+    if not sanitized:
+        sanitized = "unnamed_layer"
+    
+    return sanitized
 
 def export_all_layers_to_glb():
     rs.UnselectAllObjects()
@@ -21,10 +31,12 @@ def export_all_layers_to_glb():
     
     manifest = {
         "exported_layers": [],
+        "failed_layers": [],
+        "skipped_layers": [],
         "export_info": {
             "total_layers_found": len(layers),
             "export_path": export_path,
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "timestamp_start": time.strftime("%Y-%m-%d %H:%M:%S"),
             "format": "GLB"
         }
     }
@@ -35,11 +47,8 @@ def export_all_layers_to_glb():
         # Skip layers with "CL" or "baseline" in the name
         if "CL" in layer or "baseline" in layer.lower():
             print(f"  Skipping layer '{layer}' (contains CL or baseline)")
-            manifest["exported_layers"].append({
+            manifest["skipped_layers"].append({
                 "layer_name": layer,
-                "filename": "",
-                "file_size": 0,
-                "object_count": 0,
                 "export_method": "skipped",
                 "notes": "Skipped - contains CL or baseline"
             })
@@ -55,10 +64,6 @@ def export_all_layers_to_glb():
             continue
         
         print(f"  Found {len(objs)} objects in layer")
-        
-        # Check object types
-        obj_types = [rs.ObjectType(obj) for obj in objs]
-        print(f"  Object types: {set(obj_types)}")
         
         # Select objects
         rs.SelectObjects(objs)
@@ -146,8 +151,7 @@ def export_all_layers_to_glb():
         
         # Try a quick export first without isolation
         layer_export_name = sanitize_filename(layer)
-        filename = os.path.join(export_path, layer_export_name + ".glb")
-        
+        filename = os.path.abspath(os.path.join(export_path, layer_export_name + ".glb"))
         print(f"  Exporting {len(mesh_objs)} objects to: {filename}")
         
         # Try multiple export approaches
@@ -155,15 +159,51 @@ def export_all_layers_to_glb():
         
         # Method 1: Try standard export with GLB format
         print("  Attempting GLB export...")
-        export_command = f'_-Export "{filename}" _SaveSmall=No _Enter _Enter'
+        export_command = '_-Export "{}" _SaveSmall=No _Enter _Enter'.format(filename.replace('\\', '/'))
         export_result = rs.Command(export_command, echo=False)
         print(f"  Export command result: {export_result}")
         
         # Wait for export to complete
         time.sleep(0.5)
         
-        # Check if file was created (and clean up any backup files)
-        backup_file = filename + "bak"
+        # Check if file was created at expected location
+        if not os.path.exists(filename):
+            # Search for the file in parent directories
+            base_filename = os.path.basename(filename)
+            parent_dir = os.path.dirname(export_path)
+            
+            print(f"  File not found at expected location")
+            print(f"  Searching for: {base_filename}")
+            
+            found_path = None
+            # Search up to 3 directory levels
+            search_dirs = [parent_dir, os.path.dirname(parent_dir)]
+            
+            for search_dir in search_dirs:
+                if not os.path.exists(search_dir):
+                    continue
+                    
+                for root, dirs, files in os.walk(search_dir):
+                    if base_filename in files:
+                        found_path = os.path.join(root, base_filename)
+                        print(f"  Found file at: {found_path}")
+                        break
+                
+                if found_path:
+                    break
+            
+            # Move file to correct location if found
+            if found_path:
+                try:
+                    shutil.move(found_path, filename)
+                    print(f"  Moved file to correct location")
+                except Exception as e:
+                    print(f"  Could not move file: {e}")
+                    # If move fails, at least note where it is
+                    filename = found_path
+        
+        # Clean up backup file
+        backup_file = filename.replace('.glb', '.glbbak')
         if os.path.exists(backup_file):
             try:
                 os.remove(backup_file)
@@ -172,28 +212,50 @@ def export_all_layers_to_glb():
                 pass
         
         if os.path.exists(filename):
-            file_size = os.path.getsize(filename)
-            print(f"  ✅ Successfully exported: {os.path.basename(filename)} ({file_size} bytes)")
-            export_success = True
-            # Add to manifest
-            manifest["exported_layers"].append({
-                "layer_name": layer,
-                "filename": os.path.basename(filename),
-                "file_size": file_size,
-                "object_count": len(mesh_objs),
-                "export_method": "standard",
-                "notes": ""
-            })
+            export_method = "standard"
         else:
             # Method 2: Try with explicit GLB format specification
             print("  Standard export failed, trying with explicit GLB format...")
-            export_command2 = f'_-Export "{filename}" _SaveSmall=No _glTF2Binary _Enter'
+            export_command2 = '_-Export "{}" _SaveSmall=No _glTF2Binary _Enter'.format(filename.replace('\\', '/'))
             export_result2 = rs.Command(export_command2, echo=False)
             print(f"  GLB export command result: {export_result2}")
             
             time.sleep(0.5)
             
+            # Search for file again if not found
+            if not os.path.exists(filename):
+                base_filename = os.path.basename(filename)
+                parent_dir = os.path.dirname(export_path)
+                
+                print(f"  File not found at expected location")
+                print(f"  Searching for: {base_filename}")
+                
+                found_path = None
+                search_dirs = [parent_dir, os.path.dirname(parent_dir)]
+                
+                for search_dir in search_dirs:
+                    if not os.path.exists(search_dir):
+                        continue
+                        
+                    for root, dirs, files in os.walk(search_dir):
+                        if base_filename in files:
+                            found_path = os.path.join(root, base_filename)
+                            print(f"  Found file at: {found_path}")
+                            break
+                    
+                    if found_path:
+                        break
+                
+                if found_path:
+                    try:
+                        shutil.move(found_path, filename)
+                        print(f"  Moved file to correct location")
+                    except Exception as e:
+                        print(f"  Could not move file: {e}")
+                        filename = found_path
+            
             # Clean up backup file if created
+            backup_file = filename.replace('.glb', '.glbbak')
             if os.path.exists(backup_file):
                 try:
                     os.remove(backup_file)
@@ -201,64 +263,26 @@ def export_all_layers_to_glb():
                     pass
             
             if os.path.exists(filename):
-                file_size = os.path.getsize(filename)
-                print(f"  ✅ Successfully exported with GLB format: {os.path.basename(filename)} ({file_size} bytes)")
-                export_success = True
-                # Add to manifest
-                manifest["exported_layers"].append({
-                    "layer_name": layer,
-                    "filename": os.path.basename(filename),
-                    "file_size": file_size,
-                    "object_count": len(mesh_objs),
-                    "export_method": "glb_explicit",
-                    "notes": ""
-                })
-            else:
-                # Method 3: Try saving as .3dm first, then export
-                print("  GLB export failed, trying .3dm intermediate...")
-                temp_3dm = filename.replace('.glb', '_temp.3dm')
-                
-                # Save selection as 3dm
-                save_command = f'_-SaveAs "{temp_3dm}" _Enter'
-                save_result = rs.Command(save_command, echo=False)
-                print(f"  Save 3dm result: {save_result}")
-                
-                if os.path.exists(temp_3dm):
-                    # Try to export the 3dm to GLB
-                    rs.Command(f'_-Open "{temp_3dm}" _Enter', echo=False)
-                    rs.Command('_SelAll', echo=False)
-                    time.sleep(0.2)
-                    
-                    export_result3 = rs.Command(f'_-Export "{filename}" _Enter _Enter', echo=False)
-                    time.sleep(0.5)
-                    
-                    # Clean up temp file
-                    try:
-                        os.remove(temp_3dm)
-                    except:
-                        pass
-                    
-                    if os.path.exists(filename):
-                        file_size = os.path.getsize(filename)
-                        print(f"  ✅ Successfully exported via 3dm: {os.path.basename(filename)} ({file_size} bytes)")
-                        export_success = True
-                        # Add to manifest
-                        manifest["exported_layers"].append({
-                            "layer_name": layer,
-                            "filename": os.path.basename(filename),
-                            "file_size": file_size,
-                            "object_count": len(mesh_objs),
-                            "export_method": "3dm_intermediate",
-                            "notes": ""
-                        })
+                export_method = "glb_explicit"
+
+        if os.path.exists(filename):
+            file_size = os.path.getsize(filename)
+            export_success = True
+            print(f"  ✅ Successfully exported with {export_method}: {os.path.basename(filename)} ({file_size} bytes)")
+            # Add to manifest
+            manifest["exported_layers"].append({
+                "layer_name": layer,
+                "filename": os.path.basename(filename),
+                "file_size": file_size,
+                "object_count": len(mesh_objs),
+                "export_method": export_method,
+                "notes": ""
+            })
         
         if not export_success:
             print(f"  ❌ All export methods failed for layer: {layer}")
-            # Add failed export to manifest
-            manifest["exported_layers"].append({
+            manifest["failed_layers"].append({
                 "layer_name": layer,
-                "filename": "",
-                "file_size": 0,
                 "object_count": len(mesh_objs) if mesh_objs else 0,
                 "export_method": "failed",
                 "notes": "Export failed - no file created"
@@ -294,28 +318,33 @@ def export_all_layers_to_glb():
     
     # Create and save manifest
     manifest_filename = os.path.join(export_path, "export_manifest.json")
+
+    manifest["export_info"]["timestamp_end"] = time.strftime("%Y-%m-%d %H:%M:%S")
     
     # Add summary statistics
-    successful_exports = [layer for layer in manifest["exported_layers"] if layer["export_method"] in ["standard", "glb_explicit", "3dm_intermediate"]]
-    failed_exports = [layer for layer in manifest["exported_layers"] if layer["export_method"] == "failed"]
-    skipped_exports = [layer for layer in manifest["exported_layers"] if layer["export_method"] == "skipped"]
-    
-    manifest["export_info"]["successful_exports"] = len(successful_exports)
-    manifest["export_info"]["failed_exports"] = len(failed_exports)
-    manifest["export_info"]["skipped_exports"] = len(skipped_exports)
-    manifest["export_info"]["total_file_size"] = sum(layer["file_size"] for layer in successful_exports)
+    manifest["export_info"]["successful_exports"] = len(manifest["exported_layers"])
+    manifest["export_info"]["failed_exports"] = len(manifest["failed_layers"])
+    manifest["export_info"]["skipped_exports"] = len(manifest["skipped_layers"])
+    manifest["export_info"]["total_file_size"] = sum(layer["file_size"] for layer in manifest["exported_layers"])
     
     try:
         with open(manifest_filename, 'w') as f:
             json.dump(manifest, f, indent=2)
         print(f"\n📄 Manifest saved: {manifest_filename}")
-        print(f"✅ Successfully exported: {len(successful_exports)} layers")
-        print(f"⏭️  Skipped: {len(skipped_exports)} layers")
-        if failed_exports:
-            print(f"❌ Failed exports: {len(failed_exports)} layers")
-        print(f"💾 Total file size: {manifest['export_info']['total_file_size']} bytes")
     except Exception as e:
         print(f"⚠️  Failed to save manifest: {e}")
+
+    # Final cleanup of any remaining backup files
+    print("\nCleaning up backup files...")
+    for root, dirs, files in os.walk(export_path):
+        for file in files:
+            if file.endswith('.glbbak'):
+                backup_path = os.path.join(root, file)
+                try:
+                    os.remove(backup_path)
+                    print(f"  Removed: {file}")
+                except Exception as e:
+                    print(f"  Could not remove {file}: {e}")
     
     print("✅ GLB export completed.")
 

@@ -37,7 +37,7 @@ export const getSections = () => {
       slug: "superstructure",
       chapters: [
         {
-          name: "Wooden jig",
+          name: "Jig",
         },
         {
           name: "Aluminum build",
@@ -144,6 +144,7 @@ const dates = [
 export const TOCContext = createContext({
   mode: "system",
   section: "overview",
+  setSection: (val: string) => {},
 });
 
 export default function TableOfContents({
@@ -151,100 +152,104 @@ export default function TableOfContents({
   modes = ["system", "date"],
   defaultSystem = "",
   materials = [],
-  disable = false,
 }) {
   const [mode, setMode] = useState("system");
   const [section, setSection] = useState(
-    defaultSystem || getSections()[0].slug
+    (
+      getSections().find((section) => section.slug == defaultSystem) ||
+      getSections()[0]
+    ).slug
   );
 
   return (
-    <TOCContext.Provider value={{ mode, section }}>
-      {!disable && (
-        <div className={"pane toc " + styles.toc}>
-          {/* <h2 className="uppercase-mono">Table of Contents</h2> */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: modes.length == 1 ? "1fr" : "1fr 1fr",
-              borderBottom: "1px solid",
-              margin: "0 -0.5rem",
-            }}
-          >
-            {modes.map((type, i) => (
-              <h6
-                onClick={() => {
-                  setMode(type);
-                  setSection(getSections()[0].slug);
-                }}
-                key={type}
-                style={{
-                  cursor: "pointer",
-                  fontWeight: mode == type ? 800 : 400,
-                  margin: 0,
-                  padding: "0.5rem",
-                  borderRight: i < modes.length - 1 ? "1px solid" : "",
-                }}
-              >
-                {type == "system" ? "system" : type}
-              </h6>
-            ))}
-          </div>
-          {mode == "system" ? (
-            <ol>
-              {getSections().map((s) => {
-                return (
-                  <li
-                    style={{ cursor: "pointer" }}
-                    key={s.slug}
-                    onClick={() => setSection(s.slug)}
-                  >
-                    <h6
-                      style={{
-                        margin: "0.5rem",
-                        fontWeight: s.slug == section ? 600 : 400,
-                      }}
-                    >
-                      {s.name}
-                    </h6>
-                    {/* <ul>
-                {section.chapters.map((chapter) => (
-                  <li key={chapter.name}>
-                    <p>
-                      <Link href={"/articles"}>{chapter.name}</Link>
-                    </p>
-                  </li>
-                ))}
-              </ul> */}
-                  </li>
-                );
-              })}
-            </ol>
-          ) : mode == "date" ? (
-            <ol>
-              {dates.map((section) => {
-                return (
-                  <li key={section}>
-                    <h6 style={{ margin: "0.5rem" }}>{section}</h6>
-                  </li>
-                );
-              })}
-            </ol>
-          ) : mode == "material" ? (
-            <ol>
-              {materials.map((mat) => {
-                return (
-                  <li key={mat} onClick={() => setSection(mat)}>
-                    <h6 style={{ margin: "0.5rem" }}>{mat}</h6>
-                  </li>
-                );
-              })}
-            </ol>
-          ) : (
-            <></>
-          )}
+    <TOCContext.Provider value={{ mode, section, setSection }}>
+      <div className={"pane toc " + styles.toc}>
+        {/* <h2 className="uppercase-mono">Table of Contents</h2> */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: modes.length == 1 ? "1fr" : "1fr 1fr",
+            borderBottom: "1px solid",
+            margin: "0 -0.5rem",
+          }}
+        >
+          {modes.map((type, i) => (
+            <h6
+              onClick={() => {
+                setMode(type);
+                setSection(getSections()[0].slug);
+              }}
+              key={type}
+              style={{
+                cursor: "pointer",
+                fontWeight: mode == type ? 800 : 400,
+                margin: 0,
+                padding: "0.5rem",
+                borderRight: i < modes.length - 1 ? "1px solid" : "",
+              }}
+            >
+              {type == "system" ? "system" : type}
+            </h6>
+          ))}
         </div>
-      )}
+        {mode == "system" ? (
+          <ol>
+            {getSections().map((s) => {
+              return (
+                <li
+                  style={{ cursor: "pointer" }}
+                  key={s.slug}
+                  onClick={() => setSection(s.slug)}
+                >
+                  <h6
+                    style={{
+                      margin: "0.5rem",
+                      fontWeight: s.slug == section ? 600 : 400,
+                    }}
+                  >
+                    {s.name}
+                  </h6>
+                  {s.slug == section ? (
+                    <ol>
+                      {s.chapters.map((chapter) => (
+                        <li key={chapter.name} style={{ listStyle: 'lower-roman', padding: 0, margin: 0}}>
+                          <p>
+                            {chapter.name}
+                          </p>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <></>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        ) : mode == "date" ? (
+          <ol>
+            {dates.map((section) => {
+              return (
+                <li key={section}>
+                  <h6 style={{ margin: "0.5rem" }}>{section}</h6>
+                </li>
+              );
+            })}
+          </ol>
+        ) : mode == "material" ? (
+          <ol>
+            {materials.map((mat) => {
+              return (
+                <li key={mat} onClick={() => setSection(mat)}>
+                  <h6 style={{ margin: "0.5rem" }}>{mat}</h6>
+                </li>
+              );
+            })}
+          </ol>
+        ) : (
+          <></>
+        )}
+      </div>
       {children}
     </TOCContext.Provider>
   );

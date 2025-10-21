@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import TableOfContents from "@/app/toc/TableOfContents";
-import DrawingsGallery from "../../DrawingsGallery";
+import Drawings from "../../Drawings";
 import Navigation from "@/app/components/Navigation";
 
 // export default async function Page({
@@ -70,25 +70,18 @@ export default async function Page({
     process.cwd(),
     "public/drawings/output_images/conversion_manifest.json"
   );
-  const chronologicalPath = path.join(
-    process.cwd(),
-    "public/drawings/output_images/chronological_manifest.json"
-  );
 
   const drawingsData = await fs.readFile(drawingsPath, "utf8");
-  const chronologicalData = await fs.readFile(chronologicalPath, "utf8");
 
   const drawings = JSON.parse(drawingsData);
-  const drawings_chronological = JSON.parse(chronologicalData);
 
   return (
     <>
-      <TableOfContents disable={true}>
-        <Navigation defaultSystem={"drawings"} />
+      <TableOfContents>
+        <Navigation />
         <main style={{ paddingLeft: "16.5rem" }}>
-          <DrawingsGallery
+          <Drawings
             drawings={drawings}
-            drawings_chronological={drawings_chronological}
             defaultUUID={slug}
           />
         </main>

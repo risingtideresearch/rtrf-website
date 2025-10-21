@@ -30,10 +30,7 @@ export function Model3D({
   const tempBox = useRef(new Box3());
   const tempSize = useRef(new Vector3());
 
-  const layerName = useMemo(
-    () => url.replace(".glb", ""),
-    [url]
-  );
+  const layerName = useMemo(() => url.replace(".glb", ""), [url]);
 
   const configureMaterial = useCallback(
     (mat) => {
@@ -69,10 +66,15 @@ export function Model3D({
           mat.metalness = 1.0;
           mat.roughness = 1.0;
         } else if (mat.name == "Windows & portlights") {
-          mat.metalness = 1;
-          mat.transparent = true;
-          // (mat.color as Color).set(1, 1, 1);
-          mat.opacity = 0.1;
+          // Fix for transmission materials with bad normals
+          mat.side = DoubleSide;
+          mat.flatShading = false; // Ensure smooth shading
+
+          // These might help with transmission rendering
+          mat.transmission = 0.9;
+          mat.thickness = 0.5;
+          mat.roughness = 0.0;
+          mat.metalness = 0.0;
         }
       }
 

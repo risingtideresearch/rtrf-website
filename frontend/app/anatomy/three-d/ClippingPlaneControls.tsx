@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import { Plane, Vector3 } from "three";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import { CanvasAndControlsSettings } from "./CanvasAndControls";
 import { Units } from "./util";
-import { BiSliderAlt, BiCollapseAlt } from "react-icons/bi";
+import { BiSliderAlt } from "react-icons/bi";
+import { ControlSettings } from "../ThreeDContainer";
 // import styles from "./../../styles/common.module.scss";
 
 interface ClippingPlaneControlsProps {
   setClippingPlane: (dir: string, value: Plane) => void;
-  settings: CanvasAndControlsSettings;
-  setSettings: (settings: CanvasAndControlsSettings) => void;
+  settings: ControlSettings;
+  setSettings: (settings: ControlSettings) => void;
 }
 
 export function ClippingPlaneControls({
@@ -22,28 +22,38 @@ export function ClippingPlaneControls({
   const [collapsed, setCollapsed] = useState(true);
   return (
     <div
-      className="pane"
       style={{
         position: "fixed",
-        width: "max-content",
-        border: "1px solid",
-        top: "0.5rem",
+        top: "3rem",
         right: "0.5rem",
-        display: "flex",
-        flexDirection: "column",
       }}
     >
       <button
+        className="pane"
         type="button"
-        style={{ marginLeft: "auto", display: "block" }}
+        style={{ marginLeft: "auto", display: "block", border: "1px solid" }}
         onClick={() => setCollapsed((prev) => !prev)}
       >
-        {collapsed ? <BiSliderAlt size={18} /> : <BiCollapseAlt size={18} />}
+        <BiSliderAlt size={18} />
       </button>
       {collapsed ? (
         <></>
       ) : (
-        <>
+        <div
+          className="pane"
+          style={{
+            position: "absolute",
+            right: "2rem",
+            marginRight: "-1px",
+            width: "max-content",
+            top: "0",
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid",
+            background: "#fff",
+            padding: "0.5rem",
+          }}
+        >
           <label
             style={{
               display: "inline-flex",
@@ -56,7 +66,7 @@ export function ClippingPlaneControls({
               checked={settings.expand}
               type="checkbox"
               onChange={() =>
-                setSettings((prev: CanvasAndControlsSettings) => ({
+                setSettings((prev: ControlSettings) => ({
                   ...prev,
                   expand: !prev.expand,
                 }))
@@ -76,7 +86,7 @@ export function ClippingPlaneControls({
               checked={settings.transparent}
               type="checkbox"
               onChange={() =>
-                setSettings((prev: CanvasAndControlsSettings) => ({
+                setSettings((prev: ControlSettings) => ({
                   ...prev,
                   transparent: !prev.transparent,
                 }))
@@ -88,7 +98,7 @@ export function ClippingPlaneControls({
             <select
               value={settings.units}
               onChange={(e) =>
-                setSettings((prev: CanvasAndControlsSettings) => ({
+                setSettings((prev: ControlSettings) => ({
                   ...prev,
                   units: e.target.value,
                 }))
@@ -198,7 +208,7 @@ export function ClippingPlaneControls({
             />
             <span>starboard</span>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -165,6 +165,93 @@ export const annotationsQuery = `
 /**
  *
  */
+export const articlesQuery = (slug?: string) => {
+  if (slug) {
+    return `*[_type=="article" && slug.current == "${slug}"]{
+      ...,
+      "section": *[_type=="sections"][0].sections[references(^._id)][0].name,
+      content[]{
+        ...,
+        _type == 'imageSet' => {
+          ...,
+          imageSet[]{
+            ...,
+            _type == 'image' => {
+              ...,
+              asset->{
+                ...,
+                metadata{
+                  ...,
+                  exif {
+                    DateTimeOriginal,
+                    DateTimeDigitized,
+                    // DateTime,
+                    // Make,          // Camera manufacturer
+                    // Model,         // Camera model
+                    // LensModel,
+                    // FNumber,       // Aperture
+                    // ExposureTime,
+                    // ISO,
+                    // FocalLength
+                  }
+                }
+              }
+            },
+            _type == 'drawingImage' => {
+              ...,
+              "drawingData": *[_type == 'media.tag' && name.current == ^.drawing][0]{
+                ...,
+                "asset": asset->
+              }
+            }
+          }
+        },
+      }
+    }`;
+  }
+  return `*[_type=="article"]{
+    ...,
+    "section": *[_type=="sections"][0].sections[references(^._id)][0].name
+  }`;
+};
+
+/**
+ *
+ */
+export const sectionsQuery = (slug?: string) => {
+  if (slug) {
+    return `
+    *[_type=="sections"][0]{
+      ...,
+      sections[slug.current == "${slug}"][0]{
+        ...,
+        "slug": slug.current,
+        articles[]->{
+          _id,
+          title,
+          "slug": slug.current,
+        }
+      }
+    }`;
+  }
+  return `
+  *[_type=="sections"][0]{
+    ...,
+    sections[]{
+      ...,
+      "slug": slug.current,
+      articles[]->{
+        _id,
+        title,
+        "slug": slug.current,
+      }
+    }
+  }`;
+};
+
+/**
+ *
+ */
 export const componentPartQuery = (slug: string) => `
 {
   "component": *[(_type in ["customPart", "component"]) && slug.current == "${slug}"][0] {

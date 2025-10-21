@@ -14,19 +14,25 @@ import { Vector3, Box3, Group, Object3D, Camera, Plane } from "three";
 import * as THREE from "three";
 import { Model3D } from "./Model3D";
 import ScalingLines3D from "./ScalingLines3D";
-import { CanvasAndControlsSettings } from "./CanvasAndControls";
 import Annotations3D from "./Annotations3D";
+import { ControlSettings } from "../ThreeDContainer";
+
+
+export interface ClippingPlanes {
+  [key: string]: Plane;
+}
 
 type Canvas3DProps = {
   clippingPlanes: { [key: string]: Plane };
   filteredLayers: Array<string>;
-  settings: CanvasAndControlsSettings;
+  settings: ControlSettings;
   scalingBoundingBox: Box3 | null;
   setScalingBoundingBox: (box: Box3 | null) => void;
   content: {
     annotations: Array<unknown>;
   };
   setActiveAnnotation: any;
+  height: string | number;
 };
 
 const CAMERA_INITIAL_POSITION = [0, 0, 0] as const;
@@ -35,7 +41,6 @@ const LIGHT_POSITIONS: Vector3[] = [new Vector3(-3, 6, 0)];
 const FIT_DISTANCE_MULTIPLIER = 2.4;
 const CAMERA_DIRECTION = new Vector3(0.5, 0.25, 0.625);
 
-// New component to handle raycasting inside the Canvas
 function RaycastHandler({ clippingPlanes, setHovered }) {
   const { camera, scene, gl } = useThree();
   const raycaster = useRef(new THREE.Raycaster());
@@ -142,17 +147,34 @@ function RaycastHandler({ clippingPlanes, setHovered }) {
     });
   };
 
+  const isInsideCanvas = useRef(false);
+
   useEffect(() => {
     const canvas = gl.domElement;
 
     const onMouseMove = (event: PointerEvent) => {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      // Check if mouse is inside canvas bounds
+      const isInside = 
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+      
+      isInsideCanvas.current = isInside;
+      
+      if (isInside) {
+        mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      } else {
+        resetHoveredObject();
+      }
     };
 
     const onMouseLeave = () => {
+      isInsideCanvas.current = false;
       resetHoveredObject();
     };
 
@@ -167,7 +189,7 @@ function RaycastHandler({ clippingPlanes, setHovered }) {
   }, [gl]);
 
   useFrame(() => {
-    if (typeof window === "undefined" || !scene || !camera) return;
+    if (typeof window === "undefined" || !scene || !camera || !isInsideCanvas.current) return;
 
     raycaster.current.setFromCamera(mouse.current, camera);
     const intersects = raycaster.current.intersectObjects(scene.children, true);
@@ -193,6 +215,7 @@ export function Canvas3D({
   filteredLayers,
   content,
   setActiveAnnotation,
+  height = '100vh'
 }: Canvas3DProps) {
   const groupRef = useRef<Group>(null);
   const cameraRef = useRef<Camera>(null);
@@ -201,12 +224,38 @@ export function Canvas3D({
   const [modelsLoaded, setModelsLoaded] = useState<Set<string>>(new Set());
   const [hovered, setHovered] = useState<Object3D | null>(null);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [displayHovered, setDisplayHovered] = useState<Object3D | null>(null);
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const tempBox = useRef(new Box3());
   const tempCenter = useRef(new Vector3());
   const tempSize = useRef(new Vector3());
   const tempDirection = useRef(new Vector3());
   const tempNewPos = useRef(new Vector3());
+
+  // Handle hover display with fade delay
+  useEffect(() => {
+    if (hovered) {
+      // Immediately show new hover
+      setDisplayHovered(hovered);
+      // Clear any pending fade timeout
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+        fadeTimeoutRef.current = null;
+      }
+    } else {
+      // Delay hiding the display
+      fadeTimeoutRef.current = setTimeout(() => {
+        setDisplayHovered(null);
+      }, 300); // 300ms delay before fading out
+    }
+
+    return () => {
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+    };
+  }, [hovered]);
 
   const clippingPlanesValues = useMemo(
     () => Object.values(clippingPlanes),
@@ -278,7 +327,7 @@ export function Canvas3D({
   }, [modelsLoaded.size, filteredLayers.length, centered]);
 
   const measureBounds = useCallback(() => {
-    if (groupRef.current) {
+    if (groupRef.current && setScalingBoundingBox) {
       tempBox.current.setFromObject(groupRef.current);
       setScalingBoundingBox(tempBox.current.clone());
     }
@@ -321,12 +370,13 @@ export function Canvas3D({
           padding: "0.5rem",
           maxWidth: "50vw",
           zIndex: 10,
-          opacity: hovered ? 1 : 0,
+          opacity: displayHovered && !displayHovered.hide ? 1 : 0,
           transition: "opacity 0.2s ease-in-out",
           border: "1px solid",
+          pointerEvents: 'none'
         }}
       >
-        {hovered?.name.split("__").map((n, i, x) => (
+        {displayHovered?.name.split("__").map((n, i, x) => (
           <span
             key={n}
             style={{ fontSize: i < x.length - 1 ? "0.75em" : "1em" }}
@@ -337,18 +387,18 @@ export function Canvas3D({
         ))}
       </div>
     ),
-    [hovered]
+    [displayHovered]
   );
 
   const canvasRef = useRef(null);
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: height }}>
       <div
         style={{
           opacity: centered ? 1 : 0,
           transition: "opacity 500ms",
-          height: "100vh",
+          height: height,
         }}
       >
         <Canvas
@@ -370,7 +420,7 @@ export function Canvas3D({
             setHovered={setHovered}
           />
 
-          <ambientLight intensity={0.1} />
+          <ambientLight intensity={0.4} />
           {directionalLights}
 
           <Suspense fallback={null}>

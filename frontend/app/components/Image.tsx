@@ -17,40 +17,61 @@ export function Image(
       asset: {
         _type: 'reference'
         _ref: string
+      } | {
+        _id: string
+        url: string
+        metadata?: {
+          dimensions?: {
+            width: number
+            height: number
+          }
+        }
       }
-      crop: {
+      crop?: {
         top: number
         bottom: number
         left: number
         right: number
       } | null
-      hotspot: {
+      hotspot?: {
         x: number
         y: number
         height: number
         width: number
       } | null
-      alt?: string | undefined
+      alt?: string
     }
     alt?: string
   },
 ) {
-  const {src, ...rest} = props
-  const imageBuilder = urlForImage(props.src)
-  if (props.width) {
-    imageBuilder.width(typeof props.width === 'string' ? parseInt(props.width, 10) : props.width)
+  const {src, alt, width, height, ...rest} = props
+  const imageUrl = urlForImage(src)
+  
+  // Extract dimensions from dereferenced asset if available
+  const assetWidth = 'metadata' in src.asset ? src.asset.metadata?.dimensions?.width : undefined
+  const assetHeight = 'metadata' in src.asset ? src.asset.metadata?.dimensions?.height : undefined
+  
+  const finalWidth = width || assetWidth
+  const finalHeight = height || assetHeight
+  
+  if (finalWidth) {
+    imageUrl.width(typeof finalWidth === 'string' ? parseInt(finalWidth, 10) : finalWidth)
   }
-  if (props.height) {
-    imageBuilder.height(
-      typeof props.height === 'string' ? parseInt(props.height, 10) : props.height,
-    )
+  if (finalHeight) {
+    imageUrl.height(typeof finalHeight === 'string' ? parseInt(finalHeight, 10) : finalHeight)
+  }
+
+  if (!finalWidth || !finalHeight) {
+    console.warn('Image is missing width/height. Please provide dimensions or dereference asset in query.')
   }
 
   return (
     <SanityImage
-      alt={typeof src.alt === 'string' ? src.alt : ''}
+      alt={alt || src.alt || ''}
+      width={finalWidth}
+      height={finalHeight}
       {...rest}
-      src={imageBuilder.url()}
+      src={imageUrl.url()}
     />
   )
 }

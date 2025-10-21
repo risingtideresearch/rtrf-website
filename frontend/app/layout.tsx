@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DepartureMono, GeistSans } from "./_fonts";
 
 import "./globals.scss";
+import Search from "./components/Search/Search";
 
 export const metadata: Metadata = {
   title: "Rising Tide Research Foundation",
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${GeistSans.variable} ${DepartureMono.variable}`}>
         {children}
+        <Search />
       </body>
     </html>
   );

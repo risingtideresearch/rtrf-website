@@ -1,16 +1,14 @@
 "use client";
 
 import { useContext, useEffect, useMemo, useState } from "react";
-// import AnatomyDrawer from "./AnatomyDrawer";
 import ThreeDContainer from "./ThreeDContainer";
-// import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
 import { TOCContext } from "../toc/TableOfContents";
 import AnnotationsList from "./AnnotationsList";
 import { processModels, getSystemMap } from "./three-d/util";
 
 interface IAnatomy {
   content: {
-    annotations: Array<unknown>;
+    annotations?: Array<unknown>;
     models_manifest: unknown;
     materials_index: unknown;
   };
@@ -18,7 +16,7 @@ interface IAnatomy {
 
 export default function Anatomy({ content }: IAnatomy) {
   const toc = useContext(TOCContext);
-  const [expandAnnotations, setExpandAnnotations] = useState(false);
+  const [visibleAnnotations, setVisibleAnnotations] = useState(false);
   const [activeAnnotation, setActiveAnnotation] = useState<unknown>(null);
   const [search, setSearch] = useState("");
   const memoModels = useMemo(() => processModels(content.models_manifest), []);
@@ -63,7 +61,6 @@ export default function Anatomy({ content }: IAnatomy) {
       if (active.type == "system") {
         arr = systems[active.key]?.children;
       } else if (active.type == "material") {
-        console.log(content.materials_index);
         arr = arr.filter((m) =>
           (content.materials_index.material_index[m] || []).includes(active.key)
         );
@@ -71,17 +68,25 @@ export default function Anatomy({ content }: IAnatomy) {
     }
 
     if (activeAnnotation && activeAnnotation.relatedModels) {
+      // include any cross-system models with selected annotations
+      activeAnnotation.relatedModels?.forEach((model) => {
+        if (!arr.includes(model)) {
+          arr = [...arr, model];
+        }
+      });
+
       return arr.filter((layer) => {
         return activeAnnotation.relatedModels.includes(layer);
       });
     }
+
     if (search) {
       return arr.filter((layer) => {
         return layer.toLowerCase().includes(search.toLowerCase());
       });
     }
     return arr;
-  }, [active, systems, search, activeAnnotation?._id]);
+  }, [active, systems, search, activeAnnotation]);
 
   const filteredContent = useMemo(
     () => ({
@@ -99,8 +104,9 @@ export default function Anatomy({ content }: IAnatomy) {
   );
 
   useEffect(() => {
-    if (activeAnnotation && !expandAnnotations) {
-      setExpandAnnotations(true);
+    if (activeAnnotation && !visibleAnnotations) {
+      setVisibleAnnotations(true);
+      toc.setSection(activeAnnotation.system);
     }
     if (activeAnnotation) {
       setSearch("");
@@ -137,27 +143,11 @@ export default function Anatomy({ content }: IAnatomy) {
       />
       <AnnotationsList
         content={filteredContent.annotations}
+        activeAnnotation={activeAnnotation}
         setActiveAnnotation={(note) => setActiveAnnotation(note)}
-        expand={expandAnnotations}
-        setExpand={setExpandAnnotations}
+        visible={visibleAnnotations}
+        setVisible={setVisibleAnnotations}
       />
-      {/* <div>
-        <button
-          style={{ position: "absolute", right: 1, color: "black", zIndex: 1 }}
-          onClick={() => setCollapsed((prev) => !prev)}
-        >
-          {collapsed ? <BiExpandAlt size={18} /> : <BiCollapseAlt size={18} />}
-        </button> */}
-      {/* {collapsed ? (
-          <></>
-        ) : (
-          <AnatomyDrawer
-            content={filteredContent}
-            navTo={navTo}
-            active={active}
-          />
-        )} */}
-      {/* </div> */}
     </div>
   );
 }

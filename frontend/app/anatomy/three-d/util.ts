@@ -10,13 +10,7 @@ export const processModels = (
     .filter(
       (d) =>
         d.file_size > 0 &&
-        d.file_size < 6000000 &&
-        !d.filename.toLowerCase().includes("marks") &&
-        !d.filename.toLowerCase().includes("decal") &&
-        !d.filename.toLowerCase().includes("temp, wrk") &&
-        !d.filename.toLowerCase().includes("hull & dk const") &&
-        !d.filename.toLowerCase().includes("inside hull") &&
-        !d.filename.toLowerCase().includes("inside deck")
+        d.file_size < 10000000 
     )
     .map((d) => ({
       filename: d.filename,

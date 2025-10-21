@@ -41,6 +41,25 @@ body {
   background-position: 9px 9px;
 }
 
+.bg--grid {
+  background: var(--background);
+  background-image: repeating-linear-gradient(
+      0deg,
+      #eee 0px,
+      #eee 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #eee 0px,
+      #eee 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  background-size: 20px 20px;
+}
+
 main {
   margin: 0;
 }
@@ -50,14 +69,14 @@ main {
 }
 
 h1 {
-  margin: 0;
-  font-size: 1.75rem;
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
   font-weight: 400;
 }
 
 h2 {
-  margin: 0;
-  font-size: 1.25rem;
+  margin: 3rem 0 0 0;
+  font-size: 1.75rem;
   font-weight: 400;
 }
 
@@ -65,7 +84,7 @@ h3 {
   font-size: 1.125rem;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 2rem 0 0.5rem 0;
+  margin: 0;
 }
 
 h6 {
@@ -176,8 +195,9 @@ nextjs-portal {
 }
 
 figcaption {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-align: right;
+  margin: 0.5rem 0;
 }
 
 .big-nav {
@@ -206,3 +226,10 @@ figcaption {
     color-scheme: dark;
   }
 } */
+
+.image-set {
+  &--photo {
+    max-width: 100%;
+    height: auto;
+  }
+}

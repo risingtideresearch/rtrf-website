@@ -1,0 +1,95 @@
+.page {
+  background: var(--background);
+  padding-left: 19rem;
+  padding-right: 6rem;
+  main {
+    margin-top: 5rem;
+  }
+
+  p {
+    max-width: 75ch;
+
+    a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  h3 {
+    margin: 3rem 0 1rem 0;
+  }
+
+  &__header {
+    margin: 3rem 0;
+  }
+
+  &__metadata {
+    border: 1px solid;
+    position: fixed;
+    left: 0.5rem;
+    top: 5.5rem;
+    width: 16.5rem;
+
+    > div {
+      display: grid;
+      grid-template-columns: 6rem 1fr;
+      &:not(:last-child) {
+        border-bottom: 1px solid;
+      }
+
+      > * {
+        padding: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        svg {
+          flex-shrink: 0;
+        }
+        &:not(:last-child) {
+          border-right: 1px solid;
+        }
+      }
+    }
+  }
+
+  &__drawing {
+    p {
+      max-width: 100%;
+    }
+  }
+
+  figure {
+    width: max-content;
+    max-width: 100%;
+    margin: 0 0 5rem 0;
+  }
+
+  &__toc {
+    h6 {
+      display: grid;
+      grid-template-columns: 1rem 1fr;
+    }
+  }
+
+  section {
+    margin: 3rem 0;
+
+    h2 {
+      margin: 0.5rem 0;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    > ol {
+      padding-left: 1rem;
+      margin: 0;
+
+      li {
+        list-style: lower-roman;
+        margin: 0.5rem;
+      }
+    }
+  }
+}

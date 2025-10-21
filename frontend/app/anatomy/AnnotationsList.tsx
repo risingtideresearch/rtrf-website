@@ -1,46 +1,77 @@
 "use client";
 
-import { IAnatomyDrawerSection } from "./AnatomyDrawer";
 import { useEffect, useState } from "react";
 import { BsSticky } from "react-icons/bs";
-import { BiCollapseAlt, BiLink } from "react-icons/bi";
+import { BiCollapseAlt, BiExpandAlt, BiLink, BiX } from "react-icons/bi";
 import styles from "./annotations.module.scss";
-import Link from "next/link";
 
 export default function AnnotationsList({
   content,
+  activeAnnotation,
   setActiveAnnotation,
-  expand,
-  setExpand,
+  visible,
+  setVisible,
 }) {
-  const [uuid_mapping, setUUIDMapping] = useState({})
+  const [expand, setExpand] = useState(false);
+  const [uuid_mapping, setUUIDMapping] = useState({});
   useEffect(() => {
-    fetch('/drawings/output_images/uuid_mapping.json')
-      .then(res => res.json())
-      .then(res => {
-        setUUIDMapping(res)
-      })
-  }, [])
+    fetch("/drawings/output_images/uuid_mapping.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setUUIDMapping(res);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!activeAnnotation && expand) {
+      setExpand(false);
+    }
+  }, [activeAnnotation]);
 
   return (
     <>
-      {expand && (
-        <div className={`pane ${styles.annotations}`}>
+      {visible && (
+        <div
+          className={`pane ${styles.annotations} ${
+            expand ? styles["annotations--expanded"] : ""
+          }`}
+        >
           <h6
             style={{
               margin: 0,
               display: "inline-flex",
               flexDirection: "row",
-              alignItems: 'center',
+              alignItems: "center",
               gap: "0.5rem",
             }}
           >
             Annotations
-            <button onClick={() => setActiveAnnotation(null)}>reset selection</button>
+            {activeAnnotation ? (
+              <button onClick={() => setActiveAnnotation(null)}>
+                reset selection
+              </button>
+            ) : (
+              <></>
+            )}
           </h6>
 
+          {activeAnnotation ? (
+            <button
+              onClick={() => setExpand((prev) => !prev)}
+              style={{
+                position: "absolute",
+                right: "2rem",
+                top: "0",
+                backdropFilter: "none",
+              }}
+            >
+              {expand ? <BiCollapseAlt size={18} /> : <BiExpandAlt size={18} />}
+            </button>
+          ) : (
+            <></>
+          )}
           <button
-            onClick={() => setExpand(false)}
+            onClick={() => setVisible(false)}
             style={{
               position: "absolute",
               right: "0",
@@ -48,7 +79,7 @@ export default function AnnotationsList({
               backdropFilter: "none",
             }}
           >
-            <BiCollapseAlt size={18} />
+            <BiX size={18} />
           </button>
           <div>
             {content.map((note) => (
@@ -75,32 +106,54 @@ export default function AnnotationsList({
                   </button>
                   <span>{note.note}</span>
                 </p>
-                {note.related.map((uuid) => (
-                  <div key={uuid}>
-                    <div style={{display: 'inline-flex', gap: '0.5rem', alignItems: 'center'}}>
-                      <div className={styles.annotations__header}>
-                        <h6>{uuid_mapping[uuid].id}</h6>
-                        <h6>{uuid_mapping[uuid].group}</h6>
+                {activeAnnotation &&
+                  note.related.map((uuid) => (
+                    <div key={uuid}>
+                      <div
+                        style={{
+                          display: "inline-flex",
+                          gap: "0.5rem",
+                          alignItems: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            borderBottom: "none",
+                          }}
+                          className={styles.annotations__header}
+                        >
+                          <h6>{uuid_mapping[uuid].id}</h6>
+                          <h6>{uuid_mapping[uuid].group}</h6>
+                        </div>
+                        <a href={`/drawings/file/${uuid}`}>
+                          <BiLink size={18} />
+                        </a>
                       </div>
-
-                      <a href={`/drawings/file/${uuid}`}>
-                        <BiLink size={18} />
-                      </a>
+                      <div style={{ border: "1px solid" }}>
+                        <p
+                          style={{
+                            margin: 0,
+                            padding: "0.5rem",
+                            fontSize: "0.875rem",
+                          }}
+                        >
+                          {uuid_mapping[uuid].filename.replace(".png", "")}
+                        </p>
+                      </div>
+                      <img
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto",
+                          border: "1px solid",
+                          marginTop: "-1px",
+                        }}
+                        loading={"lazy"}
+                        src={uuid_mapping[uuid].rel_path}
+                        height={uuid_mapping[uuid].height}
+                        width={uuid_mapping[uuid].width}
+                      />
                     </div>
-                    <img
-                      style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                        border: "1px solid",
-                        marginTop: "-1px",
-                      }}
-                      loading={"lazy"}
-                      src={uuid_mapping[uuid].rel_path}
-                      height={uuid_mapping[uuid].height}
-                      width={uuid_mapping[uuid].width}
-                    />
-                  </div>
-                ))}
+                  ))}
               </div>
             ))}
           </div>
@@ -108,23 +161,23 @@ export default function AnnotationsList({
       )}
       <button
         className="pane"
-        onClick={() => setExpand((prev) => !prev)}
+        onClick={() => setVisible((prev) => !prev)}
         style={{
           position: "fixed",
           right: "0.5rem",
-          top: "3rem",
+          top: "5.5rem",
           border: "1px solid",
         }}
       >
         <BsSticky size={18} />
-        {!expand && (
+        {!visible && (
           <span
             style={{
               position: "absolute",
               top: "25%",
               left: "75%",
               transform: "translate(-50%, -50%)",
-              background: "white",
+              background: activeAnnotation ? "var(--accent)" : "white",
               border: "1px solid",
               borderRadius: "100%",
               aspectRatio: "1 / 1",

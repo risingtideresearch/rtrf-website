@@ -12,7 +12,6 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const annotations = await fetchAnnotations();
 
   const modelsManifestPath = path.join(
     process.cwd(),
@@ -28,14 +27,16 @@ export default async function Page({
   const materialsIndexData = await fs.readFile(materialsIndexPath, "utf8");
   const materials_index = JSON.parse(materialsIndexData) || {};
 
+  const annotations = await fetchAnnotations(models_manifest);
+
   return (
     <div className={styles.page}>
       <TableOfContents
         modes={["system", "material"]}
-        defaultSystem={slug?.[0]}
+        defaultSystem={slug}
         materials={materials_index.unique_materials}
       >
-        <Navigation defaultSystem={slug?.[0]} />
+        <Navigation forceNav={true} />
         <Anatomy
           content={{
             annotations: annotations.data,

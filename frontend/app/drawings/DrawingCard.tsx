@@ -1,8 +1,8 @@
 "use client";
 
-import { cleanFilename } from "./DrawingsGallery";
 import { Drawing } from "./types";
 import styles from "./styles.module.scss";
+import { cleanFilename } from "./util";
 
 interface IDrawingCard {
   drawing: Drawing;

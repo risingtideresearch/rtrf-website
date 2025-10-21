@@ -1,33 +1,25 @@
 {
   "exported_layers": [
     {
-      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::BASELINES",
-      "filename": "",
-      "file_size": 0,
-      "object_count": 0,
-      "export_method": "skipped",
-      "notes": "Skipped - contains CL or baseline"
-    },
-    {
-      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::CLIPPING",
-      "filename": "",
-      "file_size": 0,
-      "object_count": 0,
-      "export_method": "skipped",
-      "notes": "Skipped - contains CL or baseline"
-    },
-    {
-      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::BHD MSMTS PORT HULL",
-      "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
-      "file_size": 42977100,
-      "object_count": 12,
-      "export_method": "3dm_intermediate",
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::HUMANS",
+      "filename": "OVERVIEW (TEMP, WRK, STUDY)__HUMANS.glb",
+      "file_size": 34430608,
+      "object_count": 10,
+      "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "POWER ARCHITECTURE::SOLAR::SIMPLIFIED SP",
-      "filename": "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP.glb",
-      "file_size": 87396,
+      "layer_name": "POWER ARCHITECTURE::SIMPLIFIED BATT RACKS",
+      "filename": "POWER ARCHITECTURE__SIMPLIFIED BATT RACKS.glb",
+      "file_size": 3976,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SOLAR::DETAILED SP",
+      "filename": "POWER ARCHITECTURE__SOLAR__DETAILED SP.glb",
+      "file_size": 2399344,
       "object_count": 15,
       "export_method": "standard",
       "notes": ""
@@ -153,6 +145,38 @@
       "notes": ""
     },
     {
+      "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1/2\" StarBoard",
+      "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_2_ StarBoard.glb",
+      "file_size": 115728,
+      "object_count": 8,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1\" X 1\" X 1/8\" alum angle (8982K4)",
+      "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb",
+      "file_size": 182616,
+      "object_count": 10,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1\" X 1 1/2\" X 1/8\" alum angle (8982K87)",
+      "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb",
+      "file_size": 36692,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::instr panel & wireway::rmvbl panels material TBD",
+      "filename": "SUPERSTRUCTURE__instr panel & wireway__rmvbl panels material TBD.glb",
+      "file_size": 75276,
+      "object_count": 7,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
       "layer_name": "SUPERSTRUCTURE::WIREWAYS::ww parts surfs::thru-collars ORANGE",
       "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE.glb",
       "file_size": 312084,
@@ -249,34 +273,18 @@
       "notes": ""
     },
     {
-      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::instr panel & wireway::IP 1/2\" StarBoard",
-      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard.glb",
-      "file_size": 115812,
-      "object_count": 8,
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::EXT. INSTR. MOUNTS::EIM V2",
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2.glb",
+      "file_size": 578084,
+      "object_count": 5,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::instr panel & wireway::IP 1\" X 1\" X 1/8\" alum angle (8982K4)",
-      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb",
-      "file_size": 182700,
-      "object_count": 10,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::instr panel & wireway::IP 1\" X 1 1/2\" X 1/8\" alum angle (8982K87)",
-      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb",
-      "file_size": 36776,
-      "object_count": 2,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::ELEC. MOUNT RAILS::radar post elec. mount",
-      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount.glb",
-      "file_size": 567260,
-      "object_count": 1,
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::EXT. INSTR. MOUNTS::EIM V2::EIMV2 constr",
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2__EIMV2 constr.glb",
+      "file_size": 1640,
+      "object_count": 4,
       "export_method": "standard",
       "notes": ""
     },
@@ -347,7 +355,7 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::PLATING",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__PLATING.glb",
-      "file_size": 1308176,
+      "file_size": 1336444,
       "object_count": 19,
       "export_method": "standard",
       "notes": ""
@@ -417,73 +425,73 @@
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::strng tunnels",
-      "filename": "CONTROL__STEERING__strng tunnels.glb",
-      "file_size": 186204,
+      "layer_name": "CONTROL::STEERING::steering tunnels",
+      "filename": "CONTROL__STEERING__steering tunnels.glb",
+      "file_size": 186208,
       "object_count": 2,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::tillers & draglinks",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks.glb",
-      "file_size": 2286292,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::tillers & draglinks",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__tillers & draglinks.glb",
+      "file_size": 2286296,
       "object_count": 16,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::JEFA 5T050",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050.glb",
-      "file_size": 430332,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::JEFA 5T050",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050.glb",
+      "file_size": 430572,
       "object_count": 3,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::JEFA 5T050ZS",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS.glb",
-      "file_size": 797804,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::JEFA 5T050ZS",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050ZS.glb",
+      "file_size": 798048,
       "object_count": 3,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::hand tiller stbd",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd.glb",
-      "file_size": 147764,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::hand tiller stbd",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__hand tiller stbd.glb",
+      "file_size": 527080,
       "object_count": 4,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::autopilot DD1(?) summ2025",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025.glb",
-      "file_size": 193520,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::autopilot DD1",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__autopilot DD1.glb",
+      "file_size": 193512,
       "object_count": 12,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm.glb",
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm.glb",
       "file_size": 148304,
       "object_count": 3,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::locking rings part no. 46040-46054",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054.glb",
-      "file_size": 183164,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::locking rings part no. 46040-46054",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__locking rings part no. 46040-46054.glb",
+      "file_size": 183168,
       "object_count": 4,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "CONTROL::STEERING::STRNG COMPONENTS::50mm dummy shafts",
-      "filename": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts.glb",
-      "file_size": 19260,
+      "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::50mm dummy shafts",
+      "filename": "CONTROL__STEERING__STEERING COMPONENTS__50mm dummy shafts.glb",
+      "file_size": 19264,
       "object_count": 2,
       "export_method": "standard",
       "notes": ""
@@ -505,9 +513,9 @@
       "notes": ""
     },
     {
-      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::PSS shaft seal 02-100-200::surfs",
-      "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.glb",
-      "file_size": 312148,
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::PSS shaft seal 02-100-200",
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200.glb",
+      "file_size": 312116,
       "object_count": 6,
       "export_method": "standard",
       "notes": ""
@@ -529,14 +537,6 @@
       "notes": ""
     },
     {
-      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::CL",
-      "filename": "",
-      "file_size": 0,
-      "object_count": 0,
-      "export_method": "skipped",
-      "notes": "Skipped - contains CL or baseline"
-    },
-    {
       "layer_name": "PROPULSION::rudder assembly::foil top wedge contoured",
       "filename": "PROPULSION__rudder assembly__foil top wedge contoured.glb",
       "file_size": 77664,
@@ -551,14 +551,6 @@
       "object_count": 2,
       "export_method": "standard",
       "notes": ""
-    },
-    {
-      "layer_name": "PROPULSION::rudder assembly::stock CL",
-      "filename": "",
-      "file_size": 0,
-      "object_count": 0,
-      "export_method": "skipped",
-      "notes": "Skipped - contains CL or baseline"
     },
     {
       "layer_name": "PROPULSION::rudder assembly::Turcite bushings",
@@ -601,17 +593,9 @@
       "notes": ""
     },
     {
-      "layer_name": "PROPULSION::MOTOR MOUNT::marks",
-      "filename": "PROPULSION__MOTOR MOUNT__marks.glb",
-      "file_size": 21608,
-      "object_count": 180,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "PROPULSION::MOTOR MOUNT::surfs",
-      "filename": "PROPULSION__MOTOR MOUNT__surfs.glb",
-      "file_size": 307348,
+      "layer_name": "PROPULSION::MOTOR MOUNT::MM surfs",
+      "filename": "PROPULSION__MOTOR MOUNT__MM surfs.glb",
+      "file_size": 307352,
       "object_count": 12,
       "export_method": "standard",
       "notes": ""
@@ -633,50 +617,34 @@
       "notes": ""
     },
     {
-      "layer_name": "BODY::HULLS & DECKS::DECAL SURFACES",
-      "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
-      "file_size": 30704,
-      "object_count": 8,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "BODY::HULLS & DECKS::hull & dk constr",
-      "filename": "BODY__HULLS & DECKS__hull & dk constr.glb",
-      "file_size": 25488,
-      "object_count": 8,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "BODY::HULLS & DECKS::INSIDE HULL",
-      "filename": "BODY__HULLS & DECKS__INSIDE HULL.glb",
-      "file_size": 408328,
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::HULL INNER",
+      "filename": "BODY__HULLS & DECKS__NURBS H&D (WRK)__HULL INNER.glb",
+      "file_size": 422984,
       "object_count": 2,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "BODY::HULLS & DECKS::MESH hull",
-      "filename": "BODY__HULLS & DECKS__MESH hull.glb",
-      "file_size": 18448,
-      "object_count": 2,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "BODY::HULLS & DECKS::INSIDE DECK",
-      "filename": "BODY__HULLS & DECKS__INSIDE DECK.glb",
-      "file_size": 1340728,
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::DECK INNER",
+      "filename": "BODY__HULLS & DECKS__NURBS H&D (WRK)__DECK INNER.glb",
+      "file_size": 1447104,
       "object_count": 8,
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "BODY::HULLS & DECKS::MESH deck",
-      "filename": "BODY__HULLS & DECKS__MESH deck.glb",
-      "file_size": 48052,
-      "object_count": 2,
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D w/ decals::HULL WITH DECALS",
+      "filename": "BODY__HULLS & DECKS__NURBS H&D w_ decals__HULL WITH DECALS.glb",
+      "file_size": 1295180,
+      "object_count": 100,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D w/ decals::DECK WITH DECALS",
+      "filename": "BODY__HULLS & DECKS__NURBS H&D w_ decals__DECK WITH DECALS.glb",
+      "file_size": 1307016,
+      "object_count": 6,
       "export_method": "standard",
       "notes": ""
     },
@@ -747,7 +715,7 @@
     {
       "layer_name": "BODY::INTERNALS::4\" ID wireway tubes",
       "filename": "BODY__INTERNALS__4_ ID wireway tubes.glb",
-      "file_size": 91308,
+      "file_size": 91300,
       "object_count": 2,
       "export_method": "standard",
       "notes": ""
@@ -833,6 +801,62 @@
       "notes": ""
     },
     {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::1/2\" acrylic",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__1_2_ acrylic.glb",
+      "file_size": 81896,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::HDPE guide & coaming",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__HDPE guide & coaming.glb",
+      "file_size": 89264,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::CH other materials",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__CH other materials.glb",
+      "file_size": 3058900,
+      "object_count": 29,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::MF-02-110-60",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__MF-02-110-60.glb",
+      "file_size": 46044,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::sleeve-track hardware",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__sleeve-track hardware.glb",
+      "file_size": 56389184,
+      "object_count": 68,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::sleeve-track hardware::end support",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__sleeve-track hardware__end support.glb",
+      "file_size": 2586724,
+      "object_count": 28,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::6061 sq tube",
+      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__6061 sq tube.glb",
+      "file_size": 46396,
+      "object_count": 4,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
       "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options::small corner box",
       "filename": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb",
       "file_size": 33672,
@@ -873,9 +897,9 @@
       "notes": ""
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::conduit WRK::2x2 2\"x2\" array",
-      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array.glb",
-      "file_size": 237436,
+      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::wiring conduit::2x2 2\"x2\" array",
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__wiring conduit__2x2 2_x2_ array.glb",
+      "file_size": 237440,
       "object_count": 9,
       "export_method": "standard",
       "notes": ""
@@ -899,23 +923,15 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CTR BEAM TABLE",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE.glb",
-      "file_size": 1921656,
-      "object_count": 11,
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CTR BEAM TABLE::engraved map",
-      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map.glb",
-      "file_size": 547888,
-      "object_count": 75,
+      "file_size": 453228,
+      "object_count": 7,
       "export_method": "standard",
       "notes": ""
     },
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::SHELF SURFS",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb",
-      "file_size": 2023440,
+      "file_size": 628552,
       "object_count": 17,
       "export_method": "standard",
       "notes": ""
@@ -923,7 +939,7 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::GALLEY SURFS",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb",
-      "file_size": 1816892,
+      "file_size": 422636,
       "object_count": 6,
       "export_method": "standard",
       "notes": ""
@@ -931,7 +947,7 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::workbench V2",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb",
-      "file_size": 1866608,
+      "file_size": 472408,
       "object_count": 3,
       "export_method": "standard",
       "notes": ""
@@ -977,9 +993,9 @@
       "notes": ""
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::portland pudgy::PP low res mesh",
-      "filename": "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh.glb",
-      "file_size": 10948,
+      "layer_name": "OUTFITTING/INTERIOR::portland pudgy::PP SIMPLIFIED",
+      "filename": "OUTFITTING_INTERIOR__portland pudgy__PP SIMPLIFIED.glb",
+      "file_size": 10944,
       "object_count": 1,
       "export_method": "standard",
       "notes": ""
@@ -993,18 +1009,42 @@
       "notes": ""
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::radar & antenna",
-      "filename": "OUTFITTING_INTERIOR__radar & antenna.glb",
-      "file_size": 289288,
-      "object_count": 3,
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::radar",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__radar.glb",
+      "file_size": 273016,
+      "object_count": 1,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Signal Mate LED Anchor Light",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Signal Mate LED Anchor Light.glb",
+      "file_size": 16244,
+      "object_count": 1,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Shakespeare 5215-AIS Squatty Body 36\" VHF-AIS Antenna Whip",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Shakespeare 5215-AIS Squatty Body 36_ VHF-AIS Antenna Whip.glb",
+      "file_size": 197472,
+      "object_count": 10,
       "export_method": "standard",
       "notes": ""
     },
     {
       "layer_name": "OUTFITTING/INTERIOR::helm seat",
       "filename": "OUTFITTING_INTERIOR__helm seat.glb",
-      "file_size": 95612,
-      "object_count": 1,
+      "file_size": 154560,
+      "object_count": 2,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::SIMPLIFIED CTR DECK TRACKS",
+      "filename": "OUTFITTING_INTERIOR__SIMPLIFIED CTR DECK TRACKS.glb",
+      "file_size": 30620,
+      "object_count": 5,
       "export_method": "standard",
       "notes": ""
     },
@@ -1017,14 +1057,38 @@
       "notes": ""
     }
   ],
+  "failed_layers": [],
+  "skipped_layers": [
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::BASELINES",
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::CLIPPING",
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::CL",
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "PROPULSION::rudder assembly::stock CL",
+      "export_method": "skipped",
+      "notes": "Skipped - contains CL or baseline"
+    }
+  ],
   "export_info": {
-    "total_layers_found": 309,
-    "export_path": "/Users/shelby/Documents/_/rtrf documentation/rhino/02-models-10-01",
-    "timestamp": "2025-10-01 18:47:00",
+    "total_layers_found": 314,
+    "export_path": "/Users/shelby/Documents/_/rtrf documentation/rhino/exports-again",
+    "timestamp_start": "2025-10-20 22:11:48",
     "format": "GLB",
-    "successful_exports": 123,
+    "timestamp_end": "2025-10-20 22:22:49",
+    "successful_exports": 132,
     "failed_exports": 0,
     "skipped_exports": 4,
-    "total_file_size": 91059868
+    "total_file_size": 144289516
   }
 }
