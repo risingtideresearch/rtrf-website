@@ -184,6 +184,12 @@ export const articlesQuery = (slug?: string) => {
       },
       content[]{
         ...,
+        children[]{
+          ...,
+          _type == 'personRef' => @->{
+            ...
+          }
+        },
         _type == 'inlineImage' => {
           ...,
           image {

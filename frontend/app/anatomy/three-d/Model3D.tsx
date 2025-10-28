@@ -145,7 +145,6 @@ export function Model3D({
     });
   }, [scene, settings.transparent, clippingPlanes]);
 
-  // Handle white mode with black outlines
   useEffect(() => {
     if (!ref.current) return;
 
@@ -180,13 +179,11 @@ export function Model3D({
             mesh.userData.edgesLine = edgesLine;
           }
         } else {
-          // Restore original material
           if (mesh.userData.originalMaterial) {
             mesh.material = mesh.userData.originalMaterial;
             mesh.userData.originalMaterial = null;
           }
 
-          // Remove edges
           if (mesh.userData.edgesLine) {
             mesh.remove(mesh.userData.edgesLine);
             mesh.userData.edgesLine.geometry.dispose();
@@ -202,6 +199,14 @@ export function Model3D({
         scene.traverse((child) => {
           if ((child as Mesh).isMesh) {
             const mesh = child as Mesh;
+            if (mesh.material !== mesh.userData.originalMaterial) {
+              if (Array.isArray(mesh.material)) {
+                mesh.material.forEach((m) => m.dispose());
+              } else {
+                mesh.material?.dispose();
+              }
+            }
+
             if (mesh.userData.edgesLine) {
               mesh.remove(mesh.userData.edgesLine);
               mesh.userData.edgesLine.geometry.dispose();

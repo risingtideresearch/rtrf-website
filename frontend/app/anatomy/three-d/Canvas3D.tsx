@@ -9,13 +9,14 @@ import React, {
 } from "react";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Vector3, Box3, Group, Object3D, Camera, Plane } from "three";
 import * as THREE from "three";
 import { Model3D } from "./Model3D";
 import ScalingLines3D from "./ScalingLines3D";
 import Annotations3D from "./Annotations3D";
 import { ControlSettings } from "../ThreeDContainer";
+import RaycastHandler from "./RaycastHandler";
 
 export interface ClippingPlanes {
   [key: string]: Plane;
@@ -39,178 +40,6 @@ const CAMERA_FOV = 30;
 const LIGHT_POSITIONS: Vector3[] = [new Vector3(-3, -4, 0)];
 const FIT_DISTANCE_MULTIPLIER = 2.6;
 const CAMERA_DIRECTION = new Vector3(0.5, 0.25, 0.625);
-
-function RaycastHandler({ clippingPlanes, setHovered }) {
-  const { camera, scene, gl } = useThree();
-  const raycaster = useRef(new THREE.Raycaster());
-  const mouse = useRef(new THREE.Vector2());
-  const hoveredObject = useRef<THREE.Object3D | null>(null);
-  const originalColor = useRef<THREE.Color | null>(null);
-
-  const findParentLayer = (
-    object: THREE.Object3D
-  ): { name: string | null; url?: string; layer?: THREE.Object3D } => {
-    let current = object;
-
-    while (current) {
-      if (current.userData?.url) {
-        return {
-          name: current.userData.layerName,
-          url: current.userData?.url || current.userData?.originalUrl,
-          layer: current,
-        };
-      }
-      current = current.parent as THREE.Object3D;
-    }
-
-    return { name: object.name };
-  };
-
-  const resetHoveredObject = () => {
-    if (hoveredObject.current && originalColor.current) {
-      const material = (hoveredObject.current as THREE.Mesh)
-        .material as THREE.MeshBasicMaterial;
-      if (material && material.color) {
-        material.color.copy(originalColor.current);
-      }
-      hoveredObject.current = null;
-      originalColor.current = null;
-      setHovered(null);
-    }
-  };
-
-  const setHoverColor = (object: THREE.Object3D) => {
-    const mesh = object as THREE.Mesh;
-    const material = mesh.material as THREE.MeshBasicMaterial;
-
-    if (material && material.color) {
-      if (hoveredObject.current && hoveredObject.current !== object) {
-        resetHoveredObject();
-      }
-
-      if (hoveredObject.current !== object) {
-        originalColor.current = material.color.clone();
-        hoveredObject.current = object;
-        material.color.set("#ffae34");
-      }
-    }
-  };
-
-  const isPointClipped = (point: THREE.Vector3): boolean => {
-    if (!clippingPlanes) return false;
-
-    for (const [_key, plane] of Object.entries(clippingPlanes)) {
-      if (plane.distanceToPoint(point) < 0) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  const filterClippedIntersections = (
-    intersects: THREE.Intersection[]
-  ): THREE.Intersection[] => {
-    if (!clippingPlanes) return intersects;
-
-    return intersects.filter((intersect) => {
-      const { point, object } = intersect;
-
-      if (isPointClipped(point)) {
-        return false;
-      }
-
-      const box = new THREE.Box3().setFromObject(object);
-      const center = box.getCenter(new THREE.Vector3());
-
-      if (isPointClipped(center)) {
-        const corners = [
-          new THREE.Vector3(box.min.x, box.min.y, box.min.z),
-          new THREE.Vector3(box.min.x, box.min.y, box.max.z),
-          new THREE.Vector3(box.min.x, box.max.y, box.min.z),
-          new THREE.Vector3(box.min.x, box.max.y, box.max.z),
-          new THREE.Vector3(box.max.x, box.min.y, box.min.z),
-          new THREE.Vector3(box.max.x, box.min.y, box.max.z),
-          new THREE.Vector3(box.max.x, box.max.y, box.min.z),
-          new THREE.Vector3(box.max.x, box.max.y, box.max.z),
-        ];
-
-        const hasVisibleCorner = corners.some(
-          (corner) => !isPointClipped(corner)
-        );
-        if (!hasVisibleCorner) {
-          return false;
-        }
-      }
-
-      return true;
-    });
-  };
-
-  const isInsideCanvas = useRef(false);
-
-  useEffect(() => {
-    const canvas = gl.domElement;
-
-    const onMouseMove = (event: PointerEvent) => {
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-
-      // Check if mouse is inside canvas bounds
-      const isInside =
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom;
-
-      isInsideCanvas.current = isInside;
-
-      if (isInside) {
-        mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      } else {
-        resetHoveredObject();
-      }
-    };
-
-    const onMouseLeave = () => {
-      isInsideCanvas.current = false;
-      resetHoveredObject();
-    };
-
-    canvas.addEventListener("pointermove", onMouseMove);
-    canvas.addEventListener("pointerleave", onMouseLeave);
-
-    return () => {
-      canvas.removeEventListener("pointermove", onMouseMove);
-      canvas.removeEventListener("pointerleave", onMouseLeave);
-      resetHoveredObject();
-    };
-  }, [gl]);
-
-  useFrame(() => {
-    if (
-      typeof window === "undefined" ||
-      !scene ||
-      !camera ||
-      !isInsideCanvas.current
-    )
-      return;
-
-    raycaster.current.setFromCamera(mouse.current, camera);
-    const intersects = raycaster.current.intersectObjects(scene.children, true);
-    const visibleIntersects = filterClippedIntersections(intersects);
-
-    if (visibleIntersects.length > 0) {
-      const layerInfo = findParentLayer(visibleIntersects[0].object);
-      setHovered(layerInfo);
-      setHoverColor(visibleIntersects[0].object);
-    } else {
-      resetHoveredObject();
-    }
-  });
-
-  return null;
-}
 
 export function Canvas3D({
   clippingPlanes,
@@ -273,6 +102,27 @@ export function Canvas3D({
       newSet.add(url);
       return newSet;
     });
+
+    return () => {
+      // Dispose of geometries, materials
+      if (groupRef.current) {
+        groupRef.current.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            object.geometry?.dispose();
+            if (Array.isArray(object.material)) {
+              object.material.forEach((material) => material.dispose());
+            } else {
+              object.material?.dispose();
+            }
+          }
+        });
+      }
+      
+      // Clear refs
+      groupRef.current = null;
+      cameraRef.current = null;
+      controlsRef.current = null;
+    };
   }, []);
 
   useEffect(() => {

@@ -78,10 +78,10 @@ const components = {
         </div>
       </TogglePane>
     ),
-    personRef: ({ value }) => {
+    person: ({ value }) => {
       return (
         <span>
-          {JSON.stringify(value)}
+          {value?.name}
         </span>
       )
     } 
