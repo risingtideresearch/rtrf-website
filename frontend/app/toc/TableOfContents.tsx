@@ -149,20 +149,26 @@ export const TOCContext = createContext({
 
 export default function TableOfContents({
   children,
+  sections,
   modes = ["system", "date"],
   defaultSystem = "",
   materials = [],
 }) {
   const [mode, setMode] = useState("system");
   const [section, setSection] = useState(
-    (
-      getSections().find((section) => section.slug == defaultSystem) ||
-      getSections()[0]
-    ).slug
+    (sections.find((section) => section.slug == defaultSystem) || sections[0])
+      .slug
   );
+  const [article, setArticle] = useState(null);
+
+  useEffect(() => {
+    if (article) {
+      setArticle(null);
+    }
+  }, [section]);
 
   return (
-    <TOCContext.Provider value={{ mode, section, setSection }}>
+    <TOCContext.Provider value={{ mode, section, setSection, article }}>
       <div className={"pane toc " + styles.toc}>
         {/* <h2 className="uppercase-mono">Table of Contents</h2> */}
         <div
@@ -177,7 +183,7 @@ export default function TableOfContents({
             <h6
               onClick={() => {
                 setMode(type);
-                setSection(getSections()[0].slug);
+                setSection(sections[0].slug);
               }}
               key={type}
               style={{
@@ -194,34 +200,37 @@ export default function TableOfContents({
         </div>
         {mode == "system" ? (
           <ol>
-            {getSections().map((s) => {
+            {sections.map((s) => {
               return (
-                <li
-                  style={{ cursor: "pointer" }}
-                  key={s.slug}
-                  onClick={() => setSection(s.slug)}
-                >
+                <li style={{ cursor: "pointer" }} key={s.slug}>
                   <h6
+                    onClick={() => {
+                      setSection(s.slug);
+                      setArticle(null);
+                    }}
                     style={{
-                      margin: "0.5rem",
-                      fontWeight: s.slug == section ? 600 : 400,
+                      fontWeight: !article && s.slug == section ? 600 : 400,
                     }}
                   >
                     {s.name}
                   </h6>
-                  {s.slug == section ? (
-                    <ol>
-                      {s.chapters.map((chapter) => (
-                        <li key={chapter.name} style={{ listStyle: 'lower-roman', padding: 0, margin: 0}}>
-                          <p>
-                            {chapter.name}
-                          </p>
-                        </li>
-                      ))}
-                    </ol>
-                  ) : (
+                  {/* {s.slug == section ? ( */}
+                  <ol style={{ height: s.slug == section ? "auto" : 0 }}>
+                    {s.articles?.map((a) => (
+                      <li onClick={() => setArticle(a.slug)} key={a._id}>
+                        <span
+                          style={{
+                            fontWeight: a.slug == article ? 600 : 400,
+                          }}
+                        >
+                          {a.title}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                  {/* ) : (
                     <></>
-                  )}
+                  )} */}
                 </li>
               );
             })}

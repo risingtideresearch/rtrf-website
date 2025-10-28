@@ -10,6 +10,7 @@ export type ControlSettings = {
   transparent: boolean;
   expand: boolean;
   units: Units;
+  monochrome: boolean;
 };
 
 export interface ClippingPlanes {
@@ -29,6 +30,7 @@ const INITIAL_SETTINGS: ControlSettings = {
   transparent: false,
   units: Units.Feet,
   expand: false,
+  monochrome: false,
 };
 
 export default function ThreeDContainer({

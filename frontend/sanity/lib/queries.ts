@@ -165,13 +165,37 @@ export const annotationsQuery = `
 /**
  *
  */
+export const peopleQuery = `
+*[_type=="person"]{
+    ...
+}   
+`;
+
+/**
+ *
+ */
 export const articlesQuery = (slug?: string) => {
   if (slug) {
     return `*[_type=="article" && slug.current == "${slug}"]{
       ...,
       "section": *[_type=="sections"][0].sections[references(^._id)][0].name,
+      authors[]->{
+        name
+      },
       content[]{
         ...,
+        _type == 'inlineImage' => {
+          ...,
+          image {
+            ...,
+            asset -> {
+              ...,
+              metadata {
+                ...,
+              }
+            }
+          }
+        },
         _type == 'imageSet' => {
           ...,
           imageSet[]{
@@ -210,8 +234,14 @@ export const articlesQuery = (slug?: string) => {
     }`;
   }
   return `*[_type=="article"]{
-    ...,
-    "section": *[_type=="sections"][0].sections[references(^._id)][0].name
+    _id,
+    title,
+    relatedModels[],
+    "slug": slug.current,
+    "section": *[_type=="sections"][0].sections[references(^._id)][0] {
+      name,
+      "slug": slug.current
+    }
   }`;
 };
 
@@ -244,6 +274,7 @@ export const sectionsQuery = (slug?: string) => {
         _id,
         title,
         "slug": slug.current,
+        relatedModels[]
       }
     }
   }`;

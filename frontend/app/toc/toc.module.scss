@@ -7,26 +7,47 @@
   z-index: 1;
   top: 6rem;
   width: 15rem;
+  counter-reset: sublist-counter;
   p {
     margin: 0;
     padding-left: 0.5rem;
   }
 
   ol {
-    padding: 0 0 0 1.25rem;
+    padding: 0 0 0 1rem;
+    margin: 0.5rem 0;
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0.25rem 1ch;
+      overflow: hidden;
+      > li {
+        list-style: none;
+        margin: 0;
+        padding: 0.25rem 0;
+        &::before {
+          text-align: left;
+          counter-increment: sublist-counter;
+          content: counter(sublist-counter, lower-alpha) ".";
+          width: 2ch;
+          margin-right: 1ch;
+          display: inline-block;
+        }
+        &::marker {
+          content: "";
+        }
+      }
+    }
   }
 
   li {
+    margin: 0.5rem 0;
     font-size: 0.75rem;
-  }
+    line-height: 100%;
 
-  ul {
-    margin: 0 0 1.5rem 2rem;
-    padding: 0;
-
-    li {
-      list-style-type: disc;
-      margin: 0.5rem 0;
+    h6 {
+      margin-left: 0.5rem;
     }
   }
 }

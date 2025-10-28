@@ -17,7 +17,6 @@ import ScalingLines3D from "./ScalingLines3D";
 import Annotations3D from "./Annotations3D";
 import { ControlSettings } from "../ThreeDContainer";
 
-
 export interface ClippingPlanes {
   [key: string]: Plane;
 }
@@ -31,14 +30,14 @@ type Canvas3DProps = {
   content: {
     annotations: Array<unknown>;
   };
-  setActiveAnnotation: any;
-  height: string | number;
+  setActiveAnnotation: () => void;
+  height?: string | number;
 };
 
 const CAMERA_INITIAL_POSITION = [0, 0, 0] as const;
 const CAMERA_FOV = 30;
-const LIGHT_POSITIONS: Vector3[] = [new Vector3(-3, 6, 0)];
-const FIT_DISTANCE_MULTIPLIER = 2.4;
+const LIGHT_POSITIONS: Vector3[] = [new Vector3(-3, -4, 0)];
+const FIT_DISTANCE_MULTIPLIER = 2.6;
 const CAMERA_DIRECTION = new Vector3(0.5, 0.25, 0.625);
 
 function RaycastHandler({ clippingPlanes, setHovered }) {
@@ -155,16 +154,16 @@ function RaycastHandler({ clippingPlanes, setHovered }) {
     const onMouseMove = (event: PointerEvent) => {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      
+
       // Check if mouse is inside canvas bounds
-      const isInside = 
+      const isInside =
         event.clientX >= rect.left &&
         event.clientX <= rect.right &&
         event.clientY >= rect.top &&
         event.clientY <= rect.bottom;
-      
+
       isInsideCanvas.current = isInside;
-      
+
       if (isInside) {
         mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -189,7 +188,13 @@ function RaycastHandler({ clippingPlanes, setHovered }) {
   }, [gl]);
 
   useFrame(() => {
-    if (typeof window === "undefined" || !scene || !camera || !isInsideCanvas.current) return;
+    if (
+      typeof window === "undefined" ||
+      !scene ||
+      !camera ||
+      !isInsideCanvas.current
+    )
+      return;
 
     raycaster.current.setFromCamera(mouse.current, camera);
     const intersects = raycaster.current.intersectObjects(scene.children, true);
@@ -215,7 +220,7 @@ export function Canvas3D({
   filteredLayers,
   content,
   setActiveAnnotation,
-  height = '100vh'
+  height = "100vh",
 }: Canvas3DProps) {
   const groupRef = useRef<Group>(null);
   const cameraRef = useRef<Camera>(null);
@@ -294,7 +299,7 @@ export function Canvas3D({
 
     tempBox.current.setFromObject(groupRef.current);
     const center = tempBox.current.getCenter(tempCenter.current);
-    center.y -= 1;
+    center.y -= 0.5;
     const size = tempBox.current.getSize(tempSize.current);
     const maxDim = Math.max(size.x, size.y, size.z);
     const fitDistance = maxDim * FIT_DISTANCE_MULTIPLIER;
@@ -322,7 +327,7 @@ export function Canvas3D({
         centerCamera();
       }
     } catch (e) {
-      console.warn(e)
+      console.warn(e);
     }
   }, [modelsLoaded.size, filteredLayers.length, centered]);
 
@@ -373,7 +378,7 @@ export function Canvas3D({
           opacity: displayHovered && !displayHovered.hide ? 1 : 0,
           transition: "opacity 0.2s ease-in-out",
           border: "1px solid",
-          pointerEvents: 'none'
+          pointerEvents: "none",
         }}
       >
         {displayHovered?.name.split("__").map((n, i, x) => (
@@ -392,6 +397,20 @@ export function Canvas3D({
 
   const canvasRef = useRef(null);
 
+  const downloadImage = () => {
+    if (canvasRef.current) {
+      const canvas = canvasRef.current;
+      const image = canvas.toDataURL("image/png"); 
+
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "solander-38.png"; 
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <div style={{ height: height }}>
       <div
@@ -409,11 +428,15 @@ export function Canvas3D({
           onPointerEnter={() => setAutoRotate(false)}
           onPointerLeave={() => setAutoRotate(true)}
         >
-          <Environment
-            blur={100}
-            backgroundRotation={[0, -Math.PI / 6, 0]}
-            preset="sunset"
-          />
+          {/* {monochrome ? (
+            <color attach="background" args={['rgb(255, 255, 255)']} />
+          ) : ( */}
+            <Environment
+              blur={100}
+              backgroundRotation={[0, -Math.PI / 6, 0]}
+              preset="sunset"
+            />
+          {/* )} */}
 
           <RaycastHandler
             clippingPlanes={clippingPlanes}

@@ -27,6 +27,10 @@
   h3 {
     margin: 0;
   }
+  &__body {
+    border: 1px solid;
+    border-top: none;
+  }
 }
 
 .focused-header {

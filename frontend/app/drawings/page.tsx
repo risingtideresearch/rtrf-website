@@ -3,6 +3,7 @@ import path from 'path';
 import TableOfContents from "../toc/TableOfContents";
 import Navigation from '../components/Navigation';
 import Drawings from './Drawings';
+import { fetchSections } from '@/sanity/lib/utils';
 
 export default async function Page() {
   const drawingsPath = path.join(process.cwd(), 'public/drawings/output_images/conversion_manifest.json');
@@ -11,9 +12,12 @@ export default async function Page() {
   
   const drawings = JSON.parse(drawingsData);
 
+  const sections = await fetchSections();
+  
   return (
     <>
-      <TableOfContents>
+      <TableOfContents 
+        sections={sections?.data.sections || []}>
         <Navigation />
         <main style={{ paddingLeft: "16.5rem" }}>
           <Drawings

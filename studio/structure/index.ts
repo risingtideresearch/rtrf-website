@@ -8,6 +8,19 @@ export const structure: StructureResolver = (S) => {
   return S.list()
     .title('Content')
     .items([
+      ...S.documentTypeListItems().filter((d: ListItemBuilder) =>
+        textDocs.includes(d.getId() as string),
+      ),
+      // Singleton section
+      S.listItem()
+        .title('Sections')
+        .id('sections')
+        .child(
+          S.document()
+            .schemaType('sections')
+            .documentId('sections')
+        ),
+      S.divider(),
       ...S.documentTypeListItems().filter(
         (d: ListItemBuilder) =>
           !notBoat.includes(d.getId() as string) &&
@@ -18,19 +31,6 @@ export const structure: StructureResolver = (S) => {
       S.divider(),
       ...S.documentTypeListItems().filter((d: ListItemBuilder) =>
         notBoat.includes(d.getId() as string),
-      ),
-      S.divider(),
-      // Singleton section
-      S.listItem()
-        .title('Sections')
-        .id('sections')
-        .child(
-          S.document()
-            .schemaType('sections')
-            .documentId('sections')
-        ),
-      ...S.documentTypeListItems().filter((d: ListItemBuilder) =>
-        textDocs.includes(d.getId() as string),
       ),
     ])
 }

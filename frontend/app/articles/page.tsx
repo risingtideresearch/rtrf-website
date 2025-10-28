@@ -1,26 +1,14 @@
-// import { promises as fs } from "fs";
-// import path from "path";
-import { fetchSections } from "@/sanity/lib/utils";
 import TableOfContents from "@/app/toc/TableOfContents";
 import Navigation from "../components/Navigation";
 import Articles from "./Articles";
 
 export default async function Page() {
-  const { data } = await fetchSections();
-
-  // const modelsManifestPath = path.join(
-  //   process.cwd(),
-  //   "public/models/export_manifest.json"
-  // );
-  // const modelsManifestData = await fs.readFile(modelsManifestPath, "utf8");
-  // const models_manifest = JSON.parse(modelsManifestData);
-  
 
   return (
     <div>
       {/* <TableOfContents modes={["system"]}> */}
         <Navigation />
-        <Articles data={data.sections} />
+        <Articles />
       {/* </TableOfContents> */}
     </div>
   );

@@ -1,5 +1,2 @@
 node_modules/*
 scripts/venv
-# temporarily ignore
-frontend/public/models/*
-frontend/public/models_old/*

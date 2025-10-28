@@ -70,7 +70,7 @@ main {
 
 h1 {
   margin: 0.5rem 0;
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 400;
 }
 
@@ -81,9 +81,10 @@ h2 {
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: 1.375rem;
   text-transform: uppercase;
-  font-weight: 600;
+  font-family: var(--font-departure-mono);
+  font-weight: 400;
   margin: 0;
 }
 
@@ -94,9 +95,10 @@ h6 {
   margin: 0;
 }
 
-p {
+p, li {
   margin: 0.75em 0;
   line-height: 1.6em;
+  text-wrap: pretty;
 }
 
 figure {
@@ -197,7 +199,7 @@ nextjs-portal {
 figcaption {
   font-size: 0.875rem;
   text-align: right;
-  margin: 0.5rem 0;
+  margin: 0.5rem;
 }
 
 .big-nav {
@@ -226,10 +228,3 @@ figcaption {
     color-scheme: dark;
   }
 } */
-
-.image-set {
-  &--photo {
-    max-width: 100%;
-    height: auto;
-  }
-}

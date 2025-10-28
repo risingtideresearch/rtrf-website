@@ -1,5 +1,4 @@
 .page {
-  background: var(--background);
   padding-left: 19rem;
   padding-right: 6rem;
   main {
@@ -13,6 +12,10 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
+  }
+
+  ol li {
+    max-width: calc(75ch - 3rem);
   }
 
   h3 {
@@ -29,6 +32,7 @@
     left: 0.5rem;
     top: 5.5rem;
     width: 16.5rem;
+    z-index: 1;
 
     > div {
       display: grid;
@@ -61,7 +65,7 @@
   figure {
     width: max-content;
     max-width: 100%;
-    margin: 0 0 5rem 0;
+    margin: 3rem 0;
   }
 
   &__toc {
@@ -71,12 +75,37 @@
     }
   }
 
+  .full_image {
+    position: relative;
+    margin-left: -19rem;
+    left: 0;
+    width: 100vw;
+    max-width: 100rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      left: 50%;
+      position: relative;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .inline_image {
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  h2 {
+    margin: 3.5rem 0 0.5rem 0;
+  }
+
   section {
     margin: 3rem 0;
-
-    h2 {
-      margin: 0.5rem 0;
-    }
 
     p {
       font-size: 1rem;

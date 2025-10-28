@@ -2,13 +2,13 @@
 import React, { useEffect, useRef, useMemo, useCallback } from "react";
 import { useGLTF } from "@react-three/drei";
 import { DoubleSide, Mesh, Vector3, Box3, Plane, Color, Group } from "three";
-import { CanvasAndControlsSettings } from "./CanvasAndControls";
+import * as THREE from "three";
 
 type Model3DProps = {
   url: string;
   onLoad?: () => void;
   clippingPlanes: Plane[];
-  settings: CanvasAndControlsSettings;
+  settings: CanvasAndControlsSettings & { whiteMode?: boolean };
 };
 
 const ORIGINAL_POSITION = [0, 0, 0] as const;
@@ -36,13 +36,6 @@ export function Model3D({
     (mat) => {
       mat.side = DoubleSide;
       mat.clippingPlanes = clippingPlanes;
-      // mat.clipShadows = true;
-      // mat.transparent = settings.transparent;
-      // mat.opacity = settings.transparent ? TRANSPARENT_OPACITY : OPAQUE_OPACITY;
-
-      // if (isSpecialPlating) {
-      //   (mat.color as Color).set(1, 1, 1);
-      // }
 
       if (mat.name == "Plastic") {
         (mat.color as Color).set(1, 0.3, 0);
@@ -56,36 +49,13 @@ export function Model3D({
         if (mat.name.includes("Alum")) {
           mat.metalness = 1.0;
           mat.roughness = 0.2;
-        } else if (mat.name.includes("Gelcoat")) {
-          mat.metalness = 0.6;
-          mat.roughness = 0.15;
-        } else if (mat.name.includes("Painted FRP")) {
-          mat.metalness = 1.0;
-          mat.roughness = 0.3;
         } else if (mat.name.includes("Wood") || mat.name.includes("Plastic")) {
           mat.metalness = 1.0;
           mat.roughness = 1.0;
-        } else if (mat.name == "Windows & portlights") {
-          // Fix for transmission materials with bad normals
-          mat.side = DoubleSide;
-          mat.flatShading = false; // Ensure smooth shading
-
-          // These might help with transmission rendering
-          mat.transmission = 0.9;
-          mat.thickness = 0.5;
-          mat.roughness = 0.0;
-          mat.metalness = 0.0;
         }
       }
-
-      // if (url.indexOf("BODY") > -1) {
-      //   mat.transparent = true;
-      //   mat.opacity = 0.3;
-      // }
-
-      // console.log(url);
     },
-    [clippingPlanes, settings.transparent, url]
+    [clippingPlanes]
   );
 
   // Memoize mesh configuration function
@@ -133,31 +103,27 @@ export function Model3D({
       const originalPos = originalPositions.current.get(childId);
 
       if (!originalPos) {
-        // If we don't have the original position, store it now
         originalPositions.current.set(childId, child.position.clone());
         return;
       }
 
       if (settings.expand) {
-        // Calculate explosion position
         tempBox.current.setFromObject(child);
         const size = tempBox.current.getSize(tempSize.current);
         const explosionDistance = size.y * EXPLOSION_MULTIPLIER;
 
-        // Apply explosion offset while preserving original X and Z
         child.position.set(
           originalPos.x,
           originalPos.y + explosionDistance,
           originalPos.z
         );
       } else {
-        // Return to original position
         child.position.copy(originalPos);
       }
     });
   }, [settings.expand]);
 
-  // Update material properties when settings change
+  // Handle transparent mode
   useEffect(() => {
     if (!ref.current) return;
 
@@ -178,6 +144,75 @@ export function Model3D({
       }
     });
   }, [scene, settings.transparent, clippingPlanes]);
+
+  // Handle white mode with black outlines
+  useEffect(() => {
+    if (!ref.current) return;
+
+    scene.traverse((child) => {
+      if ((child as Mesh).isMesh) {
+        const mesh = child as Mesh;
+
+        if (settings.monochrome) {
+          // Store original material
+          if (!mesh.userData.originalMaterial) {
+            mesh.userData.originalMaterial = mesh.material;
+          }
+
+          const whiteMaterial = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            metalness: 0,
+            roughness: 0.8,
+            side: DoubleSide,
+            clippingPlanes: clippingPlanes,
+          });
+
+          mesh.material = whiteMaterial;
+
+          if (!mesh.userData.edgesLine) {
+            const edges = new THREE.EdgesGeometry(mesh.geometry, 15);
+            const lineMaterial = new THREE.LineBasicMaterial({
+              color: 0x000000,
+              linewidth: 3,
+            });
+            const edgesLine = new THREE.LineSegments(edges, lineMaterial);
+            mesh.add(edgesLine);
+            mesh.userData.edgesLine = edgesLine;
+          }
+        } else {
+          // Restore original material
+          if (mesh.userData.originalMaterial) {
+            mesh.material = mesh.userData.originalMaterial;
+            mesh.userData.originalMaterial = null;
+          }
+
+          // Remove edges
+          if (mesh.userData.edgesLine) {
+            mesh.remove(mesh.userData.edgesLine);
+            mesh.userData.edgesLine.geometry.dispose();
+            mesh.userData.edgesLine.material.dispose();
+            mesh.userData.edgesLine = null;
+          }
+        }
+      }
+    });
+
+    return () => {
+      if (settings.monochrome && ref.current) {
+        scene.traverse((child) => {
+          if ((child as Mesh).isMesh) {
+            const mesh = child as Mesh;
+            if (mesh.userData.edgesLine) {
+              mesh.remove(mesh.userData.edgesLine);
+              mesh.userData.edgesLine.geometry.dispose();
+              mesh.userData.edgesLine.material.dispose();
+              mesh.userData.edgesLine = null;
+            }
+          }
+        });
+      }
+    };
+  }, [scene, settings.monochrome, clippingPlanes]);
 
   return (
     <primitive

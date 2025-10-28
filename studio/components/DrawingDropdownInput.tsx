@@ -1,15 +1,27 @@
-// components/DrawingDropdownInput.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Autocomplete, Box, Card, Stack, Text } from '@sanity/ui';
 import { set, unset } from 'sanity';
 import type { StringInputProps } from 'sanity';
 
-// Import your JSON data
-import data from '../script_output/drawings/conversion_manifest.json';
+import data from '../script_output/drawing_conversion_manifest.json';
 
 interface Option {
   title: string;
   value: string;
+}
+
+export function getDrawingByUuid(uuid: string) {
+  return data.files.find(file => file.uuid === uuid);
+}
+
+export function getDrawingTitle(uuid: string) {
+  const drawing = getDrawingByUuid(uuid);
+  return drawing?.filename || uuid || 'Unknown Drawing';
+}
+
+export function getDrawingId(uuid: string) {
+  const drawing = getDrawingByUuid(uuid);
+  return drawing?.id || '';
 }
 
 const DrawingDropdownInput = React.forwardRef<HTMLInputElement, StringInputProps>(
@@ -27,8 +39,8 @@ const DrawingDropdownInput = React.forwardRef<HTMLInputElement, StringInputProps
     }, []);
 
     const filteredOptions = options.filter(option =>
-      option.title.toLowerCase().startsWith(query.toLowerCase())
-      || option.value.toLowerCase().startsWith(query.toLowerCase())
+      option.title.toLowerCase().includes(query.toLowerCase())
+      || option.value.toLowerCase().includes(query.toLowerCase())
     );
 
     const handleChange = useCallback((selectedValue: string) => {

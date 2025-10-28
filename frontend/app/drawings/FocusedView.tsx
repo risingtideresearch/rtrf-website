@@ -6,6 +6,7 @@ import {
 } from "react-icons/lia";
 import { cleanFilename } from "./util";
 import styles from "./styles.module.scss";
+import imageSetStyles from "./../components/image-set.module.scss";
 import { BiCollapseAlt, BiLink } from "react-icons/bi";
 import { Image } from "../components/Image";
 
@@ -70,7 +71,7 @@ export function FocusedView({
 
   return (
     <div
-      className={'pane ' + styles["focused-view"]}
+      className={"pane " + styles["focused-view"]}
       style={
         popover
           ? {
@@ -198,12 +199,15 @@ export function FocusedView({
                   "<no title>"}
               </p>
             </div>
-            <Image
-              className={"image-set--photo"}
-              key={(asset as any)._key}
-              src={asset}
-              alt={"todo: add alt text"}
-            />
+            <div
+              className={`${styles["focused-view__body"]} ${imageSetStyles["image-set--photo"]}`}
+            >
+              <Image
+                key={(asset as any)._key}
+                src={asset}
+                alt={"todo: add alt text"}
+              />
+            </div>
           </>
         ) : (
           <>
@@ -225,27 +229,25 @@ export function FocusedView({
                 <LiaDownloadSolid />
               </a>
             </div>
-            <div style={{ position: "relative" }}>
-              <img
-                src={asset.rel_path}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  maxHeight: "calc(100% - 6.5rem)",
-                  width: "auto",
-                  border: "1px solid",
-                  marginTop: "-1px",
-                }}
-                height={asset.height}
-                width={asset.width}
-                loading="lazy"
-              />
-              <p
-                style={{ position: "absolute", bottom: 0, left: "0.5rem" }}
-                className="uppercase-mono"
-              >
-                {asset.uuid}
-              </p>
+            <div className={styles["focused-view__body"]}>
+              <div style={{ position: 'relative'}}>
+                <img
+                  src={asset.rel_path}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                  height={asset.height}
+                  width={asset.width}
+                  loading="lazy"
+                />
+                <p
+                  style={{ position: "absolute", bottom: 0, left: "0.5rem" }}
+                  className="uppercase-mono"
+                >
+                  {asset.uuid}
+                </p>
+              </div>
             </div>
           </>
         )}

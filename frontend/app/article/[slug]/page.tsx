@@ -73,6 +73,11 @@ export default async function Page({ params }) {
       )
       .map((layer) => layer.filename);
   }
+
+  dataWithMatchedDrawings.relatedModels = Array.from(
+    new Set(dataWithMatchedDrawings.relatedModels)
+  );
+
   return (
     <div>
       <Navigation forceNav={true} />

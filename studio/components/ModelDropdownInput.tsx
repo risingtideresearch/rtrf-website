@@ -1,11 +1,9 @@
-// comModel/DrawingDropdownInput.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Autocomplete, Box, Card, Stack, Text } from '@sanity/ui';
 import { set, unset } from 'sanity';
 import type { StringInputProps } from 'sanity';
 
-// Import your JSON data
-import data from '../script_output/models/export_manifest.json';
+import data from '../script_output/model_export_manifest.json';
 
 interface Option {
   title: string;

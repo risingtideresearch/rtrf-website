@@ -1,4 +1,5 @@
 from material_extractor import create_material_index
+from pdf_to_png import convert_all_pdfs
 import shutil
 import os
 
@@ -23,6 +24,9 @@ if __name__ == "__main__":
         print(f"✅ Copied model manifest to: {dest_path}")
     else:
         print(f"⚠️  Model manifest not found: {model_manifest_path}")
+    
+    # convert drawings to pngs
+    convert_all_pdfs()
     
     # Copy drawing manifest
     if os.path.exists(drawing_manifest_path):

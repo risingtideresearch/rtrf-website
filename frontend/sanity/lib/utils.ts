@@ -1,6 +1,6 @@
 import { createDataAttribute, CreateDataAttributeProps } from "next-sanity";
 import { dataset, projectId, studioUrl } from "./api";
-import { annotationsQuery, articlesQuery, sectionsQuery } from "./queries";
+import { annotationsQuery, articlesQuery, peopleQuery, sectionsQuery } from "./queries";
 import { sanityFetch } from "./live";
 
 export async function fetchAnnotations(models_manifest) {
@@ -36,6 +36,16 @@ export async function fetchArticles(slug?: string) {
  */
 export async function fetchSections(slug?: string) {
   const { data } = await sanityFetch({ query: sectionsQuery(slug) });
+
+  return { data };
+}
+
+/**
+ *
+ * @returns
+ */
+export async function fetchPeople() {
+  const { data } = await sanityFetch({ query: peopleQuery });
 
   return { data };
 }

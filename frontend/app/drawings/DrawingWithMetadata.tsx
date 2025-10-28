@@ -63,8 +63,6 @@ export function DrawingWithMetadata({ drawing }) {
           style={{
             maxWidth: "100%",
             height: "auto",
-            // maxHeight: "calc(100% - 6.5rem)",
-            // width: "auto",
             border: "1px solid",
             marginTop: "-1px",
           }}

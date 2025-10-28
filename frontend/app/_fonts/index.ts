@@ -1,6 +1,6 @@
 
 import localFont from "next/font/local";
-import { Geist } from "next/font/google";
+import { Geist, Averia_Libre } from "next/font/google";
 
 export const DepartureMono = localFont({
   src: "./DepartureMono-1.500.woff2",
@@ -10,4 +10,10 @@ export const DepartureMono = localFont({
 export const GeistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+export const AveriaLibre = Averia_Libre({
+  variable: "--font-averia-serif",
+  style: 'normal',
+  weight: '400'
 });

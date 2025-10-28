@@ -47,12 +47,37 @@ export function Image(
   const {src, alt, width, height, ...rest} = props
   const imageUrl = urlForImage(src)
   
-  // Extract dimensions from dereferenced asset if available
   const assetWidth = 'metadata' in src.asset ? src.asset.metadata?.dimensions?.width : undefined
   const assetHeight = 'metadata' in src.asset ? src.asset.metadata?.dimensions?.height : undefined
   
-  const finalWidth = width || assetWidth
-  const finalHeight = height || assetHeight
+  // Calculate dimensions accounting for crop
+  let finalWidth = width || assetWidth
+  let finalHeight = height || assetHeight
+  
+  if (src.crop && assetWidth && assetHeight) {
+    const {top = 0, bottom = 0, left = 0, right = 0} = src.crop
+    
+    // Calculate cropped dimensions as percentage of original
+    const croppedWidthRatio = 1 - (left + right)
+    const croppedHeightRatio = 1 - (top + bottom)
+    
+    // Apply crop ratios to dimensions
+    if (!width && assetWidth) {
+      finalWidth = Math.round(assetWidth * croppedWidthRatio)
+    }
+    if (!height && assetHeight) {
+      finalHeight = Math.round(assetHeight * croppedHeightRatio)
+    }
+    
+    // If only one dimension is specified, calculate the other maintaining aspect ratio
+    if (width && !height && assetWidth && assetHeight) {
+      const croppedAspectRatio = (assetWidth * croppedWidthRatio) / (assetHeight * croppedHeightRatio)
+      finalHeight = Math.round((typeof width === 'string' ? parseInt(width, 10) : width) / croppedAspectRatio)
+    } else if (height && !width && assetWidth && assetHeight) {
+      const croppedAspectRatio = (assetWidth * croppedWidthRatio) / (assetHeight * croppedHeightRatio)
+      finalWidth = Math.round((typeof height === 'string' ? parseInt(height, 10) : height) * croppedAspectRatio)
+    }
+  }
   
   if (finalWidth) {
     imageUrl.width(typeof finalWidth === 'string' ? parseInt(finalWidth, 10) : finalWidth)

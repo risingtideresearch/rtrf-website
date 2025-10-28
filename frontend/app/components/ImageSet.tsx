@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./../drawings/styles.module.scss";
+import drawingStyles from "./../drawings/styles.module.scss";
 import { DrawingCard } from "../drawings/DrawingCard";
 import { Image } from "../components/Image";
 import { FocusedView } from "../drawings/FocusedView";
 import { Drawing } from "../drawings/types";
+import styles from './image-set.module.scss';
 
 interface ImageSetProps {
   assets: unknown[];
@@ -68,7 +69,7 @@ export default function ImageSet({
       <div>
         {title && <h3>{title}</h3>}
         <div
-          className={styles.gallery}
+          className={drawingStyles.gallery}
           style={
             variableSize
               ? {
@@ -82,13 +83,14 @@ export default function ImageSet({
         >
           {assets.map((asset, index) =>
             (asset as any)._type === "image" ? (
-              <Image
-                className={"image-set--photo"}
-                key={(asset as any)._key}
-                src={asset}
-                alt={"todo: add alt text"}
-                onClick={() => setFocusIndex(index)}
-              />
+              <div className={styles['image-set--photo']}>
+                <Image
+                  key={(asset as any)._key}
+                  src={asset}
+                  alt={asset.altText || "todo: add alt text"}
+                  onClick={() => setFocusIndex(index)}
+                />
+              </div>
             ) : (
               <DrawingCard
                 key={(asset as any).id}

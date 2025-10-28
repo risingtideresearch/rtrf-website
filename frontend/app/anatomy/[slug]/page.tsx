@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import TableOfContents from "@/app/toc/TableOfContents";
-import { fetchAnnotations } from "@/sanity/lib/utils";
+import { fetchAnnotations, fetchSections } from "@/sanity/lib/utils";
 import Anatomy from "../Anatomy";
 import Navigation from "@/app/components/Navigation";
 import styles from "./../page.module.scss";
@@ -29,9 +29,12 @@ export default async function Page({
 
   const annotations = await fetchAnnotations(models_manifest);
 
+  const sections = await fetchSections();
+
   return (
     <div className={styles.page}>
       <TableOfContents
+        sections={sections?.data.sections || []}
         modes={["system", "material"]}
         defaultSystem={slug}
         materials={materials_index.unique_materials}

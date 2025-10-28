@@ -1,7 +1,10 @@
 import {defineField, defineType} from 'sanity'
 import {RiArticleLine} from 'react-icons/ri'
 import ModelDropdownInput from '../components/ModelDropdownInput'
-import DrawingDropdownInput from '../components/DrawingDropdownInput'
+import DrawingDropdownInput, {
+  getDrawingId,
+  getDrawingTitle,
+} from '../components/DrawingDropdownInput'
 
 export const article = defineType({
   name: 'article',
@@ -25,9 +28,26 @@ export const article = defineType({
       },
     }),
     defineField({
+      name: 'authors',
+      type: 'array',
+      of: [
+        defineField({
+          name: 'author',
+          type: 'reference',
+          to: [
+            {
+              type: 'person',
+            },
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: 'relatedModels',
       type: 'array',
       title: 'Related 3D model layers',
+      description:
+        'By default, entire section will be shown (e.g. Propulsion) or use this list to override models shown',
       of: [
         defineField({
           name: 'model',
@@ -46,12 +66,13 @@ export const article = defineType({
           type: 'block',
           name: 'child',
           styles: [{title: 'Heading 2', value: 'h2'}],
+          of: [{name: 'personRef', type: 'reference', to: [{type: 'person'}]}],
         }),
         defineField({
           name: 'imageSet',
           type: 'object',
           fields: [
-             {
+            {
               type: 'string',
               name: 'title',
             },
@@ -63,10 +84,12 @@ export const article = defineType({
               name: 'imageSet',
               type: 'array',
               description: 'Set of drawings and/or images',
+              validation: (rule) => rule.required().min(1),
               of: [
                 {
                   type: 'object',
                   name: 'drawingImage',
+                  title: 'Drawing',
                   fields: [
                     defineField({
                       name: 'drawing',
@@ -76,6 +99,17 @@ export const article = defineType({
                       },
                     }),
                   ],
+                  preview: {
+                    select: {
+                      drawing: 'drawing',
+                    },
+                    prepare({drawing}) {
+                      return {
+                        title: getDrawingTitle(drawing),
+                        subtitle: getDrawingId(drawing),
+                      }
+                    },
+                  },
                 },
                 defineField({
                   type: 'image',
@@ -102,6 +136,29 @@ export const article = defineType({
                 title: title || 'Image Set',
                 subtitle: `${imageCount} image${pluralSuffix}`,
               }
+            },
+          },
+        }),
+        defineField({
+          type: 'object',
+          name: 'inlineImage',
+          fields: [
+            defineField({
+              type: 'boolean',
+              name: 'fullBleed',
+            }),
+            defineField({
+              name: 'image',
+              type: 'image',
+              options: {
+                hotspot: true,
+                metadata: ['blurhash', 'lqip', 'palette', 'exif', 'location'],
+              },
+            }),
+          ],
+          preview: {
+            select: {
+              media: 'image',
             },
           },
         }),

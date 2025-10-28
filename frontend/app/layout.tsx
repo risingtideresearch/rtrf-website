@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DepartureMono, GeistSans } from "./_fonts";
+import { AveriaLibre, DepartureMono, GeistSans } from "./_fonts";
 
 import "./globals.scss";
 import Search from "./components/Search/Search";
@@ -18,9 +18,9 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <body className={`${GeistSans.variable} ${DepartureMono.variable}`}>
+      <body className={`${AveriaLibre.variable} ${DepartureMono.variable}`}>
         {children}
-        <Search />
+        {/* <Search /> */}
       </body>
     </html>
   );

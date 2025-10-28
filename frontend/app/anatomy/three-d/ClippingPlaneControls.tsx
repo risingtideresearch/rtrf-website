@@ -94,6 +94,26 @@ export function ClippingPlaneControls({
             />
             <span>transparent</span>
           </label>
+          <label
+            style={{
+              display: "inline-flex",
+              gap: "0.5rem",
+              marginBottom: "1rem",
+              marginLeft: "1rem",
+            }}
+          >
+            <input
+              checked={settings.monochrome}
+              type="checkbox"
+              onChange={() =>
+                setSettings((prev: ControlSettings) => ({
+                  ...prev,
+                  monochrome: !prev.monochrome,
+                }))
+              }
+            />
+            <span>monochrome</span>
+          </label>
           <label>
             <select
               value={settings.units}
