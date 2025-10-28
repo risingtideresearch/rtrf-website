@@ -33,6 +33,7 @@ export default async function Navigation({ forceNav = false }) {
           <a href={"/anatomy"}>Anatomy</a>
           <a href={"/drawings"}>Drawings</a>
           <a href={"/photos"}>Photos</a>
+          <a href={"/materials"}>Materials</a>
           <a href={"/people"}>People</a>
         </>
       ) : (
@@ -42,6 +43,7 @@ export default async function Navigation({ forceNav = false }) {
           <Link href={"/anatomy"}>Anatomy</Link>
           <Link href={"/drawings"}>Drawings</Link>
           <Link href={"/photos"}>Photos</Link>
+          <Link href={"/materials"}>Materials</Link>
           <Link href={"/people"}>People</Link>
         </>
       )}

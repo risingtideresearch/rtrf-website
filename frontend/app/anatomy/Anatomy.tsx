@@ -5,6 +5,7 @@ import ThreeDContainer from "./ThreeDContainer";
 import { TOCContext } from "../toc/TableOfContents";
 import AnnotationsList from "./AnnotationsList";
 import { processModels, getSystemMap } from "./three-d/util";
+import { arrayBuffer } from "stream/consumers";
 
 interface IAnatomy {
   content: {
@@ -21,6 +22,8 @@ export default function Anatomy({ content }: IAnatomy) {
   const [search, setSearch] = useState("");
   const memoModels = useMemo(() => processModels(content.models_manifest), []);
   const systems = useMemo(() => getSystemMap(memoModels), [memoModels]);
+
+  console.log(toc.article, content.articles)
 
   const active =
     toc.mode == "system"
@@ -67,26 +70,33 @@ export default function Anatomy({ content }: IAnatomy) {
       }
     }
 
-    if (activeAnnotation && activeAnnotation.relatedModels) {
-      // include any cross-system models with selected annotations
-      activeAnnotation.relatedModels?.forEach((model) => {
-        if (!arr.includes(model)) {
-          arr = [...arr, model];
-        }
-      });
+    // if (activeAnnotation && activeAnnotation.relatedModels) {
+    //   // include any cross-system models with selected annotations
+    //   activeAnnotation.relatedModels?.forEach((model) => {
+    //     if (!arr.includes(model)) {
+    //       arr = [...arr, model];
+    //     }
+    //   });
 
-      return arr.filter((layer) => {
-        return activeAnnotation.relatedModels.includes(layer);
-      });
-    }
+    //   return arr.filter((layer) => {
+    //     return activeAnnotation.relatedModels.includes(layer);
+    //   });
+    // }
 
     if (search) {
       return arr.filter((layer) => {
         return layer.toLowerCase().includes(search.toLowerCase());
       });
     }
-    return arr;
-  }, [active, systems, search, activeAnnotation]);
+
+    if (toc.article) {
+      console.log((content.articles || []).find(d => d.slug == toc.article))
+      return (content.articles || []).find(d => d.slug == toc.article)?.relatedModels || arr
+    }
+
+    return arr
+
+  }, [active, systems, search, activeAnnotation, toc.article]);
 
   const filteredContent = useMemo(
     () => ({
