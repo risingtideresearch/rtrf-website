@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {VersionsIcon} from '@sanity/icons'
-import {schematics} from './shared/schematics'
-import {models} from './shared/models'
+// import {schematics} from './shared/schematics'
+// import {models} from './shared/models'
 
 // Install lucide.dev icons with "npm install lucide-react"
 // import {TagIcon} from 'lucide-react'
@@ -14,6 +14,15 @@ export const anatomy = defineType({
   description: 'Anatomical part or system with component parts',
   fields: [
     defineField({name: 'title', type: 'string'}),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 200, 
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+      },
+    }),
     defineField({
       name: 'boat',
       type: 'reference',
@@ -55,8 +64,8 @@ export const anatomy = defineType({
         },
       ],
     }),
-    schematics,
-    models,
+    // schematics,
+    // models,
   ],
   orderings: [
     {

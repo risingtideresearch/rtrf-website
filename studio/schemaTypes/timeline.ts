@@ -18,7 +18,7 @@ export const timeline = defineType({
         },
         {
           type: 'anatomy',
-        }
+        },
       ],
     }),
     defineField({
@@ -30,8 +30,8 @@ export const timeline = defineType({
           name: 'event',
           preview: {
             select: {
-                title: 'title',
-                subtitle: 'date',
+              title: 'title',
+              subtitle: 'dates.start',
             },
           },
           fields: [
@@ -40,14 +40,37 @@ export const timeline = defineType({
               type: 'string',
             }),
             defineField({
-              name: 'date',
-              type: 'date',
+              name: 'dates',
+              type: 'object',
+              options: {
+                columns: 2,
+              },
+              fields: [
+                defineField({
+                  name: 'start',
+                  type: 'date',
+                }),
+                defineField({
+                  name: 'end',
+                  type: 'date',
+                }),
+              ],
             }),
             defineField({
               type: 'reference',
               name: 'location',
               to: [{type: 'location'}],
             }),
+            defineField({
+              type: 'array',
+              name: 'media',
+              of: [
+                {
+                  name: 'image',
+                  type: 'image',
+                }
+              ]
+            })
           ],
         }),
       ],

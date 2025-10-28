@@ -1,0 +1,19 @@
+.toc {
+  margin: 3rem 0;
+  > div {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+  }
+  ol {
+    padding: 0 0 0 1.25rem;
+    column-count: 3;
+    > li {
+      break-inside: avoid-column;
+      > p {
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

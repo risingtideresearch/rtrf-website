@@ -1,0 +1,29 @@
+.annotations {
+  position: fixed;
+  z-index: 10;
+  right: 2.5rem;
+  margin-right: -1px;
+  top: 3rem;
+  width: 50vw;
+  max-width: 32rem;
+  padding: 0.5rem;
+  border: 1px solid;
+  max-height: calc(100% - 4rem);
+  overflow: auto;
+  &--expanded {
+    width: calc(100vw - 2.9375rem);
+    max-width: calc(100vw - 2.9375rem);
+  }
+  &__header {
+    border: 1px solid;
+    display: inline-flex;
+    flex-direction: row;
+    h6 {
+      padding: 0.5rem;
+      &:not(:last-child) {
+        border-right: 1px solid;
+        white-space: nowrap;
+      }
+    }
+  }
+}

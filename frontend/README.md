@@ -22,7 +22,7 @@ SANITY_API_READ_TOKEN="<paste your token here>" # Required - The read token for 
 
 ### Install dependencies and run locally
 ```bash
-npx install
+yarn install
 ```
 
 ```bash
@@ -30,3 +30,6 @@ npm run dev
 ```
 
 This will serve the project from [http://localhost:3000](http://localhost:3000).
+
+### Dev notes
+`page.tsx` is a reserved filename used in routing, e.g. `anatomy/[slug]/page.tsx`.

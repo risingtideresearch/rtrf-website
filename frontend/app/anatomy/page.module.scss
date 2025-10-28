@@ -1,0 +1,6 @@
+.page {
+  background: var(--background);
+  background-image: repeating-linear-gradient(0deg,#eee 0px,#eee 1px,transparent 1px,transparent 20px), repeating-linear-gradient( 90deg, #eee 0px, #eee 1px, transparent 1px, transparent 20px);
+  background-size: 20px 20px;
+  min-height: 100svh;
+}

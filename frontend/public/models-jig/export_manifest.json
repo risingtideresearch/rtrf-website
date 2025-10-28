@@ -1,0 +1,33 @@
+{
+  "exported_layers": [
+    {
+      "layer_name": "DECK JIG::TRANSV FRAMES",
+      "filename": "DECK JIG__TRANSV FRAMES.glb",
+      "file_size": 761788,
+      "object_count": 35,
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "DECK JIG::DECK SKINS",
+      "filename": "DECK JIG__DECK SKINS.glb",
+      "file_size": 1517040,
+      "object_count": 6,
+      "export_method": "standard",
+      "notes": ""
+    }
+  ],
+  "failed_layers": [],
+  "skipped_layers": [],
+  "export_info": {
+    "total_layers_found": 4,
+    "export_path": "/Users/shelby/Documents/_/rtrf documentation/rhino/jig-exports",
+    "timestamp_start": "2025-10-23 11:35:53",
+    "format": "GLB",
+    "timestamp_end": "2025-10-23 11:36:00",
+    "successful_exports": 2,
+    "failed_exports": 0,
+    "skipped_exports": 0,
+    "total_file_size": 2278828
+  }
+}

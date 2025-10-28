@@ -1,0 +1,4479 @@
+{
+  "metadata": {
+    "generated_at": "2025-10-12T18:15:43.287199",
+    "total_files_processed": 123,
+    "total_layers_processed": 123,
+    "script_version": "2.0 - Grouped by unique names"
+  },
+  "summary": {
+    "unique_material_names": 56,
+    "total_material_instances": 182,
+    "named_materials": 21,
+    "unnamed_materials": 35,
+    "textured_materials": 1,
+    "untextured_materials": 55,
+    "materials_with_property_variations": 1,
+    "total_layers": 123
+  },
+  "statistics": {
+    "category_distribution": {
+      "opaque": 56,
+      "untextured": 55,
+      "very_rough": 46,
+      "highly_metallic": 42,
+      "unnamed": 35,
+      "colored": 35,
+      "named": 21,
+      "grayscale": 14,
+      "non_metallic": 14,
+      "white_base": 7,
+      "rough": 6,
+      "metal": 5,
+      "smooth": 4,
+      "glass": 1,
+      "wood": 1,
+      "textured": 1,
+      "plastic": 1
+    },
+    "usage_frequency": {
+      "most_used_materials": [
+        [
+          "Material_0",
+          55
+        ],
+        [
+          "Alum 5052",
+          14
+        ],
+        [
+          "Composite sandwich",
+          10
+        ],
+        [
+          "Alum 6061",
+          9
+        ],
+        [
+          "Aluminum",
+          8
+        ],
+        [
+          "Default_Material",
+          6
+        ],
+        [
+          "Fiberglass",
+          6
+        ],
+        [
+          "Wood",
+          5
+        ],
+        [
+          "Matte Stainless Steel",
+          4
+        ],
+        [
+          "Bronze",
+          3
+        ]
+      ],
+      "single_use_materials": 33,
+      "multi_use_materials": 23
+    }
+  },
+  "grouped_materials": [
+    {
+      "name": "Material_0",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "e6223d07c99b3a9e3ee39675aa41b75a",
+      "associated_layers": [
+        {
+          "layer_name": "PROPULSION__rudder assembly__Turcite bushings",
+          "filename": "PROPULSION__rudder assembly__Turcite bushings.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__INTERNALS__4_ ID wireway tubes",
+          "filename": "BODY__INTERNALS__4_ ID wireway tubes.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__MOTOR MOUNT__marks",
+          "filename": "PROPULSION__MOTOR MOUNT__marks.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__radar & antenna",
+          "filename": "OUTFITTING_INTERIOR__radar & antenna.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf",
+          "filename": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__CTR BEAM__ctr beam console bhd",
+          "filename": "BODY__CTR BEAM__ctr beam console bhd.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel)",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs",
+          "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_)",
+          "filename": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings",
+          "filename": "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__heat pump",
+          "filename": "WATER_HEATING SYSTEMS__heat pump.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso",
+          "filename": "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs",
+          "filename": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator",
+          "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs",
+          "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH",
+          "filename": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID",
+          "filename": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__rudder assembly__SS sleeve",
+          "filename": "PROPULSION__rudder assembly__SS sleeve.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box",
+          "filename": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs",
+          "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer",
+          "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX",
+          "filename": "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__dehumidifer",
+          "filename": "WATER_HEATING SYSTEMS__dehumidifer.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__hull & dk constr",
+          "filename": "BODY__HULLS & DECKS__hull & dk constr.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__CTR BEAM__scuppers",
+          "filename": "BODY__CTR BEAM__scuppers.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__cleats",
+          "filename": "OUTFITTING_INTERIOR__cleats.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH",
+          "filename": "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH",
+          "filename": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress",
+          "filename": "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES",
+          "filename": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull)",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__rudder assembly__SS thrust bearing, polished top",
+          "filename": "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__helm seat",
+          "filename": "OUTFITTING_INTERIOR__helm seat.glb",
+          "material_index": 0
+        }
+      ],
+      "usage_count": 55,
+      "property_variations": [
+        {
+          "signature": "cdebf920e85c1c7f842da91fcab707be",
+          "layer_name": "BODY__INTERNALS__4_ ID wireway tubes",
+          "filename": "BODY__INTERNALS__4_ ID wireway tubes.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "869c4b83da2e8b8440a985060174af4d",
+          "layer_name": "PROPULSION__MOTOR MOUNT__marks",
+          "filename": "PROPULSION__MOTOR MOUNT__marks.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "a44fb4055e5962bb6565a8a3f1bb8811",
+          "layer_name": "OUTFITTING_INTERIOR__radar & antenna",
+          "filename": "OUTFITTING_INTERIOR__radar & antenna.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "8b6ba1321a685efef44926e8e4480b67",
+          "layer_name": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf",
+          "filename": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "e55c7e08105abdfca3d812daba04cbad",
+          "layer_name": "BODY__CTR BEAM__ctr beam console bhd",
+          "filename": "BODY__CTR BEAM__ctr beam console bhd.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "5243ccc49fa2056db2f3586ee6e96029",
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel)",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel).glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "0aa96783bcfbc75a9f4558d31fc637b5",
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "0a658868f4b89bbff3c0bd494a485f5b",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "8305899a5d272ff557a6f85a794a4a8f",
+          "layer_name": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_)",
+          "filename": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_).glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "01700899119800f55f11ff8475fc54ed",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "c0b9062655a82e5df22f1a7819b60911",
+          "layer_name": "WATER_HEATING SYSTEMS__heat pump",
+          "filename": "WATER_HEATING SYSTEMS__heat pump.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "c1be5638997822e9676c6b1b612575f4",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "bb45c03516c97fd1900d999c7aa365ed",
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "f33d14636f28b29b61658b40a72148d3",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "2343b2eb59a0e5ff9269340305f47085",
+          "layer_name": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs",
+          "filename": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "ef4c1e6f93ddc492a53942575a348cb6",
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "df0ee3f86989dac9bda14ba0406aa8b1",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "55d1167ede060367de78d1ed17e99d0c",
+          "layer_name": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator",
+          "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "52e07f744a63c3ffee63239b62e71fa4",
+          "layer_name": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs",
+          "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "2132dc976c3adb1b742d491d9461e881",
+          "layer_name": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH",
+          "filename": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "1c362c2789cdc4eb367071019f4d3d97",
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "bccd640bce97e5bd746dcbc925c3be47",
+          "layer_name": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID",
+          "filename": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "52cf46bb37d0b3f1355c5cf3b4cddffa",
+          "layer_name": "PROPULSION__rudder assembly__SS sleeve",
+          "filename": "PROPULSION__rudder assembly__SS sleeve.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "6813492787747e7f73312ae805c5cc2d",
+          "layer_name": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box",
+          "filename": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "f616ecbb461d88992a5903e1d8edfc06",
+          "layer_name": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs",
+          "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "98f4ee8c6af24e9246a40aef7c5eb302",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "43d36229954900a4fdf248e258bb2195",
+          "layer_name": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd",
+          "filename": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "44cc98626c7eb6299024ebedf82d1f90",
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "a1610c47208970bc0efc4b64feafc254",
+          "layer_name": "BODY__CTR BEAM__scuppers",
+          "filename": "BODY__CTR BEAM__scuppers.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "880ceb96d1bc658f6b4face95f27d0ce",
+          "layer_name": "OUTFITTING_INTERIOR__cleats",
+          "filename": "OUTFITTING_INTERIOR__cleats.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "0669099f9c861053d3fa06b55382f56b",
+          "layer_name": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES",
+          "filename": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb",
+          "properties_diff": "Properties differ from base definition"
+        },
+        {
+          "signature": "ff1c6a6a6f967ef5ff7cdbbd92e6b87b",
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull)",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull).glb",
+          "properties_diff": "Properties differ from base definition"
+        }
+      ]
+    },
+    {
+      "name": "Alum 5052",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.66611695,
+            0.66611695,
+            0.66611695,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "09d4881b4736e8bad5607cb3054d7a73",
+      "associated_layers": [
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions)",
+          "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__MOTOR MOUNT__surfs",
+          "filename": "PROPULSION__MOTOR MOUNT__surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__PLATING",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__PLATING.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 10
+        }
+      ],
+      "usage_count": 14,
+      "property_variations": []
+    },
+    {
+      "name": "Composite sandwich",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "colored",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8433697,
+            0.8591736,
+            0.8355278,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.98,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cf8b01ec8cb839e5cfc7f1b99f6e5f10",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__INSIDE DECK",
+          "filename": "BODY__HULLS & DECKS__INSIDE DECK.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__HATCHES__aft steering hatches",
+          "filename": "BODY__HULLS & DECKS__HATCHES__aft steering hatches.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__INSIDE HULL",
+          "filename": "BODY__HULLS & DECKS__INSIDE HULL.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__MESH deck",
+          "filename": "BODY__HULLS & DECKS__MESH deck.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__CTR BEAM__ctr beam outside surfaces",
+          "filename": "BODY__CTR BEAM__ctr beam outside surfaces.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply",
+          "filename": "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__CTR BEAM__ctr beam inside surfaces",
+          "filename": "BODY__CTR BEAM__ctr beam inside surfaces.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__CTR BEAM__fwd beam hatches (approx)",
+          "filename": "BODY__CTR BEAM__fwd beam hatches (approx).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf",
+          "filename": "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 15
+        }
+      ],
+      "usage_count": 10,
+      "property_variations": []
+    },
+    {
+      "name": "Alum 6061",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.66611695,
+            0.66611695,
+            0.66611695,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "09d4881b4736e8bad5607cb3054d7a73",
+      "associated_layers": [
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4)",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87)",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 9
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE.glb",
+          "material_index": 0
+        }
+      ],
+      "usage_count": 9,
+      "property_variations": []
+    },
+    {
+      "name": "Aluminum",
+      "is_named": true,
+      "categories": [
+        "named",
+        "metal",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.66611695,
+            0.66611695,
+            0.66611695,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "09d4881b4736e8bad5607cb3054d7a73",
+      "associated_layers": [
+        {
+          "layer_name": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE",
+          "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK",
+          "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN",
+          "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH",
+          "filename": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb",
+          "material_index": 1
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs",
+          "filename": "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 19
+        }
+      ],
+      "usage_count": 8,
+      "property_variations": []
+    },
+    {
+      "name": "Default_Material",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "white_base",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": 0.5,
+        "double_sided": false,
+        "emissive_factor": [
+          0,
+          0,
+          0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "3cc20e7c7837c5f039d42fc638def08b",
+      "associated_layers": [
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter",
+          "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb",
+          "material_index": 0
+        }
+      ],
+      "usage_count": 6,
+      "property_variations": []
+    },
+    {
+      "name": "Fiberglass",
+      "is_named": true,
+      "categories": [
+        "named",
+        "glass",
+        "untextured",
+        "grayscale",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.52344316,
+            0.52344316,
+            0.52344316,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "952d75b06870fb3ef25aac3ec6562a3f",
+      "associated_layers": [
+        {
+          "layer_name": "CONTROL__STEERING__strng tunnels",
+          "filename": "CONTROL__STEERING__strng tunnels.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array",
+          "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge",
+          "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 28
+        }
+      ],
+      "usage_count": 6,
+      "property_variations": []
+    },
+    {
+      "name": "Wood",
+      "is_named": true,
+      "categories": [
+        "named",
+        "wood",
+        "textured",
+        "white_base",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": true,
+        "texture_types": [
+          "base_color"
+        ],
+        "texture_info": {
+          "base_color": {
+            "texture_index": 0,
+            "tex_coord": 1
+          }
+        },
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": true,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "6f9765ed160fd6c1c7a435c69e1f8312",
+      "associated_layers": [
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2",
+          "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 22
+        }
+      ],
+      "usage_count": 5,
+      "property_variations": []
+    },
+    {
+      "name": "Matte Stainless Steel",
+      "is_named": true,
+      "categories": [
+        "named",
+        "metal",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.93227684,
+            0.93227684,
+            0.93227684,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "7f9c4f761026b9ffdea66c162b6d5801",
+      "associated_layers": [
+        {
+          "layer_name": "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs",
+          "filename": "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 14
+        }
+      ],
+      "usage_count": 4,
+      "property_variations": []
+    },
+    {
+      "name": "Bronze",
+      "is_named": true,
+      "categories": [
+        "named",
+        "metal",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.13902245,
+            0.061907478,
+            0.044552624,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "0debd193d0d429ab0d5f89996e00e842",
+      "associated_layers": [
+        {
+          "layer_name": "PROPULSION__propeller & strut",
+          "filename": "PROPULSION__propeller & strut.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs",
+          "filename": "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 13
+        }
+      ],
+      "usage_count": 3,
+      "property_variations": []
+    },
+    {
+      "name": "Composite sandwich (internals)",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "colored",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8433697,
+            0.8591736,
+            0.8355278,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.98,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cf8b01ec8cb839e5cfc7f1b99f6e5f10",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__INTERNALS__soles & bhds",
+          "filename": "BODY__INTERNALS__soles & bhds.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "BODY__INTERNALS__stringers",
+          "filename": "BODY__INTERNALS__stringers.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 17
+        }
+      ],
+      "usage_count": 3,
+      "property_variations": []
+    },
+    {
+      "name": "Carbon fiber",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "colored",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8433697,
+            0.8591736,
+            0.8355278,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.98,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cf8b01ec8cb839e5cfc7f1b99f6e5f10",
+      "associated_layers": [
+        {
+          "layer_name": "PROPULSION__rudder assembly__rudder shaft & foil",
+          "filename": "PROPULSION__rudder assembly__rudder shaft & foil.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "PROPULSION__rudder assembly__foil top wedge contoured",
+          "filename": "PROPULSION__rudder assembly__foil top wedge contoured.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 27
+        }
+      ],
+      "usage_count": 3,
+      "property_variations": []
+    },
+    {
+      "name": "Windows & portlights",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "grayscale",
+        "non_metallic",
+        "smooth",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.14198029,
+            0.14198029,
+            0.14198029,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "f117a824c388122173dfd7cf7e986501",
+      "associated_layers": [
+        {
+          "layer_name": "SUPERSTRUCTURE__WINDOWS__window panes",
+          "filename": "SUPERSTRUCTURE__WINDOWS__window panes.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 12
+        },
+        {
+          "layer_name": "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs",
+          "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb",
+          "material_index": 0
+        }
+      ],
+      "usage_count": 3,
+      "property_variations": []
+    },
+    {
+      "name": "Starboard (HDPE)",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "grayscale",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.79691654,
+            0.79691654,
+            0.79691654,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "02394988c5ccae7086f4f8ecba9d68ad",
+      "associated_layers": [
+        {
+          "layer_name": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard",
+          "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 49
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Catalyst (4)",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "white_base",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cdc143a5c920dcede667be200549d45c",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__DECAL SURFACES",
+          "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 51
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "logo blk",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "white_base",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cdc143a5c920dcede667be200549d45c",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__DECAL SURFACES",
+          "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
+          "material_index": 1
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 52
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "SOLANDER 38",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "white_base",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cdc143a5c920dcede667be200549d45c",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__DECAL SURFACES",
+          "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
+          "material_index": 2
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 53
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Reg number dummy",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "white_base",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cdc143a5c920dcede667be200549d45c",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__DECAL SURFACES",
+          "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
+          "material_index": 3
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 54
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Plastic",
+      "is_named": true,
+      "categories": [
+        "named",
+        "plastic",
+        "untextured",
+        "grayscale",
+        "non_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.79691654,
+            0.79691654,
+            0.79691654,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "02394988c5ccae7086f4f8ecba9d68ad",
+      "associated_layers": [
+        {
+          "layer_name": "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh",
+          "filename": "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 50
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Matte Brass",
+      "is_named": true,
+      "categories": [
+        "named",
+        "metal",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.92399335,
+            0.8671355,
+            0.35374093,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.8,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "84a0a2caf156065a3ab59f508dd57430",
+      "associated_layers": [
+        {
+          "layer_name": "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size",
+          "filename": "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 16
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Composite sandwich (hull)",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "colored",
+        "non_metallic",
+        "smooth",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.08919351,
+            0.3344578,
+            0.026548682,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "5dc8ad8aad67c42762b18c02dd846712",
+      "associated_layers": [
+        {
+          "layer_name": "BODY__HULLS & DECKS__MESH hull",
+          "filename": "BODY__HULLS & DECKS__MESH hull.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 46
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Solar panels",
+      "is_named": true,
+      "categories": [
+        "named",
+        "untextured",
+        "grayscale",
+        "non_metallic",
+        "smooth",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.023103556,
+            0.023103556,
+            0.023103556,
+            1.0
+          ],
+          "metallic_factor": 0.0,
+          "roughness_factor": 0.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "90926ab1f3770bcc51a66864856f98c1",
+      "associated_layers": [
+        {
+          "layer_name": "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP",
+          "filename": "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP.glb",
+          "material_index": 0
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 47
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Polished Stainless Steel",
+      "is_named": true,
+      "categories": [
+        "named",
+        "metal",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "smooth",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.93227684,
+            0.93227684,
+            0.93227684,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 0.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "f8b8fb41052fa2ff34d6f31180611308",
+      "associated_layers": [
+        {
+          "layer_name": "OUTFITTING_INTERIOR__cleats",
+          "filename": "OUTFITTING_INTERIOR__cleats.glb",
+          "material_index": 1
+        },
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 33
+        }
+      ],
+      "usage_count": 2,
+      "property_variations": []
+    },
+    {
+      "name": "Material_1",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            0.0,
+            0.7490196,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "f897c234bb3e17294bd9417382fb6456",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 1
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_2",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.49803922,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "869c4b83da2e8b8440a985060174af4d",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 2
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_3",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "8305899a5d272ff557a6f85a794a4a8f",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 3
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_4",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "52cf46bb37d0b3f1355c5cf3b4cddffa",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 4
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_5",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.7490196,
+            0.24705882,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "880ceb96d1bc658f6b4face95f27d0ce",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 5
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_6",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.4117647,
+            0.4117647,
+            0.4117647,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "8b6ba1321a685efef44926e8e4480b67",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 6
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_7",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.5176471,
+            0.5686275,
+            0.34509805,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "f33d14636f28b29b61658b40a72148d3",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 7
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_8",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.54509807,
+            0.29803923,
+            0.22352941,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "44cc98626c7eb6299024ebedf82d1f90",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 8
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_11",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            0.49803922,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "a44fb4055e5962bb6565a8a3f1bb8811",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 11
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_18",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8039216,
+            0.7019608,
+            0.54509807,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "cdebf920e85c1c7f842da91fcab707be",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 18
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_20",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "white_base",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "e55c7e08105abdfca3d812daba04cbad",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 20
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_21",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.54509807,
+            0.54509807,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "2132dc976c3adb1b742d491d9461e881",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 21
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_23",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.7490196,
+            0.24705882,
+            0.24705882,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "0669099f9c861053d3fa06b55382f56b",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 23
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_24",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            0.87058824,
+            0.6784314,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "0aa96783bcfbc75a9f4558d31fc637b5",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 24
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_25",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.74509805,
+            0.74509805,
+            0.74509805,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "c0b9062655a82e5df22f1a7819b60911",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 25
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_26",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "e6223d07c99b3a9e3ee39675aa41b75a",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 26
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_29",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.49803922,
+            1.0,
+            0.7490196,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "bccd640bce97e5bd746dcbc925c3be47",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 29
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_30",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8235294,
+            0.4117647,
+            0.11764706,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "98f4ee8c6af24e9246a40aef7c5eb302",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 30
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_31",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            0.70980394,
+            0.77254903,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "a1610c47208970bc0efc4b64feafc254",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 31
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_32",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.54509807,
+            0.4745098,
+            0.36862746,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "bb45c03516c97fd1900d999c7aa365ed",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 32
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_34",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.49803922,
+            1.0,
+            0.49803922,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "ff1c6a6a6f967ef5ff7cdbbd92e6b87b",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 34
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_35",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            0.7490196,
+            0.7490196,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "1c362c2789cdc4eb367071019f4d3d97",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 35
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_36",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.24705882,
+            0.24705882,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "ef4c1e6f93ddc492a53942575a348cb6",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 36
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_37",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            1.0,
+            0.7490196,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "5243ccc49fa2056db2f3586ee6e96029",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 37
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_38",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.7490196,
+            0.7490196,
+            1.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "55d1167ede060367de78d1ed17e99d0c",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 38
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_39",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.69803923,
+            0.49411765,
+            0.49411765,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "52e07f744a63c3ffee63239b62e71fa4",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 39
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_40",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.31764707,
+            0.34509805,
+            0.41568628,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "0a658868f4b89bbff3c0bd494a485f5b",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 40
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_41",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.49803922,
+            0.3882353,
+            0.38039216,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "df0ee3f86989dac9bda14ba0406aa8b1",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 41
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_42",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "grayscale",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.9019608,
+            0.9019608,
+            0.9019608,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "01700899119800f55f11ff8475fc54ed",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 42
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_43",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.8039216,
+            0.5686275,
+            0.61960787,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "43d36229954900a4fdf248e258bb2195",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 43
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_44",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.67058825,
+            0.18039216,
+            0.0,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "c1be5638997822e9676c6b1b612575f4",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 44
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_45",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.5921569,
+            0.4392157,
+            0.67058825,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "6813492787747e7f73312ae805c5cc2d",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 45
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    },
+    {
+      "name": "Material_48",
+      "is_named": false,
+      "categories": [
+        "unnamed",
+        "untextured",
+        "colored",
+        "highly_metallic",
+        "very_rough",
+        "opaque"
+      ],
+      "properties": {
+        "alpha_mode": "OPAQUE",
+        "alpha_cutoff": null,
+        "double_sided": false,
+        "emissive_factor": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_textures": false,
+        "texture_types": [],
+        "texture_info": {},
+        "pbr_metallic_roughness": {
+          "base_color_factor": [
+            0.53333336,
+            0.3372549,
+            0.4745098,
+            1.0
+          ],
+          "metallic_factor": 1.0,
+          "roughness_factor": 1.0,
+          "has_base_color_texture": false,
+          "has_metallic_roughness_texture": false
+        }
+      },
+      "property_signature": "2343b2eb59a0e5ff9269340305f47085",
+      "associated_layers": [
+        {
+          "layer_name": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL",
+          "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+          "material_index": 48
+        }
+      ],
+      "usage_count": 1,
+      "property_variations": []
+    }
+  ],
+  "layer_distribution": {
+    "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL": {
+      "filename": "OVERVIEW (TEMP, WRK, STUDY)__BHD MSMTS PORT HULL.glb",
+      "material_count": 55,
+      "materials": [
+        "Material_0",
+        "Alum 5052",
+        "Composite sandwich",
+        "Alum 6061",
+        "Aluminum",
+        "Fiberglass",
+        "Wood",
+        "Matte Stainless Steel",
+        "Bronze",
+        "Composite sandwich (internals)",
+        "Carbon fiber",
+        "Windows & portlights",
+        "Starboard (HDPE)",
+        "Catalyst (4)",
+        "logo blk",
+        "SOLANDER 38",
+        "Reg number dummy",
+        "Plastic",
+        "Matte Brass",
+        "Composite sandwich (hull)",
+        "Solar panels",
+        "Polished Stainless Steel",
+        "Material_1",
+        "Material_2",
+        "Material_3",
+        "Material_4",
+        "Material_5",
+        "Material_6",
+        "Material_7",
+        "Material_8",
+        "Material_11",
+        "Material_18",
+        "Material_20",
+        "Material_21",
+        "Material_23",
+        "Material_24",
+        "Material_25",
+        "Material_26",
+        "Material_29",
+        "Material_30",
+        "Material_31",
+        "Material_32",
+        "Material_34",
+        "Material_35",
+        "Material_36",
+        "Material_37",
+        "Material_38",
+        "Material_39",
+        "Material_40",
+        "Material_41",
+        "Material_42",
+        "Material_43",
+        "Material_44",
+        "Material_45",
+        "Material_48"
+      ]
+    },
+    "BODY__HULLS & DECKS__DECAL SURFACES": {
+      "filename": "BODY__HULLS & DECKS__DECAL SURFACES.glb",
+      "material_count": 4,
+      "materials": [
+        "Catalyst (4)",
+        "logo blk",
+        "SOLANDER 38",
+        "Reg number dummy"
+      ]
+    },
+    "OUTFITTING_INTERIOR__cleats": {
+      "filename": "OUTFITTING_INTERIOR__cleats.glb",
+      "material_count": 2,
+      "materials": [
+        "Material_0",
+        "Polished Stainless Steel"
+      ]
+    },
+    "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH": {
+      "filename": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb",
+      "material_count": 2,
+      "materials": [
+        "Material_0",
+        "Aluminum"
+      ]
+    },
+    "PROPULSION__rudder assembly__Turcite bushings": {
+      "filename": "PROPULSION__rudder assembly__Turcite bushings.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "BODY__INTERNALS__4_ ID wireway tubes": {
+      "filename": "BODY__INTERNALS__4_ ID wireway tubes.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__MOTOR MOUNT__marks": {
+      "filename": "PROPULSION__MOTOR MOUNT__marks.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__radar & antenna": {
+      "filename": "OUTFITTING_INTERIOR__radar & antenna.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STEERING SHELVES__port dummy shelf": {
+      "filename": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "BODY__CTR BEAM__ctr beam console bhd": {
+      "filename": "BODY__CTR BEAM__ctr beam console bhd.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel)": {
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel).glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs": {
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200__surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_)": {
+      "filename": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_).glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings": {
+      "filename": "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__heat pump": {
+      "filename": "WATER_HEATING SYSTEMS__heat pump.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__locking rings part no. 46040-46054.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso": {
+      "filename": "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__tillers & draglinks.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__autopilot DD1(_) summ2025.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs": {
+      "filename": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__JEFA 5T050ZS.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator": {
+      "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs": {
+      "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH": {
+      "filename": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID": {
+      "filename": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__rudder assembly__SS sleeve": {
+      "filename": "PROPULSION__rudder assembly__SS sleeve.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR___ugly corner_ options__small corner box": {
+      "filename": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs": {
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs": {
+      "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer": {
+      "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX": {
+      "filename": "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__dehumidifer": {
+      "filename": "WATER_HEATING SYSTEMS__dehumidifer.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__50mm dummy shafts.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd": {
+      "filename": "CONTROL__STEERING__STRNG COMPONENTS__hand tiller stbd.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "BODY__HULLS & DECKS__hull & dk constr": {
+      "filename": "BODY__HULLS & DECKS__hull & dk constr.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "BODY__CTR BEAM__scuppers": {
+      "filename": "BODY__CTR BEAM__scuppers.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet": {
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH": {
+      "filename": "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress": {
+      "filename": "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES": {
+      "filename": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull)": {
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull).glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE__engraved map.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "PROPULSION__rudder assembly__SS thrust bearing, polished top": {
+      "filename": "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "OUTFITTING_INTERIOR__helm seat": {
+      "filename": "OUTFITTING_INTERIOR__helm seat.glb",
+      "material_count": 1,
+      "materials": [
+        "Material_0"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions)": {
+      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions).glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "PROPULSION__MOTOR MOUNT__surfs": {
+      "filename": "PROPULSION__MOTOR MOUNT__surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__ELEC. MOUNT RAILS__radar post elec. mount.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__PLATING": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__PLATING.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 5052"
+      ]
+    },
+    "BODY__HULLS & DECKS__INSIDE DECK": {
+      "filename": "BODY__HULLS & DECKS__INSIDE DECK.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__HULLS & DECKS__HATCHES__aft steering hatches": {
+      "filename": "BODY__HULLS & DECKS__HATCHES__aft steering hatches.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__HULLS & DECKS__INSIDE HULL": {
+      "filename": "BODY__HULLS & DECKS__INSIDE HULL.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__HULLS & DECKS__MESH deck": {
+      "filename": "BODY__HULLS & DECKS__MESH deck.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__CTR BEAM__ctr beam outside surfaces": {
+      "filename": "BODY__CTR BEAM__ctr beam outside surfaces.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply": {
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__CTR BEAM__ctr beam inside surfaces": {
+      "filename": "BODY__CTR BEAM__ctr beam inside surfaces.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "BODY__CTR BEAM__fwd beam hatches (approx)": {
+      "filename": "BODY__CTR BEAM__fwd beam hatches (approx).glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf": {
+      "filename": "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4)": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87)": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE.glb",
+      "material_count": 1,
+      "materials": [
+        "Alum 6061"
+      ]
+    },
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE": {
+      "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK": {
+      "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN": {
+      "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs": {
+      "filename": "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Aluminum"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter": {
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb",
+      "material_count": 1,
+      "materials": [
+        "Default_Material"
+      ]
+    },
+    "CONTROL__STEERING__strng tunnels": {
+      "filename": "CONTROL__STEERING__strng tunnels.glb",
+      "material_count": 1,
+      "materials": [
+        "Fiberglass"
+      ]
+    },
+    "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array": {
+      "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__conduit WRK__2x2 2_x2_ array.glb",
+      "material_count": 1,
+      "materials": [
+        "Fiberglass"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl.glb",
+      "material_count": 1,
+      "materials": [
+        "Fiberglass"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates.glb",
+      "material_count": 1,
+      "materials": [
+        "Fiberglass"
+      ]
+    },
+    "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge": {
+      "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge.glb",
+      "material_count": 1,
+      "materials": [
+        "Fiberglass"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE.glb",
+      "material_count": 1,
+      "materials": [
+        "Wood"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb",
+      "material_count": 1,
+      "materials": [
+        "Wood"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb",
+      "material_count": 1,
+      "materials": [
+        "Wood"
+      ]
+    },
+    "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2": {
+      "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb",
+      "material_count": 1,
+      "materials": [
+        "Wood"
+      ]
+    },
+    "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs": {
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Matte Stainless Steel"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb",
+      "material_count": 1,
+      "materials": [
+        "Matte Stainless Steel"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS.glb",
+      "material_count": 1,
+      "materials": [
+        "Matte Stainless Steel"
+      ]
+    },
+    "PROPULSION__propeller & strut": {
+      "filename": "PROPULSION__propeller & strut.glb",
+      "material_count": 1,
+      "materials": [
+        "Bronze"
+      ]
+    },
+    "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs": {
+      "filename": "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Bronze"
+      ]
+    },
+    "BODY__INTERNALS__soles & bhds": {
+      "filename": "BODY__INTERNALS__soles & bhds.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich (internals)"
+      ]
+    },
+    "BODY__INTERNALS__stringers": {
+      "filename": "BODY__INTERNALS__stringers.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich (internals)"
+      ]
+    },
+    "PROPULSION__rudder assembly__rudder shaft & foil": {
+      "filename": "PROPULSION__rudder assembly__rudder shaft & foil.glb",
+      "material_count": 1,
+      "materials": [
+        "Carbon fiber"
+      ]
+    },
+    "PROPULSION__rudder assembly__foil top wedge contoured": {
+      "filename": "PROPULSION__rudder assembly__foil top wedge contoured.glb",
+      "material_count": 1,
+      "materials": [
+        "Carbon fiber"
+      ]
+    },
+    "SUPERSTRUCTURE__WINDOWS__window panes": {
+      "filename": "SUPERSTRUCTURE__WINDOWS__window panes.glb",
+      "material_count": 1,
+      "materials": [
+        "Windows & portlights"
+      ]
+    },
+    "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs": {
+      "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb",
+      "material_count": 1,
+      "materials": [
+        "Windows & portlights"
+      ]
+    },
+    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard": {
+      "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__instr panel & wireway__IP 1_2_ StarBoard.glb",
+      "material_count": 1,
+      "materials": [
+        "Starboard (HDPE)"
+      ]
+    },
+    "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh": {
+      "filename": "OUTFITTING_INTERIOR__portland pudgy__PP low res mesh.glb",
+      "material_count": 1,
+      "materials": [
+        "Plastic"
+      ]
+    },
+    "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size": {
+      "filename": "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb",
+      "material_count": 1,
+      "materials": [
+        "Matte Brass"
+      ]
+    },
+    "BODY__HULLS & DECKS__MESH hull": {
+      "filename": "BODY__HULLS & DECKS__MESH hull.glb",
+      "material_count": 1,
+      "materials": [
+        "Composite sandwich (hull)"
+      ]
+    },
+    "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP": {
+      "filename": "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP.glb",
+      "material_count": 1,
+      "materials": [
+        "Solar panels"
+      ]
+    }
+  }
+}

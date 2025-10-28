@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 import {media} from 'sanity-plugin-media'
 import {sanityComputedField} from 'sanity-plugin-computed-field'
 import {defaultDocumentNode} from './structure/defaultDocumentNode'
-import { structure } from './structure'
+import {structure} from './structure'
 
 export default defineConfig({
   name: 'default',
@@ -26,7 +26,22 @@ export default defineConfig({
   },
 
   form: {
-    image: {},
+    image: {
+      assetSources: (previousAssetSources) => {
+        return previousAssetSources.map((assetSource) => {
+          if (assetSource.name === 'sanity-default') {
+            return {
+              ...assetSource,
+              options: {
+                ...assetSource.options,
+                metadata: ['exif', 'location', 'lqip', 'palette'],
+              },
+            }
+          }
+          return assetSource
+        })
+      },
+    },
   },
 
   schema: {

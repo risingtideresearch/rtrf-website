@@ -2,8 +2,9 @@ import {defineField, defineType} from 'sanity'
 import {AsteriskIcon} from '@sanity/icons'
 import {documentation} from './shared/documentation'
 import {team} from './shared/team'
-import { models } from './shared/models'
-import { schematics } from './shared/schematics'
+// import { models } from './shared/models'
+// import { schematics } from './shared/schematics'
+import { partMetadata } from './shared/partMetadata'
 
 export const customPart = defineType({
   name: 'customPart',
@@ -17,12 +18,7 @@ export const customPart = defineType({
       name: 'title',
       description: 'Name',
     }),
-    // defineField({
-    //   type: 'string',
-    //   name: 'componentPart',
-    //   title: 'Component part',
-    //   description: 'Type of component'
-    // }),
+    ...partMetadata,
     defineField({
       type: 'array',
       name: 'componentParts',
@@ -39,22 +35,6 @@ export const customPart = defineType({
       ],
     }),
     team,
-    defineField({
-      type: 'image',
-      name: 'image',
-    }),
-    // defineField({
-    //     type: 'url',
-    //     name: 'url',
-    //     title: 'URL',
-    // }),
-    // defineField({
-    //     type: 'text',
-    //     name: 'description',
-    // }),
-    models,
-    schematics,
-    documentation,
   ],
   // preview: {
   //   select: {

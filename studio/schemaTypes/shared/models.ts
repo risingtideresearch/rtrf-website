@@ -4,6 +4,9 @@ export const models = defineField({
   type: 'array',
   name: 'models',
   title: '3D Models',
+  options: {
+    
+  },
   of: [
     defineField({
       type: 'reference',

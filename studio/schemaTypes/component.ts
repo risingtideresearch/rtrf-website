@@ -1,10 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {ColorWheelIcon} from '@sanity/icons'
-import {documentation} from './shared/documentation'
-import {models} from './shared/models'
-import {schematics} from './shared/schematics'
-import {specs} from './shared/specs'
-import {link} from './shared/link'
+import { partMetadata } from './shared/partMetadata'
+import { link } from './shared/link'
 
 export const component = defineType({
   name: 'component',
@@ -24,24 +21,9 @@ export const component = defineType({
       title: 'Component part',
       description: 'Manufacturer and model name',
     }),
-    defineField({
-      type: 'image',
-      name: 'image',
-    }),
+
     link,
-    specs,
-    models,
-    schematics,
-    // defineField({
-    //     type: 'url',
-    //     name: 'url',
-    //     title: 'URL',
-    // }),
-    // defineField({
-    //     type: 'text',
-    //     name: 'description',
-    // }),
-    documentation,
+    ...partMetadata,
   ],
   preview: {
     select: {

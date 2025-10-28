@@ -32,17 +32,29 @@ export const specs = defineField({
             layout: 'dropdown',
             list: [
               {
-                title: 'in',
-                value: 'in',
-              },
-              {
                 title: 'cm',
                 value: 'cm',
+              },
+              {
+                title: 'lb',
+                value: 'lb'
+              },
+              {
+                title: 'in',
+                value: 'in',
               },
               {
                 title: 'mm',
                 value: 'mm',
               },
+              {
+                title: 'V',
+                value: 'V'
+              },
+              {
+                title: 'W',
+                value: 'W'
+              }
             ],
           },
         }),

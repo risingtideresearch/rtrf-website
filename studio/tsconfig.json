@@ -10,6 +10,8 @@
     "moduleDetection": "force",
     "isolatedModules": true,
     "jsx": "preserve",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "incremental": true
   },
   "include": ["**/*.ts", "**/*.tsx"],

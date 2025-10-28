@@ -1,78 +1,63 @@
-import createImageUrlBuilder from "@sanity/image-url";
-// import { Link } from "@/sanity.types";
-// import { dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { createDataAttribute, CreateDataAttributeProps } from "next-sanity";
-import { getImageDimensions } from "@sanity/asset-utils";
 import { dataset, projectId, studioUrl } from "./api";
+import { annotationsQuery, articlesQuery, peopleQuery, sectionsQuery } from "./queries";
+import { sanityFetch } from "./live";
 
-const imageBuilder = createImageUrlBuilder({
-  projectId: projectId || "",
-  dataset: dataset || "",
-});
+export async function fetchAnnotations(models_manifest) {
+  let { data } = await sanityFetch({ query: annotationsQuery });
 
-export const urlForImage = (source: any) => {
-  // Ensure that source image contains a valid reference
-  if (!source?.asset?._ref) {
-    return undefined;
-  }
+  data = data.map((annotation, i) => ({
+    ...annotation,
+    // check sanity content against current model manifest
+    relatedModels: annotation.relatedModels.filter((model) => {
+      return models_manifest.exported_layers.find(
+        (file) => file.filename == model
+      );
+    }),
+    i: i + 1,
+  }));
 
-  const imageRef = source?.asset?._ref;
-  const crop = source.crop;
-
-  // get the image's og dimensions
-  const { width, height } = getImageDimensions(imageRef);
-
-  if (Boolean(crop)) {
-    // compute the cropped image's area
-    const croppedWidth = Math.floor(width * (1 - (crop.right + crop.left)));
-
-    const croppedHeight = Math.floor(height * (1 - (crop.top + crop.bottom)));
-
-    // compute the cropped image's position
-    const left = Math.floor(width * crop.left);
-    const top = Math.floor(height * crop.top);
-
-    // gather into a url
-    return imageBuilder
-      ?.image(source)
-      .rect(left, top, croppedWidth, croppedHeight)
-      .auto("format");
-  }
-
-  return imageBuilder?.image(source).auto("format");
-};
-
-export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
-  if (!image) return;
-  const url = urlForImage(image)?.width(1200).height(627).fit("crop").url();
-  if (!url) return;
-  return { url, alt: image?.alt as string, width, height };
+  return { data };
 }
 
-// Depending on the type of link, we need to fetch the corresponding page, post, or URL.  Otherwise return null.
-// export function linkResolver(link: Link | undefined) {
-//   if (!link) return null;
+/**
+ *
+ * @returns
+ */
+export async function fetchArticles(slug?: string) {
+  const { data } = await sanityFetch({ query: articlesQuery(slug) });
 
-//   // If linkType is not set but href is, lets set linkType to "href".  This comes into play when pasting links into the portable text editor because a link type is not assumed.
-//   if (!link.linkType && link.href) {
-//     link.linkType = "href";
-//   }
+  return { data };
+}
 
-//   switch (link.linkType) {
-//     case "href":
-//       return link.href || null;
-//     case "page":
-//       if (link?.page && typeof link.page === "string") {
-//         return `/${link.page}`;
-//       }
-//     case "post":
-//       if (link?.post && typeof link.post === "string") {
-//         return `/posts/${link.post}`;
-//       }
-//     default:
-//       return null;
-//   }
-// }
+/**
+ *
+ * @returns
+ */
+export async function fetchSections(slug?: string) {
+  const { data } = await sanityFetch({ query: sectionsQuery(slug) });
+
+  return { data };
+}
+
+/**
+ *
+ * @returns
+ */
+export async function fetchPeople() {
+  const { data } = await sanityFetch({ query: peopleQuery });
+
+  return { data };
+}
+
+/**
+ *
+ */
+export async function fetchTableOfContents() {
+  const { data } = await sanityFetch({ query: sectionsQuery() });
+
+  return data;
+}
 
 type DataAttributeConfig = CreateDataAttributeProps &
   Required<Pick<CreateDataAttributeProps, "id" | "type" | "path">>;
