@@ -144,6 +144,7 @@ const dates = [
 export const TOCContext = createContext({
   mode: "system",
   section: "overview",
+  article: null,
   setSection: (val: string) => {},
 });
 
@@ -165,7 +166,7 @@ export default function TableOfContents({
     if (article) {
       setArticle(null);
     }
-  }, [section]);
+  }, [section, article]);
 
   return (
     <TOCContext.Provider value={{ mode, section, setSection, article }}>

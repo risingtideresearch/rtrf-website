@@ -5,6 +5,12 @@ import Navigation from "../../components/Navigation";
 import Article from "../../articles/Article";
 import { matchArticleDrawings } from "@/app/articles/util";
 
+// export async function generateStaticParams() {
+//   const articles = await fetchArticles();
+
+//   return articles.data.map((article) => article.slug);
+// }
+
 export default async function Page({ params }) {
   const { slug } = await params;
   const { data } = await fetchArticles(slug);
@@ -12,14 +18,14 @@ export default async function Page({ params }) {
 
   const drawingsPath = path.join(
     process.cwd(),
-    "public/drawings/output_images/conversion_manifest.json"
+    "public/drawings/output_images/conversion_manifest.json",
   );
   const drawingsData = await fs.readFile(drawingsPath, "utf8");
   const drawings = JSON.parse(drawingsData);
 
   const modelsManifestPath = path.join(
     process.cwd(),
-    "public/models/export_manifest.json"
+    "public/models/export_manifest.json",
   );
   const modelsManifestData = await fs.readFile(modelsManifestPath, "utf8");
   const models_manifest = JSON.parse(modelsManifestData);
@@ -30,11 +36,11 @@ export default async function Page({ params }) {
         ...article,
         sectionName: section.name,
         sectionSlug: section.slug,
-      }))
+      })),
     );
 
     const currentIndex = allArticles?.findIndex(
-      (article: any) => article.slug === currentSlug
+      (article: any) => article.slug === currentSlug,
     );
 
     if (currentIndex === undefined || currentIndex === -1) {
@@ -58,7 +64,7 @@ export default async function Page({ params }) {
 
   const dataWithMatchedDrawings = matchArticleDrawings(
     drawings.files,
-    data[0] || {}
+    data[0] || {},
   );
 
   if (!dataWithMatchedDrawings.relatedModels) {
@@ -69,13 +75,13 @@ export default async function Page({ params }) {
           layer.file_size < 3000000 &&
           (dataWithMatchedDrawings.section == "overview" ||
             layer.filename.split("__")[0].toLowerCase() ==
-              dataWithMatchedDrawings.section)
+              dataWithMatchedDrawings.section),
       )
       .map((layer) => layer.filename);
   }
 
   dataWithMatchedDrawings.relatedModels = Array.from(
-    new Set(dataWithMatchedDrawings.relatedModels)
+    new Set(dataWithMatchedDrawings.relatedModels),
   );
 
   return (

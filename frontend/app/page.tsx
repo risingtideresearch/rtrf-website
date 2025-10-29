@@ -31,8 +31,7 @@ export default async function Page() {
             width="4032"
             height="3024"
             decoding="async"
-            data-nimg="1"
-            srcset="https://cdn.sanity.io/images/qjczz6gi/production/e21b1aedbbe89872b8039061dd51771bb848d5eb-4032x3024.jpg?h=2880&amp;w=3840&amp;auto=format&amp;fit=min 1x"
+            srcSet="https://cdn.sanity.io/images/qjczz6gi/production/e21b1aedbbe89872b8039061dd51771bb848d5eb-4032x3024.jpg?h=2880&amp;w=3840&amp;auto=format&amp;fit=min 1x"
             src="https://cdn.sanity.io/images/qjczz6gi/production/e21b1aedbbe89872b8039061dd51771bb848d5eb-4032x3024.jpg?h=2880&amp;w=3840&amp;auto=format&amp;fit=min"
           />
         </figure>

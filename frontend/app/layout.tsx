@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { AveriaLibre, DepartureMono, GeistSans } from "./_fonts";
+import { DepartureMono } from "./_fonts";
 
 import "./globals.scss";
-import Search from "./components/Search/Search";
+// import Search from "./components/Search/Search";
 
 export const metadata: Metadata = {
   title: "Rising Tide Research Foundation",
@@ -18,7 +18,7 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <body className={`${AveriaLibre.variable} ${DepartureMono.variable}`}>
+      <body className={`${DepartureMono.variable}`}>
         {children}
         {/* <Search /> */}
       </body>

@@ -5,13 +5,17 @@ import ThreeDContainer from "./ThreeDContainer";
 import { TOCContext } from "../toc/TableOfContents";
 import AnnotationsList from "./AnnotationsList";
 import { processModels, getSystemMap } from "./three-d/util";
-import { arrayBuffer } from "stream/consumers";
 
 interface IAnatomy {
   content: {
     annotations?: Array<unknown>;
     models_manifest: unknown;
-    materials_index: unknown;
+    materials_index: {
+      material_index: {
+        [key: string]: Array<string>;
+      };
+    };
+    articles?: Array<unknown>;
   };
 }
 
@@ -23,7 +27,7 @@ export default function Anatomy({ content }: IAnatomy) {
   const memoModels = useMemo(() => processModels(content.models_manifest), []);
   const systems = useMemo(() => getSystemMap(memoModels), [memoModels]);
 
-  console.log(toc.article, content.articles)
+  console.log(toc.article, content.articles);
 
   const active =
     toc.mode == "system"
@@ -34,14 +38,14 @@ export default function Anatomy({ content }: IAnatomy) {
               key: "water_heating systems".toUpperCase(),
             }
           : toc.section == "outfitting-interior"
-          ? {
-              type: "system",
-              key: toc.section.replaceAll("-", "_").toUpperCase(),
-            }
-          : {
-              type: "system",
-              key: toc.section.replaceAll("-", " ").toUpperCase(),
-            }
+            ? {
+                type: "system",
+                key: toc.section.replaceAll("-", "_").toUpperCase(),
+              }
+            : {
+                type: "system",
+                key: toc.section.replaceAll("-", " ").toUpperCase(),
+              }
         : null
       : {
           type: toc.mode,
@@ -65,7 +69,9 @@ export default function Anatomy({ content }: IAnatomy) {
         arr = systems[active.key]?.children;
       } else if (active.type == "material") {
         arr = arr.filter((m) =>
-          (content.materials_index.material_index[m] || []).includes(active.key)
+          (content.materials_index.material_index[m] || []).includes(
+            active.key,
+          ),
         );
       }
     }
@@ -90,12 +96,14 @@ export default function Anatomy({ content }: IAnatomy) {
     }
 
     if (toc.article) {
-      console.log((content.articles || []).find(d => d.slug == toc.article))
-      return (content.articles || []).find(d => d.slug == toc.article)?.relatedModels || arr
+      console.log((content.articles || []).find((d) => d.slug == toc.article));
+      return (
+        (content.articles || []).find((d) => d.slug == toc.article)
+          ?.relatedModels || arr
+      );
     }
 
-    return arr
-
+    return arr;
   }, [active, systems, search, activeAnnotation, toc.article]);
 
   const filteredContent = useMemo(
@@ -106,11 +114,11 @@ export default function Anatomy({ content }: IAnatomy) {
         : content.annotations.filter((note) => {
             // show annotation only when assocated model(s) are visible
             return note.relatedModels.find((model) =>
-              filteredLayers.includes(model)
+              filteredLayers.includes(model),
             );
           }),
     }),
-    [filteredLayers]
+    [filteredLayers],
   );
 
   useEffect(() => {
@@ -146,7 +154,7 @@ export default function Anatomy({ content }: IAnatomy) {
         content={filteredContent}
         setActiveAnnotation={(note) =>
           setActiveAnnotation((prev) =>
-            !prev || prev?._id != note._id ? note : null
+            !prev || prev?._id != note._id ? note : null,
           )
         }
         filteredLayers={filteredLayers}

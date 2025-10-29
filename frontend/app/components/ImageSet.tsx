@@ -83,7 +83,7 @@ export default function ImageSet({
         >
           {assets.map((asset, index) =>
             (asset as any)._type === "image" ? (
-              <div className={styles['image-set--photo']}>
+              <div key={asset._key} className={styles['image-set--photo']}>
                 <Image
                   key={(asset as any)._key}
                   src={asset}
