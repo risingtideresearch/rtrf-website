@@ -10,6 +10,68 @@ from pathlib import Path
 from pypdf import PdfReader
 
 
+def sanitize_path(path):
+    """
+    Remove # characters from a path while preserving the directory structure.
+    
+    Args:
+        path (str): The path to sanitize
+    
+    Returns:
+        str: The sanitized path
+    """
+    return path.replace('#', '')
+
+
+def rename_files_with_hash(root_directory):
+    """
+    Recursively find and rename all files and directories containing # characters.
+    
+    Args:
+        root_directory (str): The root directory to search.
+    
+    Returns:
+        dict: Mapping of old paths to new paths
+    """
+    renames = {}
+    
+    items_to_rename = []
+    for root, dirs, files in os.walk(root_directory, topdown=False):
+        # Skip SUPERSEDED directories
+        if "SUPERSEDED" in root.split(os.sep):
+            continue
+            
+        # Collect directories that need renaming
+        for dirname in dirs:
+            if '#' in dirname:
+                old_path = os.path.join(root, dirname)
+                new_name = dirname.replace('#', '')
+                new_path = os.path.join(root, new_name)
+                items_to_rename.append(('dir', old_path, new_path))
+        
+        # Collect files that need renaming
+        for filename in files:
+            if '#' in filename:
+                old_path = os.path.join(root, filename)
+                new_name = filename.replace('#', '')
+                new_path = os.path.join(root, new_name)
+                items_to_rename.append(('file', old_path, new_path))
+    
+    # Second pass: perform renames
+    for item_type, old_path, new_path in items_to_rename:
+        try:
+            if os.path.exists(new_path):
+                print(f"  WARNING: Target already exists, skipping: {new_path}")
+                continue
+            os.rename(old_path, new_path)
+            renames[old_path] = new_path
+            print(f"  Renamed {item_type}: {old_path} -> {new_path}")
+        except Exception as e:
+            print(f"  ERROR renaming {old_path}: {e}")
+    
+    return renames
+
+
 def extract_text_from_pdf(pdf_path):
     """
     Extracts all text from a given PDF file.
@@ -138,6 +200,9 @@ def convert_pdf_to_png(pdf_path, count, output_folder="output_images", dpi=200, 
     if global_uuids is None:
         global_uuids = set()
     
+    # Sanitize output folder path
+    output_folder = sanitize_path(output_folder)
+    
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
@@ -157,7 +222,7 @@ def convert_pdf_to_png(pdf_path, count, output_folder="output_images", dpi=200, 
         pdf_base_name = os.path.splitext(os.path.basename(pdf_path))[0]
         
         # Remove # characters from the base name
-        pdf_base_name = pdf_base_name.replace('#', '')
+        pdf_base_name = sanitize_path(pdf_base_name)
         
         # Extract full text from PDF
         full_text = extract_text_from_pdf(pdf_path)
@@ -192,7 +257,8 @@ def convert_pdf_to_png(pdf_path, count, output_folder="output_images", dpi=200, 
             file_size = os.path.getsize(output_filename)
             # thumb_file_size = os.path.getsize(thumbnail_filename)
             
-            group = output_filename.split('/')[6].replace('#', '')
+            # Sanitize group name
+            group = sanitize_path(output_filename.split('/')[6])
             if (len(group) < 2):
                 group = "xx"
                 
@@ -203,15 +269,19 @@ def convert_pdf_to_png(pdf_path, count, output_folder="output_images", dpi=200, 
             
             print(id, uuid)
             
+            # Sanitize all paths in file info
+            rel_path = sanitize_path(os.path.relpath(output_filename).replace('../frontend/public', ''))
+            source_pdf_full_path = sanitize_path(os.path.relpath(pdf_path))
+            
             # Create file info dictionary
             file_info = {
                 "filename": os.path.basename(output_filename),
                 "id": id,
                 "uuid": uuid,
-                "rel_path": os.path.relpath(output_filename).replace('../frontend/public', ''),
+                "rel_path": rel_path,
                 "group": group,
-                "source_pdf": os.path.basename(pdf_path),
-                "source_pdf_full_path": os.path.relpath(pdf_path),
+                "source_pdf": sanitize_path(os.path.basename(pdf_path)),
+                "source_pdf_full_path": source_pdf_full_path,
                 "page_number": i + 1,
                 "total_pages_in_pdf": total_pages,
                 "page_set_label": f"{i + 1} of {total_pages}",
@@ -288,6 +358,14 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=True, thumbn
     input_directory = "./../frontend/public/drawings"  
     output_folder = input_directory + "/output_images"
     
+    # First, rename any files/directories with # characters
+    print("Checking for files/directories with # characters...")
+    renames = rename_files_with_hash(input_directory)
+    if renames:
+        print(f"Renamed {len(renames)} items to remove # characters")
+    else:
+        print("No files/directories with # characters found")
+    
     # Clear output directory if requested
     if clear_output and os.path.exists(output_folder):
         print(f"Clearing output directory: {output_folder}")
@@ -320,7 +398,7 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=True, thumbn
                 current_output_folder = output_folder
             else:
                 # Remove # characters from folder path
-                rel_path_clean = rel_path.replace('#', '')
+                rel_path_clean = sanitize_path(rel_path)
                 current_output_folder = os.path.join(output_folder, rel_path_clean)
         else:
             # All images go to the same output folder
@@ -332,7 +410,7 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=True, thumbn
             successful_conversions += 1
             all_files_info.extend(file_info_list)
             # Track page counts per PDF
-            pdf_name = os.path.basename(pdf_file)
+            pdf_name = sanitize_path(os.path.basename(pdf_file))
             pdf_page_counts[pdf_name] = len(file_info_list)
         else:
             failed_conversions += 1
@@ -342,8 +420,8 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=True, thumbn
         manifest_data = {
             "conversion_info": {
                 "timestamp": datetime.now().isoformat(),
-                "input_directory": os.path.relpath(input_directory),
-                "output_directory": os.path.relpath(output_folder),
+                "input_directory": sanitize_path(os.path.relpath(input_directory)),
+                "output_directory": sanitize_path(os.path.relpath(output_folder)),
                 "dpi": dpi,
                 "preserve_structure": preserve_structure,
                 "total_pdfs_processed": len(pdf_files),
