@@ -4,7 +4,11 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import ThreeDContainer from "./ThreeDContainer";
 import { TOCContext } from "../toc/TableOfContents";
 import AnnotationsList from "./AnnotationsList";
-import { processModels, getSystemMap } from "./three-d/util";
+import {
+  processModels,
+  getSystemMap,
+  computeCombinedBoundingBox,
+} from "./three-d/util";
 import Info from "./Info";
 import { AnatomyContent } from "./page";
 
@@ -55,7 +59,7 @@ export default function Anatomy({ content }: IAnatomy) {
 
   const filteredLayers = useMemo(() => {
     let arr: string[] = memoModels.map((m) => m.filename) || [];
-    console.log(memoModels)
+    console.log(memoModels);
 
     if (search) {
       arr = arr.filter((layer) => {
@@ -83,8 +87,10 @@ export default function Anatomy({ content }: IAnatomy) {
       }
     }
 
-    // ensure related models are in sync with current manifest
-    arr = arr.filter((name) => memoModels.find(layer => layer.filename == name));
+    // ensure CMS defined related models are in sync with current manifest
+    arr = arr.filter((name) =>
+      memoModels.find((layer) => layer.filename == name),
+    );
 
     return arr;
   }, [active, systems, search, activeAnnotation, toc.article]);
@@ -114,6 +120,12 @@ export default function Anatomy({ content }: IAnatomy) {
   //   }
   // }, [activeAnnotation]);
 
+  const boundingBox = computeCombinedBoundingBox(
+    memoModels
+      .filter((m) => filteredLayers.includes(m.filename))
+      .map((m) => m.bounding_box),
+  );
+
   return (
     <div>
       <input
@@ -141,6 +153,7 @@ export default function Anatomy({ content }: IAnatomy) {
           )
         }
         filteredLayers={filteredLayers}
+        boundingBox={boundingBox}
       />
       {/* <AnnotationsList
         content={filteredContent.annotations}

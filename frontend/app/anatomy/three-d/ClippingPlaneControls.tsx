@@ -1,246 +1,187 @@
 "use client";
-import React, { useState } from "react";
-import { Plane, Vector3 } from "three";
-import RangeSlider from "react-range-slider-input";
-import "react-range-slider-input/dist/style.css";
+import React, { useState, useMemo } from "react";
+import { Plane, Box3 } from "three";
 import { Units } from "./util";
 import { BiSliderAlt, BiX } from "react-icons/bi";
 import { ControlSettings } from "../ThreeDContainer";
-// import styles from "./../../styles/common.module.scss";
+import { AxisSlider } from "@/app/components/AxisSlider";
 
 interface ClippingPlaneControlsProps {
   setClippingPlane: (dir: string, value: Plane) => void;
   settings: ControlSettings;
-  setSettings: unknown;
+  setSettings: (updater: (prev: ControlSettings) => ControlSettings) => void;
+  boundingBox: Box3;
+}
+
+const LABEL_STYLES = {
+  display: "inline-flex",
+  gap: "0.5rem",
+  marginBottom: "1rem",
+  marginLeft: "1rem",
+};
+
+function CheckboxControl({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+}) {
+  return (
+    <label style={LABEL_STYLES}>
+      <input type="checkbox" checked={checked} onChange={onChange} />
+      <span>{label}</span>
+    </label>
+  );
 }
 
 export function ClippingPlaneControls({
   setClippingPlane,
   settings,
   setSettings,
+  boundingBox,
 }: ClippingPlaneControlsProps) {
   const [collapsed, setCollapsed] = useState(true);
+
+  const bounds = useMemo(() => {
+    if (!boundingBox) {
+      return {
+        x: { min: -13, max: 2 },
+        y: { min: -1, max: 5 },
+        z: { min: -5, max: 5 },
+      };
+    }
+
+    const round = (num: number) => Math.round(num * 1000) / 1000;
+    const { min, max } = boundingBox;
+    
+    return {
+      x: { min: round(min.x), max: round(max.x) },
+      y: { min: round(min.y), max: round(max.y) },
+      z: { min: round(min.z), max: round(max.z) },
+    };
+  }, [boundingBox]);
+
+  const toggleSetting = (key: keyof ControlSettings) => {
+    setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  if (collapsed) {
+    return (
+      <div style={{ position: "fixed", top: "3rem", right: "0.5rem" }}>
+        <button
+          className="pane"
+          type="button"
+          style={{ marginLeft: "auto", display: "block", border: "1px solid" }}
+          onClick={() => setCollapsed(false)}
+        >
+          <BiSliderAlt size={18} />
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "3rem",
-        right: "0.5rem",
-      }}
-    >
+    <div style={{ position: "fixed", top: "3rem", right: "0.5rem" }}>
       <button
         className="pane"
         type="button"
         style={{ marginLeft: "auto", display: "block", border: "1px solid" }}
-        onClick={() => setCollapsed((prev) => !prev)}
+        onClick={() => setCollapsed(true)}
       >
         <BiSliderAlt size={18} />
       </button>
-      {collapsed ? (
-        <></>
-      ) : (
-        <div
-          className="pane"
+
+      <div
+        className="pane"
+        style={{
+          position: "absolute",
+          right: "2rem",
+          marginRight: "-1px",
+          width: "max-content",
+          top: "0",
+          display: "flex",
+          flexDirection: "column",
+          border: "1px solid",
+          background: "#fff",
+          padding: "0.5rem",
+        }}
+      >
+        <button
+          onClick={() => setCollapsed(true)}
           style={{
             position: "absolute",
-            right: "2rem",
-            marginRight: "-1px",
-            width: "max-content",
+            right: "0",
             top: "0",
-            display: "flex",
-            flexDirection: "column",
-            border: "1px solid",
-            background: "#fff",
-            padding: "0.5rem",
+            backdropFilter: "none",
           }}
         >
-          <button
-            onClick={() => setCollapsed(true)}
-            style={{
-              position: "absolute",
-              right: "0",
-              top: "0",
-              backdropFilter: "none",
-            }}
-          >
-            <BiX size={18} />
-          </button>
-          <label
-            style={{
-              display: "inline-flex",
-              gap: "0.5rem",
-              marginBottom: "1rem",
-              marginLeft: "1rem",
-            }}
-          >
-            <input
-              checked={settings.expand}
-              type="checkbox"
-              onChange={() =>
-                setSettings((prev: ControlSettings) => ({
-                  ...prev,
-                  expand: !prev.expand,
-                }))
-              }
-            />
-            <span>expand</span>
-          </label>
-          <label
-            style={{
-              display: "inline-flex",
-              gap: "0.5rem",
-              marginBottom: "1rem",
-              marginLeft: "1rem",
-            }}
-          >
-            <input
-              checked={settings.transparent}
-              type="checkbox"
-              onChange={() =>
-                setSettings((prev: ControlSettings) => ({
-                  ...prev,
-                  transparent: !prev.transparent,
-                }))
-              }
-            />
-            <span>transparent</span>
-          </label>
-          <label
-            style={{
-              display: "inline-flex",
-              gap: "0.5rem",
-              marginBottom: "1rem",
-              marginLeft: "1rem",
-            }}
-          >
-            <input
-              checked={settings.monochrome}
-              type="checkbox"
-              onChange={() =>
-                setSettings((prev: ControlSettings) => ({
-                  ...prev,
-                  monochrome: !prev.monochrome,
-                }))
-              }
-            />
-            <span>monochrome</span>
-          </label>
-          <label>
-            <select
-              value={settings.units}
-              onChange={(e) =>
-                setSettings((prev: ControlSettings) => ({
-                  ...prev,
-                  units: e.target.value,
-                }))
-              }
-              style={{
-                display: "inline-flex",
-                gap: "0.5rem",
-                marginBottom: "1rem",
-                marginLeft: "1rem",
-              }}
-            >
-              {Object.values(Units).map((unit) => (
-                <option key={unit} value={unit}>
-                  {unit}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div
-            style={{
-              display: "grid",
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              gridTemplateColumns: "3rem 1fr 5rem",
-              width: "25rem",
-              gap: "1rem",
-              marginBottom: "0.5rem",
-            }}
-          >
-            <span style={{ textAlign: "right" }}>stern</span>
-            <RangeSlider
-              min={-13}
-              max={2}
-              step={0.01}
-              defaultValue={[-13, 2]}
-              onInput={(val: [number, number]) => {
-                setClippingPlane(
-                  "x1",
-                  new Plane(new Vector3(1, 0, 0), -val[0]),
-                );
-                setClippingPlane(
-                  "x2",
-                  new Plane(new Vector3(-1, 0, 0), val[1]),
-                );
-              }}
-            />
-            <span>bow</span>
-          </div>
+          <BiX size={18} />
+        </button>
 
-          <div
-            style={{
-              display: "grid",
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              gridTemplateColumns: "3rem 1fr 5rem",
-              width: "25rem",
-              gap: "1rem",
-              marginBottom: "0.5rem",
-            }}
+        <CheckboxControl
+          label="expand"
+          checked={settings.expand}
+          onChange={() => toggleSetting("expand")}
+        />
+
+        <CheckboxControl
+          label="transparent"
+          checked={settings.transparent}
+          onChange={() => toggleSetting("transparent")}
+        />
+
+        <CheckboxControl
+          label="monochrome"
+          checked={settings.monochrome}
+          onChange={() => toggleSetting("monochrome")}
+        />
+
+        <label>
+          <select
+            value={settings.units}
+            onChange={(e) =>
+              setSettings((prev) => ({ ...prev, units: e.target.value as Units }))
+            }
+            style={LABEL_STYLES}
           >
-            <span style={{ textAlign: "right" }}>keel</span>
-            <RangeSlider
-              min={-1}
-              max={5}
-              step={0.01}
-              defaultValue={[-1, 5]}
-              onInput={(val: [number, number]) => {
-                setClippingPlane(
-                  "y1",
-                  new Plane(new Vector3(0, 1, 0), -val[0]),
-                );
-                setClippingPlane(
-                  "y2",
-                  new Plane(new Vector3(0, -1, 0), val[1]),
-                );
-              }}
-            />
-            <span>deck</span>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              gridTemplateColumns: "3rem 1fr 5rem",
-              width: "25rem",
-              gap: "1rem",
-              marginBottom: "0.5rem",
-            }}
-          >
-            <span style={{ textAlign: "right" }}>port</span>
-            <RangeSlider
-              min={-5}
-              max={5}
-              step={0.01}
-              defaultValue={[-5, 5]}
-              onInput={(val: [number, number]) => {
-                setClippingPlane(
-                  "z1",
-                  new Plane(new Vector3(0, 0, 1), -val[0]),
-                );
-                setClippingPlane(
-                  "z2",
-                  new Plane(new Vector3(0, 0, -1), val[1]),
-                );
-              }}
-            />
-            <span>starboard</span>
-          </div>
-        </div>
-      )}
+            {Object.values(Units).map((unit) => (
+              <option key={unit} value={unit}>
+                {unit}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <AxisSlider
+          label1="stern"
+          label2="bow"
+          min={bounds.x.min}
+          max={bounds.x.max}
+          axis="x"
+          handleChange={setClippingPlane}
+        />
+
+        <AxisSlider
+          label1="keel"
+          label2="deck"
+          min={bounds.y.min}
+          max={bounds.y.max}
+          axis="y"
+          handleChange={setClippingPlane}
+        />
+
+        <AxisSlider
+          label1="port"
+          label2="starboard"
+          min={bounds.z.min}
+          max={bounds.z.max}
+          axis="z"
+          handleChange={setClippingPlane}
+        />
+      </div>
     </div>
   );
 }

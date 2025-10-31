@@ -18,7 +18,9 @@ export default function TogglePane({ children, title = "", defaultSize = {}, exp
         style={expand ? {} : defaultSize}
       >
         <h6>
-          <a href={`/${title.toLowerCase()}`}>{title}</a>
+          {/* TODO routing */}
+          {/* <a href={`/${title.toLowerCase()}`}>{title}</a> */}
+          {title}
         </h6>
 
         <button onClick={() => setExpand((prev) => !prev)}>

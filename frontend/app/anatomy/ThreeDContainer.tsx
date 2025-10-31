@@ -37,13 +37,11 @@ export default function ThreeDContainer({
   content,
   setActiveAnnotation,
   filteredLayers,
+  boundingBox
 }) {
   const [settings, setSettings] = useState<ControlSettings>(INITIAL_SETTINGS);
   const [clippingPlanes, setClippingPlanes] = useState<ClippingPlanes>(
     INITIAL_CLIPPING_PLANES
-  );
-  const [scalingBoundingBox, setScalingBoundingBox] = useState<Box3 | null>(
-    null
   );
 
   const handleSetClippingPlane = useCallback((dir: string, value: Plane) => {
@@ -59,8 +57,7 @@ export default function ThreeDContainer({
         clippingPlanes={clippingPlanes}
         filteredLayers={filteredLayers}
         settings={settings}
-        scalingBoundingBox={scalingBoundingBox}
-        setScalingBoundingBox={setScalingBoundingBox}
+        boundingBox={boundingBox}
         content={content}
         setActiveAnnotation={setActiveAnnotation}
       />
@@ -69,6 +66,7 @@ export default function ThreeDContainer({
         settings={settings}
         setSettings={setSettings}
         setClippingPlane={handleSetClippingPlane}
+        boundingBox={boundingBox}
       />
     </>
   );

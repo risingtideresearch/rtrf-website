@@ -14,7 +14,7 @@ import { Vector3, Box3, Group, Object3D, Camera, Plane } from "three";
 import * as THREE from "three";
 import { Model3D } from "./Model3D";
 import ScalingLines3D from "./ScalingLines3D";
-import Annotations3D from "./Annotations3D";
+// import Annotations3D from "./Annotations3D";
 import { ControlSettings } from "../ThreeDContainer";
 import RaycastHandler from "./RaycastHandler";
 
@@ -26,8 +26,7 @@ type Canvas3DProps = {
   clippingPlanes: { [key: string]: Plane };
   filteredLayers: Array<string>;
   settings: ControlSettings;
-  scalingBoundingBox: Box3 | null;
-  setScalingBoundingBox: (box: Box3 | null) => void;
+  boundingBox: Box3 | null;
   content: {
     annotations: Array<unknown>;
   };
@@ -44,8 +43,7 @@ const CAMERA_DIRECTION = new Vector3(0.5, 0.25, 0.625);
 export function Canvas3D({
   clippingPlanes,
   settings,
-  scalingBoundingBox,
-  setScalingBoundingBox,
+  boundingBox,
   filteredLayers,
   content,
   setActiveAnnotation,
@@ -67,21 +65,17 @@ export function Canvas3D({
   const tempDirection = useRef(new Vector3());
   const tempNewPos = useRef(new Vector3());
 
-  // Handle hover display with fade delay
   useEffect(() => {
     if (hovered) {
-      // Immediately show new hover
       setDisplayHovered(hovered);
-      // Clear any pending fade timeout
       if (fadeTimeoutRef.current) {
         clearTimeout(fadeTimeoutRef.current);
         fadeTimeoutRef.current = null;
       }
     } else {
-      // Delay hiding the display
       fadeTimeoutRef.current = setTimeout(() => {
         setDisplayHovered(null);
-      }, 300); // 300ms delay before fading out
+      }, 300);
     }
 
     return () => {
@@ -93,7 +87,7 @@ export function Canvas3D({
 
   const clippingPlanesValues = useMemo(
     () => Object.values(clippingPlanes),
-    [clippingPlanes]
+    [clippingPlanes],
   );
 
   const handleModelLoad = useCallback((url: string) => {
@@ -104,7 +98,6 @@ export function Canvas3D({
     });
 
     return () => {
-      // Dispose of geometries, materials
       if (groupRef.current) {
         groupRef.current.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -117,8 +110,7 @@ export function Canvas3D({
           }
         });
       }
-      
-      // Clear refs
+
       groupRef.current = null;
       cameraRef.current = null;
       controlsRef.current = null;
@@ -181,20 +173,20 @@ export function Canvas3D({
     }
   }, [modelsLoaded.size, filteredLayers.length, centered]);
 
-  const measureBounds = useCallback(() => {
-    if (groupRef.current && setScalingBoundingBox) {
-      tempBox.current.setFromObject(groupRef.current);
-      setScalingBoundingBox(tempBox.current.clone());
-    }
-  }, [setScalingBoundingBox]);
+  // const measureBounds = useCallback(() => {
+  //   if (groupRef.current && setScalingBoundingBox) {
+  //     tempBox.current.setFromObject(groupRef.current);
+  //     setScalingBoundingBox(tempBox.current.clone());
+  //   }
+  // }, [setScalingBoundingBox]);
 
-  useEffect(() => {
-    if (groupRef.current && modelsLoaded.size > 0) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(measureBounds);
-      });
-    }
-  }, [filteredLayers, modelsLoaded.size, measureBounds, settings.expand]);
+  // useEffect(() => {
+  //   if (groupRef.current && modelsLoaded.size > 0) {
+  //     requestAnimationFrame(() => {
+  //       requestAnimationFrame(measureBounds);
+  //     });
+  //   }
+  // }, [filteredLayers, modelsLoaded.size, measureBounds, settings.expand]);
 
   const handleCanvasCreated = useCallback(({ camera, gl }) => {
     cameraRef.current = camera;
@@ -211,7 +203,7 @@ export function Canvas3D({
           color={"orange"}
         />
       )),
-    []
+    [],
   );
 
   const hoverDisplay = useMemo(
@@ -242,24 +234,24 @@ export function Canvas3D({
         ))}
       </div>
     ),
-    [displayHovered]
+    [displayHovered],
   );
 
   const canvasRef = useRef(null);
 
-  const downloadImage = () => {
-    if (canvasRef.current) {
-      const canvas = canvasRef.current;
-      const image = canvas.toDataURL("image/png"); 
+  // const downloadImage = () => {
+  //   if (canvasRef.current) {
+  //     const canvas = canvasRef.current;
+  //     const image = canvas.toDataURL("image/png");
 
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = "solander-38.png"; 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  };
+  //     const link = document.createElement("a");
+  //     link.href = image;
+  //     link.download = "solander-38.png";
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   }
+  // };
 
   return (
     <div style={{ height: height }}>
@@ -278,15 +270,11 @@ export function Canvas3D({
           onPointerEnter={() => setAutoRotate(false)}
           onPointerLeave={() => setAutoRotate(true)}
         >
-          {/* {monochrome ? (
-            <color attach="background" args={['rgb(255, 255, 255)']} />
-          ) : ( */}
-            <Environment
-              blur={100}
-              backgroundRotation={[0, -Math.PI / 6, 0]}
-              preset="sunset"
-            />
-          {/* )} */}
+          <Environment
+            blur={100}
+            backgroundRotation={[0, -Math.PI / 6, 0]}
+            preset="sunset"
+          />
 
           <RaycastHandler
             clippingPlanes={clippingPlanes}
@@ -308,17 +296,17 @@ export function Canvas3D({
                 />
               ))}
             </group>
-            {scalingBoundingBox && (
+            {boundingBox && (
               <>
                 <ScalingLines3D
-                  boundingBox={scalingBoundingBox}
+                  boundingBox={boundingBox}
                   unit={settings.units}
                 />
 
-                <Annotations3D
+                {/* <Annotations3D
                   annotations={content.annotations}
                   setActiveAnnotation={setActiveAnnotation}
-                />
+                /> */}
               </>
             )}
           </Suspense>

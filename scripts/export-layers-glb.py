@@ -14,6 +14,54 @@ def sanitize_filename(name):
     
     return sanitized
 
+def get_bounding_box_info(objs):
+    """Calculate bounding box for a list of objects with min/max for each dimension"""
+    if not objs:
+        return None
+    
+    bbox = rs.BoundingBox(objs)
+    if not bbox:
+        return None
+    
+    # Get min and max points
+    min_pt = bbox[0]  # Bottom corner (min x, min y, min z)
+    max_pt = bbox[6]  # Top opposite corner (max x, max y, max z)
+    
+    # Calculate dimensions
+    width = max_pt[0] - min_pt[0]
+    depth = max_pt[1] - min_pt[1]
+    height = max_pt[2] - min_pt[2]
+    
+    # Calculate center
+    center = [
+        (min_pt[0] + max_pt[0]) / 2,
+        (min_pt[1] + max_pt[1]) / 2,
+        (min_pt[2] + max_pt[2]) / 2
+    ]
+    
+    return {
+        "min": {
+            "x": min_pt[0],
+            "y": min_pt[1],
+            "z": min_pt[2]
+        },
+        "max": {
+            "x": max_pt[0],
+            "y": max_pt[1],
+            "z": max_pt[2]
+        },
+        "center": {
+            "x": center[0],
+            "y": center[1],
+            "z": center[2]
+        },
+        "dimensions": {
+            "width": width,
+            "depth": depth,
+            "height": height
+        }
+    }
+
 def export_all_layers_to_glb():
     rs.UnselectAllObjects()
     
@@ -64,6 +112,12 @@ def export_all_layers_to_glb():
             continue
         
         print(f"  Found {len(objs)} objects in layer")
+        
+        # Calculate bounding box BEFORE any mesh conversion
+        bbox_info = get_bounding_box_info(objs)
+        if bbox_info:
+            print(f"  Bounding box: [{bbox_info['min']['x']:.2f}, {bbox_info['min']['y']:.2f}, {bbox_info['min']['z']:.2f}] to [{bbox_info['max']['x']:.2f}, {bbox_info['max']['y']:.2f}, {bbox_info['max']['z']:.2f}]")
+            print(f"  Dimensions: {bbox_info['dimensions']['width']:.2f} x {bbox_info['dimensions']['depth']:.2f} x {bbox_info['dimensions']['height']:.2f}")
         
         # Select objects
         rs.SelectObjects(objs)
@@ -269,12 +323,13 @@ def export_all_layers_to_glb():
             file_size = os.path.getsize(filename)
             export_success = True
             print(f"  ✅ Successfully exported with {export_method}: {os.path.basename(filename)} ({file_size} bytes)")
-            # Add to manifest
+            # Add to manifest with bounding box info
             manifest["exported_layers"].append({
                 "layer_name": layer,
                 "filename": os.path.basename(filename),
                 "file_size": file_size,
                 "object_count": len(mesh_objs),
+                "bounding_box": bbox_info,
                 "export_method": export_method,
                 "notes": ""
             })
@@ -284,6 +339,7 @@ def export_all_layers_to_glb():
             manifest["failed_layers"].append({
                 "layer_name": layer,
                 "object_count": len(mesh_objs) if mesh_objs else 0,
+                "bounding_box": bbox_info,
                 "export_method": "failed",
                 "notes": "Export failed - no file created"
             })
@@ -320,6 +376,12 @@ def export_all_layers_to_glb():
     manifest_filename = os.path.join(export_path, "export_manifest.json")
 
     manifest["export_info"]["timestamp_end"] = time.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Add unit info
+    manifest["export_info"]["bounding_box_units"] = {
+        "id": rs.UnitSystem(),
+        "name":  rs.UnitSystemName(abbreviate=False)
+    }  
     
     # Add summary statistics
     manifest["export_info"]["successful_exports"] = len(manifest["exported_layers"])
