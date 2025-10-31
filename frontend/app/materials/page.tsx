@@ -21,7 +21,6 @@ export default async function Page() {
   const materialsIndexData = await fs.readFile(materialsIndexPath, "utf8");
   const materials_index = JSON.parse(materialsIndexData) || {};
 
-  console.log(materials_index);
   const sections = await fetchSections();
 
   delete materials_index.materials_to_models["Default_Material"];

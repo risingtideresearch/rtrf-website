@@ -7,7 +7,6 @@ export function DrawingWithMetadata({ drawing }) {
   if (!drawing) {
     return <></>;
   }
-  console.log(drawing)
 
   return (
     <div>

@@ -3,11 +3,11 @@
     {
       "layer_name": "POWER ARCHITECTURE::SIMPLIFIED BATT RACKS",
       "filename": "POWER ARCHITECTURE__SIMPLIFIED BATT RACKS.glb",
-      "file_size": 3976,
-      "object_count": 2,
+      "file_size": 7384,
+      "object_count": 4,
       "bounding_box": {
         "min": {
-          "x": -195.98034131331934,
+          "x": -195.9803466796875,
           "y": -45.511811023622045,
           "z": 56.527338720009276
         },
@@ -17,12 +17,12 @@
           "z": 79.27733872000928
         },
         "center": {
-          "x": -185.23034131331934,
+          "x": -185.23034399650342,
           "y": 0.0,
           "z": 67.90233872000928
         },
         "dimensions": {
-          "width": 21.5,
+          "width": 21.500005366368157,
           "depth": 91.02362204724409,
           "height": 22.750000000000007
         }
@@ -33,8 +33,8 @@
     {
       "layer_name": "POWER ARCHITECTURE::SOLAR::SIMPLIFIED SP",
       "filename": "POWER ARCHITECTURE__SOLAR__SIMPLIFIED SP.glb",
-      "file_size": 87396,
-      "object_count": 15,
+      "file_size": 229932,
+      "object_count": 30,
       "bounding_box": {
         "min": {
           "x": -463.0201721191406,
@@ -61,210 +61,30 @@
       "notes": ""
     },
     {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::MPPT250/70-Tr solar charge controller",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb",
-      "file_size": 328,
-      "object_count": 4,
+      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::EB COMPS SIMPLE 3D",
+      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__EB COMPS SIMPLE 3D.glb",
+      "file_size": 1476324,
+      "object_count": 28,
       "bounding_box": {
         "min": {
-          "x": -132.0704245026947,
-          "y": -70.81777619256988,
-          "z": 47.0512499725855
-        },
-        "max": {
-          "x": -107.59294721533878,
-          "y": -65.3617479413966,
-          "z": 65.05723436012529
-        },
-        "center": {
-          "x": -119.83168585901674,
-          "y": -68.08976206698324,
-          "z": 56.054242166355394
-        },
-        "dimensions": {
-          "width": 24.47747728735591,
-          "depth": 5.456028251173279,
-          "height": 18.00598438753979
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::IMO-2108 4 string - DC disconnect",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb",
-      "file_size": 328,
-      "object_count": 1,
-      "bounding_box": {
-        "min": {
-          "x": -126.15150057875266,
-          "y": -66.81189136082949,
-          "z": 66.15493383462764
-        },
-        "max": {
-          "x": -116.63476137881877,
-          "y": -64.52559516923175,
-          "z": 72.9928037274189
-        },
-        "center": {
-          "x": -121.3931309787857,
-          "y": -65.66874326503063,
-          "z": 69.57386878102326
-        },
-        "dimensions": {
-          "width": 9.516739199933895,
-          "depth": 2.2862961915977422,
-          "height": 6.837869892791261
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::ELCON HK-J 6.6KW charger",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb",
-      "file_size": 328,
-      "object_count": 2,
-      "bounding_box": {
-        "min": {
-          "x": -148.7727838351294,
-          "y": -72.21299455127406,
-          "z": 52.94454607440829
-        },
-        "max": {
-          "x": -90.58090024423578,
-          "y": -63.55552589481532,
-          "z": 62.08463615414639
-        },
-        "center": {
-          "x": -119.67684203968258,
-          "y": -67.88426022304469,
-          "z": 57.51459111427734
-        },
-        "dimensions": {
-          "width": 58.19188359089361,
-          "depth": 8.657468656458747,
-          "height": 9.140090079738101
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::victron lynx distributor",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb",
-      "file_size": 328,
-      "object_count": 3,
-      "bounding_box": {
-        "min": {
-          "x": -158.39306486649693,
-          "y": -69.78722586222584,
-          "z": 65.67702606261261
-        },
-        "max": {
-          "x": -92.42441757034823,
-          "y": -60.78592962555954,
-          "z": 72.40780677896385
-        },
-        "center": {
-          "x": -125.40874121842258,
-          "y": -65.28657774389269,
-          "z": 69.04241642078823
-        },
-        "dimensions": {
-          "width": 65.9686472961487,
-          "depth": 9.001296236666299,
-          "height": 6.730780716351234
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::COTEK SP-3000 (3000W) inverter",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb",
-      "file_size": 328,
-      "object_count": 1,
-      "bounding_box": {
-        "min": {
-          "x": -160.43183092180934,
-          "y": -66.03722746815788,
+          "x": -161.19083989557262,
+          "y": -77.14780616793713,
           "z": 44.38234208429513
         },
         "max": {
-          "x": -150.22952518639235,
-          "y": -62.33832269684946,
-          "z": 61.56314137171688
+          "x": -87.2138166673725,
+          "y": -60.83252960428456,
+          "z": 73.99066300935192
         },
         "center": {
-          "x": -155.33067805410084,
-          "y": -64.18777508250366,
-          "z": 52.97274172800601
+          "x": -124.20232828147256,
+          "y": -68.99016788611084,
+          "z": 59.186502546823526
         },
         "dimensions": {
-          "width": 10.202305735416985,
-          "depth": 3.6989047713084204,
-          "height": 17.18079928742175
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::Orion 360W isolated DC-DC converter",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb",
-      "file_size": 328,
-      "object_count": 3,
-      "bounding_box": {
-        "min": {
-          "x": -141.90045590326474,
-          "y": -73.94557789255211,
-          "z": 44.91948178369758
-        },
-        "max": {
-          "x": -87.21381666736714,
-          "y": -66.39421492532958,
-          "z": 50.257181318640086
-        },
-        "center": {
-          "x": -114.55713628531595,
-          "y": -70.16989640894084,
-          "z": 47.588331551168835
-        },
-        "dimensions": {
-          "width": 54.6866392358976,
-          "depth": 7.551362967222531,
-          "height": 5.337699534942509
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::Orion 380W-400W isolated DC-DC converter",
-      "filename": "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb",
-      "file_size": 1696,
-      "object_count": 3,
-      "bounding_box": {
-        "min": {
-          "x": -132.1271032569892,
-          "y": -71.0272626546144,
-          "z": 44.51911013785296
-        },
-        "max": {
-          "x": -107.22645149564393,
-          "y": -64.5904633266497,
-          "z": 68.03700968370835
-        },
-        "center": {
-          "x": -119.67677737631655,
-          "y": -67.80886299063205,
-          "z": 56.278059910780655
-        },
-        "dimensions": {
-          "width": 24.90065176134526,
-          "depth": 6.436799327964707,
-          "height": 23.517899545855386
+          "width": 73.97702322820012,
+          "depth": 16.315276563652574,
+          "height": 29.608320925056788
         }
       },
       "export_method": "standard",
@@ -273,8 +93,8 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::1/4\" bolts",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb",
-      "file_size": 116216,
-      "object_count": 8,
+      "file_size": 162376,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -288.1596116968499,
@@ -282,17 +102,17 @@
           "z": 121.96322422080613
         },
         "max": {
-          "x": -286.9877366968499,
+          "x": -286.98773193359375,
           "y": -50.431060791015625,
           "z": 127.51848602294922
         },
         "center": {
-          "x": -287.5736741968499,
+          "x": -287.5736718152218,
           "y": -67.60728089475617,
           "z": 124.74085512187767
         },
         "dimensions": {
-          "width": 1.171875,
+          "width": 1.171879763256129,
           "depth": 34.35244020748111,
           "height": 5.555261802143093
         }
@@ -303,28 +123,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::Miniature Bayonet T3 1/4 Bulb & holder",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
-      "file_size": 76440,
-      "object_count": 1,
+      "file_size": 257168,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -293.3939514160156,
           "y": -53.99073581480107,
-          "z": 127.05578763762301
+          "z": 92.87986484964782
         },
         "max": {
-          "x": -291.1701965332031,
-          "y": -53.30323581480099,
+          "x": -186.42700101593405,
+          "y": 2.591085433959961,
           "z": 127.74328763762446
         },
         "center": {
-          "x": -292.2820739746094,
-          "y": -53.64698581480103,
-          "z": 127.39953763762374
+          "x": -239.91047621597482,
+          "y": -25.699825190420555,
+          "z": 110.31157624363614
         },
         "dimensions": {
-          "width": 2.2237548828125,
-          "depth": 0.6875000000000782,
-          "height": 0.6875000000014495
+          "width": 106.96695040008157,
+          "depth": 56.58182124876103,
+          "height": 34.863422787976646
         }
       },
       "export_method": "standard",
@@ -333,8 +153,8 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::inlet box surfs (5\"X5\"X3/16\" ALUM 6061 + additions)",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__inlet box surfs (5_X5_X3_16_ ALUM 6061 + additions).glb",
-      "file_size": 71200,
-      "object_count": 3,
+      "file_size": 192352,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -292.92523669684994,
@@ -363,28 +183,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::AC rotary switch",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
-      "file_size": 85208,
-      "object_count": 6,
+      "file_size": 395524,
+      "object_count": 24,
       "bounding_box": {
         "min": {
           "x": -293.8859678560388,
           "y": -57.645429500191405,
-          "z": 125.80144424159884
+          "z": 94.46651458740234
         },
         "max": {
-          "x": -289.7881988031934,
-          "y": -55.114654541015625,
+          "x": -184.61001586914062,
+          "y": 3.0831043941076985,
           "z": 128.326416015625
         },
         "center": {
-          "x": -291.8370833296161,
-          "y": -56.38004202060351,
-          "z": 127.06393012861193
+          "x": -239.2479918625897,
+          "y": -27.281162553041852,
+          "z": 111.39646530151367
         },
         "dimensions": {
-          "width": 4.097769052845422,
-          "depth": 2.5307749591757798,
-          "height": 2.524971774026156
+          "width": 109.27595198689818,
+          "depth": 60.728533894299105,
+          "height": 33.859901428222656
         }
       },
       "export_method": "standard",
@@ -393,28 +213,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::30amp inlet",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
-      "file_size": 80160,
-      "object_count": 3,
+      "file_size": 343236,
+      "object_count": 12,
       "bounding_box": {
         "min": {
           "x": -293.5910667794437,
           "y": -66.90893774810648,
-          "z": 123.54067114949586
+          "z": 102.02599139975653
         },
         "max": {
-          "x": -290.8710632324219,
-          "y": -63.07884245401379,
+          "x": -180.9998321533203,
+          "y": -0.07352283596992493,
           "z": 128.5026076455321
         },
         "center": {
-          "x": -292.2310650059328,
-          "y": -64.99389010106013,
-          "z": 126.02163939751398
+          "x": -237.295449466382,
+          "y": -33.4912302920382,
+          "z": 115.26429952264431
         },
         "dimensions": {
-          "width": 2.720003547021804,
-          "depth": 3.8300952940926933,
-          "height": 4.96193649603623
+          "width": 112.59123462612337,
+          "depth": 66.83541491213656,
+          "height": 26.47661624577556
         }
       },
       "export_method": "standard",
@@ -423,28 +243,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::50amp inlet",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
-      "file_size": 80948,
-      "object_count": 3,
+      "file_size": 345512,
+      "object_count": 12,
       "bounding_box": {
         "min": {
           "x": -293.5910667794436,
           "y": -62.44248006572047,
-          "z": 124.08908319481904
+          "z": 97.70031376803388
         },
         "max": {
-          "x": -290.47735595703125,
-          "y": -58.61238477162783,
+          "x": -182.24020385742188,
+          "y": 0.3201844394207001,
           "z": 129.05101969085524
         },
         "center": {
-          "x": -292.03421136823744,
-          "y": -60.52743241867415,
-          "z": 126.57005144283714
+          "x": -237.91563531843275,
+          "y": -31.061147813149883,
+          "z": 113.37566672944456
         },
         "dimensions": {
-          "width": 3.113710822412372,
-          "depth": 3.8300952940926365,
-          "height": 4.961936496036202
+          "width": 111.35086292202175,
+          "depth": 62.76266450514117,
+          "height": 31.350705922821362
         }
       },
       "export_method": "standard",
@@ -453,28 +273,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::sensors",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
-      "file_size": 176692,
-      "object_count": 6,
+      "file_size": 774204,
+      "object_count": 24,
       "bounding_box": {
         "min": {
           "x": -293.5910667794437,
           "y": -84.77476847765024,
-          "z": 121.3470229682032
+          "z": 115.00302429492451
         },
         "max": {
-          "x": -290.51673423627085,
-          "y": -76.47821550117166,
+          "x": -176.03836059570312,
+          "y": 2.7882033175124827,
           "z": 126.85737150956258
         },
         "center": {
-          "x": -292.0539005078573,
-          "y": -80.62649198941095,
-          "z": 124.1021972388829
+          "x": -234.8147136875734,
+          "y": -40.99328258006888,
+          "z": 120.93019790224355
         },
         "dimensions": {
-          "width": 3.0743325431728294,
-          "depth": 8.29655297647858,
-          "height": 5.510348541359377
+          "width": 117.55270618374055,
+          "depth": 87.56297179516272,
+          "height": 11.854347214638068
         }
       },
       "export_method": "standard",
@@ -483,28 +303,28 @@
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::breakers",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
-      "file_size": 148164,
-      "object_count": 6,
+      "file_size": 611336,
+      "object_count": 24,
       "bounding_box": {
         "min": {
           "x": -293.5910667794436,
           "y": -75.84185311287834,
-          "z": 122.44384705884956
+          "z": 106.35166903147919
         },
         "max": {
-          "x": -290.044293291389,
-          "y": -67.54530013639976,
+          "x": -178.51910400390625,
+          "y": 2.7882033175124454,
           "z": 127.95419560020892
         },
         "center": {
-          "x": -291.8176800354163,
-          "y": -71.69357662463905,
-          "z": 125.19902132952924
+          "x": -236.05508539167494,
+          "y": -36.52682489768295,
+          "z": 117.15293231584405
         },
         "dimensions": {
-          "width": 3.546773488054612,
-          "depth": 8.29655297647858,
-          "height": 5.510348541359363
+          "width": 115.07196277553737,
+          "depth": 78.63005643039078,
+          "height": 21.60252656872973
         }
       },
       "export_method": "standard",
@@ -513,8 +333,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1/2\" StarBoard",
       "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_2_ StarBoard.glb",
-      "file_size": 115728,
-      "object_count": 8,
+      "file_size": 260900,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -203.02024841308594,
@@ -543,8 +363,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1\" X 1\" X 1/8\" alum angle (8982K4)",
       "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb",
-      "file_size": 182616,
-      "object_count": 10,
+      "file_size": 1271772,
+      "object_count": 20,
       "bounding_box": {
         "min": {
           "x": -203.02024841308594,
@@ -573,11 +393,11 @@
     {
       "layer_name": "SUPERSTRUCTURE::instr panel & wireway::IP 1\" X 1 1/2\" X 1/8\" alum angle (8982K87)",
       "filename": "SUPERSTRUCTURE__instr panel & wireway__IP 1_ X 1 1_2_ X 1_8_ alum angle (8982K87).glb",
-      "file_size": 36692,
-      "object_count": 2,
+      "file_size": 567900,
+      "object_count": 4,
       "bounding_box": {
         "min": {
-          "x": -202.52024263675654,
+          "x": -202.52024841308594,
           "y": 6.5003485679626465,
           "z": 90.30228850981304
         },
@@ -587,12 +407,12 @@
           "z": 91.80229187011719
         },
         "center": {
-          "x": -198.04767319826107,
+          "x": -198.04767608642578,
           "y": 30.282721370701285,
           "z": 91.0522901899651
         },
         "dimensions": {
-          "width": 8.94513887699091,
+          "width": 8.945144653320312,
           "depth": 47.56474560547728,
           "height": 1.5000033603041487
         }
@@ -603,8 +423,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::instr panel & wireway::rmvbl panels material TBD",
       "filename": "SUPERSTRUCTURE__instr panel & wireway__rmvbl panels material TBD.glb",
-      "file_size": 75484,
-      "object_count": 7,
+      "file_size": 272404,
+      "object_count": 14,
       "bounding_box": {
         "min": {
           "x": -203.39524841308594,
@@ -633,8 +453,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::WIREWAYS::ww parts surfs::thru-collars ORANGE",
       "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__thru-collars ORANGE.glb",
-      "file_size": 312084,
-      "object_count": 12,
+      "file_size": 1112104,
+      "object_count": 24,
       "bounding_box": {
         "min": {
           "x": -422.23718938015395,
@@ -663,8 +483,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::WIREWAYS::ww parts surfs::int-ext penetrations PINK",
       "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK.glb",
-      "file_size": 416420,
-      "object_count": 16,
+      "file_size": 995992,
+      "object_count": 32,
       "bounding_box": {
         "min": {
           "x": -460.1337585449219,
@@ -693,8 +513,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::WIREWAYS::ww parts surfs::int-int penetrations GREEN",
       "filename": "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-int penetrations GREEN.glb",
-      "file_size": 104068,
-      "object_count": 3,
+      "file_size": 184372,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -384.7865004036448,
@@ -723,8 +543,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::WINDOWS::window panes",
       "filename": "SUPERSTRUCTURE__WINDOWS__window panes.glb",
-      "file_size": 67528,
-      "object_count": 3,
+      "file_size": 261812,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -330.74530613861145,
@@ -753,8 +573,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::WINDOWS::rough window hardware & trim::window trim surfs",
       "filename": "SUPERSTRUCTURE__WINDOWS__rough window hardware & trim__window trim surfs.glb",
-      "file_size": 1300248,
-      "object_count": 4,
+      "file_size": 6030988,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -193.76104736328125,
@@ -783,8 +603,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::DECK ACCESS STAIRLADDER::SL 1/4\" 6061 tread plate",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate.glb",
-      "file_size": 170884,
-      "object_count": 3,
+      "file_size": 439868,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -231.47373962402344,
@@ -813,8 +633,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::DECK ACCESS STAIRLADDER::SL 1/4\" 5052 alum",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 5052 alum.glb",
-      "file_size": 125500,
-      "object_count": 2,
+      "file_size": 330084,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -225.4121793573798,
@@ -843,8 +663,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::DECK ACCESS STAIRLADDER::SL nom. 1\" SCH40 pipe alum",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL nom. 1_ SCH40 pipe alum.glb",
-      "file_size": 422988,
-      "object_count": 9,
+      "file_size": 977144,
+      "object_count": 18,
       "bounding_box": {
         "min": {
           "x": -231.89539063344827,
@@ -873,8 +693,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::DECK ACCESS STAIRLADDER::g10 backing pl",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl.glb",
-      "file_size": 46748,
-      "object_count": 2,
+      "file_size": 106628,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -231.5068739804771,
@@ -903,8 +723,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::TOE-KICKS::TK 1/4\" FHMS",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS.glb",
-      "file_size": 1495676,
-      "object_count": 64,
+      "file_size": 3356936,
+      "object_count": 128,
       "bounding_box": {
         "min": {
           "x": -228.39386686447685,
@@ -933,17 +753,17 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::TOE-KICKS::TOE-KICK SURFS",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK SURFS.glb",
-      "file_size": 2290280,
-      "object_count": 8,
+      "file_size": 5243392,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -229.65825870825654,
-          "y": -117.09308263708402,
+          "y": -117.09378814697266,
           "z": 76.18299865722656
         },
         "max": {
           "x": -18.542951583862305,
-          "y": 117.09308263708402,
+          "y": 117.09378814697266,
           "z": 96.18548108347987
         },
         "center": {
@@ -953,7 +773,7 @@
         },
         "dimensions": {
           "width": 211.11530712439423,
-          "depth": 234.18616527416805,
+          "depth": 234.1875762939453,
           "height": 20.00248242625331
         }
       },
@@ -963,11 +783,11 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::TOE-KICKS::TOE-KICK FLANGES",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TOE-KICK FLANGES.glb",
-      "file_size": 1051648,
-      "object_count": 9,
+      "file_size": 1723504,
+      "object_count": 18,
       "bounding_box": {
         "min": {
-          "x": -229.13000451994742,
+          "x": -229.1300048828125,
           "y": -116.02407305223916,
           "z": 75.9473876953125
         },
@@ -977,12 +797,12 @@
           "z": 94.0162531625636
         },
         "center": {
-          "x": -122.98296910262508,
+          "x": -122.98296928405762,
           "y": 0.0,
           "z": 84.98182042893805
         },
         "dimensions": {
-          "width": 212.29407083464469,
+          "width": 212.29407119750977,
           "depth": 232.04814610447832,
           "height": 18.0688654672511
         }
@@ -993,8 +813,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::WORKING CONCEPTS::aft throttle station v2",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__aft throttle station v2.glb",
-      "file_size": 30416,
-      "object_count": 2,
+      "file_size": 55076,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -359.0934143066406,
@@ -1023,8 +843,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::flat bar base::5\" X 3/8\" baseplate surfs",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs.glb",
-      "file_size": 861104,
-      "object_count": 14,
+      "file_size": 2238320,
+      "object_count": 28,
       "bounding_box": {
         "min": {
           "x": -389.153502377437,
@@ -1053,8 +873,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::flat bar base::G10 backing plates",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__G10 backing plates.glb",
-      "file_size": 947464,
-      "object_count": 23,
+      "file_size": 2099356,
+      "object_count": 46,
       "bounding_box": {
         "min": {
           "x": -389.2880368567915,
@@ -1083,11 +903,11 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::flat bar base::3/8\" 316L SS bolts",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb",
-      "file_size": 1066028,
-      "object_count": 68,
+      "file_size": 1628920,
+      "object_count": 136,
       "bounding_box": {
         "min": {
-          "x": -388.6033250017869,
+          "x": -388.60333251953125,
           "y": -112.33633277254583,
           "z": 61.57774267233288
         },
@@ -1097,12 +917,12 @@
           "z": 97.44769188209297
         },
         "center": {
-          "x": -291.749537115387,
+          "x": -291.74954087425914,
           "y": -7.105427357601002e-15,
           "z": 79.51271727721293
         },
         "dimensions": {
-          "width": 193.70757577279986,
+          "width": 193.7075832905442,
           "depth": 224.67266554509166,
           "height": 35.86994920976009
         }
@@ -1113,8 +933,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FRAMING::1.5\" SQ TUBE",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1.5_ SQ TUBE.glb",
-      "file_size": 250892,
-      "object_count": 16,
+      "file_size": 1244224,
+      "object_count": 32,
       "bounding_box": {
         "min": {
           "x": -353.7184143066406,
@@ -1143,8 +963,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FRAMING::1\" X 2\" TUBE",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE.glb",
-      "file_size": 264136,
-      "object_count": 26,
+      "file_size": 1620688,
+      "object_count": 52,
       "bounding_box": {
         "min": {
           "x": -462.7386779785156,
@@ -1173,8 +993,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FRAMING::4\" SQ TUBE",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE.glb",
-      "file_size": 92196,
-      "object_count": 8,
+      "file_size": 565700,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -462.7386779785156,
@@ -1203,8 +1023,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FRAMING::OTHER SIZES & MISC",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__OTHER SIZES & MISC.glb",
-      "file_size": 122444,
-      "object_count": 14,
+      "file_size": 450312,
+      "object_count": 28,
       "bounding_box": {
         "min": {
           "x": -384.0365004037323,
@@ -1233,8 +1053,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::PLATING",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__PLATING.glb",
-      "file_size": 1336444,
-      "object_count": 19,
+      "file_size": 3790692,
+      "object_count": 38,
       "bounding_box": {
         "min": {
           "x": -462.7386779785156,
@@ -1263,8 +1083,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::railing flanges",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges.glb",
-      "file_size": 738216,
-      "object_count": 16,
+      "file_size": 1425104,
+      "object_count": 32,
       "bounding_box": {
         "min": {
           "x": -420.47394632949675,
@@ -1293,8 +1113,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::SCH40 1\" nominal",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb",
-      "file_size": 2491788,
-      "object_count": 24,
+      "file_size": 6070148,
+      "object_count": 48,
       "bounding_box": {
         "min": {
           "x": -418.20562744140625,
@@ -1323,8 +1143,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::SCH40 2\" nominal",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal.glb",
-      "file_size": 68748,
-      "object_count": 3,
+      "file_size": 371636,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -456.9246858740327,
@@ -1353,8 +1173,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::2\" SQ TUBE",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__2_ SQ TUBE.glb",
-      "file_size": 17676,
-      "object_count": 1,
+      "file_size": 71928,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -353.7184143066406,
@@ -1383,8 +1203,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::fascia plates",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates.glb",
-      "file_size": 141732,
-      "object_count": 9,
+      "file_size": 715232,
+      "object_count": 18,
       "bounding_box": {
         "min": {
           "x": -462.9886779785156,
@@ -1394,17 +1214,17 @@
         "max": {
           "x": -169.41000727785,
           "y": 131.8517791831259,
-          "z": 133.1013922003336
+          "z": 133.1013946533203
         },
         "center": {
           "x": -316.1993426281828,
           "y": 0.10250813147239057,
-          "z": 125.17684432404376
+          "z": 125.17684555053711
         },
         "dimensions": {
           "width": 293.5786707006656,
           "depth": 263.49854210330705,
-          "height": 15.8490957525797
+          "height": 15.849098205566406
         }
       },
       "export_method": "standard",
@@ -1413,8 +1233,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::fascia flange brackets",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia flange brackets.glb",
-      "file_size": 692448,
-      "object_count": 46,
+      "file_size": 1237640,
+      "object_count": 92,
       "bounding_box": {
         "min": {
           "x": -462.7386779785156,
@@ -1443,8 +1263,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING SHELVES::P&S rudder shelf",
       "filename": "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf.glb",
-      "file_size": 16364,
-      "object_count": 2,
+      "file_size": 47544,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -424.6519470214844,
@@ -1473,8 +1293,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING SHELVES::port dummy shelf",
       "filename": "CONTROL__STEERING__STEERING SHELVES__port dummy shelf.glb",
-      "file_size": 24104,
-      "object_count": 5,
+      "file_size": 41112,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -381.04336597182294,
@@ -1503,8 +1323,8 @@
     {
       "layer_name": "CONTROL::STEERING::steering tunnels",
       "filename": "CONTROL__STEERING__steering tunnels.glb",
-      "file_size": 186208,
-      "object_count": 2,
+      "file_size": 377536,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -386.11838223069816,
@@ -1533,8 +1353,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::tillers & draglinks",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__tillers & draglinks.glb",
-      "file_size": 2286296,
-      "object_count": 16,
+      "file_size": 3228044,
+      "object_count": 32,
       "bounding_box": {
         "min": {
           "x": -416.27934073194484,
@@ -1563,8 +1383,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::JEFA 5T050",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050.glb",
-      "file_size": 430572,
-      "object_count": 3,
+      "file_size": 923060,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -376.0596184803669,
@@ -1593,13 +1413,13 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::JEFA 5T050ZS",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050ZS.glb",
-      "file_size": 798048,
-      "object_count": 3,
+      "file_size": 1576396,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -377.3904056132067,
           "y": -36.538172277978774,
-          "z": 62.69177891216624
+          "z": 62.691707611083984
         },
         "max": {
           "x": -369.04585790420305,
@@ -1609,12 +1429,12 @@
         "center": {
           "x": -373.2181317587049,
           "y": -32.30839228002203,
-          "z": 65.59878481130772
+          "z": 65.5987491607666
         },
         "dimensions": {
           "width": 8.344547709003677,
           "depth": 8.459559995913498,
-          "height": 5.814011798282976
+          "height": 5.814083099365234
         }
       },
       "export_method": "standard",
@@ -1623,13 +1443,13 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::hand tiller stbd",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__hand tiller stbd.glb",
-      "file_size": 527080,
-      "object_count": 4,
+      "file_size": 909020,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -374.82339800769176,
           "y": -33.69609579615245,
-          "z": 66.11128583308998
+          "z": 66.11128234863281
         },
         "max": {
           "x": -338.323389498085,
@@ -1639,12 +1459,12 @@
         "center": {
           "x": -356.57339375288836,
           "y": -32.19609579615239,
-          "z": 76.11121924100789
+          "z": 76.1112174987793
         },
         "dimensions": {
           "width": 36.500008509606744,
           "depth": 3.0000000000001137,
-          "height": 19.9998668158358
+          "height": 19.99987030029297
         }
       },
       "export_method": "standard",
@@ -1653,8 +1473,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::autopilot DD1",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__autopilot DD1.glb",
-      "file_size": 193512,
-      "object_count": 12,
+      "file_size": 351888,
+      "object_count": 17,
       "bounding_box": {
         "min": {
           "x": -421.50341796875,
@@ -1663,18 +1483,18 @@
         },
         "max": {
           "x": -403.66893306681334,
-          "y": -75.11635937134707,
-          "z": 53.31894180098368
+          "y": -75.1163558959961,
+          "z": 53.31894302368164
         },
         "center": {
           "x": -412.58617551778167,
-          "y": -78.34438879211885,
-          "z": 50.36644111533559
+          "y": -78.34438705444336,
+          "z": 50.36644172668457
         },
         "dimensions": {
           "width": 17.834484901936662,
-          "depth": 6.456058841543552,
-          "height": 5.90500137129618
+          "depth": 6.456062316894531,
+          "height": 5.905002593994141
         }
       },
       "export_method": "standard",
@@ -1683,8 +1503,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm.glb",
-      "file_size": 148304,
-      "object_count": 3,
+      "file_size": 231596,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -375.4888980079509,
@@ -1713,8 +1533,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::locking rings part no. 46040-46054",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__locking rings part no. 46040-46054.glb",
-      "file_size": 183168,
-      "object_count": 4,
+      "file_size": 328360,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -374.8588980079509,
@@ -1723,17 +1543,17 @@
         },
         "max": {
           "x": -371.7878980077377,
-          "y": 33.731596245852565,
+          "y": 33.731597900390625,
           "z": 66.29888346679405
         },
         "center": {
           "x": -373.3233980078443,
-          "y": 2.2485011541562017e-07,
+          "y": 1.0521191455836743e-06,
           "z": 58.513882651365776
         },
         "dimensions": {
           "width": 3.071000000213246,
-          "depth": 67.46319204200489,
+          "depth": 67.46319369654296,
           "height": 15.570001630856552
         }
       },
@@ -1743,8 +1563,8 @@
     {
       "layer_name": "CONTROL::STEERING::STEERING COMPONENTS::50mm dummy shafts",
       "filename": "CONTROL__STEERING__STEERING COMPONENTS__50mm dummy shafts.glb",
-      "file_size": 19264,
-      "object_count": 2,
+      "file_size": 74452,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -374.30764997621924,
@@ -1773,8 +1593,8 @@
     {
       "layer_name": "PROPULSION::SIMPLIFIED propeller & strut",
       "filename": "PROPULSION__SIMPLIFIED propeller & strut.glb",
-      "file_size": 5660920,
-      "object_count": 4,
+      "file_size": 18862812,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -407.8210772234526,
@@ -1803,8 +1623,8 @@
     {
       "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::Cutless Bearing brass \"Bale\" size",
       "filename": "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb",
-      "file_size": 53240,
-      "object_count": 2,
+      "file_size": 156020,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -372.23846435546875,
@@ -1833,8 +1653,8 @@
     {
       "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::PSS shaft seal 02-100-200",
       "filename": "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200.glb",
-      "file_size": 312116,
-      "object_count": 6,
+      "file_size": 554732,
+      "object_count": 12,
       "bounding_box": {
         "min": {
           "x": -356.1724548339844,
@@ -1863,8 +1683,8 @@
     {
       "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::stern tube 2\" OD X 1.5\" ID GRP source from fisheries supply",
       "filename": "PROPULSION__SHAFTLINE COMPONENTS__stern tube 2_ OD X 1.5_ ID GRP source from fisheries supply.glb",
-      "file_size": 62140,
-      "object_count": 2,
+      "file_size": 209208,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -372.27756995486817,
@@ -1893,8 +1713,8 @@
     {
       "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::surfs",
       "filename": "PROPULSION__SHAFTLINE COMPONENTS__shaft__surfs.glb",
-      "file_size": 44588,
-      "object_count": 2,
+      "file_size": 192668,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -408.3643535661182,
@@ -1923,8 +1743,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::foil top wedge contoured",
       "filename": "PROPULSION__rudder assembly__foil top wedge contoured.glb",
-      "file_size": 77664,
-      "object_count": 2,
+      "file_size": 172764,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -423.9473576710501,
@@ -1953,8 +1773,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::rudder shaft & foil",
       "filename": "PROPULSION__rudder assembly__rudder shaft & foil.glb",
-      "file_size": 694560,
-      "object_count": 2,
+      "file_size": 1658308,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -423.9477651257864,
@@ -1983,8 +1803,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::Turcite bushings",
       "filename": "PROPULSION__rudder assembly__Turcite bushings.glb",
-      "file_size": 183188,
-      "object_count": 4,
+      "file_size": 468388,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -415.86398640123673,
@@ -2013,8 +1833,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::SS thrust bearing, polished top",
       "filename": "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb",
-      "file_size": 93320,
-      "object_count": 2,
+      "file_size": 154496,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -415.8389892578125,
@@ -2043,8 +1863,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::SS sleeve",
       "filename": "PROPULSION__rudder assembly__SS sleeve.glb",
-      "file_size": 52804,
-      "object_count": 2,
+      "file_size": 182068,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -415.36398640123673,
@@ -2073,8 +1893,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::Rudder tube::G10 tube 3\" OD X 2.75\" ID",
       "filename": "PROPULSION__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb",
-      "file_size": 49852,
-      "object_count": 2,
+      "file_size": 183544,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -415.6139864012369,
@@ -2103,8 +1923,8 @@
     {
       "layer_name": "PROPULSION::rudder assembly::Rudder tube::Molded tube ends for turc bushings",
       "filename": "PROPULSION__rudder assembly__Rudder tube__Molded tube ends for turc bushings.glb",
-      "file_size": 354020,
-      "object_count": 4,
+      "file_size": 937416,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -415.9914864012367,
@@ -2133,8 +1953,8 @@
     {
       "layer_name": "PROPULSION::MOTOR MOUNT::MM surfs",
       "filename": "PROPULSION__MOTOR MOUNT__MM surfs.glb",
-      "file_size": 307352,
-      "object_count": 12,
+      "file_size": 707684,
+      "object_count": 24,
       "bounding_box": {
         "min": {
           "x": -335.3507385253906,
@@ -2163,13 +1983,13 @@
     {
       "layer_name": "PROPULSION::20W Bell Marine Motor::SIMPLIFIED 20W Bell surfs",
       "filename": "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb",
-      "file_size": 995460,
-      "object_count": 32,
+      "file_size": 2033476,
+      "object_count": 64,
       "bounding_box": {
         "min": {
           "x": -331.36669921875,
           "y": -99.4481201171875,
-          "z": 11.525595684128655
+          "z": 11.525595664978027
         },
         "max": {
           "x": -307.36421640349283,
@@ -2179,12 +1999,12 @@
         "center": {
           "x": -319.3654578111214,
           "y": 0.0,
-          "z": 18.29047261972194
+          "z": 18.290472610146626
         },
         "dimensions": {
           "width": 24.002482815257167,
           "depth": 198.896240234375,
-          "height": 13.52975387118657
+          "height": 13.529753890337197
         }
       },
       "export_method": "standard",
@@ -2193,28 +2013,28 @@
     {
       "layer_name": "PROPULSION::20W Bell Marine Motor::MOTOR CONTROLLER APPROX.",
       "filename": "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb",
-      "file_size": 4040,
-      "object_count": 2,
+      "file_size": 7452,
+      "object_count": 4,
       "bounding_box": {
         "min": {
-          "x": -311.8864992623875,
-          "y": -98.74999999558469,
+          "x": -311.8865051269531,
+          "y": -98.75,
           "z": 24.329999471537434
         },
         "max": {
-          "x": -304.28649926238745,
-          "y": 98.74999999558469,
-          "z": 37.74999947153742
+          "x": -304.2864990234375,
+          "y": 98.75,
+          "z": 37.75
         },
         "center": {
-          "x": -308.08649926238746,
+          "x": -308.0865020751953,
           "y": 0.0,
-          "z": 31.039999471537428
+          "z": 31.039999735768717
         },
         "dimensions": {
-          "width": 7.600000000000023,
-          "depth": 197.49999999116937,
-          "height": 13.419999999999987
+          "width": 7.600006103515625,
+          "depth": 197.5,
+          "height": 13.420000528462566
         }
       },
       "export_method": "standard",
@@ -2283,8 +2103,8 @@
     {
       "layer_name": "BODY::HULLS & DECKS::HATCHES::aft steering hatches",
       "filename": "BODY__HULLS & DECKS__HATCHES__aft steering hatches.glb",
-      "file_size": 14964,
-      "object_count": 2,
+      "file_size": 24864,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -423.1274967247931,
@@ -2313,13 +2133,13 @@
     {
       "layer_name": "BODY::HULLS & DECKS::PORTLIGHTS::portlight surfs",
       "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb",
-      "file_size": 62568,
-      "object_count": 4,
+      "file_size": 157632,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -361.60398328632095,
           "y": -121.14262188534846,
-          "z": 71.68083264042625
+          "z": 71.68083190917969
         },
         "max": {
           "x": -239.3564157214571,
@@ -2329,12 +2149,12 @@
         "center": {
           "x": -300.480199503889,
           "y": 0.0,
-          "z": 81.60199733108547
+          "z": 81.60199696546218
         },
         "dimensions": {
           "width": 122.24756756486386,
           "depth": 242.28524377069692,
-          "height": 19.842329381318436
+          "height": 19.842330112564994
         }
       },
       "export_method": "standard",
@@ -2343,8 +2163,8 @@
     {
       "layer_name": "BODY::HULLS & DECKS::PORTLIGHTS::portlight cut-out edge",
       "filename": "BODY__HULLS & DECKS__PORTLIGHTS__portlight cut-out edge.glb",
-      "file_size": 45008,
-      "object_count": 2,
+      "file_size": 72644,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -281.579649126543,
@@ -2373,8 +2193,8 @@
     {
       "layer_name": "BODY::CTR BEAM::scuppers",
       "filename": "BODY__CTR BEAM__scuppers.glb",
-      "file_size": 13664,
-      "object_count": 2,
+      "file_size": 64376,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -359.7205514129122,
@@ -2403,8 +2223,8 @@
     {
       "layer_name": "BODY::CTR BEAM::fwd beam hatches (approx)",
       "filename": "BODY__CTR BEAM__fwd beam hatches (approx).glb",
-      "file_size": 221388,
-      "object_count": 2,
+      "file_size": 279476,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -171.07797192453614,
@@ -2433,8 +2253,8 @@
     {
       "layer_name": "BODY::CTR BEAM::ctr beam outside surfaces",
       "filename": "BODY__CTR BEAM__ctr beam outside surfaces.glb",
-      "file_size": 269428,
-      "object_count": 4,
+      "file_size": 1170956,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -386.6650498483532,
@@ -2463,8 +2283,8 @@
     {
       "layer_name": "BODY::CTR BEAM::ctr beam inside surfaces",
       "filename": "BODY__CTR BEAM__ctr beam inside surfaces.glb",
-      "file_size": 359324,
-      "object_count": 6,
+      "file_size": 1204704,
+      "object_count": 10,
       "bounding_box": {
         "min": {
           "x": -385.62952182391086,
@@ -2493,8 +2313,8 @@
     {
       "layer_name": "BODY::CTR BEAM::ctr beam console bhd",
       "filename": "BODY__CTR BEAM__ctr beam console bhd.glb",
-      "file_size": 6732,
-      "object_count": 2,
+      "file_size": 22664,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -174.1052167672839,
@@ -2523,8 +2343,8 @@
     {
       "layer_name": "BODY::INTERNALS::4\" ID wireway tubes",
       "filename": "BODY__INTERNALS__4_ ID wireway tubes.glb",
-      "file_size": 91300,
-      "object_count": 2,
+      "file_size": 324672,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -305.57568359375,
@@ -2553,8 +2373,8 @@
     {
       "layer_name": "BODY::INTERNALS::soles & bhds",
       "filename": "BODY__INTERNALS__soles & bhds.glb",
-      "file_size": 900352,
-      "object_count": 107,
+      "file_size": 2202748,
+      "object_count": 214,
       "bounding_box": {
         "min": {
           "x": -384.4115000536921,
@@ -2583,8 +2403,8 @@
     {
       "layer_name": "BODY::INTERNALS::stringers",
       "filename": "BODY__INTERNALS__stringers.glb",
-      "file_size": 168812,
-      "object_count": 4,
+      "file_size": 1776744,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -447.71341474552884,
@@ -2613,8 +2433,8 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::KEEL COOLERS::KC surfs",
       "filename": "WATER_HEATING SYSTEMS__KEEL COOLERS__KC surfs.glb",
-      "file_size": 897376,
-      "object_count": 72,
+      "file_size": 1808644,
+      "object_count": 144,
       "bounding_box": {
         "min": {
           "x": -350.6685369093183,
@@ -2643,8 +2463,8 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::Headhunter Royal Flush Espresso",
       "filename": "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb",
-      "file_size": 25524,
-      "object_count": 1,
+      "file_size": 67216,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -183.75149809987403,
@@ -2673,8 +2493,8 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::dehumidifer",
       "filename": "WATER_HEATING SYSTEMS__dehumidifer.glb",
-      "file_size": 3972,
-      "object_count": 2,
+      "file_size": 7388,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -173.2814979198353,
@@ -2703,11 +2523,11 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::heat pump",
       "filename": "WATER_HEATING SYSTEMS__heat pump.glb",
-      "file_size": 115328,
-      "object_count": 8,
+      "file_size": 173848,
+      "object_count": 16,
       "bounding_box": {
         "min": {
-          "x": -199.55650095058627,
+          "x": -199.55650329589844,
           "y": -76.52728271484375,
           "z": 40.521240234375
         },
@@ -2717,12 +2537,12 @@
           "z": 53.19124221801758
         },
         "center": {
-          "x": -187.27149846113298,
+          "x": -187.27149963378906,
           "y": 0.2243207581703004,
           "z": 46.85624122619629
         },
         "dimensions": {
-          "width": 24.57000497890658,
+          "width": 24.57000732421875,
           "depth": 153.50320694602811,
           "height": 12.670001983642578
         }
@@ -2733,8 +2553,8 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::HEAT PUMP VENTS & INTAKES",
       "filename": "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb",
-      "file_size": 136632,
-      "object_count": 10,
+      "file_size": 220712,
+      "object_count": 20,
       "bounding_box": {
         "min": {
           "x": -202.7865007705475,
@@ -2763,27 +2583,27 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::TANKS::hot water tank (model?)",
       "filename": "WATER_HEATING SYSTEMS__TANKS__hot water tank (model_).glb",
-      "file_size": 16224,
-      "object_count": 1,
+      "file_size": 24452,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -116.41150040370954,
-          "y": -94.98269642705841,
+          "y": -94.98269653320312,
           "z": 12.245466653929327
         },
         "max": {
-          "x": -86.41150040370954,
+          "x": -86.4114990234375,
           "y": -84.98269642705841,
           "z": 22.245466653929327
         },
         "center": {
-          "x": -101.41150040370954,
-          "y": -89.98269642705841,
+          "x": -101.41149971357352,
+          "y": -89.98269648013077,
           "z": 17.245466653929327
         },
         "dimensions": {
-          "width": 30.0,
-          "depth": 10.0,
+          "width": 30.00000138027204,
+          "depth": 10.00000010614471,
           "height": 10.0
         }
       },
@@ -2793,28 +2613,28 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::TANKS::holding tank 25 gal TOD 85-1532WH",
       "filename": "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb",
-      "file_size": 64792,
-      "object_count": 5,
+      "file_size": 99448,
+      "object_count": 10,
       "bounding_box": {
         "min": {
-          "x": -161.41149808629712,
+          "x": -161.4114990234375,
           "y": -98.74902372493068,
-          "z": 11.534116769154952
+          "z": 11.534116744995117
         },
         "max": {
           "x": -124.16149808629712,
-          "y": -81.24902372493068,
+          "y": -81.2490234375,
           "z": 21.534116769154952
         },
         "center": {
-          "x": -142.78649808629712,
-          "y": -89.99902372493068,
-          "z": 16.534116769154952
+          "x": -142.7864985548673,
+          "y": -89.99902358121534,
+          "z": 16.534116757075033
         },
         "dimensions": {
-          "width": 37.25,
-          "depth": 17.5,
-          "height": 10.0
+          "width": 37.250000937140385,
+          "depth": 17.50000028743068,
+          "height": 10.000000024159835
         }
       },
       "export_method": "standard",
@@ -2823,28 +2643,28 @@
     {
       "layer_name": "WATER/HEATING SYSTEMS::TANKS::port FW tank (35 gal) Todd MFG #:85-1525WH",
       "filename": "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH.glb",
-      "file_size": 64764,
-      "object_count": 5,
+      "file_size": 99436,
+      "object_count": 10,
       "bounding_box": {
         "min": {
           "x": -120.66150040373259,
-          "y": 82.26736596883052,
-          "z": 16.71665999153985
+          "y": 82.26736450195312,
+          "z": 16.716659545898438
         },
         "max": {
-          "x": -84.41150040373259,
+          "x": -84.4114990234375,
           "y": 97.76736596883052,
           "z": 32.71665999153985
         },
         "center": {
-          "x": -102.53650040373259,
-          "y": 90.01736596883052,
-          "z": 24.71665999153985
+          "x": -102.53649971358504,
+          "y": 90.01736523539182,
+          "z": 24.716659768719143
         },
         "dimensions": {
-          "width": 36.25,
-          "depth": 15.5,
-          "height": 16.0
+          "width": 36.25000138029509,
+          "depth": 15.500001466877393,
+          "height": 16.00000044564141
         }
       },
       "export_method": "standard",
@@ -2853,8 +2673,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::1/2\" acrylic",
       "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__1_2_ acrylic.glb",
-      "file_size": 81896,
-      "object_count": 2,
+      "file_size": 199004,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -281.7865007655978,
@@ -2883,8 +2703,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::HDPE guide & coaming",
       "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__HDPE guide & coaming.glb",
-      "file_size": 89264,
-      "object_count": 4,
+      "file_size": 141312,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -283.9740007725574,
@@ -2913,8 +2733,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::CH other materials",
       "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__CH other materials.glb",
-      "file_size": 3058900,
-      "object_count": 29,
+      "file_size": 4933096,
+      "object_count": 58,
       "bounding_box": {
         "min": {
           "x": -283.974000765597,
@@ -2943,58 +2763,28 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::MF-02-110-60",
       "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__MF-02-110-60.glb",
-      "file_size": 46044,
-      "object_count": 2,
+      "file_size": 95056,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -281.9115007655974,
-          "y": -55.954958677301256,
+          "y": -55.954959869384766,
           "z": 80.03224182128906
         },
         "max": {
           "x": -276.6614990234375,
-          "y": 55.954958677301256,
-          "z": 82.97385330254238
+          "y": 55.954959869384766,
+          "z": 82.9738540649414
         },
         "center": {
           "x": -279.2864998945174,
           "y": 0.0,
-          "z": 81.50304756191572
+          "z": 81.50304794311523
         },
         "dimensions": {
           "width": 5.2500017421598955,
-          "depth": 111.90991735460251,
-          "height": 2.941611481253318
-        }
-      },
-      "export_method": "standard",
-      "notes": ""
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::sleeve-track hardware::end support",
-      "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__sleeve-track hardware__end support.glb",
-      "file_size": 2586724,
-      "object_count": 28,
-      "bounding_box": {
-        "min": {
-          "x": -287.55023669685016,
-          "y": -90.53294372558594,
-          "z": 97.37538146972656
-        },
-        "max": {
-          "x": -284.20323669685007,
-          "y": 90.53294372558594,
-          "z": 101.12538289466397
-        },
-        "center": {
-          "x": -285.8767366968501,
-          "y": 0.0,
-          "z": 99.25038218219527
-        },
-        "dimensions": {
-          "width": 3.3470000000000937,
-          "depth": 181.06588745117188,
-          "height": 3.750001424937409
+          "depth": 111.90991973876953,
+          "height": 2.9416122436523438
         }
       },
       "export_method": "standard",
@@ -3003,8 +2793,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::6061 sq tube",
       "filename": "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__6061 sq tube.glb",
-      "file_size": 46396,
-      "object_count": 4,
+      "file_size": 490240,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -287.5502366968505,
@@ -3033,8 +2823,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options::small corner box",
       "filename": "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb",
-      "file_size": 33672,
-      "object_count": 1,
+      "file_size": 70224,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -383.41150007057274,
@@ -3063,8 +2853,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::8667K18_Flame-Retardant Garolite G-10-FR4 Sheet",
       "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__8667K18_Flame-Retardant Garolite G-10-FR4 Sheet.glb",
-      "file_size": 6308,
-      "object_count": 1,
+      "file_size": 38924,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -198.1053466796875,
@@ -3093,8 +2883,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::access panel WRK::access panel surfs",
       "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__access panel surfs.glb",
-      "file_size": 94372,
-      "object_count": 4,
+      "file_size": 202652,
+      "object_count": 8,
       "bounding_box": {
         "min": {
           "x": -200.78650095058632,
@@ -3123,8 +2913,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::access panel WRK::angle flanges (on panel)",
       "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__angle flanges (on panel).glb",
-      "file_size": 62520,
-      "object_count": 8,
+      "file_size": 139244,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -197.2865009505863,
@@ -3153,8 +2943,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::access panel WRK::coaming (scribed to hull)",
       "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__access panel WRK__coaming (scribed to hull).glb",
-      "file_size": 49700,
-      "object_count": 2,
+      "file_size": 69088,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -200.78650095058632,
@@ -3183,8 +2973,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::wiring conduit::2x2 2\"x2\" array",
       "filename": "OUTFITTING_INTERIOR__BATTERY CMPT__wiring conduit__2x2 2_x2_ array.glb",
-      "file_size": 237440,
-      "object_count": 9,
+      "file_size": 2003888,
+      "object_count": 18,
       "bounding_box": {
         "min": {
           "x": -198.9270510111327,
@@ -3213,8 +3003,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CABINETS::cabinet surfaces",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb",
-      "file_size": 350408,
-      "object_count": 20,
+      "file_size": 641900,
+      "object_count": 40,
       "bounding_box": {
         "min": {
           "x": -200.7865025738675,
@@ -3243,8 +3033,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CABINETS::WM CABINET::36\" long version approx/ summer 2025",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb",
-      "file_size": 44036,
-      "object_count": 3,
+      "file_size": 107760,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -238.53650095058634,
@@ -3273,8 +3063,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CTR BEAM TABLE",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CTR BEAM TABLE.glb",
-      "file_size": 453228,
-      "object_count": 7,
+      "file_size": 604000,
+      "object_count": 14,
       "bounding_box": {
         "min": {
           "x": -347.40203857421875,
@@ -3283,17 +3073,17 @@
         },
         "max": {
           "x": -303.7770355368225,
-          "y": 59.87358310317259,
+          "y": 59.87358474731445,
           "z": 82.32099914550781
         },
         "center": {
           "x": -325.5895370555206,
-          "y": 23.31107629584899,
+          "y": 23.311077117919922,
           "z": 81.82099782936153
         },
         "dimensions": {
           "width": 43.625003037396255,
-          "depth": 73.1250136146472,
+          "depth": 73.12501525878906,
           "height": 1.0000026322925635
         }
       },
@@ -3303,8 +3093,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::SHELF SURFS",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb",
-      "file_size": 628552,
-      "object_count": 17,
+      "file_size": 1064140,
+      "object_count": 34,
       "bounding_box": {
         "min": {
           "x": -383.4115000536917,
@@ -3333,8 +3123,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::GALLEY SURFS",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb",
-      "file_size": 422636,
-      "object_count": 6,
+      "file_size": 528788,
+      "object_count": 12,
       "bounding_box": {
         "min": {
           "x": -287.41150595002097,
@@ -3363,8 +3153,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::workbench V2",
       "filename": "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb",
-      "file_size": 472408,
-      "object_count": 3,
+      "file_size": 578580,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -287.41150298131373,
@@ -3393,28 +3183,28 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::Isotherm Drawer 55 \u2013 Frost Free Freezer",
       "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 55 \u2013 Frost Free Freezer.glb",
-      "file_size": 2320,
-      "object_count": 1,
+      "file_size": 4032,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -325.33981998953334,
-          "y": -10.86399831044268,
-          "z": 55.53210506035671
+          "y": -10.863998413085938,
+          "z": 55.5321044921875
         },
         "max": {
-          "x": -304.33981998953334,
-          "y": 7.246001689557319,
+          "x": -304.3398132324219,
+          "y": 7.246001720428467,
           "z": 76.53210506035671
         },
         "center": {
-          "x": -314.83981998953334,
-          "y": -1.8089983104426803,
-          "z": 66.03210506035671
+          "x": -314.8398166109776,
+          "y": -1.8089983463287354,
+          "z": 66.0321047762721
         },
         "dimensions": {
-          "width": 21.0,
-          "depth": 18.11,
-          "height": 21.0
+          "width": 21.000006757111464,
+          "depth": 18.110000133514404,
+          "height": 21.000000568169213
         }
       },
       "export_method": "standard",
@@ -3423,28 +3213,28 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::Isotherm Drawer 65 - FROST FREE Refrigerator",
       "filename": "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb",
-      "file_size": 2324,
-      "object_count": 1,
+      "file_size": 4032,
+      "object_count": 2,
       "bounding_box": {
         "min": {
-          "x": -346.839494323763,
+          "x": -346.8395080566406,
           "y": -10.849671380378707,
-          "z": 55.53210506035671
+          "z": 55.5321044921875
         },
         "max": {
           "x": -325.839494323763,
-          "y": 7.260328619621292,
+          "y": 7.260328769683838,
           "z": 76.53210506035671
         },
         "center": {
-          "x": -336.339494323763,
-          "y": -1.7946713803787073,
-          "z": 66.03210506035671
+          "x": -336.3395011902018,
+          "y": -1.7946713053474346,
+          "z": 66.0321047762721
         },
         "dimensions": {
-          "width": 21.0,
-          "depth": 18.11,
-          "height": 21.0
+          "width": 21.00001373287762,
+          "depth": 18.110000150062547,
+          "height": 21.000000568169213
         }
       },
       "export_method": "standard",
@@ -3453,13 +3243,13 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::SHOWER AFT STBD::approx parts locs",
       "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx parts locs.glb",
-      "file_size": 957092,
-      "object_count": 4,
+      "file_size": 1207608,
+      "object_count": 8,
       "bounding_box": {
         "min": {
-          "x": -385.45650005369095,
+          "x": -385.4565124511719,
           "y": -71.48538970947266,
-          "z": 61.01486659550582
+          "z": 61.01486587524414
         },
         "max": {
           "x": -382.4114990234375,
@@ -3467,14 +3257,14 @@
           "z": 143.59617614746094
         },
         "center": {
-          "x": -383.9339995385642,
+          "x": -383.9340057373047,
           "y": -68.96527329205495,
-          "z": 102.30552137148338
+          "z": 102.30552101135254
         },
         "dimensions": {
-          "width": 3.045001030253445,
+          "width": 3.045013427734375,
           "depth": 5.040232834835436,
-          "height": 82.58130955195512
+          "height": 82.5813102722168
         }
       },
       "export_method": "standard",
@@ -3483,8 +3273,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::SHOWER AFT STBD::potential hose thru-deck locs",
       "filename": "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb",
-      "file_size": 10028,
-      "object_count": 1,
+      "file_size": 20752,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -385.66150005369093,
@@ -3513,8 +3303,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::INT. FURNISHING::dbl mattress",
       "filename": "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress.glb",
-      "file_size": 23084,
-      "object_count": 1,
+      "file_size": 64956,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -379.0364993459312,
@@ -3523,17 +3313,17 @@
         },
         "max": {
           "x": -304.0364990234375,
-          "y": -63.000000002183,
+          "y": -63.0,
           "z": 50.0
         },
         "center": {
           "x": -341.5364991846843,
-          "y": -90.00000381578877,
+          "y": -90.00000381469727,
           "z": 45.99999974994489
         },
         "dimensions": {
           "width": 75.00000032249369,
-          "depth": 54.00000762721153,
+          "depth": 54.00000762939453,
           "height": 8.000000500110211
         }
       },
@@ -3573,11 +3363,11 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::cleats",
       "filename": "OUTFITTING_INTERIOR__cleats.glb",
-      "file_size": 986708,
-      "object_count": 7,
+      "file_size": 1650388,
+      "object_count": 13,
       "bounding_box": {
         "min": {
-          "x": -377.7453918457031,
+          "x": -377.74542236328125,
           "y": -118.67530002026761,
           "z": 66.49075386991782
         },
@@ -3587,12 +3377,12 @@
           "z": 83.9646178214846
         },
         "center": {
-          "x": -209.3243037397074,
+          "x": -209.32431899849647,
           "y": 0.0,
           "z": 75.22768584570122
         },
         "dimensions": {
-          "width": 336.84217621199144,
+          "width": 336.84220672956957,
           "depth": 237.35060004053523,
           "height": 17.47386395156677
         }
@@ -3603,8 +3393,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::EXT. INSTR. MOUNTS::EIM V4 (4\" sq tube)",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__EIM V4 (4_ sq tube).glb",
-      "file_size": 196584,
-      "object_count": 3,
+      "file_size": 511052,
+      "object_count": 6,
       "bounding_box": {
         "min": {
           "x": -397.5761857744315,
@@ -3633,13 +3423,13 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::EXT. INSTR. MOUNTS::EIM V4 (4\" sq tube)::EIMV4 antenna",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__EIM V4 (4_ sq tube)__EIMV4 antenna.glb",
-      "file_size": 129036,
-      "object_count": 8,
+      "file_size": 281756,
+      "object_count": 16,
       "bounding_box": {
         "min": {
           "x": -385.02741613797025,
           "y": -93.58323454399263,
-          "z": 159.82499999999996
+          "z": 159.8249969482422
         },
         "max": {
           "x": -382.8317231043038,
@@ -3649,42 +3439,42 @@
         "center": {
           "x": -383.92956962113703,
           "y": -67.9853880271595,
-          "z": 180.72278170471787
+          "z": 180.72278017883897
         },
         "dimensions": {
           "width": 2.19569303366643,
           "depth": 51.19569303366626,
-          "height": 41.7955634094358
+          "height": 41.79556646119357
         }
       },
       "export_method": "standard",
       "notes": ""
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::EXT. INSTR. MOUNTS::SAT COMPASS MOUNT(?)",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__SAT COMPASS MOUNT(_).glb",
-      "file_size": 33720,
-      "object_count": 3,
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::EXT. INSTR. MOUNTS::FWD MAST & MOUNTS",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__FWD MAST & MOUNTS.glb",
+      "file_size": 298360,
+      "object_count": 24,
       "bounding_box": {
         "min": {
-          "x": -172.91833903842814,
-          "y": -2.2553577423095703,
-          "z": 129.10139220033324
+          "x": -192.27183532714844,
+          "y": -3.2526646587311743,
+          "z": 88.09052719993694
         },
         "max": {
-          "x": -166.91444396972656,
-          "y": 2.244642496109009,
-          "z": 133.3513946533203
+          "x": -168.46435546875,
+          "y": 50.057701609138235,
+          "z": 134.5286407470703
         },
         "center": {
-          "x": -169.91639150407735,
-          "y": -0.005357623100280762,
-          "z": 131.22639342682677
+          "x": -180.36809539794922,
+          "y": 23.40251847520353,
+          "z": 111.30958397350363
         },
         "dimensions": {
-          "width": 6.003895068701581,
-          "depth": 4.500000238418579,
-          "height": 4.250002452987076
+          "width": 23.807479858398438,
+          "depth": 53.31036626786941,
+          "height": 46.43811354713337
         }
       },
       "export_method": "standard",
@@ -3693,8 +3483,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Simrad HALO20+ Radar",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Simrad HALO20+ Radar.glb",
-      "file_size": 273276,
-      "object_count": 1,
+      "file_size": 355356,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -393.87479983938226,
@@ -3723,8 +3513,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Signal Mate LED Anchor Light",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Signal Mate LED Anchor Light.glb",
-      "file_size": 16244,
-      "object_count": 1,
+      "file_size": 24468,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -397.82617813219537,
@@ -3732,19 +3522,109 @@
           "z": 198.37058795771418
         },
         "max": {
-          "x": -396.32617813219537,
+          "x": -396.326171875,
           "y": -67.23538802713121,
-          "z": 201.62058795771418
+          "z": 201.62059020996094
         },
         "center": {
-          "x": -397.07617813219537,
+          "x": -397.07617500359765,
           "y": -67.98538802713121,
-          "z": 199.99558795771418
+          "z": 199.99558908383756
         },
         "dimensions": {
-          "width": 1.5,
+          "width": 1.5000062571953663,
           "depth": 1.5,
-          "height": 3.25
+          "height": 3.250002252246759
+        }
+      },
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Furuno SCX-20 satellite compass",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Furuno SCX-20 satellite compass.glb",
+      "file_size": 1310736,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -191.8349023042167,
+          "y": 45.802547454833984,
+          "z": 134.52863514708955
+        },
+        "max": {
+          "x": -181.9521484375,
+          "y": 53.3128547668457,
+          "z": 138.555228749348
+        },
+        "center": {
+          "x": -186.89352537085836,
+          "y": 49.557701110839844,
+          "z": 136.54193194821877
+        },
+        "dimensions": {
+          "width": 9.882753866716712,
+          "depth": 7.510307312011719,
+          "height": 4.026593602258458
+        }
+      },
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FLIR MD-625",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FLIR MD-625.glb",
+      "file_size": 357776,
+      "object_count": 2,
+      "bounding_box": {
+        "min": {
+          "x": -176.40530737471119,
+          "y": -3.002664804458618,
+          "z": 109.82499694824219
+        },
+        "max": {
+          "x": -170.40528869628906,
+          "y": 2.997335217634065,
+          "z": 116.82500000000002
+        },
+        "center": {
+          "x": -173.40529803550012,
+          "y": -0.002664793412276545,
+          "z": 113.3249984741211
+        },
+        "dimensions": {
+          "width": 6.000018678422123,
+          "depth": 6.000000022092683,
+          "height": 7.0000030517578296
+        }
+      },
+      "export_method": "standard",
+      "notes": ""
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::Searchlight D-SS PRO Driving Pod",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Searchlight D-SS PRO Driving Pod.glb",
+      "file_size": 152688,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -172.76436274560436,
+          "y": -1.9592648846148664,
+          "z": 121.82499694824219
+        },
+        "max": {
+          "x": -169.2643585205078,
+          "y": 1.9539355671524503,
+          "z": 125.32500457763672
+        },
+        "center": {
+          "x": -171.01436063305607,
+          "y": -0.002664658731208025,
+          "z": 123.57500076293945
+        },
+        "dimensions": {
+          "width": 3.5000042250965464,
+          "depth": 3.9132004517673167,
+          "height": 3.5000076293945312
         }
       },
       "export_method": "standard",
@@ -3753,8 +3633,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::helm seat",
       "filename": "OUTFITTING_INTERIOR__helm seat.glb",
-      "file_size": 154560,
-      "object_count": 2,
+      "file_size": 296380,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -253.85650634765625,
@@ -3783,8 +3663,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::SIMPLIFIED ANCHOR WINCH",
       "filename": "OUTFITTING_INTERIOR__SIMPLIFIED ANCHOR WINCH.glb",
-      "file_size": 48004,
-      "object_count": 2,
+      "file_size": 111964,
+      "object_count": 4,
       "bounding_box": {
         "min": {
           "x": -163.34147682678926,
@@ -3794,17 +3674,17 @@
         "max": {
           "x": -152.4515686368774,
           "y": 5.990000445529337,
-          "z": 86.33656088380145
+          "z": 86.33656311035156
         },
         "center": {
           "x": -157.89652273183333,
           "y": 2.6150241587979175,
-          "z": 82.70866716246388
+          "z": 82.70866827573893
         },
         "dimensions": {
           "width": 10.889908189911864,
           "depth": 6.749952573462839,
-          "height": 7.255787442675157
+          "height": 7.2557896692252655
         }
       },
       "export_method": "standard",
@@ -3813,17 +3693,17 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::SIMPLIFIED CTR DECK TRACKS",
       "filename": "OUTFITTING_INTERIOR__SIMPLIFIED CTR DECK TRACKS.glb",
-      "file_size": 30620,
-      "object_count": 5,
+      "file_size": 210288,
+      "object_count": 10,
       "bounding_box": {
         "min": {
           "x": -351.46558050594575,
-          "y": -36.666304490533726,
+          "y": -36.66630554199219,
           "z": 51.84428663942734
         },
         "max": {
           "x": -206.39178466796875,
-          "y": 36.666304490533726,
+          "y": 36.66630554199219,
           "z": 55.057167053222656
         },
         "center": {
@@ -3833,7 +3713,7 @@
         },
         "dimensions": {
           "width": 145.073795837977,
-          "depth": 73.33260898106745,
+          "depth": 73.33261108398438,
           "height": 3.212880413795318
         }
       },
@@ -3843,8 +3723,8 @@
     {
       "layer_name": "OUTFITTING/INTERIOR::fwd trampoline & beam ROUGH",
       "filename": "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb",
-      "file_size": 83168,
-      "object_count": 727,
+      "file_size": 90512,
+      "object_count": 728,
       "bounding_box": {
         "min": {
           "x": -135.82321332248063,
@@ -3895,14 +3775,14 @@
     }
   ],
   "export_info": {
-    "total_layers_found": 324,
-    "export_path": "/Users/shelby/Downloads/exports-10-23",
-    "timestamp_start": "2025-10-23 19:47:26",
+    "total_layers_found": 332,
+    "export_path": "/Users/shelby/Documents/_/rtrf documentation/exports-10-29",
+    "timestamp_start": "2025-10-29 21:53:23",
     "format": "GLB",
-    "timestamp_end": "2025-10-23 19:54:54",
-    "successful_exports": 130,
+    "timestamp_end": "2025-10-29 22:00:59",
+    "successful_exports": 125,
     "failed_exports": 0,
     "skipped_exports": 4,
-    "total_file_size": 103680720
+    "total_file_size": 114827332
   }
 }

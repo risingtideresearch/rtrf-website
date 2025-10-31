@@ -3,7 +3,6 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {media} from 'sanity-plugin-media'
-import {sanityComputedField} from 'sanity-plugin-computed-field'
 import {defaultDocumentNode} from './structure/defaultDocumentNode'
 import {structure} from './structure'
 
@@ -18,7 +17,6 @@ export default defineConfig({
     structureTool({structure, defaultDocumentNode}),
     visionTool(),
     media(),
-    sanityComputedField(),
   ],
 
   mediaLibrary: {

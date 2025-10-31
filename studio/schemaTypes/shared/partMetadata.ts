@@ -4,9 +4,8 @@ import {scale} from './scale'
 // import {schematics} from './schematics'
 import {specs} from './specs'
 import {documentation} from './documentation'
-import models from './../../../frontend/public/models/export_manifest.json';
+import models from './../../script_output/model_export_manifest.json';
 
-console.log(models)
 
 /**
  * Shared metadata fields between component and custom parts

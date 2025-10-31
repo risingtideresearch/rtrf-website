@@ -86,7 +86,7 @@ export default async function Page({ params }) {
 
   return (
     <div>
-      <Navigation forceNav={true} />
+      <Navigation />
       <Article data={dataWithMatchedDrawings} navigation={navigation} />
     </div>
   );

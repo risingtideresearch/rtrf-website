@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 import styles from "./navigation.module.scss";
 
-export default async function Navigation({ forceNav = false }) {
+export default async function Navigation({ }) {
   return (
     <nav className={`${styles.nav} pane`}>
       <svg
@@ -26,27 +24,13 @@ export default async function Navigation({ forceNav = false }) {
         />
       </svg>
 
-      {forceNav ? (
-        <>
-          <a href={"/"}>Solander 38</a>
-          <a href={"/articles"}>Articles</a>
-          <a href={"/anatomy"}>Anatomy</a>
-          <a href={"/drawings"}>Drawings</a>
-          <a href={"/photos"}>Photos</a>
-          <a href={"/materials"}>Materials</a>
-          <a href={"/people"}>People</a>
-        </>
-      ) : (
-        <>
-          <Link href={"/"}>Solander 38</Link>
-          <Link href={"/articles"}>Articles</Link>
-          <Link href={"/anatomy"}>Anatomy</Link>
-          <Link href={"/drawings"}>Drawings</Link>
-          <Link href={"/photos"}>Photos</Link>
-          <Link href={"/materials"}>Materials</Link>
-          <Link href={"/people"}>People</Link>
-        </>
-      )}
+      <a href={"/"}>Solander 38</a>
+      <a href={"/articles"}>Articles</a>
+      <a href={"/anatomy"}>Anatomy</a>
+      <a href={"/drawings"}>Drawings</a>
+      {/* <a href={"/photos"}>Photos</a>
+      <a href={"/materials"}>Materials</a> */}
+      <a href={"/people"}>People</a>
     </nav>
   );
 }

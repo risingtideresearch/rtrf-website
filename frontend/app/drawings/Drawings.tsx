@@ -17,8 +17,6 @@ export default function Drawings({
 }: DrawingsProps) {
   const [search, setSearch] = useState("");
 
-  console.log(drawings)
-
   return (
     <div>
       <input

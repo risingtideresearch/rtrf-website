@@ -14,9 +14,7 @@
     "Fiberglass",
     "Matte Brass",
     "Matte Stainless Steel",
-    "Particle board",
     "Plastic",
-    "Plywood",
     "Polished Stainless Steel",
     "Solar panels",
     "Starboard (HDPE)",
@@ -25,9 +23,6 @@
     "Wood"
   ],
   "material_index": {
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Shakespeare 5215-AIS Squatty Body 36_ VHF-AIS Antenna Whip.glb": [
-      "Default_Material"
-    ],
     "PROPULSION__rudder assembly__Turcite bushings.glb": [
       "Default_Material"
     ],
@@ -76,9 +71,6 @@
     "SUPERSTRUCTURE__WIREWAYS__ww parts surfs__int-ext penetrations PINK.glb": [
       "Aluminum"
     ],
-    "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__sleeve-track hardware__end support.glb": [
-      "Aluminum"
-    ],
     "BODY__CTR BEAM__ctr beam console bhd.glb": [
       "Default_Material"
     ],
@@ -94,7 +86,7 @@
     "OUTFITTING_INTERIOR__BATTERY CMPT__wiring conduit__2x2 2_x2_ array.glb": [
       "Fiberglass"
     ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb": [
+    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Searchlight D-SS PRO Driving Pod.glb": [
       "Default_Material"
     ],
     "OUTFITTING_INTERIOR__SIMPLIFIED CTR DECK TRACKS.glb": [
@@ -115,16 +107,11 @@
     "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__SHELF SURFS.glb": [
       "Wood"
     ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb": [
-      "Default_Material"
-    ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb": [
-      "Default_Material"
-    ],
     "BODY__INTERNALS__soles & bhds.glb": [
       "Composite sandwich (internals)"
     ],
     "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb": [
+      "Default_Material",
       "Default_Material"
     ],
     "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__railing flanges.glb": [
@@ -145,9 +132,6 @@
     "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__g10 backing pl.glb": [
       "Fiberglass"
     ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb": [
-      "Default_Material"
-    ],
     "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Simrad HALO20+ Radar.glb": [
       "Plastic"
     ],
@@ -166,10 +150,11 @@
     "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb": [
       "Default_Material"
     ],
-    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2__EIMV2 constr.glb": [
+    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb": [
+      "Default_Material",
       "Default_Material"
     ],
-    "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb": [
+    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__FWD MAST & MOUNTS.glb": [
       "Default_Material"
     ],
     "PROPULSION__SIMPLIFIED propeller & strut.glb": [
@@ -188,6 +173,7 @@
       "Composite sandwich"
     ],
     "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb": [
+      "Default_Material",
       "Default_Material"
     ],
     "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb": [
@@ -195,9 +181,6 @@
     ],
     "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__4_ SQ TUBE.glb": [
       "Alum 6061"
-    ],
-    "DECK JIG__DECK SKINS.glb": [
-      "Plywood"
     ],
     "CONTROL__STEERING__STEERING COMPONENTS__locking rings part no. 46040-46054.glb": [
       "Default_Material"
@@ -227,18 +210,17 @@
       "White Matte Paint"
     ],
     "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb": [
+      "Default_Material",
       "Default_Material"
     ],
     "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb": [
+      "Default_Material",
       "Default_Material"
     ],
     "PROPULSION__MOTOR MOUNT__MM surfs.glb": [
       "Alum 5052"
     ],
     "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb": [
-      "Default_Material"
-    ],
-    "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb": [
       "Default_Material"
     ],
     "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb": [
@@ -254,6 +236,7 @@
       "Carbon fiber"
     ],
     "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb": [
+      "Default_Material",
       "Default_Material"
     ],
     "SUPERSTRUCTURE__instr panel & wireway__IP 1_ X 1_ X 1_8_ alum angle (8982K4).glb": [
@@ -283,9 +266,6 @@
     "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal.glb": [
       "Aluminum"
     ],
-    "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2.glb": [
-      "Default_Material"
-    ],
     "OUTFITTING_INTERIOR___ugly corner_ options__small corner box.glb": [
       "Default_Material"
     ],
@@ -313,6 +293,9 @@
     "BODY__CTR BEAM__ctr beam inside surfaces.glb": [
       "Composite sandwich"
     ],
+    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__EB COMPS SIMPLE 3D.glb": [
+      "Default_Material"
+    ],
     "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb": [
       "Default_Material"
     ],
@@ -321,9 +304,6 @@
     ],
     "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__workbench V2.glb": [
       "Wood"
-    ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__SAT COMPASS MOUNT(_).glb": [
-      "Aluminum"
     ],
     "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb": [
       "Default_Material"
@@ -340,25 +320,16 @@
     "BODY__INTERNALS__stringers.glb": [
       "Composite sandwich (internals)"
     ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb": [
-      "Default_Material"
-    ],
     "SUPERSTRUCTURE__ALUM. PARTS+__TOE-KICKS__TK 1_4_ FHMS.glb": [
       "Matte Stainless Steel"
     ],
     "SUPERSTRUCTURE__ALUM. PARTS+__FASCIA__fascia plates.glb": [
       "Alum 5052"
     ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__radar.glb": [
-      "Default_Material"
-    ],
     "SUPERSTRUCTURE__ALUM. PARTS+__DECK ACCESS STAIRLADDER__SL 1_4_ 6061 tread plate.glb": [
       "Alum 6061"
     ],
     "PROPULSION__SHAFTLINE COMPONENTS__PSS shaft seal 02-100-200.glb": [
-      "Default_Material"
-    ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb": [
       "Default_Material"
     ],
     "BODY__CTR BEAM__scuppers.glb": [
@@ -370,9 +341,6 @@
     "OUTFITTING_INTERIOR__cleats.glb": [
       "Default_Material",
       "Polished Stainless Steel"
-    ],
-    "DECK JIG__TRANSV FRAMES.glb": [
-      "Particle board"
     ],
     "WATER_HEATING SYSTEMS__TANKS__port FW tank (35 gal) Todd MFG __85-1525WH.glb": [
       "Default_Material"
@@ -420,13 +388,16 @@
     "CONTROL__STEERING__STEERING SHELVES__P&S rudder shelf.glb": [
       "Composite sandwich"
     ],
+    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Furuno SCX-20 satellite compass.glb": [
+      "Default_Material"
+    ],
     "SUPERSTRUCTURE__ALUM. PARTS+__FRAMING__1_ X 2_ TUBE.glb": [
       "Alum 6061"
     ],
     "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb": [
       "Windows & portlights"
     ],
-    "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb": [
+    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FLIR MD-625.glb": [
       "Default_Material"
     ],
     "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb": [
@@ -454,13 +425,14 @@
       "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__MF-02-110-60.glb",
       "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__EIM V4 (4_ sq tube).glb",
       "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__EIM V4 (4_ sq tube)__EIMV4 antenna.glb",
-      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Shakespeare 5215-AIS Squatty Body 36_ VHF-AIS Antenna Whip.glb",
+      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__FWD MAST & MOUNTS.glb",
+      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FLIR MD-625.glb",
+      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Furuno SCX-20 satellite compass.glb",
+      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Searchlight D-SS PRO Driving Pod.glb",
       "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__Signal Mate LED Anchor Light.glb",
-      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__radar.glb",
       "OUTFITTING_INTERIOR__INT. FURNISHING__dbl mattress.glb",
       "OUTFITTING_INTERIOR__Isotherm Drawer 55 – Frost Free Freezer.glb",
       "OUTFITTING_INTERIOR__Isotherm Drawer 65 - FROST FREE Refrigerator.glb",
-      "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx hose surfs.glb",
       "OUTFITTING_INTERIOR__SHOWER AFT STBD__approx parts locs.glb",
       "OUTFITTING_INTERIOR__SHOWER AFT STBD__potential hose thru-deck locs.glb",
       "OUTFITTING_INTERIOR__SIMPLIFIED ANCHOR WINCH.glb",
@@ -470,20 +442,20 @@
       "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__WM CABINET__36_ long version approx_ summer 2025.glb",
       "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__cabinet surfaces.glb",
       "OUTFITTING_INTERIOR__helm seat.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__COTEK SP-3000 (3000W) inverter.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__ELCON HK-J 6.6KW charger.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__IMO-2108 4 string - DC disconnect.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__MPPT250_70-Tr solar charge controller.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 360W isolated DC-DC converter.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__Orion 380W-400W isolated DC-DC converter.glb",
-      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__victron lynx distributor.glb",
+      "POWER ARCHITECTURE__ELEC BOARD COMPONENTS__EB COMPS SIMPLE 3D.glb",
       "POWER ARCHITECTURE__SIMPLIFIED BATT RACKS.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__1_4_ bolts.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
+      "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
       "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
       "PROPULSION__20W Bell Marine Motor__MOTOR CONTROLLER APPROX.glb",
       "PROPULSION__20W Bell Marine Motor__SIMPLIFIED 20W Bell surfs.glb",
@@ -493,8 +465,6 @@
       "PROPULSION__rudder assembly__SS sleeve.glb",
       "PROPULSION__rudder assembly__SS thrust bearing, polished top.glb",
       "PROPULSION__rudder assembly__Turcite bushings.glb",
-      "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2.glb",
-      "SUPERSTRUCTURE__ALUM. PARTS+__WORKING CONCEPTS__EXT. INSTR. MOUNTS__EIM V2__EIMV2 constr.glb",
       "WATER_HEATING SYSTEMS__HEAT PUMP VENTS & INTAKES.glb",
       "WATER_HEATING SYSTEMS__Headhunter Royal Flush Espresso.glb",
       "WATER_HEATING SYSTEMS__TANKS__holding tank 25 gal TOD 85-1532WH.glb",
@@ -552,8 +522,6 @@
     ],
     "Aluminum": [
       "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__CH other materials.glb",
-      "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__sleeve-track hardware__end support.glb",
-      "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__EXT. INSTR. MOUNTS__SAT COMPASS MOUNT(_).glb",
       "OUTFITTING_INTERIOR__SIMPLIFIED CTR DECK TRACKS.glb",
       "OUTFITTING_INTERIOR__fwd trampoline & beam ROUGH.glb",
       "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal.glb",
@@ -592,9 +560,6 @@
       "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050.glb",
       "CONTROL__STEERING__STEERING COMPONENTS__JEFA 5T050ZS.glb"
     ],
-    "Plywood": [
-      "DECK JIG__DECK SKINS.glb"
-    ],
     "Composite sandwich (hull)": [
       "BODY__HULLS & DECKS__MESH H&D (for website)__MESH HULL.glb"
     ],
@@ -614,9 +579,6 @@
     ],
     "Polished Stainless Steel": [
       "OUTFITTING_INTERIOR__cleats.glb"
-    ],
-    "Particle board": [
-      "DECK JIG__TRANSV FRAMES.glb"
     ],
     "Bronze tinted acrylic": [
       "OUTFITTING_INTERIOR__COMPANIONWAY HATCH__1_2_ acrylic.glb"

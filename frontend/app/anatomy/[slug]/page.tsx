@@ -39,7 +39,7 @@ export default async function Page({
         defaultSystem={slug}
         materials={materials_index.unique_materials}
       >
-        <Navigation forceNav={true} />
+        <Navigation />
         <Anatomy
           content={{
             annotations: annotations.data,

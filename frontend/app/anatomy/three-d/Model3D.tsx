@@ -3,12 +3,13 @@ import React, { useEffect, useRef, useMemo, useCallback } from "react";
 import { useGLTF } from "@react-three/drei";
 import { DoubleSide, Mesh, Vector3, Box3, Plane, Color, Group } from "three";
 import * as THREE from "three";
+import { ControlSettings } from "../ThreeDContainer";
 
 type Model3DProps = {
   url: string;
   onLoad?: () => void;
   clippingPlanes: Plane[];
-  settings: CanvasAndControlsSettings & { whiteMode?: boolean };
+  settings: ControlSettings;
 };
 
 const ORIGINAL_POSITION = [0, 0, 0] as const;
@@ -24,6 +25,7 @@ export function Model3D({
 }: Model3DProps) {
   const { scene } = useGLTF("/models/" + url);
   const ref = useRef<Group>(null);
+  const isInitialized = useRef(false);
 
   const originalPositions = useRef<Map<string, Vector3>>(new Map());
 
@@ -55,10 +57,9 @@ export function Model3D({
         }
       }
     },
-    [clippingPlanes]
+    [clippingPlanes],
   );
 
-  // Memoize mesh configuration function
   const configureMesh = useCallback(
     (mesh: Mesh) => {
       const materials = Array.isArray(mesh.material)
@@ -69,13 +70,13 @@ export function Model3D({
       mesh.castShadow = true;
       mesh.receiveShadow = true;
     },
-    [configureMaterial]
+    [configureMaterial],
   );
 
-  // Initialize positions and configure scene
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || isInitialized.current) return;
 
+    isInitialized.current = true;
     scene.name = layerName;
     scene.userData = {
       ...scene.userData,
@@ -92,9 +93,8 @@ export function Model3D({
     });
 
     onLoad?.();
-  }, [scene, layerName, url, configureMesh, onLoad]);
+  }, [scene, layerName, url, configureMesh]);
 
-  // Handle expand/collapse animation
   useEffect(() => {
     if (!ref.current) return;
 
@@ -115,7 +115,7 @@ export function Model3D({
         child.position.set(
           originalPos.x,
           originalPos.y + explosionDistance,
-          originalPos.z
+          originalPos.z,
         );
       } else {
         child.position.copy(originalPos);
@@ -123,7 +123,6 @@ export function Model3D({
     });
   }, [settings.expand]);
 
-  // Handle transparent mode
   useEffect(() => {
     if (!ref.current) return;
 
@@ -153,7 +152,6 @@ export function Model3D({
         const mesh = child as Mesh;
 
         if (settings.monochrome) {
-          // Store original material
           if (!mesh.userData.originalMaterial) {
             mesh.userData.originalMaterial = mesh.material;
           }
@@ -168,16 +166,16 @@ export function Model3D({
 
           mesh.material = whiteMaterial;
 
-          if (!mesh.userData.edgesLine) {
-            const edges = new THREE.EdgesGeometry(mesh.geometry, 15);
-            const lineMaterial = new THREE.LineBasicMaterial({
-              color: 0x000000,
-              linewidth: 3,
-            });
-            const edgesLine = new THREE.LineSegments(edges, lineMaterial);
-            mesh.add(edgesLine);
-            mesh.userData.edgesLine = edgesLine;
-          }
+          // if (!mesh.userData.edgesLine) {
+          //   const edges = new THREE.EdgesGeometry(mesh.geometry, 15);
+          //   const lineMaterial = new THREE.LineBasicMaterial({
+          //     color: 0x000000,
+          //     linewidth: 3,
+          //   });
+          //   const edgesLine = new THREE.LineSegments(edges, lineMaterial);
+          //   mesh.add(edgesLine);
+          //   mesh.userData.edgesLine = edgesLine;
+          // }
         } else {
           if (mesh.userData.originalMaterial) {
             mesh.material = mesh.userData.originalMaterial;

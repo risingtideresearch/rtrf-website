@@ -166,7 +166,7 @@ export default function TableOfContents({
     if (article) {
       setArticle(null);
     }
-  }, [section, article]);
+  }, [section]);
 
   return (
     <TOCContext.Provider value={{ mode, section, setSection, article }}>

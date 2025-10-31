@@ -67,7 +67,6 @@ export function FocusedView({
 
   const total = all.length;
   const isSanityImage = asset._type == "image";
-  console.log(asset);
 
   return (
     <div

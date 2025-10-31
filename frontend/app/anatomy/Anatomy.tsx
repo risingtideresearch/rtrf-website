@@ -5,18 +5,11 @@ import ThreeDContainer from "./ThreeDContainer";
 import { TOCContext } from "../toc/TableOfContents";
 import AnnotationsList from "./AnnotationsList";
 import { processModels, getSystemMap } from "./three-d/util";
+import Info from "./Info";
+import { AnatomyContent } from "./page";
 
 interface IAnatomy {
-  content: {
-    annotations?: Array<unknown>;
-    models_manifest: unknown;
-    materials_index: {
-      material_index: {
-        [key: string]: Array<string>;
-      };
-    };
-    articles?: Array<unknown>;
-  };
+  content: AnatomyContent;
 }
 
 export default function Anatomy({ content }: IAnatomy) {
@@ -27,7 +20,7 @@ export default function Anatomy({ content }: IAnatomy) {
   const memoModels = useMemo(() => processModels(content.models_manifest), []);
   const systems = useMemo(() => getSystemMap(memoModels), [memoModels]);
 
-  console.log(toc.article, content.articles);
+  console.log(toc.article, content.articles, content.models_manifest);
 
   const active =
     toc.mode == "system"
@@ -61,47 +54,37 @@ export default function Anatomy({ content }: IAnatomy) {
   // }, [toc.section]);
 
   const filteredLayers = useMemo(() => {
-    // for overview, show everything
     let arr: string[] = memoModels.map((m) => m.filename) || [];
+    console.log(memoModels)
 
-    if (active && active.key != "overview") {
-      if (active.type == "system") {
-        arr = systems[active.key]?.children;
-      } else if (active.type == "material") {
-        arr = arr.filter((m) =>
-          (content.materials_index.material_index[m] || []).includes(
-            active.key,
-          ),
+    if (search) {
+      arr = arr.filter((layer) => {
+        return layer.toLowerCase().includes(search.toLowerCase());
+      });
+    } else {
+      if (active && active.key != "overview") {
+        if (active.type == "system") {
+          arr = systems[active.key]?.children;
+        } else if (active.type == "material") {
+          arr = arr.filter((m) =>
+            (content.materials_index.material_index[m] || []).includes(
+              active.key,
+            ),
+          );
+        }
+      }
+      if (toc.article) {
+        console.log(
+          (content.articles || []).find((d) => d.slug == toc.article),
         );
+        arr =
+          (content.articles || []).find((d) => d.slug == toc.article)
+            ?.relatedModels || arr;
       }
     }
 
-    // if (activeAnnotation && activeAnnotation.relatedModels) {
-    //   // include any cross-system models with selected annotations
-    //   activeAnnotation.relatedModels?.forEach((model) => {
-    //     if (!arr.includes(model)) {
-    //       arr = [...arr, model];
-    //     }
-    //   });
-
-    //   return arr.filter((layer) => {
-    //     return activeAnnotation.relatedModels.includes(layer);
-    //   });
-    // }
-
-    if (search) {
-      return arr.filter((layer) => {
-        return layer.toLowerCase().includes(search.toLowerCase());
-      });
-    }
-
-    if (toc.article) {
-      console.log((content.articles || []).find((d) => d.slug == toc.article));
-      return (
-        (content.articles || []).find((d) => d.slug == toc.article)
-          ?.relatedModels || arr
-      );
-    }
+    // ensure related models are in sync with current manifest
+    arr = arr.filter((name) => memoModels.find(layer => layer.filename == name));
 
     return arr;
   }, [active, systems, search, activeAnnotation, toc.article]);
@@ -121,15 +104,15 @@ export default function Anatomy({ content }: IAnatomy) {
     [filteredLayers],
   );
 
-  useEffect(() => {
-    if (activeAnnotation && !visibleAnnotations) {
-      setVisibleAnnotations(true);
-      toc.setSection(activeAnnotation.system);
-    }
-    if (activeAnnotation) {
-      setSearch("");
-    }
-  }, [activeAnnotation]);
+  // useEffect(() => {
+  //   if (activeAnnotation && !visibleAnnotations) {
+  //     setVisibleAnnotations(true);
+  //     toc.setSection(activeAnnotation.system);
+  //   }
+  //   if (activeAnnotation) {
+  //     setSearch("");
+  //   }
+  // }, [activeAnnotation]);
 
   return (
     <div>
@@ -159,12 +142,17 @@ export default function Anatomy({ content }: IAnatomy) {
         }
         filteredLayers={filteredLayers}
       />
-      <AnnotationsList
+      {/* <AnnotationsList
         content={filteredContent.annotations}
         activeAnnotation={activeAnnotation}
         setActiveAnnotation={(note) => setActiveAnnotation(note)}
         visible={visibleAnnotations}
+      /> */}
+
+      <Info
+        visible={visibleAnnotations}
         setVisible={setVisibleAnnotations}
+        lastUpdated={content.models_manifest.export_info.timestamp_end}
       />
     </div>
   );

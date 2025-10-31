@@ -4,14 +4,14 @@ import { Plane, Vector3 } from "three";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import { Units } from "./util";
-import { BiSliderAlt } from "react-icons/bi";
+import { BiSliderAlt, BiX } from "react-icons/bi";
 import { ControlSettings } from "../ThreeDContainer";
 // import styles from "./../../styles/common.module.scss";
 
 interface ClippingPlaneControlsProps {
   setClippingPlane: (dir: string, value: Plane) => void;
   settings: ControlSettings;
-  setSettings: (settings: ControlSettings) => void;
+  setSettings: unknown;
 }
 
 export function ClippingPlaneControls({
@@ -54,6 +54,17 @@ export function ClippingPlaneControls({
             padding: "0.5rem",
           }}
         >
+          <button
+            onClick={() => setCollapsed(true)}
+            style={{
+              position: "absolute",
+              right: "0",
+              top: "0",
+              backdropFilter: "none",
+            }}
+          >
+            <BiX size={18} />
+          </button>
           <label
             style={{
               display: "inline-flex",
@@ -157,11 +168,11 @@ export function ClippingPlaneControls({
               onInput={(val: [number, number]) => {
                 setClippingPlane(
                   "x1",
-                  new Plane(new Vector3(1, 0, 0), -val[0])
+                  new Plane(new Vector3(1, 0, 0), -val[0]),
                 );
                 setClippingPlane(
                   "x2",
-                  new Plane(new Vector3(-1, 0, 0), val[1])
+                  new Plane(new Vector3(-1, 0, 0), val[1]),
                 );
               }}
             />
@@ -188,11 +199,11 @@ export function ClippingPlaneControls({
               onInput={(val: [number, number]) => {
                 setClippingPlane(
                   "y1",
-                  new Plane(new Vector3(0, 1, 0), -val[0])
+                  new Plane(new Vector3(0, 1, 0), -val[0]),
                 );
                 setClippingPlane(
                   "y2",
-                  new Plane(new Vector3(0, -1, 0), val[1])
+                  new Plane(new Vector3(0, -1, 0), val[1]),
                 );
               }}
             />
@@ -218,11 +229,11 @@ export function ClippingPlaneControls({
               onInput={(val: [number, number]) => {
                 setClippingPlane(
                   "z1",
-                  new Plane(new Vector3(0, 0, 1), -val[0])
+                  new Plane(new Vector3(0, 0, 1), -val[0]),
                 );
                 setClippingPlane(
                   "z2",
-                  new Plane(new Vector3(0, 0, -1), val[1])
+                  new Plane(new Vector3(0, 0, -1), val[1]),
                 );
               }}
             />
