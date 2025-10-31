@@ -1,7 +1,7 @@
 .page {
   padding-left: 19rem;
   padding-right: 6rem;
-  main {
+  :global(main) {
     margin-top: 5rem;
   }
 
@@ -120,5 +120,9 @@
         margin: 0.5rem;
       }
     }
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0 0.5rem;
   }
 }

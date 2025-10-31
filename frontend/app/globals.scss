@@ -60,10 +60,6 @@ body {
   background-size: 20px 20px;
 }
 
-main {
-  margin: 0;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -174,6 +170,7 @@ details {
 }
 
 main {
+  margin: 0;
   padding: 3.5rem 0.5rem;
 }
 
