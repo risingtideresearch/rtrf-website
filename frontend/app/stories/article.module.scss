@@ -246,7 +246,6 @@
     display: grid;
     grid-template-columns: 4rem 1fr;
     margin: 0;
-    padding-left: 1.5rem;
 
     @media screen and (max-width: 1000px) {
       padding-left: 0;
@@ -279,6 +278,7 @@
 }
 
 .article_metadata {
+  padding-left: 1.5rem;
   @media screen and (max-width: 900px) {
     display: none;
   }

@@ -25,7 +25,13 @@ When prompted, select the manifest folder:
 
 The versioned GLB folder is created as a sibling automatically. `export_info.models_folder` in the manifest records which versioned folder was used.
 
-~8-12 minutes to complete for the full model set.
+~1-3 minutes to complete for the full model set.
+
+Objects are exported as-is (via `RhinoDoc.WriteFile`); the glTF exporter meshes breps/surfaces with their render meshes. The script deliberately does **not** run `_-Mesh` first — see below.
+
+#### 1a. `cleanup-leftover-meshes.py`
+
+Older versions of the export script ran `_-Mesh` on every object before exporting and tried to delete the meshes afterwards, but Rhino didn't leave them selected, so they were never deleted. Each export run added another mesh copy on every layer, and subsequent exports included all copies (GLBs ~6× larger). If the `.3dm` was saved after such a run, run this script in Rhino: first with `DRY_RUN = True` to review the report (expect a whole-number count of leftovers per source object), then with `DRY_RUN = False` to delete them.
 
 ---
 

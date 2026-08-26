@@ -9,7 +9,7 @@ import {
 } from "react";
 import { Environment, GizmoHelper, OrbitControls } from "@react-three/drei";
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Vector3, Box3, Group, PerspectiveCamera, Plane } from "three";
 import * as THREE from "three";
 import { Model3D } from "./Model3D";
@@ -36,15 +36,57 @@ type Canvas3DProps = {
   handleLoaded?: () => void;
   loaded?: boolean;
   componentParts?: Array<Component>;
+  slug?: string;
   // use for article models
   interaction?: "all" | "limited" | "none";
 };
 
+function CanvasCaptureHelper({
+  captureRef,
+}: {
+  captureRef: { current: ((() => string) | null) };
+}) {
+  const { gl, scene, camera } = useThree();
+
+  useEffect(() => {
+    captureRef.current = () => {
+      const hidden: THREE.Object3D[] = [];
+      scene.traverse((obj) => {
+        if (obj.userData.capture_exclude && obj.visible) {
+          obj.visible = false;
+          hidden.push(obj);
+        }
+      });
+
+      const origBackground = scene.background;
+      const origClearColor = new THREE.Color();
+      const origClearAlpha = gl.getClearAlpha();
+      gl.getClearColor(origClearColor);
+
+      scene.background = null;
+      gl.setClearColor(0x000000, 0);
+      gl.render(scene, camera);
+      const dataURL = gl.domElement.toDataURL("image/png");
+
+      scene.background = origBackground;
+      gl.setClearColor(origClearColor, origClearAlpha);
+      hidden.forEach((obj) => { obj.visible = true; });
+
+      return dataURL;
+    };
+
+    return () => { captureRef.current = null; };
+  }, [gl, scene, camera, captureRef]);
+
+  return null;
+}
+
 const CAMERA_INITIAL_POSITION = [0, 0, 0] as const;
 const CAMERA_FOV = 30;
-const LIGHT_POSITIONS: Vector3[] = [
-  new Vector3(0, 12, 4),
-  // new Vector3(-14, -2, 5),
+const LIGHT_POSITIONS: { pos: Vector3; intensity: number }[] = [
+  { pos: new Vector3(8, 6, 4), intensity: 0.5 },   // key
+  { pos: new Vector3(-8, 4, -4), intensity: 0.4 },  // fill (dark side)
+  { pos: new Vector3(0, -4, 6), intensity: 0.2 },   // bounce
 ];
 
 export function Canvas3D({
@@ -60,6 +102,7 @@ export function Canvas3D({
   handleLoaded,
   componentParts,
   loaded,
+  slug,
 }: Canvas3DProps) {
   const groupRef = useRef<Group>(null);
   const cameraRef = useRef<PerspectiveCamera>(null);
@@ -205,41 +248,37 @@ export function Canvas3D({
 
   const directionalLights = useMemo(
     () =>
-      LIGHT_POSITIONS.map((pos, index) => (
-        <>
+      LIGHT_POSITIONS.map(({ pos, intensity }, index) => (
         <directionalLight
           key={index}
           position={pos}
-          intensity={0.8}
+          intensity={intensity}
           color={"#ffffff"}
         />
-        {/* <group key={index} position={pos}>
-          <directionalLight intensity={0.8} color={"#ffffff"} />
-          <mesh>
-            <sphereGeometry args={[0.3, 16, 16]} />
-            <meshBasicMaterial color="yellow" />
-          </mesh>
-        </group> */}
-        </>
       )),
     [],
   );
 
-  const canvasRef = useRef(null);
+  const captureRef = useRef<(() => string) | null>(null);
 
-  // const downloadImage = () => {
-  //   if (canvasRef.current) {
-  //     const canvas = canvasRef.current;
-  //     const image = canvas.toDataURL("image/png");
-
-  //     const link = document.createElement("a");
-  //     link.href = image;
-  //     link.download = "solander-38.png";
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   }
-  // };
+  useEffect(() => {
+    if (interaction !== "all") return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+        e.preventDefault();
+        if (!captureRef.current) return;
+        const dataURL = captureRef.current();
+        const link = document.createElement("a");
+        link.href = dataURL;
+        link.download = `solander-${slug ?? "anatomy"}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [interaction, slug]);
 
   return (
     <div style={{ height: height }} className={styles.container}>
@@ -262,8 +301,7 @@ export function Canvas3D({
         data-mounted={centered || undefined}
       >
         <Canvas
-          ref={canvasRef}
-          gl={{ antialias: true }}
+          gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
           camera={{ position: CAMERA_INITIAL_POSITION, fov: CAMERA_FOV }}
           onCreated={handleCanvasCreated}
           onPointerEnter={() => setAutoRotate(false)}
@@ -294,18 +332,18 @@ export function Canvas3D({
             />
           )}
 
-          <ambientLight intensity={0.4} />
-          {directionalLights}
+          <ambientLight intensity={0.75} />
+          {/* {directionalLights} */}
 
           <Suspense fallback={null}>
             {boundingBox && clippingValues && settings.scalingLines && (
-              <>
+              <group userData={{ capture_exclude: true }}>
                 <ScalingLines3D
                   boundingBox={boundingBox}
                   unit={settings.units}
                   clippingValues={clippingValues}
                 />
-              </>
+              </group>
             )}
           </Suspense>
 
@@ -356,6 +394,7 @@ export function Canvas3D({
               </group>
             </GizmoHelper>
           )}
+          <CanvasCaptureHelper captureRef={captureRef} />
         </Canvas>
         {loaded && (
           <HoverDisplay

@@ -40,9 +40,6 @@
     "BODY__HULLS & DECKS__HATCHES__aft steering hatches.glb": [
       "Composite Sandwich"
     ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 3_ OD X 1_8_ WALL 6061 TUBE.glb": [
-      "Aluminum 6061"
-    ],
     "PROPULSION__SHAFTLINE COMPONENTS__Cutless Bearing brass _Bale_ size.glb": [
       "Naval Brass"
     ],
@@ -112,9 +109,6 @@
     "BODY__CTR BEAM__fwd beam hatches.glb": [
       "Composite Sandwich"
     ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_8_ PARTS.glb": [
-      "Aluminum 5052"
-    ],
     "CONTROL__MECHANICAL STEERING__STEERING SHELVES__port dummy shelf.glb": [
       "Composite Sandwich (INTERNALS)"
     ],
@@ -129,6 +123,9 @@
     ],
     "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__CABINETS__heat pump structure__heat pump cabinet.glb": [
       "Wood"
+    ],
+    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__FWD MAST ALUM. PARTS.glb": [
+      "Aluminum"
     ],
     "BODY__CTR BEAM__ctr beam outside surfaces.glb": [
       "Composite Sandwich"
@@ -163,9 +160,6 @@
     "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb": [
       "Stainless Steel"
     ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_ NOMINAL SCH40 PIPE.glb": [
-      "Aluminum 6061"
-    ],
     "CONTROL__MECHANICAL STEERING__STEERING COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb": [
       "Delrin"
     ],
@@ -177,9 +171,6 @@
     ],
     "OUTFITTING_INTERIOR__galley, workbench, shelving, etc.__GALLEY SURFS.glb": [
       "Wood"
-    ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__INSTRUMENTS__MARINCO INTERNATIONAL SHORTY HORN FISHERIES SKU_ 00368.glb": [
-      "Stainless Steel"
     ],
     "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__5_ X 3_8_ baseplate surfs.glb": [
       "Aluminum 5052"
@@ -262,9 +253,6 @@
     "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__AFT STBD MAST__AFT STBD MAST PEDESTALS & STRUCT.glb": [
       "Aluminum"
     ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__HDPE RMVBL PANELS.glb": [
-      "Plastic"
-    ],
     "CONTROL__rudder assembly__Rudder tube__G10 tube 3_ OD X 2.75_ ID.glb": [
       "Fiberglass"
     ],
@@ -312,12 +300,6 @@
     ],
     "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb": [
       "Acrylic"
-    ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_4_ PARTS.glb": [
-      "Aluminum 5052"
-    ],
-    "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__fwd mast fasteners__1_4_ hex bolts.glb": [
-      "Stainless Steel"
     ]
   }
 }

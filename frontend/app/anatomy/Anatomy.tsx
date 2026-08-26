@@ -233,6 +233,7 @@ export default function Anatomy({ content }: IAnatomy) {
         memoModels={memoModels}
         handleLoaded={() => { setLoaded(true); setModelLoaded(true); }}
         loaded={loaded}
+        slug={[toc.system?.slug, toc.article?.slug].filter(Boolean).join("-") || undefined}
       />
 
       <AnatomyControls

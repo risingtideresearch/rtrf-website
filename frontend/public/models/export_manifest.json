@@ -370,250 +370,86 @@
       "original_file_size": 289576
     },
     {
-      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::Miniature Bayonet T3 1/4 Bulb & holder",
-      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__Miniature Bayonet T3 1_4 Bulb & holder.glb",
-      "file_size": 9488,
-      "object_count": 1,
-      "bounding_box": {
-        "min": {
-          "x": -186.55638122558594,
-          "y": -2.7219536668232616,
-          "z": 95.12747726818385
-        },
-        "max": {
-          "x": -185.8688767622947,
-          "y": -0.4981951415538788,
-          "z": 95.81497955322266
-        },
-        "center": {
-          "x": -186.2126289939403,
-          "y": -1.6100744041885702,
-          "z": 95.47122841070325
-        },
-        "dimensions": {
-          "width": 0.6875044632912477,
-          "depth": 2.223758525269383,
-          "height": 0.6875022850388035
-        }
-      },
-      "normalized_size": {
-        "length": 2.223758525269383,
-        "width": 0.6875044632912477,
-        "height": 0.6875022850388035,
-        "world_aligned": {
-          "x": 0.6875044632912477,
-          "y": 2.223758525269383,
-          "z": 0.6875022850388035
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 76448
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::AC rotary switch",
-      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__AC rotary switch.glb",
-      "file_size": 7908,
-      "object_count": 6,
-      "bounding_box": {
-        "min": {
-          "x": -185.41421508789062,
-          "y": -3.085104394107709,
-          "z": 93.43634796142578
-        },
-        "max": {
-          "x": -182.61079278285635,
-          "y": 1.012664658737717,
-          "z": 96.24434612332861
-        },
-        "center": {
-          "x": -184.0125039353735,
-          "y": -1.0362198676849959,
-          "z": 94.8403470423772
-        },
-        "dimensions": {
-          "width": 2.8034223050342746,
-          "depth": 4.097769052845426,
-          "height": 2.8079981619028302
-        }
-      },
-      "normalized_size": {
-        "length": 4.097769052845426,
-        "width": 2.8079981619028302,
-        "height": 2.8034223050342746,
-        "world_aligned": {
-          "x": 2.8034223050342746,
-          "y": 4.097769052845426,
-          "z": 2.8079981619028302
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 78736
-    },
-    {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::30amp inlet",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__30amp inlet.glb",
-      "file_size": 12544,
+      "file_size": 12220,
       "object_count": 3,
       "bounding_box": {
         "min": {
-          "x": -184.7511015110286,
-          "y": -2.915532634975132,
-          "z": 101.13363904277257
+          "x": -184.29046630859375,
+          "y": -2.585523604393021,
+          "z": 104.76671600341797
         },
         "max": {
-          "x": -179.48124657834157,
-          "y": -0.19552282989025116,
-          "z": 105.51221062668863
+          "x": -180.94444274902344,
+          "y": 0.13448619842529297,
+          "z": 109.41274081794596
         },
         "center": {
-          "x": -182.11617404468507,
-          "y": -1.5555277324326915,
-          "z": 103.3229248347306
+          "x": -182.6174545288086,
+          "y": -1.2255187029838641,
+          "z": 107.08972841068197
         },
         "dimensions": {
-          "width": 5.269854932687025,
-          "depth": 2.7200098050848807,
-          "height": 4.378571583916056
+          "width": 3.3460235595703125,
+          "depth": 2.720009802818314,
+          "height": 4.6460248145279905
         }
       },
       "normalized_size": {
-        "length": 5.269854932687025,
-        "width": 4.378571583916056,
-        "height": 2.7200098050848807,
+        "length": 4.6460248145279905,
+        "width": 3.3460235595703125,
+        "height": 2.720009802818314,
         "world_aligned": {
-          "x": 5.269854932687025,
-          "y": 2.7200098050848807,
-          "z": 4.378571583916056
+          "x": 3.3460235595703125,
+          "y": 2.720009802818314,
+          "z": 4.6460248145279905
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 129112
+      "original_file_size": 129136
     },
     {
       "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::50amp inlet",
       "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__50amp inlet.glb",
-      "file_size": 12592,
+      "file_size": 12376,
       "object_count": 3,
       "bounding_box": {
         "min": {
-          "x": -185.99147033691406,
-          "y": -2.9155326349750945,
-          "z": 96.80796141104992
+          "x": -185.9442901611328,
+          "y": -2.5855236043929795,
+          "z": 98.99916076660156
         },
         "max": {
-          "x": -180.72161467951736,
-          "y": 0.19818444550037384,
-          "z": 101.18653299496593
+          "x": -182.5982666015625,
+          "y": 0.5281935334205627,
+          "z": 103.64517211914062
         },
         "center": {
-          "x": -183.3565425082157,
-          "y": -1.3586740947373603,
-          "z": 98.99724720300793
+          "x": -184.27127838134766,
+          "y": -1.0286650354862084,
+          "z": 101.3221664428711
         },
         "dimensions": {
-          "width": 5.269855657396704,
-          "depth": 3.1137170804754684,
-          "height": 4.378571583916013
+          "width": 3.3460235595703125,
+          "depth": 3.113717137813542,
+          "height": 4.6460113525390625
         }
       },
       "normalized_size": {
-        "length": 5.269855657396704,
-        "width": 4.378571583916013,
-        "height": 3.1137170804754684,
+        "length": 4.6460113525390625,
+        "width": 3.3460235595703125,
+        "height": 3.113717137813542,
         "world_aligned": {
-          "x": 5.269855657396704,
-          "y": 3.1137170804754684,
-          "z": 4.378571583916013
+          "x": 3.3460235595703125,
+          "y": 3.113717137813542,
+          "z": 4.6460113525390625
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 129896
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::sensors",
-      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__sensors.glb",
-      "file_size": 27720,
-      "object_count": 6,
-      "bounding_box": {
-        "min": {
-          "x": -180.89223889527975,
-          "y": -0.1581316888332367,
-          "z": 114.5913200949576
-        },
-        "max": {
-          "x": -174.3820037841797,
-          "y": 2.91620086283033,
-          "z": 123.29556931059624
-        },
-        "center": {
-          "x": -177.63712133972973,
-          "y": 1.3790345869985468,
-          "z": 118.94344470277692
-        },
-        "dimensions": {
-          "width": 6.510235111100059,
-          "depth": 3.074332551663567,
-          "height": 8.70424921563864
-        }
-      },
-      "normalized_size": {
-        "length": 8.70424921563864,
-        "width": 6.510235111100059,
-        "height": 3.074332551663567,
-        "world_aligned": {
-          "x": 6.510235111100059,
-          "y": 3.074332551663567,
-          "z": 8.70424921563864
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 293656
-    },
-    {
-      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::breakers",
-      "filename": "POWER ARCHITECTURE__SMARTPLUG INLET SYSTEM__breakers.glb",
-      "file_size": 22452,
-      "object_count": 6,
-      "bounding_box": {
-        "min": {
-          "x": -183.37297509763133,
-          "y": -0.6305726766586304,
-          "z": 105.93996483151227
-        },
-        "max": {
-          "x": -176.8627471923828,
-          "y": 2.916200862830293,
-          "z": 114.64421404715094
-        },
-        "center": {
-          "x": -180.11786114500705,
-          "y": 1.1428140930858313,
-          "z": 110.2920894393316
-        },
-        "dimensions": {
-          "width": 6.510227905248513,
-          "depth": 3.5467735394889233,
-          "height": 8.704249215638669
-        }
-      },
-      "normalized_size": {
-        "length": 8.704249215638669,
-        "width": 6.510227905248513,
-        "height": 3.5467735394889233,
-        "world_aligned": {
-          "x": 6.510227905248513,
-          "y": 3.5467735394889233,
-          "z": 8.704249215638669
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 254580
+      "original_file_size": 129856
     },
     {
       "layer_name": "SUPERSTRUCTURE::instr panel & wireway::instrument panel 1/2\" StarBoard",
@@ -1479,8 +1315,8 @@
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::SCH40 1\" nominal pipe",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 1_ nominal pipe.glb",
-      "file_size": 202964,
-      "object_count": 24,
+      "file_size": 205292,
+      "object_count": 25,
       "bounding_box": {
         "min": {
           "x": -418.20562744140625,
@@ -1515,13 +1351,13 @@
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 2491796
+      "original_file_size": 2514996
     },
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS::SCH40 2\" nominal pipe",
       "filename": "SUPERSTRUCTURE__ALUM. PARTS+__RAILINGS & POSTS__SCH40 2_ nominal pipe.glb",
-      "file_size": 9128,
-      "object_count": 3,
+      "file_size": 6632,
+      "object_count": 2,
       "bounding_box": {
         "min": {
           "x": -456.9246858740327,
@@ -1556,7 +1392,7 @@
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 68756
+      "original_file_size": 45124
     },
     {
       "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::TABBED RMVBL::TAB fasteners",
@@ -5247,414 +5083,168 @@
       "original_file_size": 169092
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::HDPE RMVBL PANELS",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__HDPE RMVBL PANELS.glb",
-      "file_size": 8284,
-      "object_count": 2,
-      "bounding_box": {
-        "min": {
-          "x": -189.12966029210418,
-          "y": -2.375,
-          "z": 89.8405532836914
-        },
-        "max": {
-          "x": -174.83399251627264,
-          "y": 2.374962435787675,
-          "z": 122.1761245727539
-        },
-        "center": {
-          "x": -181.9818264041884,
-          "y": -1.8782106162573697e-05,
-          "z": 106.00833892822266
-        },
-        "dimensions": {
-          "width": 14.295667775831532,
-          "depth": 4.749962435787674,
-          "height": 32.3355712890625
-        }
-      },
-      "normalized_size": {
-        "length": 32.3355712890625,
-        "width": 14.295667775831532,
-        "height": 4.749962435787674,
-        "world_aligned": {
-          "x": 14.295667775831532,
-          "y": 4.749962435787674,
-          "z": 32.3355712890625
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 92640
-    },
-    {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::fwd mast fasteners::10-24 316L stn stl flathead screws",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__fwd mast fasteners__10-24 316L stn stl flathead screws.glb",
-      "file_size": 5232,
-      "object_count": 2,
-      "bounding_box": {
-        "min": {
-          "x": -174.72984313964844,
-          "y": -1.183709077438678,
-          "z": 125.58426547233691
-        },
-        "max": {
-          "x": -173.97962534842642,
-          "y": 1.192375454002942,
-          "z": 125.96927642822266
-        },
-        "center": {
-          "x": -174.35473424403745,
-          "y": 0.004333188282132028,
-          "z": 125.77677095027978
-        },
-        "dimensions": {
-          "width": 0.7502177912220134,
-          "depth": 2.37608453144162,
-          "height": 0.38501095588574685
-        }
-      },
-      "normalized_size": {
-        "length": 2.37608453144162,
-        "width": 0.7502177912220134,
-        "height": 0.38501095588574685,
-        "world_aligned": {
-          "x": 0.7502177912220134,
-          "y": 2.37608453144162,
-          "z": 0.38501095588574685
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 40532
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::fwd mast fasteners::1/4\" hex bolts",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__fwd mast fasteners__1_4_ hex bolts.glb",
-      "file_size": 29156,
-      "object_count": 18,
-      "bounding_box": {
-        "min": {
-          "x": -190.51897191765892,
-          "y": -3.121936559677124,
-          "z": 86.34052719986806
-        },
-        "max": {
-          "x": -172.66107177734375,
-          "y": 3.121936559677124,
-          "z": 130.57500000035387
-        },
-        "center": {
-          "x": -181.59002184750133,
-          "y": 0.0,
-          "z": 108.45776360011097
-        },
-        "dimensions": {
-          "width": 17.857900140315166,
-          "depth": 6.243873119354248,
-          "height": 44.234472800485804
-        }
-      },
-      "normalized_size": {
-        "length": 44.234472800485804,
-        "width": 17.857900140315166,
-        "height": 6.243873119354248,
-        "world_aligned": {
-          "x": 17.857900140315166,
-          "y": 6.243873119354248,
-          "z": 44.234472800485804
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 434964
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::ALUM. PARTS::FWD MAST 1/8\" PARTS",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_8_ PARTS.glb",
-      "file_size": 12288,
-      "object_count": 11,
-      "bounding_box": {
-        "min": {
-          "x": -190.69066079298554,
-          "y": -2.125,
-          "z": 88.34052099998333
-        },
-        "max": {
-          "x": -174.0108753397123,
-          "y": 2.125,
-          "z": 126.52676547233689
-        },
-        "center": {
-          "x": -182.3507680663489,
-          "y": 0.0,
-          "z": 107.43364323616011
-        },
-        "dimensions": {
-          "width": 16.67978545327324,
-          "depth": 4.25,
-          "height": 38.186244472353565
-        }
-      },
-      "normalized_size": {
-        "length": 38.186244472353565,
-        "width": 16.67978545327324,
-        "height": 4.25,
-        "world_aligned": {
-          "x": 16.67978545327324,
-          "y": 4.25,
-          "z": 38.186244472353565
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 166156
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::ALUM. PARTS::FWD MAST 1/4\" PARTS",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_4_ PARTS.glb",
-      "file_size": 12008,
+      "file_size": 9648,
       "object_count": 6,
       "bounding_box": {
         "min": {
-          "x": -192.6610262903778,
-          "y": -3.50016478236594,
-          "z": 88.09052719994338
+          "x": -190.8982391357422,
+          "y": -2.2166052706556343,
+          "z": 87.60614776611328
         },
         "max": {
-          "x": -168.12075858220422,
-          "y": 3.49983521763406,
-          "z": 129.82500000026718
+          "x": -173.42368872437893,
+          "y": 2.2166052706556343,
+          "z": 129.20001220703125
         },
         "center": {
-          "x": -180.390892436291,
-          "y": -0.00016478236593986395,
-          "z": 108.95776360010528
+          "x": -182.16096393006057,
+          "y": 0.0,
+          "z": 108.40307998657227
         },
         "dimensions": {
-          "width": 24.540267708173587,
-          "depth": 7.0,
-          "height": 41.7344728003238
+          "width": 17.474550411363253,
+          "depth": 4.433210541311269,
+          "height": 41.59386444091797
         }
       },
       "normalized_size": {
-        "length": 41.7344728003238,
-        "width": 24.540267708173587,
-        "height": 7.0,
+        "length": 41.59386444091797,
+        "width": 17.474550411363253,
+        "height": 4.433210541311269,
         "world_aligned": {
-          "x": 24.540267708173587,
-          "y": 7.0,
-          "z": 41.7344728003238
+          "x": 17.474550411363253,
+          "y": 4.433210541311269,
+          "z": 41.59386444091797
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 140340
+      "original_file_size": 119624
     },
     {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::ALUM. PARTS::FWD MAST 1\" NOMINAL SCH40 PIPE",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 1_ NOMINAL SCH40 PIPE.glb",
-      "file_size": 20936,
-      "object_count": 1,
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::FWD MAST ALUM. PARTS",
+      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__FWD MAST ALUM. PARTS.glb",
+      "file_size": 32324,
+      "object_count": 8,
       "bounding_box": {
         "min": {
-          "x": -181.86106963998492,
-          "y": -6.282500678966404,
-          "z": 105.84760170960851
+          "x": -192.91102629037803,
+          "y": -3.624952554702759,
+          "z": 88.09052719994341
         },
         "max": {
-          "x": -175.44677856260935,
-          "y": -2.124999999999897,
-          "z": 124.9459457397461
+          "x": -166.62766995580398,
+          "y": 3.6250000303017527,
+          "z": 129.82499999614612
         },
         "center": {
-          "x": -178.65392410129715,
-          "y": -4.20375033948315,
-          "z": 115.3967737246773
+          "x": -179.769348123091,
+          "y": 2.3737799496936773e-05,
+          "z": 108.95776359804476
         },
         "dimensions": {
-          "width": 6.414291077375566,
-          "depth": 4.157500678966507,
-          "height": 19.098344030137582
+          "width": 26.28335633457405,
+          "depth": 7.249952585004511,
+          "height": 41.73447279620271
         }
       },
       "normalized_size": {
-        "length": 19.098344030137582,
-        "width": 6.414291077375566,
-        "height": 4.157500678966507,
+        "length": 41.73447279620271,
+        "width": 26.28335633457405,
+        "height": 7.249952585004511,
         "world_aligned": {
-          "x": 6.414291077375566,
-          "y": 4.157500678966507,
-          "z": 19.098344030137582
+          "x": 26.28335633457405,
+          "y": 7.249952585004511,
+          "z": 41.73447279620271
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 177432
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::ALUM. PARTS::FWD MAST 3\" OD X 1/8\" WALL 6061 TUBE",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__ALUM. PARTS__FWD MAST 3_ OD X 1_8_ WALL 6061 TUBE.glb",
-      "file_size": 5160,
-      "object_count": 1,
-      "bounding_box": {
-        "min": {
-          "x": -192.1959730334185,
-          "y": -1.5000401735305786,
-          "z": 88.34052719994305
-        },
-        "max": {
-          "x": -178.865608323647,
-          "y": 1.4999598736257451,
-          "z": 123.94603032382375
-        },
-        "center": {
-          "x": -185.53079067853275,
-          "y": -4.0149952416745904e-05,
-          "z": 106.14327876188341
-        },
-        "dimensions": {
-          "width": 13.330364709771516,
-          "depth": 3.0000000471563237,
-          "height": 35.605503123880695
-        }
-      },
-      "normalized_size": {
-        "length": 35.605503123880695,
-        "width": 13.330364709771516,
-        "height": 3.0000000471563237,
-        "world_aligned": {
-          "x": 13.330364709771516,
-          "y": 3.0000000471563237,
-          "z": 35.605503123880695
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 29932
-    },
-    {
-      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::MARINCO INTERNATIONAL SHORTY HORN FISHERIES SKU: 00368",
-      "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__INSTRUMENTS__MARINCO INTERNATIONAL SHORTY HORN FISHERIES SKU_ 00368.glb",
-      "file_size": 31964,
-      "object_count": 2,
-      "bounding_box": {
-        "min": {
-          "x": -178.94473266601562,
-          "y": -2.5003390670126606,
-          "z": 93.93552346515874
-        },
-        "max": {
-          "x": -174.69471740722656,
-          "y": 2.499666690826416,
-          "z": 100.4355239868164
-        },
-        "center": {
-          "x": -176.8197250366211,
-          "y": -0.0003361880931223027,
-          "z": 97.18552372598757
-        },
-        "dimensions": {
-          "width": 4.2500152587890625,
-          "depth": 5.000005757839077,
-          "height": 6.500000521657668
-        }
-      },
-      "normalized_size": {
-        "length": 6.500000521657668,
-        "width": 5.000005757839077,
-        "height": 4.2500152587890625,
-        "world_aligned": {
-          "x": 4.2500152587890625,
-          "y": 5.000005757839077,
-          "z": 6.500000521657668
-        }
-      },
-      "export_method": "standard",
-      "notes": "",
-      "original_file_size": 293320
+      "original_file_size": 351284
     },
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::FLIR MD-625",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__INSTRUMENTS__FLIR MD-625.glb",
-      "file_size": 27696,
+      "file_size": 28280,
       "object_count": 1,
       "bounding_box": {
         "min": {
-          "x": -174.65530737471119,
-          "y": -3.000164782365943,
-          "z": 105.82499694824219
+          "x": -172.62766995580398,
+          "y": -3.0000486373901367,
+          "z": 112.46761322021484
         },
         "max": {
-          "x": -168.65528869628906,
-          "y": 2.999835252761841,
-          "z": 112.82500000000002
+          "x": -166.62765502929688,
+          "y": 2.9999516010284424,
+          "z": 119.46761685412447
         },
         "center": {
-          "x": -171.65529803550012,
-          "y": -0.00016476480205107613,
-          "z": 109.3249984741211
+          "x": -169.62766249255043,
+          "y": -4.851818084716797e-05,
+          "z": 115.96761503716965
         },
         "dimensions": {
-          "width": 6.000018678422123,
-          "depth": 6.000000035127783,
-          "height": 7.0000030517578296
+          "width": 6.000014926507106,
+          "depth": 6.000000238418579,
+          "height": 7.000003633909628
         }
       },
       "normalized_size": {
-        "length": 7.0000030517578296,
-        "width": 6.000018678422123,
-        "height": 6.000000035127783,
+        "length": 7.000003633909628,
+        "width": 6.000014926507106,
+        "height": 6.000000238418579,
         "world_aligned": {
-          "x": 6.000018678422123,
-          "y": 6.000000035127783,
-          "z": 7.0000030517578296
+          "x": 6.000014926507106,
+          "y": 6.000000238418579,
+          "z": 7.000003633909628
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 256884
+      "original_file_size": 256888
     },
     {
       "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::Steaming light::Steaming light surfs",
       "filename": "OUTFITTING_INTERIOR__EXT. INSTRUMENTS__FWD MAST__HV2__INSTRUMENTS__Steaming light__Steaming light surfs.glb",
-      "file_size": 20104,
+      "file_size": 20152,
       "object_count": 1,
       "bounding_box": {
         "min": {
-          "x": -174.01087951660156,
-          "y": -1.713509376302571,
-          "z": 120.48919677734375
+          "x": -173.3143768310547,
+          "y": -1.712222170094559,
+          "z": 124.10665130615234
         },
         "max": {
-          "x": -171.76087531500417,
-          "y": 1.7131755645314648,
-          "z": 124.02920532226562
+          "x": -171.0643674815063,
+          "y": 1.7144627707394764,
+          "z": 127.64666748046875
         },
         "center": {
-          "x": -172.88587741580287,
-          "y": -0.0001669058855531258,
-          "z": 122.25920104980469
+          "x": -172.1893721562805,
+          "y": 0.0011203003224586894,
+          "z": 125.87665939331055
         },
         "dimensions": {
-          "width": 2.250004201597392,
-          "depth": 3.426684940834036,
-          "height": 3.540008544921875
+          "width": 2.250009349548378,
+          "depth": 3.4266849408340354,
+          "height": 3.5400161743164062
         }
       },
       "normalized_size": {
-        "length": 3.540008544921875,
-        "width": 3.426684940834036,
-        "height": 2.250004201597392,
+        "length": 3.5400161743164062,
+        "width": 3.4266849408340354,
+        "height": 2.250009349548378,
         "world_aligned": {
-          "x": 2.250004201597392,
-          "y": 3.426684940834036,
-          "z": 3.540008544921875
+          "x": 2.250009349548378,
+          "y": 3.4266849408340354,
+          "z": 3.5400161743164062
         }
       },
       "export_method": "standard",
       "notes": "",
-      "original_file_size": 160040
+      "original_file_size": 160016
     },
     {
       "layer_name": "OUTFITTING/INTERIOR::helm seat",
@@ -5906,38 +5496,869 @@
   "failed_layers": [],
   "skipped_layers": [
     {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::HD core locs planview",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::LAYOUT ANNO",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::temp constr",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::defpoints",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
       "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::BASELINES",
       "export_method": "skipped",
       "notes": "Skipped - contains CL or baseline"
     },
     {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::HUMANS",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::solar controller",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::inverter",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::head toilet",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::head pump",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::head pressure tank",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::motor",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::motor controller",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::motor cooling pump",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::freshwater pressure",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::shower sump",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::sink",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::stove",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::water maker",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::48V batteries",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::DC/DC",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::12V batteries",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::windlass",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::radar (etc.)",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::main instruments",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::secondary helm",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::nav lights",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::shower",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::water tank",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::hot water tank",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::holding tank",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::washdown",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::bilge pumps",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::bilge switches",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::autopilot drive",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::overhead lights",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::dim red lighting",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::reading lights",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::forward sonar",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::transducer",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::FLIR camera",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::50A shore power inlet",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::isolation transformer",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::DC primary bussing",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::DC electrical panels",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::SYSTEM COMPONENTS list/wrk::AC electrical panels",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::displ study 12-11-25",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::displ study 12-11-25::wrk",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::displ study 12-11-25::ref foto 1, 2",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::displ study 12-11-25::ref foto 3",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::displ study 12-11-25::WL",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::WL displ ~7000kg / 15400 lbs",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::WL displ ~7000kg / 15400 lbs::'curtain' for rendered screenshots",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
       "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::CLIPPING",
       "export_method": "skipped",
-      "notes": "Skipped - contains CL or baseline"
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OVERVIEW (TEMP, WRK, STUDY)::TEMP ANNO",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SOLAR",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SOLAR::DETAILED SP",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::Orion 380W-400W isolated DC-DC converter",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::ELEC BOARD COMPONENTS::layout curves (2d)",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::Miniature Bayonet T3 1/4 Bulb & holder",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::AC rotary switch",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::sensors",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "POWER ARCHITECTURE::SMARTPLUG INLET SYSTEM::breakers",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::instr panel & wireway",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::WIREWAYS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::WIREWAYS::ww parts surfs",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::WINDOWS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::TOE-KICKS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::flat bar base",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FRAMING",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::RAILINGS & POSTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::TABBED RMVBL",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::FLANGED RMVBL",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::WELDED",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::WELDED::gussets::aux gussets",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::WELDED::welded constr",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "SUPERSTRUCTURE::ALUM. PARTS+::FASCIA::fascia constr",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "CONTROL",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::ELECTRONIC CONTROL",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::rudder assembly",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::rudder assembly::Rudder tube",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::MECHANICAL STEERING",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::MECHANICAL STEERING::STEERING SHELVES",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "CONTROL::MECHANICAL STEERING::STEERING COMPONENTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "PROPULSION",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "PROPULSION::DETAILED propeller & strut",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
     },
     {
       "layer_name": "PROPULSION::SHAFTLINE COMPONENTS::shaft::CL",
       "export_method": "skipped",
       "notes": "Skipped - contains CL or baseline"
+    },
+    {
+      "layer_name": "PROPULSION::20W Bell Marine Motor",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "PROPULSION::20W Bell Marine Motor::20W Bell surfs",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::MESH H&D (for website)",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::hull & dk constr",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::HULL OUTER",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::HULL INNER",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::DECK OUTER",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D (WRK)::DECK INNER",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D w/ decals",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D w/ decals::HULL WITH DECALS",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::NURBS H&D w/ decals::DECK WITH DECALS",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::HATCHES",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::PORTLIGHTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::HULLS & DECKS::PORTLIGHTS::portlight curves",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::CTR BEAM",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "BODY::CTR BEAM::MESH CTR BEAM",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "BODY::INTERNALS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::LTM system manifold assembly V502050005",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::booster pump (LP) V016020001",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::HP pump 1509311DCF",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::seawater RO membrane 33-2519",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::Fresh water flush filter assembly 90-0215, 33-0238, 60-0014",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::watermaker LTM-145 12V::Pre-filter assembly",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "WATER/HEATING SYSTEMS::TANKS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::DECK ACCESS STAIRLADDER",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::DECK ACCESS STAIRLADDER::stairladder nom. 1\" SCH40 pipe alum",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::sleeve-track hardware",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::COMPANIONWAY HATCH::sleeve-track hardware::end support",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options::single plane facade bhd",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options::dbl plane facade bhd",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::\"ugly corner\" options::sq corner box",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::access panel WRK",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::access panel WRK::fasteners",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::BATTERY CMPT::wiring conduit",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CABINETS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CABINETS::heat pump structure",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::galley, workbench, shelving, etc.::CTR BEAM TABLE::inlay map",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::INT. LIGHTING",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::INT. LIGHTING::U channels for LED strips",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::SHOWER AFT STBD",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::SHOWER AFT STBD::potential hose thru-deck locs",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::INT. FURNISHING",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::portland pudgy",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::AFT STBD MAST",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::AFT STBD MAST::Simrad HALO20+ Radar::approx radar beam",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::fwd mast fasteners",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::fwd mast fasteners::1/4\" hex bolts",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::fwd mast constr",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::SP COVERS OPEN",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::discard",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::railing constr",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::MARINCO INTERNATIONAL SHORTY HORN FISHERIES SKU: 00368",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::FLIR MD-625::FLIR NOTES",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::FLIR MD-625::FLIR FOV",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::Steaming light",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::Steaming light::dwg ref",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::EXT. INSTRUMENTS::FWD MAST::HV2::INSTRUMENTS::Steaming light::SL constr",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::CTR DECK TRACKS",
+      "export_method": "skipped",
+      "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+    },
+    {
+      "layer_name": "OUTFITTING/INTERIOR::FWD TRAMPOLINE AREA",
+      "export_method": "skipped",
+      "notes": "Skipped - no objects on layer"
     }
   ],
   "export_info": {
-    "total_layers_found": 309,
-    "timestamp_start": "2026-06-06 13:31:55",
+    "total_layers_found": 304,
+    "timestamp_start": "2026-08-26 15:22:23",
     "format": "GLB",
-    "timestamp_end": "2026-06-06 13:46:04",
-    "models_folder": "models-1780777915",
-    "bounding_box_units": {
-      "id": 8,
-      "name": "inch"
-    },
-    "successful_exports": 144,
-    "failed_exports": 0,
-    "skipped_exports": 3,
-    "total_file_size": 7681408,
+    "timestamp_end": "2026-08-26 15:23:26",
+    "models_folder": "models-1787782943",
     "units": {
       "id": 8,
       "name": "inch"
-    }
+    },
+    "successful_exports": 134,
+    "failed_exports": 0,
+    "skipped_exports": 170,
+    "total_file_size": 7530708
   }
 }

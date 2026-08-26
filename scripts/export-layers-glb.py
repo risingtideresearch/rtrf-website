@@ -1,125 +1,56 @@
 import rhinoscriptsyntax as rs
-import Rhino.Geometry as rg
+import scriptcontext as sc
+import Rhino
 import os
 import re
 import time
 import json
 import shutil
+import gc
+
+MESH_OBJECT_TYPE = 32
+
 
 def sanitize_filename(name):
     sanitized = re.sub(r'[<>:"/\\|?*#]', '_', name)
     sanitized = sanitized.strip(' .')
-    
+
     if not sanitized:
         sanitized = "unnamed_layer"
-    
+
     return sanitized
 
-def get_normalized_object_size(objs):
-    """
-    Calculate the true object size by getting dimensions in local coordinate system.
-    This ignores rotation and gives actual width, depth, height.
-    """
-    if not objs:
-        return None
-    
-    try:
-        # Get all geometry
-        geometries = []
-        for obj in objs:
-            geom = rs.coercegeometry(obj)
-            if geom:
-                geometries.append(geom)
-        
-        if not geometries:
-            return None
-        
-        # Get bounding box aligned to world
-        world_bbox = rg.BoundingBox.Empty
-        for geom in geometries:
-            world_bbox.Union(geom.GetBoundingBox(True))
-        
-        if not world_bbox.IsValid:
-            return None
-        
-        # Calculate oriented bounding box for true dimensions
-        # This finds the smallest box that contains all geometry
-        all_points = []
-        for geom in geometries:
-            # Get sample points from each geometry
-            if hasattr(geom, 'GetBoundingBox'):
-                bbox = geom.GetBoundingBox(True)
-                corners = bbox.GetCorners()
-                all_points.extend(corners)
-        
-        if not all_points:
-            return None
-        
-        # Compute oriented bounding box
-        oriented_bbox = rg.BoundingBox(all_points)
-        
-        # Get dimensions
-        width = oriented_bbox.Max.X - oriented_bbox.Min.X
-        depth = oriented_bbox.Max.Y - oriented_bbox.Min.Y
-        height = oriented_bbox.Max.Z - oriented_bbox.Min.Z
-        
-        # Sort dimensions to get true size (largest to smallest)
-        dimensions = sorted([width, depth, height], reverse=True)
-        
-        return {
-            "length": dimensions[0],  # Longest dimension
-            "width": dimensions[1],   # Middle dimension
-            "height": dimensions[2],  # Shortest dimension
-            "world_aligned": {
-                "x": width,
-                "y": depth,
-                "z": height
-            }
-        }
-    except Exception as e:
-        print(f"  Error calculating normalized size: {e}")
-        return None
+
+def should_skip_layer(layer):
+    """Skip centerline (CL as a whole word) and baseline layers."""
+    if re.search(r'\bCL\b', layer):
+        return True
+    return "baseline" in layer.lower()
+
 
 def get_bounding_box_info(objs):
-    """Calculate bounding box for a list of objects with min/max for each dimension"""
+    """Calculate world-aligned bounding box for a list of objects."""
     if not objs:
         return None
-    
+
     bbox = rs.BoundingBox(objs)
     if not bbox:
         return None
-    
-    # Get min and max points
+
     min_pt = bbox[0]  # Bottom corner (min x, min y, min z)
     max_pt = bbox[6]  # Top opposite corner (max x, max y, max z)
-    
-    # Calculate dimensions
+
     width = max_pt[0] - min_pt[0]
     depth = max_pt[1] - min_pt[1]
     height = max_pt[2] - min_pt[2]
-    
-    # Calculate center
-    center = [
-        (min_pt[0] + max_pt[0]) / 2,
-        (min_pt[1] + max_pt[1]) / 2,
-        (min_pt[2] + max_pt[2]) / 2
-    ]
-    
+
     return {
-        "min": {
-            "x": min_pt[0],
-            "y": min_pt[1],
-            "z": min_pt[2]
-        },
-        "max": {
-            "x": max_pt[0],
-            "y": max_pt[1],
-            "z": max_pt[2]
-        },
+        "min": {"x": min_pt[0], "y": min_pt[1], "z": min_pt[2]},
+        "max": {"x": max_pt[0], "y": max_pt[1], "z": max_pt[2]},
         "center": {
-            "x": center[0],
-            "y": center[1],
-            "z": center[2]
+            "x": (min_pt[0] + max_pt[0]) / 2,
+            "y": (min_pt[1] + max_pt[1]) / 2,
+            "z": (min_pt[2] + max_pt[2]) / 2
         },
         "dimensions": {
             "width": width,
@@ -128,9 +59,149 @@ def get_bounding_box_info(objs):
         }
     }
 
+
+def get_sorted_dimensions(bbox_info):
+    """
+    World-aligned bounding box dimensions sorted largest to smallest.
+    NOTE: these are NOT rotation-independent — a rotated part reports the
+    dimensions of its world-aligned box, not its true length/width/height.
+    """
+    if not bbox_info:
+        return None
+
+    dims = bbox_info["dimensions"]
+    ordered = sorted([dims["width"], dims["depth"], dims["height"]], reverse=True)
+
+    return {
+        "length": ordered[0],
+        "width": ordered[1],
+        "height": ordered[2],
+        "world_aligned": {
+            "x": dims["width"],
+            "y": dims["depth"],
+            "z": dims["height"]
+        }
+    }
+
+
+def unique_export_name(layer, used_names):
+    """Sanitize the layer name and de-collide it against names already used."""
+    base = sanitize_filename(layer)
+    name = base
+    counter = 2
+    while name in used_names:
+        name = f"{base}_{counter}"
+        counter += 1
+    used_names.add(name)
+    return name
+
+
+def remove_backup_file(filename):
+    root, _ = os.path.splitext(filename)
+    backup_file = root + ".glbbak"
+    if os.path.exists(backup_file):
+        try:
+            os.remove(backup_file)
+        except OSError:
+            pass
+
+
+def find_recent_export(base_filename, search_dirs, since):
+    """
+    Look for an export that Rhino wrote somewhere other than the requested
+    path. Only shallow-scans the given directories, and only accepts a file
+    modified after the export started — never a stale file from a previous
+    export run.
+    """
+    for search_dir in search_dirs:
+        if not search_dir or not os.path.isdir(search_dir):
+            continue
+        candidate = os.path.join(search_dir, base_filename)
+        if os.path.isfile(candidate) and os.path.getmtime(candidate) >= since:
+            return candidate
+    return None
+
+
+def print_recent_command_history(lines=6):
+    """Echo Rhino's last few command-line messages so export errors are visible."""
+    try:
+        history = rs.CommandHistory() or ""
+    except Exception:
+        return
+    tail = [line for line in history.splitlines() if line.strip()][-lines:]
+    for line in tail:
+        print(f"    rhino> {line}")
+
+
+def write_selected_with_rhinocommon(filename):
+    """
+    Export the current selection through RhinoCommon (RhinoDoc.WriteFile).
+    Rhino picks the exporter from the extension. This bypasses the scripted
+    -Export command line and its option prompts, which have proven brittle.
+    """
+    try:
+        options = Rhino.FileIO.FileWriteOptions()
+        options.WriteSelectedObjectsOnly = True
+        options.SuppressDialogBoxes = True
+        options.SuppressAllInput = True
+        return bool(sc.doc.WriteFile(filename, options))
+    except Exception as e:
+        print(f"  RhinoCommon WriteFile raised: {e}")
+        return False
+
+
+def export_with_command(filename):
+    """Export the current selection via the scripted -Export command."""
+    export_command = '_-Export "{}" _Enter'.format(filename.replace('\\', '/'))
+    return bool(rs.Command(export_command, echo=False))
+
+
+def export_selected_to_glb(filename, fallback_dirs):
+    """
+    Export the current selection to filename. Returns the actual file path on
+    success (normally filename itself), or None on failure.
+    """
+    export_started = time.time() - 1  # 1s slack for filesystem timestamp granularity
+
+    attempts = [
+        ("RhinoCommon WriteFile", write_selected_with_rhinocommon),
+        ("-Export command", export_with_command),
+    ]
+
+    for label, attempt in attempts:
+        reported_ok = attempt(filename)
+        remove_backup_file(filename)
+
+        if os.path.exists(filename):
+            if not reported_ok:
+                print(f"  {label} reported failure but the file exists — continuing")
+            return filename
+
+        print(f"  {label} did not create the file (reported {'success' if reported_ok else 'failure'})")
+        print_recent_command_history()
+
+    # Rhino occasionally writes the file to the working folder instead of the
+    # requested path — check likely locations for a freshly written file.
+    base_filename = os.path.basename(filename)
+    print(f"  File not found at expected location, searching for: {base_filename}")
+    found_path = find_recent_export(base_filename, fallback_dirs, export_started)
+    if not found_path:
+        return None
+
+    print(f"  Found file at: {found_path}")
+    remove_backup_file(found_path)
+    try:
+        shutil.move(found_path, filename)
+        print("  Moved file to correct location")
+        return filename
+    except OSError as e:
+        print(f"  Could not move file: {e}")
+        return found_path
+
+
 def export_all_layers_to_glb():
     rs.UnselectAllObjects()
-    
+
     export_path = rs.BrowseForFolder(rs.WorkingFolder(), 'Select models folder (GLBs will go to a versioned subfolder)', 'Export GLB')
     if not export_path:
         print("Export path not selected.")
@@ -140,18 +211,20 @@ def export_all_layers_to_glb():
     folder_name = os.path.basename(export_path)
     parent_path = os.path.dirname(export_path)
     timestamp = int(time.time())
-    versioned_folder = os.path.join(parent_path, "{}-{}".format(folder_name, timestamp))
+    versioned_folder = os.path.join(parent_path, f"{folder_name}-{timestamp}")
     os.makedirs(versioned_folder, exist_ok=True)
-    print("GLBs: {}".format(versioned_folder))
-    print("Manifest: {}".format(export_path))
+    print(f"GLBs: {versioned_folder}")
+    print(f"Manifest: {export_path}")
+
+    fallback_dirs = [rs.WorkingFolder(), export_path, parent_path]
 
     layers = rs.LayerNames()
     if not layers:
         print("No layers found.")
         return
-    
+
     print(f"Found {len(layers)} layers to process...")
-    
+
     manifest = {
         "exported_layers": [],
         "failed_layers": [],
@@ -162,338 +235,140 @@ def export_all_layers_to_glb():
             "format": "GLB"
         }
     }
-    
+
+    used_export_names = set()
+
     for i, layer in enumerate(layers):
         print(f"Processing layer {i+1}/{len(layers)}: {layer}")
-        
-        # Skip layers with "CL" or "baseline" in the name
-        if "CL" in layer or "baseline" in layer.lower():
-            print(f"  Skipping layer '{layer}' (contains CL or baseline)")
+
+        if should_skip_layer(layer):
+            print(f"  Skipping layer '{layer}' (CL or baseline)")
             manifest["skipped_layers"].append({
                 "layer_name": layer,
                 "export_method": "skipped",
                 "notes": "Skipped - contains CL or baseline"
             })
             continue
-        
+
         # Ensure we start clean for each layer
         rs.UnselectAllObjects()
-        rs.Redraw()
-        
+
         objs = rs.ObjectsByLayer(layer)
         if not objs:
             print(f"  No objects in layer '{layer}', skipping...")
+            manifest["skipped_layers"].append({
+                "layer_name": layer,
+                "export_method": "skipped",
+                "notes": "Skipped - no objects on layer"
+            })
             continue
-        
+
         print(f"  Found {len(objs)} objects in layer")
-        
-        # Calculate bounding box AND normalized size BEFORE any mesh conversion
+
+        # Calculate bounding box BEFORE any mesh conversion
         bbox_info = get_bounding_box_info(objs)
-        normalized_size = get_normalized_object_size(objs)
-        
+        normalized_size = get_sorted_dimensions(bbox_info)
+
         if bbox_info:
             print(f"  Bounding box: [{bbox_info['min']['x']:.2f}, {bbox_info['min']['y']:.2f}, {bbox_info['min']['z']:.2f}] to [{bbox_info['max']['x']:.2f}, {bbox_info['max']['y']:.2f}, {bbox_info['max']['z']:.2f}]")
             print(f"  Dimensions: {bbox_info['dimensions']['width']:.2f} x {bbox_info['dimensions']['depth']:.2f} x {bbox_info['dimensions']['height']:.2f}")
-        
-        if normalized_size:
-            print(f"  Normalized size: L={normalized_size['length']:.2f}, W={normalized_size['width']:.2f}, H={normalized_size['height']:.2f}")
-        
-        # Select objects
+
         rs.SelectObjects(objs)
         selected = rs.SelectedObjects()
         if not selected:
             print(f"  Failed to select objects in layer '{layer}', skipping...")
+            manifest["skipped_layers"].append({
+                "layer_name": layer,
+                "export_method": "skipped",
+                "notes": "Skipped - objects could not be selected (hidden/locked layer?)"
+            })
             continue
-        
-        print(f"  Selected {len(selected)} objects")
-        
-        # Try different approaches based on object types
-        mesh_objs = []
-        
-        # First, check if objects are already meshes
-        already_meshes = [obj for obj in selected if rs.ObjectType(obj) == 32]  # 32 = mesh
-        if already_meshes:
-            print(f"  Found {len(already_meshes)} objects that are already meshes")
-            mesh_objs.extend(already_meshes)
-        
-        # For non-mesh objects, try to convert them with better error handling
-        non_meshes = [obj for obj in selected if rs.ObjectType(obj) != 32]
-        if non_meshes:
-            print(f"  Converting {len(non_meshes)} non-mesh objects...")
-            rs.UnselectAllObjects()
-            rs.SelectObjects(non_meshes)
-            
-            # Try meshing with safer parameters to avoid crashes
-            try:
-                print("  Attempting mesh conversion with default settings...")
-                result = rs.Command("_-Mesh _Pause _Enter", echo=False)
-                print(f"  Mesh command result: {result}")
-                
-                # Wait longer for mesh calculation to complete
-                time.sleep(0.5)
-                rs.Redraw()
-                new_meshes = rs.SelectedObjects()
-                
-                if new_meshes:
-                    print(f"  Mesh command created {len(new_meshes)} new objects")
-                    mesh_objs.extend(new_meshes)
-                else:
-                    print("  Mesh command didn't create new objects, trying simpler approach...")
-                    # Try with simplified mesh settings
-                    rs.UnselectAllObjects()
-                    rs.SelectObjects(non_meshes)
-                    
-                    # Use simpler mesh command
-                    result2 = rs.Command("_-Mesh _Simple _Enter", echo=False)
-                    time.sleep(1.0)
-                    rs.Redraw()
-                    simple_meshes = rs.SelectedObjects()
-                    
-                    if simple_meshes:
-                        print(f"  Simple mesh created {len(simple_meshes)} objects")
-                        mesh_objs.extend(simple_meshes)
-                    else:
-                        print("  Mesh conversion failed, using original objects for export...")
-                        # As last resort, try to export the original objects
-                        rs.SelectObjects(non_meshes)
-                        mesh_objs.extend(non_meshes)
-                        
-            except Exception as e:
-                print(f"  Mesh conversion error: {e}")
-                print("  Using original objects for export...")
-                rs.SelectObjects(non_meshes)
-                mesh_objs.extend(non_meshes)
-        
-        if not mesh_objs:
-            print(f"  No exportable objects for layer '{layer}', skipping...")
-            rs.UnselectAllObjects()
-            continue
-        
-        # Select all objects to export
-        rs.UnselectAllObjects()
-        rs.SelectObjects(mesh_objs)
-        
-        # First, verify objects are still selected
-        currently_selected = rs.SelectedObjects()
-        print(f"  About to export {len(currently_selected)} selected objects")
-        
-        if not currently_selected:
-            print("  ❌ No objects selected for export!")
-            rs.UnselectAllObjects()
-            continue
-        
-        # Try a quick export first without isolation
-        layer_export_name = sanitize_filename(layer)
-        filename = os.path.abspath(os.path.join(versioned_folder, layer_export_name + ".glb"))
-        print(f"  Exporting {len(mesh_objs)} objects to: {filename}")
-        
-        # Try multiple export approaches
-        export_success = False
-        
-        # Method 1: Try standard export with GLB format
-        print("  Attempting GLB export...")
-        export_command = '_-Export "{}" _SaveSmall=No _Enter _Enter'.format(filename.replace('\\', '/'))
-        export_result = rs.Command(export_command, echo=False)
-        print(f"  Export command result: {export_result}")
-        
-        # Wait for export to complete
-        time.sleep(0.5)
-        
-        # Check if file was created at expected location
-        if not os.path.exists(filename):
-            # Search for the file in parent directories
-            base_filename = os.path.basename(filename)
-            parent_dir = os.path.dirname(export_path)
-            
-            print(f"  File not found at expected location")
-            print(f"  Searching for: {base_filename}")
-            
-            found_path = None
-            # Search up to 3 directory levels
-            search_dirs = [parent_dir, os.path.dirname(parent_dir)]
-            
-            for search_dir in search_dirs:
-                if not os.path.exists(search_dir):
-                    continue
-                    
-                for root, dirs, files in os.walk(search_dir):
-                    if base_filename in files:
-                        found_path = os.path.join(root, base_filename)
-                        print(f"  Found file at: {found_path}")
-                        break
-                
-                if found_path:
-                    break
-            
-            # Move file to correct location if found
-            if found_path:
-                try:
-                    shutil.move(found_path, filename)
-                    print(f"  Moved file to correct location")
-                except Exception as e:
-                    print(f"  Could not move file: {e}")
-                    # If move fails, at least note where it is
-                    filename = found_path
-        
-        # Clean up backup file
-        backup_file = filename.replace('.glb', '.glbbak')
-        if os.path.exists(backup_file):
-            try:
-                os.remove(backup_file)
-                print("  Removed backup file")
-            except:
-                pass
-        
-        if os.path.exists(filename):
-            export_method = "standard"
-        else:
-            # Method 2: Try with explicit GLB format specification
-            print("  Standard export failed, trying with explicit GLB format...")
-            export_command2 = '_-Export "{}" _SaveSmall=No _glTF2Binary _Enter'.format(filename.replace('\\', '/'))
-            export_result2 = rs.Command(export_command2, echo=False)
-            print(f"  GLB export command result: {export_result2}")
-            
-            time.sleep(0.5)
-            
-            # Search for file again if not found
-            if not os.path.exists(filename):
-                base_filename = os.path.basename(filename)
-                parent_dir = os.path.dirname(export_path)
-                
-                print(f"  File not found at expected location")
-                print(f"  Searching for: {base_filename}")
-                
-                found_path = None
-                search_dirs = [parent_dir, os.path.dirname(parent_dir)]
-                
-                for search_dir in search_dirs:
-                    if not os.path.exists(search_dir):
-                        continue
-                        
-                    for root, dirs, files in os.walk(search_dir):
-                        if base_filename in files:
-                            found_path = os.path.join(root, base_filename)
-                            print(f"  Found file at: {found_path}")
-                            break
-                    
-                    if found_path:
-                        break
-                
-                if found_path:
-                    try:
-                        shutil.move(found_path, filename)
-                        print(f"  Moved file to correct location")
-                    except Exception as e:
-                        print(f"  Could not move file: {e}")
-                        filename = found_path
-            
-            # Clean up backup file if created
-            backup_file = filename.replace('.glb', '.glbbak')
-            if os.path.exists(backup_file):
-                try:
-                    os.remove(backup_file)
-                except:
-                    pass
-            
-            if os.path.exists(filename):
-                export_method = "glb_explicit"
 
-        if os.path.exists(filename):
-            file_size = os.path.getsize(filename)
-            export_success = True
-            print(f"  ✅ Successfully exported with {export_method}: {os.path.basename(filename)} ({file_size} bytes)")
+        # Export the layer's objects as-is. The glTF exporter meshes breps,
+        # surfaces, extrusions and SubDs itself using their render meshes.
+        #
+        # Do NOT run _-Mesh here: on this Rhino version the command does not
+        # leave the new meshes selected, so a script cannot find them to delete
+        # afterwards. They pile up on the layer, and every later run exports
+        # the accumulated duplicates (~6x larger GLBs). See
+        # cleanup-leftover-meshes.py for removing meshes left by older versions.
+        currently_selected = selected
+        mesh_count = sum(1 for obj in selected if rs.ObjectType(obj) == MESH_OBJECT_TYPE)
+        print(f"  Selected {len(selected)} objects ({mesh_count} already meshes)")
+
+        layer_export_name = unique_export_name(layer, used_export_names)
+        filename = os.path.abspath(os.path.join(versioned_folder, layer_export_name + ".glb"))
+        print(f"  Exporting {len(currently_selected)} objects to: {filename}")
+
+        exported_path = export_selected_to_glb(filename, fallback_dirs)
+
+        if exported_path:
+            file_size = os.path.getsize(exported_path)
+            print(f"  ✅ Successfully exported: {os.path.basename(exported_path)} ({file_size} bytes)")
             manifest["exported_layers"].append({
                 "layer_name": layer,
-                "filename": os.path.basename(filename),
+                "filename": os.path.basename(exported_path),
                 "file_size": file_size,
-                "object_count": len(mesh_objs),
+                "object_count": len(currently_selected),
                 "bounding_box": bbox_info,
                 "normalized_size": normalized_size,
-                "export_method": export_method,
+                "export_method": "standard",
                 "notes": ""
             })
-        
-        if not export_success:
-            print(f"  ❌ All export methods failed for layer: {layer}")
+        else:
+            print(f"  ❌ Export failed for layer: {layer}")
             manifest["failed_layers"].append({
                 "layer_name": layer,
                 "notes": "Export failed - no file created"
             })
-            # List what we tried to export
             for obj in currently_selected:
-                obj_type = rs.ObjectType(obj)
-                print(f"    - Object type {obj_type}: {rs.ObjectDescription(obj)}")
-        
-        # Clean up only if we created new mesh objects
-        newly_created = [obj for obj in mesh_objs if obj not in objs]
-        if newly_created:
-            print(f"  Cleaning up {len(newly_created)} temporary mesh objects")
-            try:
-                rs.DeleteObjects(newly_created)
-            except Exception as e:
-                print(f"  Warning: Could not clean up temporary objects: {e}")
-        
-        # Force garbage collection to free memory
-        import gc
+                print(f"    - Object type {rs.ObjectType(obj)}: {rs.ObjectDescription(obj)}")
+
         gc.collect()
-        
-        # Final cleanup for this iteration
         rs.UnselectAllObjects()
-        rs.Redraw()
-        
-        # Add a small delay between layers to prevent overwhelming the system
-        time.sleep(0.1)
-    
+
     # Final cleanup
     rs.UnselectAllObjects()
     rs.Redraw()
-    
-    # Create and save manifest
-    manifest_filename = os.path.join(export_path, "export_manifest.json")
 
     manifest["export_info"]["timestamp_end"] = time.strftime("%Y-%m-%d %H:%M:%S")
-    manifest["export_info"]["models_folder"] = "{}-{}".format(folder_name, timestamp)
-
-    # Add unit info
-    manifest["export_info"]["bounding_box_units"] = {
+    manifest["export_info"]["models_folder"] = f"{folder_name}-{timestamp}"
+    manifest["export_info"]["units"] = {
         "id": rs.UnitSystem(),
-        "name":  rs.UnitSystemName(abbreviate=False)
-    }  
-    
-    # Add summary statistics
+        "name": rs.UnitSystemName(abbreviate=False)
+    }
     manifest["export_info"]["successful_exports"] = len(manifest["exported_layers"])
     manifest["export_info"]["failed_exports"] = len(manifest["failed_layers"])
     manifest["export_info"]["skipped_exports"] = len(manifest["skipped_layers"])
     manifest["export_info"]["total_file_size"] = sum(layer["file_size"] for layer in manifest["exported_layers"])
-     
-    # Get unit information
-    unit_system_id = rs.UnitSystem()
-    unit_name = rs.UnitSystemName(abbreviate=False)
-    manifest["export_info"]["units"] = {
-        "id": unit_system_id,
-        "name": unit_name
-    }
-    
+
+    manifest_filename = os.path.join(export_path, "export_manifest.json")
     try:
         with open(manifest_filename, 'w') as f:
             json.dump(manifest, f, indent=2)
         print(f"\n📄 Manifest saved: {manifest_filename}")
-    except Exception as e:
+    except OSError as e:
         print(f"⚠️  Failed to save manifest: {e}")
 
-    # Final cleanup of any remaining backup files
-    print("\nCleaning up backup files...")
-    for root, dirs, files in os.walk(versioned_folder):
+    # Final sweep for any backup files left in the export folder
+    for root, _dirs, files in os.walk(versioned_folder):
         for file in files:
             if file.endswith('.glbbak'):
-                backup_path = os.path.join(root, file)
                 try:
-                    os.remove(backup_path)
-                    print(f"  Removed: {file}")
-                except Exception as e:
+                    os.remove(os.path.join(root, file))
+                    print(f"  Removed backup: {file}")
+                except OSError as e:
                     print(f"  Could not remove {file}: {e}")
-    
-    print("✅ GLB export completed.")
+
+    exported = manifest["export_info"]["successful_exports"]
+    failed = manifest["export_info"]["failed_exports"]
+    skipped = manifest["export_info"]["skipped_exports"]
+    print(f"Summary: {exported} exported, {failed} failed, {skipped} skipped")
+    if exported == 0 and failed > 0:
+        print("❌ Nothing was exported. Scroll up to the 'rhino>' lines to see what Rhino reported.")
+    else:
+        print("✅ GLB export completed.")
+
 
 if __name__ == '__main__':
     export_all_layers_to_glb()
