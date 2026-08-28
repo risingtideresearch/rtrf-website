@@ -17,6 +17,8 @@ pip install pdf2image pypdf pillow  # for pdf_to_png.py
 
 Rhino Python script — run from within Rhino via `RunPythonScript`/`ScriptEditor`.
 
+**Restore the `WEBSITE` layer state before running.** This is what determines which layers reach the web.
+
 Iterates all layers and exports each as a GLB into a **versioned subfolder** named `{folder}-{unix-timestamp}/` (e.g. `models-1749200000/`). The manifest is written to the selected folder at the fixed path `models/export_manifest.json`, keeping that path stable while GLB URLs change each run — this drives cache busting on Netlify (`Cache-Control: immutable`).
 
 When prompted, select the manifest folder:
