@@ -24,8 +24,8 @@ export default function PhotoGallery({ photos }: { photos: Photo[] }) {
         const isVideo = photo._type === "sanity.fileAsset";
         const url = photo._id.split("-");
         const monthYear = formatMonthYear(photo.photoDate);
-        const basename = photo.originalFilename?.replace(/\.[^/.]+$/, '') ?? '';
-        const displayTitle = photo.title && photo.title !== basename ? photo.title : null;
+        const displayTitle =
+          photo.title && photo.title !== photo.originalFilename ? photo.title : null;
         return (
           <div key={photo._id}>
             <a href={isVideo ? getVideoURL(photo) : `/photos/image/${url[1]}`}>

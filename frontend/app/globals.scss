@@ -339,7 +339,7 @@ img {
   }
 
   &:hover svg {
-    fill: #000;
+    fill: var(--black);
   }
 }
 

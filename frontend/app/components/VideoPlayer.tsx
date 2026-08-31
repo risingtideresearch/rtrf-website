@@ -27,6 +27,7 @@ interface VideoPlayerProps {
   asset: VideoAsset;
   className?: string;
   autoPlay?: boolean;
+  defaultMuted?: boolean;
   preload?: "none" | "metadata" | "auto";
 }
 
@@ -44,6 +45,7 @@ export function VideoPlayer({
   asset,
   className,
   autoPlay = false,
+  defaultMuted = autoPlay,
   preload = "metadata",
 }: VideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,15 +56,16 @@ export function VideoPlayer({
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(autoPlay);
+  const [muted, setMuted] = useState(defaultMuted);
   const [fullscreen, setFullscreen] = useState(false);
   const [idle, setIdle] = useState(false);
+  // Untouched videos read as a still image: big play button, nothing else.
+  const [started, setStarted] = useState(false);
 
   const start = asset.startTime ?? 0;
   const end = asset.endTime ?? null;
   const hasTrim = start > 0 || end != null;
 
-  // Media fragment lets the browser seek to the trim range before any script runs.
   const src = hasTrim
     ? `${asset.url}#t=${start}${end != null ? `,${end}` : ""}`
     : asset.url;
@@ -101,7 +104,10 @@ export function VideoPlayer({
       if (end != null && video.currentTime > end) video.currentTime = end;
     };
 
-    const onPlay = () => setPlaying(true);
+    const onPlay = () => {
+      setPlaying(true);
+      setStarted(true);
+    };
     const onPause = () => setPlaying(false);
     const onVolumeChange = () => setMuted(video.muted);
 
@@ -124,6 +130,11 @@ export function VideoPlayer({
       video.removeEventListener("volumechange", onVolumeChange);
     };
   }, [start, end, src]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) video.muted = defaultMuted;
+  }, [defaultMuted]);
 
   useEffect(() => {
     const onFullscreenChange = () =>
@@ -190,7 +201,6 @@ export function VideoPlayer({
   };
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    // Let the scrubber and buttons handle their own keys.
     const tag = (event.target as HTMLElement).tagName;
     if (tag === "INPUT" || tag === "BUTTON") return;
     switch (event.key) {
@@ -247,7 +257,7 @@ export function VideoPlayer({
         playsInline
         preload={preload}
         autoPlay={autoPlay}
-        muted={true}
+        muted={defaultMuted}
         aria-label={label}
         onClick={togglePlay}
       >
@@ -267,58 +277,62 @@ export function VideoPlayer({
         </button>
       )}
 
-      <div
-        className={`${styles.controls} ${controlsVisible ? styles["controls--visible"] : ""}`}
-      >
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={playing ? "Pause" : "Play"}
+      {/* Left unmounted until first play so the bar cannot be revealed by
+          focus, and its buttons stay out of the tab order. */}
+      {started && (
+        <div
+          className={`${styles.controls} ${controlsVisible ? styles["controls--visible"] : ""}`}
         >
-          {playing ? <LiaPauseSolid size={18} /> : <LiaPlaySolid size={18} />}
-        </button>
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause" : "Play"}
+          >
+            {playing ? <LiaPauseSolid size={18} /> : <LiaPlaySolid size={18} />}
+          </button>
 
-        <span className={styles.time}>{formatTime(clipTime)}</span>
+          <span className={styles.time}>{formatTime(clipTime)}</span>
 
-        <input
-          type="range"
-          className={styles.scrub}
-          min={0}
-          max={clipDuration || 0}
-          step="any"
-          value={clipTime}
-          onChange={onScrub}
-          style={{ "--progress": `${progress}%` } as React.CSSProperties}
-          aria-label="Seek"
-          aria-valuetext={`${formatTime(clipTime)} of ${formatTime(clipDuration)}`}
-        />
+          <input
+            type="range"
+            className={styles.scrub}
+            min={0}
+            max={clipDuration || 0}
+            step="any"
+            value={clipTime}
+            onChange={onScrub}
+            style={{ "--progress": `${progress}%` } as React.CSSProperties}
+            aria-label="Seek"
+            aria-valuetext={`${formatTime(clipTime)} of ${formatTime(clipDuration)}`}
+          />
 
-        <span className={styles.time}>{formatTime(clipDuration)}</span>
+          <span className={styles.time}>{formatTime(clipDuration)}</span>
 
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-label={muted ? "Unmute" : "Mute"}
-        >
-          {muted ? (
-            <LiaVolumeOffSolid size={18} />
-          ) : (
-            <LiaVolumeUpSolid size={18} />
-          )}
-        </button>
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={muted ? "Unmute" : "Mute"}
+          >
+            {muted ? (
+              <LiaVolumeOffSolid size={18} />
+            ) : (
+              <LiaVolumeUpSolid size={18} />
+            )}
+          </button>
 
-        <button
-          type="button"
-          onClick={toggleFullscreen}
-          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
-        >
-          {fullscreen ? (
-            <LiaCompressSolid size={18} />
-          ) : (
-            <LiaExpandSolid size={18} />
-          )}
-        </button>
-      </div>
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+          >
+            {fullscreen ? (
+              <LiaCompressSolid size={18} />
+            ) : (
+              <LiaExpandSolid size={18} />
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

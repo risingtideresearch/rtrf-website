@@ -23,7 +23,7 @@ export function InlineVideo({ video, caption, className }: InlineVideoProps) {
 
   return (
     <figure className={className}>
-      <VideoPlayer asset={asset} />
+      <VideoPlayer asset={asset} defaultMuted />
       {(caption || showDefaultCaption) && (
         <figcaption>
           <a href={getVideoURL(asset)}>
