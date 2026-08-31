@@ -28,6 +28,7 @@ interface VideoPlayerProps {
   className?: string;
   autoPlay?: boolean;
   defaultMuted?: boolean;
+  controlsPosition?: "overlay" | "below";
   preload?: "none" | "metadata" | "auto";
 }
 
@@ -46,6 +47,7 @@ export function VideoPlayer({
   className,
   autoPlay = false,
   defaultMuted = autoPlay,
+  controlsPosition = "overlay",
   preload = "metadata",
 }: VideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -240,20 +242,70 @@ export function VideoPlayer({
   const label =
     asset.altText || asset.description || asset.title || asset.originalFilename;
 
+  const below = controlsPosition === "below";
   const controlsVisible = !playing || !idle;
+
+  const controls = (
+    <div
+      className={`${styles.controls} ${below ? styles["controls--static"] : ""} ${
+        controlsVisible ? styles["controls--visible"] : ""
+      }`}
+    >
+      <button
+        type="button"
+        onClick={togglePlay}
+        aria-label={playing ? "Pause" : "Play"}
+      >
+        {playing ? <LiaPauseSolid size={18} /> : <LiaPlaySolid size={18} />}
+      </button>
+
+      <span className={styles.time}>{formatTime(clipTime)}</span>
+
+      <input
+        type="range"
+        className={styles.scrub}
+        min={0}
+        max={clipDuration || 0}
+        step="any"
+        value={clipTime}
+        onChange={onScrub}
+        style={{ "--progress": progress } as React.CSSProperties}
+        aria-label="Seek"
+        aria-valuetext={`${formatTime(clipTime)} of ${formatTime(clipDuration)}`}
+      />
+
+      <span className={styles.time}>{formatTime(clipDuration)}</span>
+
+      <button
+        type="button"
+        onClick={toggleMute}
+        aria-label={muted ? "Unmute" : "Mute"}
+      >
+        {muted ? <LiaVolumeOffSolid size={18} /> : <LiaVolumeUpSolid size={18} />}
+      </button>
+
+      <button
+        type="button"
+        onClick={toggleFullscreen}
+        aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+      >
+        {fullscreen ? <LiaCompressSolid size={18} /> : <LiaExpandSolid size={18} />}
+      </button>
+    </div>
+  );
 
   return (
     <div
       ref={containerRef}
       className={[
         styles.player,
+        below ? styles["player--below"] : "",
         loaded ? styles["player--loaded"] : "",
         playing && idle ? styles["player--idle"] : "",
         className ?? "",
       ]
         .filter(Boolean)
         .join(" ")}
-      style={fullscreen ? undefined : { aspectRatio }}
       onPointerMove={wake}
       onPointerLeave={() => playing && setIdle(true)}
       onKeyDown={onKeyDown}
@@ -261,87 +313,41 @@ export function VideoPlayer({
       aria-label={label ? `Video: ${label}` : "Video"}
       tabIndex={0}
     >
-      <video
-        ref={videoRef}
-        playsInline
-        preload={preload}
-        autoPlay={autoPlay}
-        muted={defaultMuted}
-        aria-label={label}
-        onClick={togglePlay}
+      <div
+        className={styles.stage}
+        style={fullscreen ? undefined : { aspectRatio }}
       >
-        <source src={src} type={asset.mimeType || undefined} />
-        Your browser does not support embedded video.{" "}
-        <a href={asset.url}>Download the video</a>.
-      </video>
-
-      {!playing && (
-        <button
-          type="button"
-          className={styles["big-play"]}
+        <video
+          ref={videoRef}
+          playsInline
+          preload={preload}
+          autoPlay={autoPlay}
+          muted={defaultMuted}
+          aria-label={label}
           onClick={togglePlay}
-          aria-label="Play"
         >
-          <LiaPlaySolid size={20} />
-        </button>
-      )}
+          <source src={src} type={asset.mimeType || undefined} />
+          Your browser does not support embedded video.{" "}
+          <a href={asset.url}>Download the video</a>.
+        </video>
 
-      {/* Left unmounted until first play so the bar cannot be revealed by
-          focus, and its buttons stay out of the tab order. */}
-      {started && (
-        <div
-          className={`${styles.controls} ${controlsVisible ? styles["controls--visible"] : ""}`}
-        >
+        {!playing && (
           <button
             type="button"
+            className={styles["big-play"]}
             onClick={togglePlay}
-            aria-label={playing ? "Pause" : "Play"}
+            aria-label="Play"
           >
-            {playing ? <LiaPauseSolid size={18} /> : <LiaPlaySolid size={18} />}
+            <LiaPlaySolid size={20} />
           </button>
+        )}
 
-          <span className={styles.time}>{formatTime(clipTime)}</span>
+        {/* Overlay bar stays unmounted until first play, so focus cannot
+            reveal it and its buttons stay out of the tab order. */}
+        {!below && started && controls}
+      </div>
 
-          <input
-            type="range"
-            className={styles.scrub}
-            min={0}
-            max={clipDuration || 0}
-            step="any"
-            value={clipTime}
-            onChange={onScrub}
-            style={{ "--progress": `${progress}%` } as React.CSSProperties}
-            aria-label="Seek"
-            aria-valuetext={`${formatTime(clipTime)} of ${formatTime(clipDuration)}`}
-          />
-
-          <span className={styles.time}>{formatTime(clipDuration)}</span>
-
-          <button
-            type="button"
-            onClick={toggleMute}
-            aria-label={muted ? "Unmute" : "Mute"}
-          >
-            {muted ? (
-              <LiaVolumeOffSolid size={18} />
-            ) : (
-              <LiaVolumeUpSolid size={18} />
-            )}
-          </button>
-
-          <button
-            type="button"
-            onClick={toggleFullscreen}
-            aria-label={fullscreen ? "Exit full screen" : "Full screen"}
-          >
-            {fullscreen ? (
-              <LiaCompressSolid size={18} />
-            ) : (
-              <LiaExpandSolid size={18} />
-            )}
-          </button>
-        </div>
-      )}
+      {below && controls}
     </div>
   );
 }

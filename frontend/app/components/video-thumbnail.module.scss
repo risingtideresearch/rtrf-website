@@ -35,13 +35,9 @@
   color: var(--black);
 
   svg {
-    // Optically centres the triangle in the square, as in .big-play.
     margin-left: 2px;
     path {
       fill: var(--black);
     }
   }
-
-  // Hover comes from the global button rule, since the badge is now its own
-  // control rather than part of the card's link.
 }

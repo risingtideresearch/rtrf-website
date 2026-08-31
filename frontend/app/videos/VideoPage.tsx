@@ -19,7 +19,7 @@ export function VideoPage({ asset, next, prev }) {
         </div>
         <div>
           <div className="detail-page__image-container">
-            <VideoPlayer asset={asset} preload="auto" defaultMuted />
+            <VideoPlayer asset={asset} defaultMuted controlsPosition="below" />
           </div>
         </div>
       </div>

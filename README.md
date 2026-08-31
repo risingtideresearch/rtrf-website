@@ -24,14 +24,16 @@ Two separate Netlify sites share the same codebase and Sanity dataset but behave
 | Content freshness | SSR on every request + Sanity Live API (SSE) | SSG at build time |
 | `NEXT_PUBLIC_PREVIEW_SITE` | `true` | _(not set)_ |
 
-**There is no automatic webhook from Sanity to Netlify.** Production content only updates when a build is manually triggered from the Studio's Deploy tool (which calls a Netlify build hook). The preview site rebuilds on every `git push` and shows live draft content without a rebuild via the Sanity Live API.
+**There is no automatic webhook from Sanity to Netlify.** Production content only updates when a build is manually triggered from the Studio's Deploy tool (which calls a Netlify build hook). The preview site rebuilds on every `git push`, and picks up newly published content without a rebuild at all: it bypasses the Next.js data cache and subscribes to the Sanity Live API.
+
+Neither site renders drafts — the client pins `perspective: "published"` in both cases. Preview differs in freshness, not in what it is allowed to see.
 
 ---
 
 ### Python scripts
 [/scripts/](/scripts/) — [README](scripts/README.md)
 
-Post-export pipeline: GLB optimization, material extraction, PDF-to-PNG conversion, manifest copying, and Sanity reference audit.
+Rhino export and post-processing pipeline: per-layer GLB export, leftover-mesh cleanup, GLB optimization, material extraction, PDF-to-PNG conversion, manifest copying, and Sanity reference audit.
 
 ---
 

@@ -263,6 +263,7 @@ section {
   &__image-container {
     position: relative;
     width: 100%;
+    border-right: 1px solid var(--black);
 
     img {
       display: block;
