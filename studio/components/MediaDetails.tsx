@@ -75,14 +75,18 @@ export function MediaDetails({renderDefaultDetails, currentAsset, formUpdating, 
     }
   }, [formUpdating, client, currentAsset?._id])
 
-  const hintLabel = date && exifDate
+  // EXIF only exists on image assets; videos (file assets) get a plain date field.
+  const isImage = currentAsset?._type === 'sanity.imageAsset'
+  const hintLabel = !isImage
+    ? ''
+    : date && exifDate
     ? 'Overrides EXIF date'
     : exifDate
       ? 'EXIF date'
       : exifDate === null
         ? 'No EXIF date defined'
         : ''
-  const hintDate = !date && exifDate ? exifDate : null
+  const hintDate = isImage && !date && exifDate ? exifDate : null
 
   return (
     <Stack space={3}>
@@ -105,7 +109,7 @@ export function MediaDetails({renderDefaultDetails, currentAsset, formUpdating, 
             }}
             type="date"
             value={date}
-            placeholder={exifDate ?? undefined}
+            placeholder={(isImage && exifDate) || undefined}
           />
         </Stack>
       </Box>

@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {RiArticleLine} from 'react-icons/ri'
-import {ChartUpwardIcon, CubeIcon, InlineIcon} from '@sanity/icons'
+import {ChartUpwardIcon, CubeIcon, InlineIcon, PlayIcon} from '@sanity/icons'
 import ModelDropdownInput from '../components/ModelDropdownInput'
 import DrawingDropdownInput, {
   getDrawingId,
@@ -241,6 +241,56 @@ export const article = defineType({
                 ),
                 title,
                 subtitle: 'Edit title in Media tab',
+              }
+            },
+          },
+        }),
+
+        defineField({
+          type: 'object',
+          name: 'inlineVideo',
+          title: 'Video',
+          icon: PlayIcon,
+          fields: [
+            defineField({
+              name: 'video',
+              type: 'file',
+              options: {
+                accept: 'video/*',
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'caption',
+              type: 'string',
+              description: 'Optional. Defaults to the video title and date from the Media tab.',
+            }),
+          ],
+          preview: {
+            select: {
+              url: 'video.asset.url',
+              title: 'video.asset.title',
+              filename: 'video.asset.originalFilename',
+              caption: 'caption',
+            },
+            prepare({url, title, filename, caption}) {
+              return {
+                media: url ? (
+                  <video
+                    src={url}
+                    preload="metadata"
+                    muted
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                ) : (
+                  PlayIcon
+                ),
+                title: title || filename || 'Video',
+                subtitle: caption || 'Edit title, description and tags in Media tab',
               }
             },
           },

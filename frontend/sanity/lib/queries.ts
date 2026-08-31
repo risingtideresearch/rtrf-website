@@ -202,6 +202,29 @@ export const peopleQuery = `
 `;
 
 /**
+ * Videos are file assets uploaded through the Media tab (see studio/schemaTypes/fileAsset.ts).
+ */
+const videoFilter = `_type == "sanity.fileAsset" && mimeType match "video/*"`;
+
+const videoAssetFields = `
+  _id,
+  _type,
+  _createdAt,
+  _updatedAt,
+  url,
+  mimeType,
+  size,
+  originalFilename,
+  title,
+  description,
+  altText,
+  date,
+  startTime,
+  endTime,
+  "tags": opt.media.tags[]->name.current
+`;
+
+/**
  *
  */
 export const articlesQuery = (slug?: string) => {
@@ -256,6 +279,15 @@ export const articlesQuery = (slug?: string) => {
               metadata {
                 ...,
               }
+            }
+          }
+        },
+        _type == 'inlineVideo' => {
+          ...,
+          video {
+            ...,
+            asset -> {
+              ${videoAssetFields}
             }
           }
         },
@@ -492,7 +524,7 @@ export const componentPartQuery = () => `
 // `;
 
 /**
- * Articles in system order with image refs extracted from content, for photo navigation ordering.
+ * Articles in system order with image and video refs extracted from content, for gallery/navigation ordering.
  */
 export const photoOrderQuery = `
 *[_type == "systems"][0]{
@@ -500,7 +532,8 @@ export const photoOrderQuery = `
     "slug": slug.current,
     articles[]->{
       _id,
-      "imageRefs": content[_type == 'imageSet'].imageSet[_type == 'image'].asset._ref + content[_type == 'inlineImage'].image.asset._ref
+      "imageRefs": content[_type == 'imageSet'].imageSet[_type == 'image'].asset._ref + content[_type == 'inlineImage'].image.asset._ref,
+      "videoRefs": content[_type == 'inlineVideo'].video.asset._ref
     }
   }
 }
@@ -508,7 +541,8 @@ export const photoOrderQuery = `
 
 export const searchQuery = () => `
 *[
-  (_type == "article" || _type == "person" || (_type == "sanity.imageAsset" && (count(*[_type == "article" && isLive == true && references(^._id)]) > 0 || count(*[_type == "homepage" && references(^._id)]) > 0) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))))
+  (_type == "article" || _type == "person" || (_type == "sanity.imageAsset" && (count(*[_type == "article" && isLive == true && references(^._id)]) > 0 || count(*[_type == "homepage" && references(^._id)]) > 0) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, [])))
+    || (${videoFilter} && (count(*[_type == "article" && isLive == true && references(^._id)]) > 0 || count(opt.media.tags) > 0) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))))
   && (
     title match $query + "*" ||
     name match $query + "*" ||
@@ -537,6 +571,13 @@ export const searchQuery = () => `
     _id,
     url,
     "thumbnailUrl": url + "?w=128&h=128&fit=crop"
+  },
+  _type == "sanity.fileAsset" => {
+    title,
+    originalFilename,
+    _id,
+    url,
+    mimeType
   },
   _type == "person" => {
     "title": name,
@@ -604,6 +645,73 @@ export const assetWithNavigationQuery = (idPrefix?: string) => {
     altText,
     title,
     "tags": opt.media.tags[]->name.current,
+    "taggedSystem": *[_type == "systems"][0].systems[slug.current in ^.opt.media.tags[]->name.current][0] {
+      name,
+      "slug": slug.current
+    },
+    "usedInArticles": ${articleFilter} {
+      _id,
+      title,
+      "slug": slug.current,
+      "system": *[_type == "systems"][0].systems[references(^._id)][0] {
+        name,
+        "slug": slug.current
+      }
+    }
+  },
+  "currentId": "${idPrefix}"
+}`;
+};
+
+/**
+ * Every video asset, for static params.
+ */
+export const allVideosQuery = `*[${videoFilter}]{ _id }`;
+
+/**
+ * Videos shown in a system's photo gallery: same rules as allPhotosQuery —
+ * used in a (live) story in that system, or tagged with the system and not
+ * used in any story. Tagged with "no-gallery" hides them.
+ */
+export const galleryVideosQuery = (system?: string, isPreview = false) => {
+  const liveFilter = isPreview ? "" : " && isLive == true";
+
+  const articleFilter = system
+    ? `*[_type == "article"${liveFilter} && references(^._id) && _id in *[_type == "systems"][0].systems[slug.current == "${system}"].articles[]._ref]`
+    : `*[_type == "article"${liveFilter} && references(^._id)]`;
+
+  const articleFilterNoLive = system
+    ? `*[_type == "article" && references(^._id) && _id in *[_type == "systems"][0].systems[slug.current == "${system}"].articles[]._ref]`
+    : `*[_type == "article" && references(^._id)]`;
+
+  const taggedNoStoryCondition = system
+    ? ` || ("${system}" in coalesce(opt.media.tags[]->name.current, []) && count(${articleFilterNoLive}) == 0)`
+    : ` || (count(opt.media.tags) > 0 && count(${articleFilterNoLive}) == 0)`;
+
+  return `*[${videoFilter} && (count(${articleFilter}) > 0${taggedNoStoryCondition}) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))] | order(coalesce(date, _createdAt) asc) {
+  ${videoAssetFields},
+  "photoDate": date,
+  "usedInArticles": ${articleFilter} {
+    _id,
+    title,
+    "slug": slug.current,
+    "system": *[_type == "systems"][0].systems[references(^._id)][0] {
+      name,
+      "slug": slug.current
+    }
+  }
+}`;
+};
+
+/**
+ * All videos with everything the /video/[uuid] page needs, ordered oldest first.
+ */
+export const videoWithNavigationQuery = (idPrefix?: string) => {
+  const articleFilter = `*[_type == "article" && references(^._id)]`;
+
+  return `{
+  "allVideos": *[${videoFilter}] | order(coalesce(date, _createdAt) asc) {
+    ${videoAssetFields},
     "taggedSystem": *[_type == "systems"][0].systems[slug.current in ^.opt.media.tags[]->name.current][0] {
       name,
       "slug": slug.current

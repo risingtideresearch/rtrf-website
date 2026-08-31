@@ -9,6 +9,7 @@ import { formatDate, toISODate } from "../utils";
 import { contextualLayers } from "../anatomy/three-d/util";
 import MaterialsTable from "../components/MaterialsTable";
 import { PhotoImage } from "../components/PhotoImage";
+import { InlineVideo } from "../components/InlineVideo";
 import { URLS } from "../components/Navigation/Navigation";
 import RangeChart from "../components/RangeChart/RangeChart";
 import { LiaArrowUpSolid } from "react-icons/lia";
@@ -25,6 +26,13 @@ const components = {
       <figure className={styles.inline_image}>
         <PhotoImage image={value.image} altText={value.altText} />
       </figure>
+    ),
+    inlineVideo: ({ value }) => (
+      <InlineVideo
+        video={value.video}
+        caption={value.caption}
+        className={styles.inline_video}
+      />
     ),
     inlineModel: ({ value }) => (
       <InlineModel title={value.title} models={value.models || []} />

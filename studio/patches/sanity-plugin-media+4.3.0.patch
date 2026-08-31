@@ -1,0 +1,60 @@
+diff --git a/node_modules/sanity-plugin-media/dist/index.js b/node_modules/sanity-plugin-media/dist/index.js
+index 44ca3f6..b80b8ab 100644
+--- a/node_modules/sanity-plugin-media/dist/index.js
++++ b/node_modules/sanity-plugin-media/dist/index.js
+@@ -1285,6 +1285,7 @@ const UPLOADS_ACTIONS = {
+               },
+               originalFilename,
+               size,
++              startTime,
+               source {
+                 name,
+                 id,
+@@ -4197,7 +4198,7 @@ const DialogAssetEdit = (props) => {
+         },
+         children: [
+           /* @__PURE__ */ jsxRuntime.jsxs("div", { onClick: handleAssetClick, style: { height: "100%", opacity: opacityPreview }, children: [
+-            isFileAsset(asset) && /* @__PURE__ */ jsxRuntime.jsx(FileIcon, { extension: asset.extension, width: "80px" }),
++            isFileAsset(asset) && (asset.mimeType?.startsWith("video/") ? /* @__PURE__ */ jsxRuntime.jsx("video", { src: `${asset.url}#t=${asset.startTime > 0 ? asset.startTime : 0.1}`, preload: "metadata", muted: !0, playsInline: !0, tabIndex: -1, style: { display: "block", width: "100%", height: "100%", objectFit: "contain" } }) : /* @__PURE__ */ jsxRuntime.jsx(FileIcon, { extension: asset.extension, width: "80px" })),
+             isImageAsset(asset) && /* @__PURE__ */ jsxRuntime.jsx(
+               Image$1,
+               {
+@@ -4904,7 +4905,7 @@ const CardWrapper = styledComponents.styled(ui.Flex)`
+             },
+             children: /* @__PURE__ */ jsxRuntime.jsxs(ui.Flex, { align: "center", justify: "center", style: { height: "100%", position: "relative" }, children: [
+               /* @__PURE__ */ jsxRuntime.jsxs(ui.Box, { style: { height: "100%", opacity: opacityPreview, position: "relative" }, children: [
+-                isFileAsset(asset) && /* @__PURE__ */ jsxRuntime.jsx(FileIcon, { extension: asset.extension, width: "40px" }),
++                isFileAsset(asset) && (asset.mimeType?.startsWith("video/") ? /* @__PURE__ */ jsxRuntime.jsx("video", { src: `${asset.url}#t=${asset.startTime > 0 ? asset.startTime : 0.1}`, preload: "metadata", muted: !0, playsInline: !0, tabIndex: -1, style: { display: "block", height: "100%", maxWidth: "100px", objectFit: "contain" } }) : /* @__PURE__ */ jsxRuntime.jsx(FileIcon, { extension: asset.extension, width: "40px" })),
+                 isImageAsset(asset) && /* @__PURE__ */ jsxRuntime.jsx(
+                   Image$1,
+                   {
+diff --git a/node_modules/sanity-plugin-media/dist/index.mjs b/node_modules/sanity-plugin-media/dist/index.mjs
+index a8b3da4..715b3f1 100644
+--- a/node_modules/sanity-plugin-media/dist/index.mjs
++++ b/node_modules/sanity-plugin-media/dist/index.mjs
+@@ -1292,6 +1292,7 @@ const UPLOADS_ACTIONS = {
+               },
+               originalFilename,
+               size,
++              startTime,
+               source {
+                 name,
+                 id,
+@@ -4202,7 +4203,7 @@ const DialogAssetEdit = (props) => {
+         },
+         children: [
+           /* @__PURE__ */ jsxs("div", { onClick: handleAssetClick, style: { height: "100%", opacity: opacityPreview }, children: [
+-            isFileAsset(asset) && /* @__PURE__ */ jsx(FileIcon, { extension: asset.extension, width: "80px" }),
++            isFileAsset(asset) && (asset.mimeType?.startsWith("video/") ? /* @__PURE__ */ jsx("video", { src: `${asset.url}#t=${asset.startTime > 0 ? asset.startTime : 0.1}`, preload: "metadata", muted: !0, playsInline: !0, tabIndex: -1, style: { display: "block", width: "100%", height: "100%", objectFit: "contain" } }) : /* @__PURE__ */ jsx(FileIcon, { extension: asset.extension, width: "80px" })),
+             isImageAsset(asset) && /* @__PURE__ */ jsx(
+               Image$1,
+               {
+@@ -4909,7 +4910,7 @@ const CardWrapper = styled(Flex)`
+             },
+             children: /* @__PURE__ */ jsxs(Flex, { align: "center", justify: "center", style: { height: "100%", position: "relative" }, children: [
+               /* @__PURE__ */ jsxs(Box, { style: { height: "100%", opacity: opacityPreview, position: "relative" }, children: [
+-                isFileAsset(asset) && /* @__PURE__ */ jsx(FileIcon, { extension: asset.extension, width: "40px" }),
++                isFileAsset(asset) && (asset.mimeType?.startsWith("video/") ? /* @__PURE__ */ jsx("video", { src: `${asset.url}#t=${asset.startTime > 0 ? asset.startTime : 0.1}`, preload: "metadata", muted: !0, playsInline: !0, tabIndex: -1, style: { display: "block", height: "100%", maxWidth: "100px", objectFit: "contain" } }) : /* @__PURE__ */ jsx(FileIcon, { extension: asset.extension, width: "40px" })),
+                 isImageAsset(asset) && /* @__PURE__ */ jsx(
+                   Image$1,
+                   {

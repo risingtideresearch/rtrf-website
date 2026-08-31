@@ -7,6 +7,7 @@ export enum URLS {
   ANATOMY = "/anatomy",
   DRAWINGS = "/drawings",
   PHOTOS = "/photos",
+  VIDEO = "/video",
   PEOPLE = "/people",
 }
 export const nav = [

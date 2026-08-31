@@ -2,10 +2,13 @@ import {
   fetchAssetWithNavigation,
   fetchPhotoOrder,
   fetchPhotosStatic,
+  fetchVideoWithNavigation,
 } from "@/sanity/lib/utils";
+import { getMediaSiblings, orderMedia } from "@/app/media-navigation";
 import { PhotoPage } from "../../PhotoPage";
 import Navigation, { URLS } from "@/app/components/Navigation/Navigation";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const photos = await fetchPhotosStatic();
@@ -50,75 +53,32 @@ export default async function Page({
 
   const idPrefix = "image-" + slug;
 
-  const [{ data }, { data: orderData }] = await Promise.all([
+  const [{ data }, { data: videoData }, { data: orderData }] = await Promise.all([
     fetchAssetWithNavigation(idPrefix),
+    fetchVideoWithNavigation(idPrefix),
     fetchPhotoOrder(),
   ]);
 
-  // Build ordered image ID list: for each system in order, story images first then tagged-only images
-  const orderedIds: string[] = [];
-  const seen = new Set<string>();
-  for (const system of orderData?.systems ?? []) {
-    for (const article of system.articles ?? []) {
-      for (const ref of article.imageRefs ?? []) {
-        if (ref && !seen.has(ref)) {
-          seen.add(ref);
-          orderedIds.push(ref);
-        }
-      }
-    }
-    if (system.slug) {
-      for (const img of data.allImages) {
-        if (!seen.has(img._id) && !img.tags?.includes("no-gallery")) {
-          const imgTag = img.tags?.find((t: string) => t !== "no-gallery");
-          const inSystem = img.usedInArticles?.some((a: any) => a.system?.slug === system.slug);
-          if (imgTag === system.slug || inSystem) {
-            seen.add(img._id);
-            orderedIds.push(img._id);
-          }
-        }
-      }
-    }
-  }
-
-  const imageOrder = new Map(orderedIds.map((id: string, i: number) => [id, i]));
-  const allSorted = [...data.allImages].sort((a, b) => {
-    const ai = imageOrder.get(a._id) ?? Infinity;
-    const bi = imageOrder.get(b._id) ?? Infinity;
-    return ai - bi;
-  });
+  // Photos and videos share one gallery sequence, so prev/next walks both.
+  const allSorted = orderMedia(data.allImages, videoData.allVideos, orderData);
 
   const current = allSorted.find((img) => img._id.startsWith(idPrefix));
+  if (!current) notFound();
 
   const isNoGallery = current.tags?.includes("no-gallery");
-  const system = (!isNoGallery && (current.usedInArticles[0]?.system || current.taggedSystem || null)) || {};
+  const system =
+    (!isNoGallery && (current.usedInArticles?.[0]?.system || current.taggedSystem)) || null;
 
-  const navigableImages = allSorted.filter((img) => !img.tags?.includes("no-gallery"));
-
-  const currentIndex = navigableImages.findIndex((img) =>
-    img._id.startsWith(idPrefix),
-  );
-  const prev =
-    currentIndex > 0
-      ? navigableImages[currentIndex - 1]
-      : navigableImages[navigableImages.length - 1];
-  const next =
-    currentIndex < navigableImages.length - 1
-      ? navigableImages[currentIndex + 1]
-      : navigableImages[0];
+  const { prev, next } = getMediaSiblings(allSorted, idPrefix);
 
   return (
     <>
       <Navigation
         type={"top-bar"}
         active={URLS.PHOTOS}
-        system={system.slug}
+        system={system?.slug}
       />
-      <PhotoPage
-        asset={current}
-        next={next && { uuid: next._id.split("-")[1] }}
-        prev={prev && { uuid: prev._id.split("-")[1] }}
-      />
+      <PhotoPage asset={current} next={next} prev={prev} />
     </>
   );
 }

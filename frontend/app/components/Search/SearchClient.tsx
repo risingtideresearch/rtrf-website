@@ -4,7 +4,8 @@ import { BiSearch, BiX } from "react-icons/bi";
 import styles from "./search.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { getPhotoURL } from "@/app/photos/util";
-import { MdPerson } from "react-icons/md";
+import { getVideoURL } from "@/app/video/util";
+import { MdPerson, MdPlayCircleOutline } from "react-icons/md";
 import { URLS } from "../Navigation/Navigation";
 
 export default function SearchClient({ type }) {
@@ -109,6 +110,8 @@ export default function SearchClient({ type }) {
         return `${URLS.PEOPLE}#${doc.slug}`
       case "sanity.imageAsset":
         return getPhotoURL(doc);
+      case "sanity.fileAsset":
+        return getVideoURL(doc);
       default:
         return doc.slug ? doc.slug.current : doc._id;
     }
@@ -220,7 +223,7 @@ export default function SearchClient({ type }) {
               >
                 {Object.keys(groupedResults)
                   .sort((a, b) => {
-                    const order = ["article", "sanity.imageAsset"];
+                    const order = ["article", "sanity.imageAsset", "sanity.fileAsset"];
                     const aIndex = order.indexOf(a);
                     const bIndex = order.indexOf(b);
 
@@ -239,6 +242,8 @@ export default function SearchClient({ type }) {
                       <h6>
                         {resultType == "sanity.imageAsset"
                           ? "Photos"
+                          : resultType == "sanity.fileAsset"
+                            ? "Videos"
                           : resultType == "person"
                             ? "People"
                             : resultType == "article"
@@ -287,6 +292,8 @@ export default function SearchClient({ type }) {
                                   />
                                 ) : resultType == 'person' ?
                                 <span><MdPerson size={16} className={styles.search__person_icon} /></span>
+                                : resultType == 'sanity.fileAsset' ?
+                                <span><MdPlayCircleOutline size={16} className={styles.search__person_icon} /></span>
                                 : (
                                   <></>
                                 )}

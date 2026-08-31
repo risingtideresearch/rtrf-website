@@ -1,5 +1,6 @@
 import {article} from './article'
 import {imageAsset} from './imageAsset'
+import {fileAsset} from './fileAsset'
 import {component} from './component'
 import { homepage } from './homepage'
 import {location} from './location'
@@ -18,4 +19,5 @@ export const schemaTypes = [
   systems,
   homepage,
   imageAsset,
+  fileAsset,
 ]

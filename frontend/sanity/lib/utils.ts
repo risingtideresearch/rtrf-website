@@ -2,6 +2,7 @@ import { createDataAttribute, CreateDataAttributeProps } from "next-sanity";
 import { dataset, projectId, studioUrl } from "./api";
 import {
   allPhotosQuery,
+  allVideosQuery,
   annotationsQuery,
   articlesQuery,
   assetWithNavigationQuery,
@@ -16,6 +17,8 @@ import {
   photoOrderQuery,
   systemNamesQuery,
   systemsQuery,
+  galleryVideosQuery,
+  videoWithNavigationQuery,
 } from "./queries";
 import { sanityFetch, sanityFetchStatic } from "./live";
 
@@ -137,6 +140,38 @@ export async function fetchPhotoOrder() {
 export async function fetchAssetWithNavigation(idPrefix: string) {
   const { data } = await sanityFetch({
     query: assetWithNavigationQuery(idPrefix),
+  });
+
+  return { data };
+}
+
+/**
+ *
+ * @returns
+ */
+export async function fetchVideosStatic() {
+  const { data } = await sanityFetchStatic({ query: allVideosQuery });
+
+  return { data };
+}
+
+/**
+ * Videos that belong in a system's photo gallery.
+ */
+export async function fetchVideos(section?: string) {
+  const isPreview = process.env.NEXT_PUBLIC_PREVIEW_SITE === "true";
+  const { data } = await sanityFetch({ query: galleryVideosQuery(section, isPreview) });
+
+  return { data };
+}
+
+/**
+ *
+ * @returns
+ */
+export async function fetchVideoWithNavigation(idPrefix: string) {
+  const { data } = await sanityFetch({
+    query: videoWithNavigationQuery(idPrefix),
   });
 
   return { data };

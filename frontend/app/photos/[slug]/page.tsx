@@ -1,4 +1,4 @@
-import { fetchPhotos, fetchPhotoOrder, fetchSystems, fetchSystemsStatic } from "@/sanity/lib/utils";
+import { fetchPhotos, fetchPhotoOrder, fetchSystems, fetchSystemsStatic, fetchVideos } from "@/sanity/lib/utils";
 import Navigation, { URLS } from "../../components/Navigation/Navigation";
 import PhotoGallery from "./../PhotoGallery";
 import MinimalTOC from "../../toc/MinimalTOC";
@@ -19,17 +19,19 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [photos, { data: orderData }, systems] = await Promise.all([
+  const [photos, videos, { data: orderData }, systems] = await Promise.all([
     fetchPhotos(slug),
+    fetchVideos(slug),
     fetchPhotoOrder(),
     fetchSystems(),
   ]);
 
+  // Story order first (photos and videos as they appear in each story), then everything else
   const orderedIds: string[] = [];
   const seen = new Set<string>();
   for (const system of orderData?.systems ?? []) {
     for (const article of system.articles ?? []) {
-      for (const ref of article.imageRefs ?? []) {
+      for (const ref of [...(article.imageRefs ?? []), ...(article.videoRefs ?? [])]) {
         if (ref && !seen.has(ref)) {
           seen.add(ref);
           orderedIds.push(ref);
@@ -39,7 +41,7 @@ export default async function Page({
   }
 
   const imageOrder = new Map(orderedIds.map((id, i) => [id, i]));
-  const sortedPhotos = [...photos.data].sort((a, b) => {
+  const sortedPhotos = [...photos.data, ...(videos.data ?? [])].sort((a, b) => {
     const ai = imageOrder.get(a._id) ?? Infinity;
     const bi = imageOrder.get(b._id) ?? Infinity;
     return ai - bi;

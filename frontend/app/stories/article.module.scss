@@ -178,6 +178,27 @@
   }
 }
 
+.inline_video {
+  max-width: 45rem;
+  margin: 3rem auto;
+
+  video {
+    max-height: 80vh;
+
+    @media screen and (max-width: 900px) {
+      max-height: 40rem;
+    }
+  }
+
+  figcaption a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .inline_image {
   max-width: 45rem;
   margin: 3rem auto;
