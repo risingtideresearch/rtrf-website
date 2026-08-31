@@ -2,7 +2,7 @@ import Gallery from "../components/Gallery";
 import { Image } from "../components/Image";
 import { VideoThumbnail } from "../components/VideoThumbnail";
 import { formatMonthYear } from "../utils";
-import { getVideoURL } from "../video/util";
+import { getVideoURL } from "../videos/util";
 
 interface Photo {
   _id: string;

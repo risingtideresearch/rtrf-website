@@ -4,14 +4,27 @@ import { BiSearch, BiX } from "react-icons/bi";
 import styles from "./search.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { getPhotoURL } from "@/app/photos/util";
-import { getVideoURL } from "@/app/video/util";
+import { getVideoURL } from "@/app/videos/util";
 import { MdPerson, MdPlayCircleOutline } from "react-icons/md";
 import { URLS } from "../Navigation/Navigation";
+
+type SearchResult = {
+  _type?: string;
+  _id?: string;
+  uuid?: string;
+  id?: string;
+  articleId?: string;
+  title?: string;
+  slug?: any;
+  thumbnailUrl?: string;
+  originalFilename?: string;
+  clean_filename?: string;
+};
 
 export default function SearchClient({ type }) {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -100,7 +113,7 @@ export default function SearchClient({ type }) {
     setSelectedIndex(-1);
   };
 
-  const getURL = (doc) => {
+  const getURL = (doc: SearchResult) => {
     switch (doc._type) {
       case "article":
         return `${URLS.STORIES}/${doc.slug.current}`;
@@ -118,14 +131,17 @@ export default function SearchClient({ type }) {
   };
 
   // Group results by type
-  const groupedResults = results.reduce((acc, result) => {
-    const type = result._type;
-    if (!acc[type]) {
-      acc[type] = [];
-    }
-    acc[type].push(result);
-    return acc;
-  }, {});
+  const groupedResults = results.reduce<Record<string, SearchResult[]>>(
+    (acc, result) => {
+      const type = result._type ?? "unknown";
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(result);
+      return acc;
+    },
+    {},
+  );
 
   // Get flat index for keyboard navigation
   const getFlatIndex = (type, indexInGroup) => {

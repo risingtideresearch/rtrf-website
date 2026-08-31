@@ -2,7 +2,9 @@
   position: relative;
   display: block;
   width: 100%;
-  background: var(--black);
+  // Shown until the first frame paints; black takes over once loaded so
+  // letterboxing (in fullscreen) stays neutral.
+  background: var(--ocean-fog-blue);
   line-height: 0;
 
   video {
@@ -10,6 +12,10 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  &--loaded {
+    background: var(--black);
   }
 
   &:fullscreen {

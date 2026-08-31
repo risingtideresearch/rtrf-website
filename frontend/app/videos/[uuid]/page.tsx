@@ -76,7 +76,7 @@ export default async function Page({
 
   return (
     <>
-      <Navigation type={"top-bar"} active={URLS.VIDEO} system={system?.slug} />
+      <Navigation type={"top-bar"} active={URLS.PHOTOS} system={system?.slug} />
       <VideoPage asset={current} next={next} prev={prev} />
     </>
   );

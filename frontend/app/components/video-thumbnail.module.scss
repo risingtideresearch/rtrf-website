@@ -4,7 +4,7 @@
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  background: var(--black);
+  background: var(--white);
 
   video {
     display: block;
@@ -28,7 +28,20 @@
   place-items: center;
   width: 1.75rem;
   height: 1.75rem;
-  border-radius: 50%;
+  padding: 0;
+  border: 1px solid var(--black);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.4);
   color: var(--black);
-  background: rgba(255, 255, 255, 0.85);
+
+  svg {
+    // Optically centres the triangle in the square, as in .big-play.
+    margin-left: 2px;
+    path {
+      fill: var(--black);
+    }
+  }
+
+  // Hover comes from the global button rule, since the badge is now its own
+  // control rather than part of the card's link.
 }

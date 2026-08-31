@@ -61,6 +61,7 @@ export function VideoPlayer({
   const [idle, setIdle] = useState(false);
   // Untouched videos read as a still image: big play button, nothing else.
   const [started, setStarted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const start = asset.startTime ?? 0;
   const end = asset.endTime ?? null;
@@ -91,6 +92,10 @@ export function VideoPlayer({
       setCurrentTime(video.currentTime);
     };
 
+    // loadeddata, not loadedmetadata: the placeholder is only covered once
+    // there is an actual frame to paint.
+    const onLoadedData = () => setLoaded(true);
+
     const onTimeUpdate = () => {
       if (end != null && video.currentTime >= end) {
         video.pause();
@@ -113,16 +118,19 @@ export function VideoPlayer({
 
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("durationchange", onLoadedMetadata);
+    video.addEventListener("loadeddata", onLoadedData);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("seeking", onSeeking);
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
     video.addEventListener("volumechange", onVolumeChange);
     if (video.readyState >= 1) onLoadedMetadata();
+    if (video.readyState >= 2) onLoadedData();
 
     return () => {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("durationchange", onLoadedMetadata);
+      video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("seeking", onSeeking);
       video.removeEventListener("play", onPlay);
@@ -239,6 +247,7 @@ export function VideoPlayer({
       ref={containerRef}
       className={[
         styles.player,
+        loaded ? styles["player--loaded"] : "",
         playing && idle ? styles["player--idle"] : "",
         className ?? "",
       ]

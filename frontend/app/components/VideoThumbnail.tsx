@@ -1,4 +1,7 @@
-import { MdPlayArrow } from "react-icons/md";
+"use client";
+
+import { useRef, useState } from "react";
+import { LiaPauseSolid, LiaPlaySolid } from "react-icons/lia";
 import styles from "./video-thumbnail.module.scss";
 
 interface VideoThumbnailProps {
@@ -8,29 +11,49 @@ interface VideoThumbnailProps {
   startTime?: number | null;
 }
 
-/**
- * Square, non-interactive first-frame preview of a video for gallery grids.
- * The `#t=` fragment makes browsers seek to (and paint) the trimmed start
- * instead of a possibly-black frame zero.
- */
 export function VideoThumbnail({ url, mimeType, title, startTime }: VideoThumbnailProps) {
-  const t = startTime && startTime > 0 ? startTime : 0.1;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const start = startTime && startTime > 0 ? startTime : 0.1;
+
+  const togglePlay = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) video.play();
+    else video.pause();
+  };
 
   return (
     <span className={styles.thumbnail} title={title}>
       <video
-        src={`${url}#t=${t}`}
+        ref={videoRef}
+        src={`${url}#t=${start}`}
         preload="metadata"
         muted
         playsInline
         tabIndex={-1}
         aria-hidden="true"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => {
+          const video = videoRef.current;
+          if (video) video.currentTime = start;
+        }}
       >
         <source src={url} type={mimeType || undefined} />
       </video>
-      <span className={styles.badge} aria-hidden="true">
-        <MdPlayArrow size={22} />
-      </span>
+      <button
+        type="button"
+        className={styles.badge}
+        onClick={togglePlay}
+        aria-label={`${playing ? "Pause" : "Play"}${title ? ` ${title}` : " video"}`}
+      >
+        {playing ? <LiaPauseSolid size={14} /> : <LiaPlaySolid size={14} />}
+      </button>
     </span>
   );
 }

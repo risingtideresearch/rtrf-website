@@ -1,5 +1,5 @@
 import { getPhotoURL } from "./photos/util";
-import { getVideoURL } from "./video/util";
+import { getVideoURL } from "./videos/util";
 
 /**
  * Photos and videos share one gallery sequence, so the /photos/image/[slug]
