@@ -5,6 +5,7 @@ import json
 import shutil
 import re
 import hashlib
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from pypdf import PdfReader
@@ -19,7 +20,9 @@ EXCLUDED_FILES = [
     "PROPULSION/shaft log section.pdf",
     "PROPULSION/rudder tube section.pdf",
     "PROPULSION/quarter inch fwd of shaft log.pdf",
-    "PROPULSION/quarter inch aft of shaft log.pdf"
+    "PROPULSION/quarter inch aft of shaft log.pdf",
+    "OUTFITTING & INTERIOR/FWD MAST/forward mast rev A sheet 4 of 4 perspective views HJN 20MAY26.pdf",
+    "OUTFITTING & INTERIOR/COMPANIONWAY HATCH/companionway hatch overview.pdf"
 ]
 
 MONTH_ABBR = {
@@ -38,6 +41,42 @@ SYSTEM_ORDER = [
     "water & heating systems",
     "outfitting & interior",
 ]
+
+HENRY_NOLAN  = {"slug": "henry-nolan", "name": "Henry Nolan"}
+ADAM_VERMEER = {"slug": "adam-james",  "name": "Adam Vermeer"}
+
+# Label for drawings that match no author rule (author is null in the manifest).
+UNATTRIBUTED = "unattributed"
+
+# Initials appearing as a standalone token in a filename -> author.
+# Overrides AUTHOR_PATHS, for folders holding more than one author's work.
+# Also stripped from clean_filename() for display.
+AUTHOR_INITIALS = {
+    "HJN": HENRY_NOLAN,
+}
+
+# Path prefix relative to frontend/public/drawings (case-insensitive) -> author.
+# Longest matching prefix wins; matches whole path segments, never substrings.
+# There is no default: a drawing matching nothing here gets author = None, which
+# surfaces as "unattributed" in the run summary rather than a silent misattribution.
+AUTHOR_PATHS = [
+    ("BODY",                    HENRY_NOLAN),
+    ("CONTROL",                 HENRY_NOLAN),
+    ("OUTFITTING & INTERIOR",   HENRY_NOLAN),
+    ("OVERVIEW",                HENRY_NOLAN),
+    ("POWER ARCHITECTURE",      HENRY_NOLAN),
+    ("PROPULSION",              HENRY_NOLAN),
+    ("SUPERSTRUCTURE",          HENRY_NOLAN),
+    ("WATER & HEATING SYSTEMS", HENRY_NOLAN),
+
+    # Carve-outs -- deeper prefix wins over the system-level rules above.
+    ("POWER ARCHITECTURE/battery dwgs", ADAM_VERMEER),
+    ("OUTFITTING & INTERIOR/stairs",    ADAM_VERMEER),
+]
+
+# Authors whose PDFs carry a CAD title block with a "TITLE:" field. Henry's Rhino
+# exports have no such block, so extraction is skipped for his drawings entirely.
+TITLE_BLOCK_AUTHOR_SLUGS = {"adam-james"}
 
 
 def sanitize_path(path):
@@ -59,8 +98,128 @@ def clean_filename(name):
     clean = re.sub(r'\d{1,2}-\d{1,2}-\d{2}', '', clean)
     clean = re.sub(r'\d{1,2}(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\d{2,4}', '', clean, flags=re.IGNORECASE)
     clean = re.sub(r'\s*\.png', '', clean)
-    clean = clean.replace(" HJN", "")
+    for initials in AUTHOR_INITIALS:
+        clean = clean.replace(f" {initials}", "")
     return clean.strip()
+
+
+def drawings_relative_path(path):
+    """
+    Path relative to frontend/public/drawings, forward-slashed.
+
+    Accepts either a source PDF path or a rendered PNG path under output_images/,
+    so author rules can be written against the source folder layout either way.
+    """
+    p = sanitize_path(str(path)).replace('\\', '/')
+    marker = '/drawings/'
+    idx = p.find(marker)
+    if idx != -1:
+        p = p[idx + len(marker):]
+    if p.startswith('output_images/'):
+        p = p[len('output_images/'):]
+    return p.strip('/')
+
+
+def author_from_initials(path):
+    """Author from initials appearing as a standalone token in the filename, or None."""
+    stem = os.path.splitext(os.path.basename(str(path)))[0]
+    for initials, author in AUTHOR_INITIALS.items():
+        if re.search(rf'(?<![A-Za-z0-9]){re.escape(initials)}(?![A-Za-z0-9])', stem):
+            return author
+    return None
+
+
+def author_from_path(path):
+    """
+    Author from the longest matching AUTHOR_PATHS prefix, or None.
+
+    Matches whole path segments only, so "OUTFITTING & INTERIOR/stairs" never
+    matches "OUTFITTING & INTERIOR/STBD STAIRLADDER". Longest match wins, which is
+    what lets a subfolder carve out of the system folder that contains it.
+    """
+    rel = drawings_relative_path(path).lower()
+    best = None
+    for prefix, author in AUTHOR_PATHS:
+        p = prefix.strip('/').lower()
+        if rel == p or rel.startswith(p + '/'):
+            if best is None or len(p) > best[0]:
+                best = (len(p), author)
+    return best[1] if best else None
+
+
+def get_author(pdf_path):
+    """
+    Resolve a drawing's author: filename initials first, then path rules.
+
+    Returns None when nothing matches -- there is no default author. Unattributed
+    drawings are reported at the end of the run so a new folder missing a rule is
+    visible rather than silently credited to whoever the default happened to be.
+    """
+    author = author_from_initials(pdf_path) or author_from_path(pdf_path)
+    return dict(author) if author else None
+
+
+BBOX_WORD = re.compile(
+    r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">([^<]*)</word>'
+)
+
+
+def _bbox_words(pdf_path):
+    """Page-1 words with coordinates, via poppler's pdftotext (already required by pdf2image)."""
+    try:
+        result = subprocess.run(
+            ["pdftotext", "-bbox", "-f", "1", "-l", "1", pdf_path, "-"],
+            capture_output=True, text=True, timeout=30,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return []
+    return [
+        (float(x0), float(y0), float(x1), float(y1), text)
+        for x0, y0, x1, y1, text in BBOX_WORD.findall(result.stdout)
+    ]
+
+
+def extract_title_block(pdf_path):
+    """
+    The drawing's title from the "TITLE:" field of a CAD title block, or None.
+
+    The title is set in a noticeably larger font than the surrounding boilerplate,
+    on its own text run just right of the label. Matching that run by font height
+    is what separates it from the "UNLESS OTHERWISE SPECIFIED" block sharing the
+    same corner. Drawings whose title block was exported as vector outlines have
+    no text to find, so None is normal and the caller falls back to the filename.
+    """
+    words = _bbox_words(pdf_path)
+    label = next((w for w in words if w[4].strip().upper().rstrip(':') == "TITLE"), None)
+    if not label:
+        return None
+
+    lx0, ly0, _lx1, ly1, _ = label
+    label_height = ly1 - ly0
+    candidates = [
+        w for w in words
+        if w[2] > lx0
+        and abs(w[1] - ly0) < label_height * 4
+        and (w[3] - w[1]) > label_height * 1.2
+    ]
+    if not candidates:
+        return None
+
+    runs = {}
+    for w in candidates:
+        runs.setdefault((round(w[1], 1), round(w[3], 1)), []).append(w)
+    run = max(runs.values(), key=lambda words: words[0][3] - words[0][1])
+    run.sort(key=lambda w: w[0])
+
+    title = " ".join(w[4] for w in run).strip()
+    return title or None
+
+
+def get_title(pdf_path, author):
+    """Title block text for authors whose drawings have one, else None."""
+    if not author or author["slug"] not in TITLE_BLOCK_AUTHOR_SLUGS:
+        return None
+    return extract_title_block(pdf_path)
 
 def rename_files_with_hash(root_directory):
     """
@@ -283,6 +442,8 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
             group = sanitize_path(expected[0].split('/')[6]) if len(expected[0].split('/')) > 6 else "unknown"
             if len(group) < 2:
                 group = "unknown"
+            author = get_author(pdf_path)
+            title = get_title(pdf_path, author)
             file_info_list = []
             for i, out_f in enumerate(expected):
                 img = Image.open(out_f)
@@ -293,6 +454,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                 file_info_list.append({
                     "filename": os.path.basename(out_f),
                     "clean_filename": clean_filename(os.path.basename(out_f)),
+                    "title": title,
                     "uuid": uuid,
                     "rel_path": sanitize_path(os.path.relpath(out_f).replace('../frontend/public', '')),
                     "group": group,
@@ -307,7 +469,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                     "height": height,
                     "file_size_bytes": os.path.getsize(out_f),
                     "date_info": date_info,
-                    "author": {"slug": "henry-nolan", "name": "Henry Nolan"},
+                    "author": dict(author) if author else None,
                     "extracted_text": "",
                 })
             print(f"  (unchanged, skipped)")
@@ -335,8 +497,11 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
         # Total pages in this PDF
         total_pages = len(images)
 
+        author = get_author(pdf_path)
+        title = get_title(pdf_path, author)
+
         file_info_list = []
-        
+
         # Save each image as a separate PNG file
         for i, image in enumerate(images):
             page_suffix = f" page {i+1}" if total_pages > 1 else ""
@@ -360,9 +525,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
             # Sanitize all paths in file info
             rel_path = sanitize_path(os.path.relpath(output_filename).replace('../frontend/public', ''))
             source_pdf_full_path = sanitize_path(os.path.relpath(pdf_path))
-            
-            author = {"slug": "henry-nolan", "name": "Henry Nolan"}
-            
+
             # Normalize group for sorting
             normalized_group = normalize_group_name(group)
             
@@ -370,6 +533,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
             file_info = {
                 "filename": os.path.basename(output_filename),
                 "clean_filename": clean_filename(os.path.basename(output_filename)),
+                "title": title,
                 "uuid": uuid,
                 "rel_path": rel_path,
                 "group": group,
@@ -384,7 +548,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                 "height": height,
                 "file_size_bytes": file_size,
                 "date_info": date_info,
-                "author": author,
+                "author": dict(author) if author else None,
                 "extracted_text": "" #full_text,
             }
             
@@ -498,9 +662,40 @@ def sort_files_by_system_and_date(all_files_info):
         file_info["id"] = get_id(system_code, system_counters[system_code])
         
         date_str = file_info['date_info']['formatted'] if file_info['date_info'] else 'No date'
-        print(f"{file_info['id']:8} | {normalized_group:25} | {date_str:20} | {file_info['uuid']}")
-    
+        author_str = file_info['author']['name'] if file_info['author'] else UNATTRIBUTED
+        print(f"{file_info['id']:8} | {normalized_group:25} | {date_str:20} | {author_str:15} | {file_info['uuid']}")
+
     return final_sorted
+
+
+def count_files_by_author(all_files_info):
+    """Count manifest entries per author name, with unattributed drawings counted explicitly."""
+    counts = {}
+    for info in all_files_info:
+        name = info["author"]["name"] if info["author"] else UNATTRIBUTED
+        counts[name] = counts.get(name, 0) + 1
+    return counts
+
+
+def report_authors(all_files_info):
+    """
+    Print the per-author breakdown, listing any unattributed drawings.
+
+    With no default author, this is what tells you a folder is missing from
+    AUTHOR_PATHS -- it should read "unattributed: 0" on a healthy run.
+    """
+    counts = count_files_by_author(all_files_info)
+
+    print("\n=== Drawings by Author ===")
+    for name in sorted(counts, key=lambda n: (n == UNATTRIBUTED, n)):
+        print(f"{name:20} | {counts[name]}")
+
+    orphans = [info for info in all_files_info if not info["author"]]
+    if orphans:
+        print(f"\n  WARNING: {len(orphans)} drawing(s) match no rule in AUTHOR_PATHS:")
+        for info in orphans:
+            print(f"    {drawings_relative_path(info['source_pdf_full_path'])}")
+        print("  Add a path rule for these, or they will render with no author byline.")
 
 def cleanup_source_directory(root_directory):
     """
@@ -614,7 +809,9 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=False):
     
     # Sort files by system and date, then assign IDs
     all_files_info = sort_files_by_system_and_date(all_files_info)
-    
+
+    report_authors(all_files_info)
+
     # Generate manifest file
     if all_files_info:
         manifest_data = {
@@ -642,7 +839,8 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=False):
                 "files_by_system": {
                     system: sum(1 for info in all_files_info if info["normalized_group"] == system)
                     for system in SYSTEM_ORDER
-                }
+                },
+                "files_by_author": count_files_by_author(all_files_info),
             }
         }
         

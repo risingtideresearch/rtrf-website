@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 import { ArticleRow } from "../components/ArticleRow";
 import styles from "./people.module.scss";
 import { getDrawingsManifest } from "../manifest-util";
+import { getSlugFromDrawingGroup } from "../drawings/util";
 import { URLS } from "../components/Navigation/Navigation";
 import { Image } from "../components/Image";
 import { LiaArrowUpSolid } from "react-icons/lia";
@@ -33,8 +34,15 @@ export default async function Page() {
   ]);
   const drawings = getDrawingsManifest();
 
-  const getDrawingCount = (slug: string) =>
-    drawings.files.filter((file) => file.author?.slug === slug).length;
+  const getDrawings = (slug: string) =>
+    drawings.files.filter((file) => file.author?.slug === slug);
+
+  const getDrawingsHref = (files: typeof drawings.files) => {
+    const group = files[0]?.group?.toLowerCase();
+    return group
+      ? `${URLS.DRAWINGS}/${getSlugFromDrawingGroup(group)}`
+      : URLS.DRAWINGS;
+  };
 
   const sorted = sortPeople(people.data);
 
@@ -48,7 +56,7 @@ export default async function Page() {
         {sorted.map((person: any, index: number) => {
           const authored: any[] = person.articlesAsAuthor;
           const mentioned: any[] = person.articlesMentioned;
-          const drawingCount = getDrawingCount(person.slug?.current);
+          const personDrawings = getDrawings(person.slug?.current);
 
           const sortedArticles = (list: any[]) =>
             [...list].sort((a, b) =>
@@ -121,12 +129,12 @@ export default async function Page() {
                     compact
                   />
                 ))}
-                {drawingCount > 0 && (
+                {personDrawings.length > 0 && (
                   <ArticleRow
                     articleId={" "}
-                    href={URLS.DRAWINGS}
+                    href={getDrawingsHref(personDrawings)}
                     title="Drawings"
-                    date={String(drawingCount)}
+                    date={String(personDrawings.length)}
                     compact
                   />
                 )}

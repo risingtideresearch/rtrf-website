@@ -2,6 +2,7 @@ export type Drawing = {
   id: string;
   filename: string;
   clean_filename: string;
+  title?: string | null;
   uuid: string;
   rel_path: string;
   source_pdf_full_path: string;

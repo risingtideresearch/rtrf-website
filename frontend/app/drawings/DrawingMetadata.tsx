@@ -1,7 +1,7 @@
 import styles from "./../stories/article.module.scss";
 import { formatDate } from "../utils";
 import { LiaDownloadSolid } from "react-icons/lia";
-import { getSlugFromDrawingGroup } from "./util";
+import { getSlugFromDrawingGroup, getDrawingName } from "./util";
 import { Drawing } from "./types";
 import RelatedStories from "./RelatedStories";
 import { Article } from "@/sanity/sanity.types";
@@ -17,13 +17,17 @@ export default function DrawingMetadata({
     <div className={`${styles.metadata}`}>
       <dl className={styles.metadata__table}>
         <dt>Name</dt>
-        <dd className={styles.metadata__filename}>{drawing.clean_filename}</dd>
+        <dd className={styles.metadata__filename}>{getDrawingName(drawing)}</dd>
         <dt>ID</dt>
         <dd>{drawing.id}</dd>
-        <dt>Date</dt>
-        <dd>
-          {drawing.date_info ? formatDate(drawing.date_info.date) : "<no date>"}
-        </dd>
+        {drawing.date_info ? (
+          <>
+            <dt>Date</dt>
+            <dd>{formatDate(drawing.date_info.date)}</dd>
+          </>
+        ) : (
+          <></>
+        )}
         {drawing.author ? (
           <>
             <dt>Author</dt>
