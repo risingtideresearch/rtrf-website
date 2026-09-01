@@ -222,14 +222,14 @@ export default async function Page() {
             </div>
             <div className={styles["home__section"]}>
               <h4>
-                <Link className="icon-link" href={URLS.ANATOMY}>
+                <Link className="icon-link" href={URLS.ANATOMY + '/overview'}>
                   Anatomy
                   <LiaArrowRightSolid size={18} />
                 </Link>
               </h4>
               {renderText(homepage.data.sectionDescriptions.anatomy)}
               <Link
-                href={URLS.ANATOMY}
+                href={URLS.ANATOMY + '/overview'}
                 className={`bg--grid ${styles["home__anatomy-link"]}`}
               >
                 <div
@@ -262,7 +262,7 @@ export default async function Page() {
             </div>
             <div className={styles["home__section"]}>
               <h4>
-                <Link className="icon-link" href={URLS.DRAWINGS}>
+                <Link className="icon-link" href={URLS.DRAWINGS + '/overview'}>
                   Drawings
                   <LiaArrowRightSolid size={18} />
                 </Link>
@@ -277,7 +277,7 @@ export default async function Page() {
             </div>
             <div className={styles["home__section"]}>
               <h4>
-                <Link className="icon-link" href={URLS.PHOTOS}>
+                <Link className="icon-link" href={URLS.PHOTOS + '/overview'}>
                   Photos
                   <LiaArrowRightSolid size={18} />
                 </Link>
