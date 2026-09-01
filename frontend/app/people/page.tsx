@@ -3,6 +3,7 @@ import {
   fetchArticleIdMap,
   fetchPeople,
   fetchPeoplePage,
+  fetchSystems,
 } from "@/sanity/lib/utils";
 import { sortPeople, formatDate } from "../utils";
 
@@ -27,21 +28,42 @@ import { Image } from "../components/Image";
 import { LiaArrowUpSolid } from "react-icons/lia";
 
 export default async function Page() {
-  const [people, peoplePage, articleIdMap] = await Promise.all([
+  const [people, peoplePage, articleIdMap, systems] = await Promise.all([
     fetchPeople(),
     fetchPeoplePage(),
     fetchArticleIdMap(),
+    fetchSystems(),
   ]);
   const drawings = getDrawingsManifest();
 
-  const getDrawings = (slug: string) =>
-    drawings.files.filter((file) => file.author?.slug === slug);
+  // system slug -> label and 1-based number, matching the drawings TOC
+  const systemsBySlug = new Map<string, { name: string; index: number }>(
+    (systems.data?.systems ?? []).map((system: any, i: number) => [
+      system.slug,
+      { name: system.name, index: i + 1 },
+    ]),
+  );
 
-  const getDrawingsHref = (files: typeof drawings.files) => {
-    const group = files[0]?.group?.toLowerCase();
-    return group
-      ? `${URLS.DRAWINGS}/${getSlugFromDrawingGroup(group)}`
-      : URLS.DRAWINGS;
+  /** A person's drawings, broken out by the system they belong to. */
+  const getDrawingSystems = (slug?: string) => {
+    if (!slug) return [];
+
+    const counts = new Map<string, number>();
+    drawings.files.forEach((file) => {
+      if (file.author?.slug !== slug || !file.group) return;
+      const systemSlug = getSlugFromDrawingGroup(file.group.toLowerCase());
+      counts.set(systemSlug, (counts.get(systemSlug) ?? 0) + 1);
+    });
+
+    return [...counts]
+      .map(([systemSlug, count]) => ({
+        slug: systemSlug,
+        count,
+        // rendered in the site's small all-caps treatment, like the drawings TOC
+        name: systemsBySlug.get(systemSlug)?.name ?? systemSlug.replace(/-/g, " "),
+        index: systemsBySlug.get(systemSlug)?.index ?? Number.MAX_SAFE_INTEGER,
+      }))
+      .sort((a, b) => a.index - b.index);
   };
 
   const sorted = sortPeople(people.data);
@@ -56,7 +78,7 @@ export default async function Page() {
         {sorted.map((person: any, index: number) => {
           const authored: any[] = person.articlesAsAuthor;
           const mentioned: any[] = person.articlesMentioned;
-          const personDrawings = getDrawings(person.slug?.current);
+          const drawingSystems = getDrawingSystems(person.slug?.current);
 
           const sortedArticles = (list: any[]) =>
             [...list].sort((a, b) =>
@@ -117,26 +139,36 @@ export default async function Page() {
                 )}
               </div>
               <div className={styles.contributions}>
-                {articles.map((article: any) => (
-                  <ArticleRow
-                    key={article._id}
-                    articleId={articleIdMap[article._id]}
-                    href={`/stories/${article.slug}`}
-                    title={article.title}
-                    date={formatDate(
-                      article.effectiveDate ?? article._updatedAt,
-                    )}
-                    compact
-                  />
-                ))}
-                {personDrawings.length > 0 && (
-                  <ArticleRow
-                    articleId={" "}
-                    href={getDrawingsHref(personDrawings)}
-                    title="Drawings"
-                    date={String(personDrawings.length)}
-                    compact
-                  />
+                {articles.length > 0 && (
+                  <div className={styles.group}>
+                    <h6 className={styles.group_label}>Stories</h6>
+                    {articles.map((article: any) => (
+                      <ArticleRow
+                        key={article._id}
+                        articleId={articleIdMap[article._id]}
+                        href={`/stories/${article.slug}`}
+                        title={article.title}
+                        date={formatDate(
+                          article.effectiveDate ?? article._updatedAt,
+                        )}
+                        compact
+                      />
+                    ))}
+                  </div>
+                )}
+                {drawingSystems.length > 0 && (
+                  <div className={`${styles.group} ${styles.drawings}`}>
+                    <h6 className={styles.group_label}>Drawings</h6>
+                    {drawingSystems.map((system) => (
+                      <ArticleRow
+                        key={system.slug}
+                        href={`${URLS.DRAWINGS}/${system.slug}`}
+                        title={system.name}
+                        date={String(system.count)}
+                        compact
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
             </section>

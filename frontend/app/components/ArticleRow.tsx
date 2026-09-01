@@ -1,7 +1,7 @@
 import styles from "./article-row.module.scss";
 
 interface ArticleRowProps {
-  articleId: string;
+  articleId?: string;
   href: string;
   title: string;
   date?: React.ReactNode;
@@ -26,7 +26,7 @@ export function ArticleRow({
       <div
         className={`${styles["article-header"]}${compact ? ` ${styles["article-header--compact"]}` : ""}`}
       >
-        <h6>{articleId}</h6>
+        <h6>{articleId || null}</h6>
         <a className={styles["article-title"]}  href={href}>
           <p>
             <span>{title}</span>
