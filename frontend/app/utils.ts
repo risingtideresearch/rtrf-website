@@ -40,6 +40,12 @@ export function toISOYearMonth(date: string | undefined | null): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
+export function formatFileSize(bytes: number | null | undefined): string {
+  if (!bytes || bytes < 0) return "";
+  const mb = bytes / 1024 / 1024;
+  return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
+}
+
 export function formatDate(date: Date | string) {
   let d;
 

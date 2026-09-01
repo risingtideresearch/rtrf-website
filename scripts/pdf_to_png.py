@@ -230,8 +230,12 @@ def get_title(title_block, png_filename):
     carries one, otherwise the filename with dates, initials and "Solander 38"
     stripped. Falling back per page rather than per PDF keeps the " page 2" suffix
     on multi-page drawings that have no title block.
+
+    Only the first character is upper-cased; the rest is left alone so existing
+    capitalisation survives ("4 Module Battery Crate", "PRELIM battery component").
     """
-    return title_block or clean_filename(png_filename)
+    title = title_block or clean_filename(png_filename)
+    return title[:1].upper() + title[1:] if title else title
 
 def rename_files_with_hash(root_directory):
     """
@@ -471,6 +475,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                     "group": group,
                     "system_index": get_system_index(group),
                     "source_pdf_full_path": sanitize_path(os.path.relpath(pdf_path)),
+                    "source_pdf_size_bytes": os.path.getsize(pdf_path),
                     "total_pages_in_pdf": n_pages,
                     "page_set_label": f"{i + 1} of {n_pages}",
                     "width": width,
@@ -543,6 +548,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                 "group": group,
                 "system_index": get_system_index(group),  # For sorting
                 "source_pdf_full_path": source_pdf_full_path,
+                "source_pdf_size_bytes": os.path.getsize(pdf_path),
                 "total_pages_in_pdf": total_pages,
                 "page_set_label": f"{i + 1} of {total_pages}",
                 "width": width,

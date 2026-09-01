@@ -1,5 +1,5 @@
 import styles from "./../stories/article.module.scss";
-import { formatDate } from "../utils";
+import { formatDate, formatFileSize } from "../utils";
 import { LiaDownloadSolid } from "react-icons/lia";
 import { getSlugFromDrawingGroup } from "./util";
 import { Drawing } from "./types";
@@ -63,7 +63,12 @@ export default function DrawingMetadata({
               )
             }
           >
-            <span>PDF</span>
+            <span>
+              PDF
+              {drawing.source_pdf_size_bytes
+                ? ` (${formatFileSize(drawing.source_pdf_size_bytes)})`
+                : ""}
+            </span>
             <LiaDownloadSolid size={16} />
           </a>
         </dd>

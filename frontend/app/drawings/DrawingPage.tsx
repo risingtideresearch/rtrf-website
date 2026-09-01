@@ -10,7 +10,7 @@ export function DrawingPage({ asset, next, prev, drawingsArticleDictionary }) {
 
   return (
     <>
-      <SubNav prev={prev} next={next} urlPrefix={`${URLS.DRAWINGS}/file`} />
+      <SubNav prev={prev} next={next} urlPrefix={`${URLS.DRAWINGS}/file`} showTitles={false} />
       <div className="section--two-col detail-page">
         <div>
           <div style={{ position: "sticky", top: "3rem" }}>

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const current = data.allImages.find((img: { _id: string }) => img._id.startsWith(idPrefix));
 
   return {
-    title: `${current.title || current.originalFilename} | | Solander 38`,
+    title: `${current.title || current.originalFilename} | Solander 38`,
     description: `${current.description || `Photo of ${current.title}`}`,
     openGraph: {
       type: 'article',

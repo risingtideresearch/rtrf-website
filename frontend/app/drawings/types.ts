@@ -5,6 +5,7 @@ export type Drawing = {
   uuid: string;
   rel_path: string;
   source_pdf_full_path: string;
+  source_pdf_size_bytes: number;
   height: number;
   width: number;
   group: string;
