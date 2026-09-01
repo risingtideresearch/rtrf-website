@@ -17,7 +17,7 @@ import { DrawingCard } from "./drawings/DrawingCard";
 import { PhotoImage } from "./components/PhotoImage";
 import Image from "next/image";
 import { Drawing } from "./drawings/types";
-import { getDrawingsManifest } from "./manifest-util";
+import { getDrawingsManifest, getHomepageStills } from "./manifest-util";
 import Link from "next/link";
 import NewsletterForm from "./components/NewsletterForm";
 import { LiaArrowRightSolid, LiaArrowUpSolid } from "react-icons/lia";
@@ -97,6 +97,20 @@ export default async function Page() {
     fetchArticleIdMap(),
     fetchFirstArticle(),
   ]);
+
+  const anatomyStills = getHomepageStills();
+
+  const HOLD = 4;
+  const FADE = 1;
+  const crossfade = anatomyStills.length * HOLD;
+  const at = (seconds: number) => `${((seconds / crossfade) * 100).toFixed(3)}%`;
+  const crossfadeKeyframes = `@keyframes anatomy-crossfade {
+    0% { opacity: 0 }
+    ${at(FADE)} { opacity: 1 }
+    ${at(HOLD)} { opacity: 1 }
+    ${at(HOLD + FADE)} { opacity: 0 }
+    100% { opacity: 0 }
+  }`;
 
   const featuredDrawing = getDrawingsManifest().files.find(
     (f) => f.uuid === homepage.data.drawing,
@@ -218,52 +232,31 @@ export default async function Page() {
                 href={URLS.ANATOMY}
                 className={`bg--grid ${styles["home__anatomy-link"]}`}
               >
-                <div className={styles["anatomy-crossfade"]}>
-                  <Image
-                    fill
-                    priority
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-overview.png"
-                    alt="Solander 38 3D model, overview"
-                  />
-
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-superstructure.png"
-                    alt="Solander 38 3D model, superstructure"
-                  />
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-body.png"
-                    alt="Solander 38 3D model, body"
-                  />
-
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-cross-section.png"
-                    alt="Solander 38 3D model, cross-section"
-                  />
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-soles-and-bulkheads.png"
-                    alt="Solander 38 3D model, soles and bulkheads"
-                  />
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-propulsion.png"
-                    alt="Solander 38 3D model, propulsion"
-                  />
-                  <Image
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                    src="/homepage/solander-38-steering.png"
-                    alt="Solander 38 3D model, steering"
-                  />
+                <div
+                  className={styles["anatomy-crossfade"]}
+                  style={{
+                    aspectRatio: `${anatomyStills[0].width} / ${anatomyStills[0].height}`,
+                  }}
+                >
+                  <style>{crossfadeKeyframes}</style>
+                  {anatomyStills.map((still, i) => (
+                    <Image
+                      key={still.name}
+                      fill
+                      priority={i === 0}
+                      sizes="(max-width: 900px) 100vw, (max-width: 94rem) calc(100vw - 21rem), 73rem"
+                      src={still.src}
+                      alt={still.alt}
+                      style={{
+                        animationName: "anatomy-crossfade",
+                        animationDuration: `${crossfade}s`,
+                        animationTimingFunction: "linear",
+                        animationIterationCount: "infinite",
+                        animationFillMode: "backwards",
+                        animationDelay: `${i * HOLD - FADE}s`,
+                      }}
+                    />
+                  ))}
                 </div>
               </Link>
             </div>

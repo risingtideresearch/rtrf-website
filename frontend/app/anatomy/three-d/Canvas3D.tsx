@@ -20,6 +20,7 @@ import HoverDisplay from "../HoverDisplay";
 import { ControlSettings } from "../Anatomy";
 import { GizmoViewcube } from "./GizmoViewcube";
 import { Component } from "@/sanity/sanity.types";
+import { CaptureParams } from "../capture";
 import styles from "./canvas3d.module.scss";
 
 export type ClippingValues = { value: [number, number]; axis: "x" | "y" | "z" };
@@ -39,6 +40,11 @@ type Canvas3DProps = {
   slug?: string;
   // use for article models
   interaction?: "all" | "limited" | "none";
+  // set by ?capture=1 — pins the canvas size and exposes the window hooks
+  capture?: CaptureParams | null;
+  // frame the camera on this box rather than the visible layers, so every
+  // still places and sizes the vessel identically
+  frameBox?: Box3 | null;
 };
 
 function CanvasCaptureHelper({
@@ -81,6 +87,47 @@ function CanvasCaptureHelper({
   return null;
 }
 
+/**
+ * Smallest distance along `direction` at which every corner of `box` still
+ * projects inside the frustum, so the subject fills the frame whatever its
+ * proportions.
+ */
+function fitDistanceForBox(
+  box: Box3,
+  center: Vector3,
+  direction: Vector3,
+  fov: number,
+  aspect: number,
+) {
+  const tanV = Math.tan(fov / 2);
+  const tanH = tanV * aspect;
+
+  const forward = direction.clone().negate();
+  const right = new Vector3()
+    .crossVectors(forward, new Vector3(0, 1, 0))
+    .normalize();
+  const up = new Vector3().crossVectors(right, forward).normalize();
+
+  const corner = new Vector3();
+  let distance = 0;
+
+  for (const x of [box.min.x, box.max.x]) {
+    for (const y of [box.min.y, box.max.y]) {
+      for (const z of [box.min.z, box.max.z]) {
+        corner.set(x, y, z).sub(center);
+        const depth = corner.dot(forward);
+        distance = Math.max(
+          distance,
+          Math.abs(corner.dot(right)) / tanH - depth,
+          Math.abs(corner.dot(up)) / tanV - depth,
+        );
+      }
+    }
+  }
+
+  return distance;
+}
+
 const CAMERA_INITIAL_POSITION = [0, 0, 0] as const;
 const CAMERA_FOV = 30;
 const LIGHT_POSITIONS: { pos: Vector3; intensity: number }[] = [
@@ -103,6 +150,8 @@ export function Canvas3D({
   componentParts,
   loaded,
   slug,
+  capture = null,
+  frameBox = null,
 }: Canvas3DProps) {
   const groupRef = useRef<Group>(null);
   const cameraRef = useRef<PerspectiveCamera>(null);
@@ -129,8 +178,9 @@ export function Canvas3D({
   const tempSize = useRef(new Vector3());
   const tempDirection = useRef(new Vector3());
   const tempNewPos = useRef(new Vector3());
-  const CAMERA_DIRECTION =
-    interaction == "none"
+  const CAMERA_DIRECTION = capture?.cam
+    ? new Vector3(...capture.cam)
+    : interaction == "none"
       ? new Vector3(0.1, 0.1, 0.5)
       : new Vector3(0.5, 0.25, 0.625);
 
@@ -183,7 +233,11 @@ export function Canvas3D({
       return;
     }
 
-    tempBox.current.setFromObject(groupRef.current);
+    if (frameBox) {
+      tempBox.current.copy(frameBox);
+    } else {
+      tempBox.current.setFromObject(groupRef.current);
+    }
     const center = tempBox.current.getCenter(tempCenter.current);
     // adjust visual center
     center.y -= 0.5;
@@ -196,16 +250,32 @@ export function Canvas3D({
 
     tempDirection.current.copy(CAMERA_DIRECTION).normalize();
 
-    const boundingSphereRadius =
-      Math.sqrt(size.x * size.x + size.y * size.y + size.z * size.z) / 2;
+    let baseDistance: number;
+    let fitMultiplier: number;
 
-    const effectiveFov =
-      aspect < 1 ? 2 * Math.atan(Math.tan(fov / 2) * aspect) : fov;
+    if (capture) {
+      // A bounding sphere leaves a different amount of slack per layer set, so
+      // stills would need a different zoom each. Fit the box corners instead.
+      baseDistance = fitDistanceForBox(
+        tempBox.current,
+        center,
+        tempDirection.current,
+        fov,
+        aspect,
+      );
+      fitMultiplier = 1.02;
+    } else {
+      const boundingSphereRadius =
+        Math.sqrt(size.x * size.x + size.y * size.y + size.z * size.z) / 2;
 
-    const baseDistance = boundingSphereRadius / Math.sin(effectiveFov / 2);
+      const effectiveFov =
+        aspect < 1 ? 2 * Math.atan(Math.tan(fov / 2) * aspect) : fov;
 
-    const FIT_DISTANCE_MULTIPLIER = 0.95;
-    const fitDistance = baseDistance * FIT_DISTANCE_MULTIPLIER;
+      baseDistance = boundingSphereRadius / Math.sin(effectiveFov / 2);
+      fitMultiplier = 0.95;
+    }
+
+    const fitDistance = (baseDistance * fitMultiplier) / (capture?.zoom ?? 1);
 
     const newPos = tempNewPos.current
       .copy(center)
@@ -217,7 +287,7 @@ export function Canvas3D({
     controlsRef.current.update();
 
     setCentered(true);
-  }, [interaction]);
+  }, [interaction, capture, frameBox]);
 
   useEffect(() => {
     setLockedAt(null);
@@ -280,8 +350,67 @@ export function Canvas3D({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [interaction, slug]);
 
+  // Capture mode — see capture.ts. Exposes the same renderer readback the
+  // Cmd+S shortcut uses, plus a readiness flag for headless drivers.
+  useEffect(() => {
+    if (!capture) return;
+    const w = window as any;
+    w.__anatomyCapture = () => captureRef.current?.() ?? null;
+    return () => {
+      delete w.__anatomyCapture;
+    };
+  }, [capture]);
+
+  const captureReady =
+    !!capture &&
+    centered &&
+    filteredLayers.length > 0 &&
+    modelsLoaded.size >= filteredLayers.length;
+
+  useEffect(() => {
+    if (!capture) return;
+    const w = window as any;
+    if (!captureReady) {
+      w.__anatomyReady = false;
+      return;
+    }
+    // let a few frames land so environment maps and materials settle
+    let frames = 0;
+    let raf = requestAnimationFrame(function tick() {
+      if ((frames += 1) >= 10) {
+        w.__anatomyReady = true;
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [capture, captureReady]);
+
+  const captureSize = capture
+    ? {
+        width: Math.round(capture.width / capture.dpr),
+        height: Math.round(capture.height / capture.dpr),
+      }
+    : null;
+
   return (
-    <div style={{ height: height }} className={styles.container}>
+    <div
+      style={
+        captureSize
+          ? {
+              ...captureSize,
+              position: "fixed",
+              top: 0,
+              left: 0,
+              zIndex: 9999,
+              overflow: "hidden",
+              background: "transparent",
+            }
+          : { height: height }
+      }
+      className={styles.container}
+      suppressHydrationWarning
+    >
       <div className={`${styles["scroll-edge"]} ${styles["scroll-edge--left"]}`} />
       <div className={`${styles["scroll-edge"]} ${styles["scroll-edge--right"]}`} />
       <div className={styles["loading-overlay"]} data-mounted={!centered || undefined}>
@@ -296,12 +425,14 @@ export function Canvas3D({
         </div>
       </div>
       <div
-        style={{ height: height }}
+        style={{ height: captureSize ? "100%" : height }}
         className={styles["canvas-wrapper"]}
         data-mounted={centered || undefined}
+        suppressHydrationWarning
       >
         <Canvas
           gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
+          dpr={capture ? capture.dpr : undefined}
           camera={{ position: CAMERA_INITIAL_POSITION, fov: CAMERA_FOV }}
           onCreated={handleCanvasCreated}
           onPointerEnter={() => setAutoRotate(false)}

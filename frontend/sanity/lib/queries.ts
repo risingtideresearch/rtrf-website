@@ -605,7 +605,7 @@ export const allPhotosQuery = (system?: string, isPreview = false) => {
     ? ` || ("${system}" in coalesce(opt.media.tags[]->name.current, []) && count(${articleFilterNoLive}) == 0)`
     : ` || (count(opt.media.tags) > 0 && count(${articleFilterNoLive}) == 0 && count(*[_type == "homepage" && references(^._id)]) == 0)`;
 
-  return `*[_type == "sanity.imageAsset" && (count(${articleFilter}) > 0${taggedNoStoryCondition}) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))] {
+  return `*[_type == "sanity.imageAsset" && (count(${articleFilter}) > 0${taggedNoStoryCondition}) && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))] | order(coalesce(date, metadata.exif.DateTimeOriginal, _createdAt) asc) {
   _id,
   url,
   originalFilename,
@@ -631,7 +631,7 @@ export const assetWithNavigationQuery = (idPrefix?: string) => {
   const articleFilter = `*[_type == "article" && references(^._id)]`;
 
   return `{
-  "allImages": *[_type == "sanity.imageAsset" && (count(*[_type == "article" && references(^._id)]) > 0 || (count(opt.media.tags) > 0 && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))))] | order(_createdAt asc) {
+  "allImages": *[_type == "sanity.imageAsset" && (count(*[_type == "article" && references(^._id)]) > 0 || (count(opt.media.tags) > 0 && !("no-gallery" in coalesce(opt.media.tags[]->name.current, []))))] | order(coalesce(date, metadata.exif.DateTimeOriginal, _createdAt) asc) {
     _id,
     url,
     originalFilename,

@@ -92,9 +92,10 @@ export function orderMedia<T extends MediaAsset>(
   }
 
   const rank = new Map(orderedIds.map((id, i) => [id, i]));
-  return all.sort(
-    (a, b) => (rank.get(a._id) ?? Infinity) - (rank.get(b._id) ?? Infinity),
-  );
+  // unranked assets must compare equal (Infinity - Infinity is NaN, which makes
+  // sort() discard their incoming order)
+  const rankOf = (asset: T) => rank.get(asset._id) ?? orderedIds.length;
+  return all.sort((a, b) => rankOf(a) - rankOf(b));
 }
 
 /**

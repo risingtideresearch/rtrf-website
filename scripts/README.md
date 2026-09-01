@@ -102,3 +102,17 @@ Prints stale references with fuzzy suggestions for renamed files.
 ```bash
 python audit-sanity-refs.py
 ```
+
+---
+
+#### 3. Model stills
+
+The homepage crossfade tiles and the story preview/Open Graph images are renders
+of the same models, so they go stale when the model changes. Regenerate them
+last, once the new GLBs are in place:
+
+```bash
+cd ../frontend && npm run stills
+```
+
+See [frontend/README](../frontend/README.md#regenerating-model-stills).

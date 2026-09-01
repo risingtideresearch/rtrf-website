@@ -1,0 +1,208 @@
+{
+  "stories": {
+    "battery": {
+      "thumbs": {
+        "src": "/thumbs/battery.png?v=410ba36a",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/battery.png?v=991d0139",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "building-the-superstructure": {
+      "thumbs": {
+        "src": "/thumbs/building-the-superstructure.png?v=28cf00f9",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/building-the-superstructure.png?v=91f02a13",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "cabinetry": {
+      "thumbs": {
+        "src": "/thumbs/cabinetry.png?v=ebbda164",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/cabinetry.png?v=5223fc0d",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "can-bus": {
+      "thumbs": {
+        "src": "/thumbs/can-bus.png?v=74208a9a",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/can-bus.png?v=bf1afde3",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "cooling": {
+      "thumbs": {
+        "src": "/thumbs/cooling.png?v=6bcab87e",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/cooling.png?v=a1a662ea",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "designing-the-superstructure": {
+      "thumbs": {
+        "src": "/thumbs/designing-the-superstructure.png?v=e9efd580",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/designing-the-superstructure.png?v=bbf7a7ea",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "electrical-steering": {
+      "thumbs": {
+        "src": "/thumbs/electrical-steering.png?v=20cc34cd",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/electrical-steering.png?v=05acd56f",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "fit-and-clearance-for-steering-components": {
+      "thumbs": {
+        "src": "/thumbs/fit-and-clearance-for-steering-components.png?v=7daa786f",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/fit-and-clearance-for-steering-components.png?v=80bc9dcc",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "hull-modifications": {
+      "thumbs": {
+        "src": "/thumbs/hull-modifications.png?v=eacb1ac1",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/hull-modifications.png?v=8b35e098",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "mechanical-steering": {
+      "thumbs": {
+        "src": "/thumbs/mechanical-steering.png?v=74208a9a",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/mechanical-steering.png?v=bf1afde3",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "motors": {
+      "thumbs": {
+        "src": "/thumbs/motors.png?v=5b28b2ab",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/motors.png?v=33cd45ef",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "picking-a-hull": {
+      "thumbs": {
+        "src": "/thumbs/picking-a-hull.png?v=62ce8a45",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/picking-a-hull.png?v=a95570f6",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "range": {
+      "thumbs": {
+        "src": "/thumbs/range.png?v=767a7794",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/range.png?v=9396a7f0",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "rudders-propellers-and-struts": {
+      "thumbs": {
+        "src": "/thumbs/rudders-propellers-and-struts.png?v=7fe69229",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/rudders-propellers-and-struts.png?v=207c6c40",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "solander-38": {
+      "thumbs": {
+        "src": "/thumbs/solander-38.png?v=767a7794",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/solander-38.png?v=9396a7f0",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "solar-panels": {
+      "thumbs": {
+        "src": "/thumbs/solar-panels.png?v=8ce4e7f7",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/solar-panels.png?v=647f6d14",
+        "width": 1600,
+        "height": 840
+      }
+    },
+    "wiring": {
+      "thumbs": {
+        "src": "/thumbs/wiring.png?v=7995734a",
+        "width": 800,
+        "height": 420
+      },
+      "preview": {
+        "src": "/preview/wiring.png?v=616d8918",
+        "width": 1600,
+        "height": 840
+      }
+    }
+  }
+}

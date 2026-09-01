@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
       },
     ],
+    // capture-stills.mjs versions these with ?v=<hash> to bust the image cache;
+    // everything else keeps the default of no query string
+    localPatterns: [
+      { pathname: "/homepage/**" },
+      { pathname: "/thumbs/**" },
+      { pathname: "/**", search: "" },
+    ],
   },
 };
 

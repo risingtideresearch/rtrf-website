@@ -131,7 +131,6 @@
     display: block;
     background-size: 1vw 1vw;
     margin: 1rem 0;
-    padding: 1rem 0;
 
     &:hover {
       opacity: 0.85;
@@ -169,57 +168,19 @@
 
 .anatomy-crossfade {
   position: relative;
-  aspect-ratio: 16 / 12;
+  // aspect-ratio is set inline from the stills manifest so the box always
+  // matches the render; the tiles are framed identically and must not be refit
   width: 100%;
   overflow: hidden;
 
   img {
     position: absolute;
     inset: 0;
-    object-fit: cover;
+    // contain, not cover: the stills are wider than this box, and cropping
+    // them to fill it threw away ~22% of the width
+    object-fit: contain;
     opacity: 0;
-    animation: anatomy-crossfade 28s linear infinite;
-    animation-fill-mode: backwards;
     margin: 0 auto;
-
-    &:nth-child(1) {
-      animation-delay: -1s;
-    }
-    &:nth-child(2) {
-      animation-delay: 3s;
-    }
-    &:nth-child(3) {
-      animation-delay: 7s;
-    }
-    &:nth-child(4) {
-      animation-delay: 11s;
-    }
-    &:nth-child(5) {
-      animation-delay: 15s;
-    }
-    &:nth-child(6) {
-      animation-delay: 19s;
-    }
-    &:nth-child(7) {
-      animation-delay: 23s;
-    }
-  }
-}
-
-@keyframes anatomy-crossfade {
-  0% {
-    opacity: 0;
-  }
-  3.57% {
-    opacity: 1;
-  }
-  14.29% {
-    opacity: 1;
-  }
-  17.86% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
+    // timing and keyframes are generated in page.tsx from the tile count
   }
 }

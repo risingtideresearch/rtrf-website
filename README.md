@@ -35,6 +35,8 @@ Neither site renders drafts — the client pins `perspective: "published"` in bo
 
 Rhino export and post-processing pipeline: per-layer GLB export, leftover-mesh cleanup, GLB optimization, material extraction, PDF-to-PNG conversion, manifest copying, and Sanity reference audit.
 
+The pipeline finishes in the front end with `npm run stills`, which re-renders the model stills used on the homepage, the stories index, and story Open Graph previews — see [frontend/README](frontend/README.md#regenerating-model-stills).
+
 ---
 
 ### License

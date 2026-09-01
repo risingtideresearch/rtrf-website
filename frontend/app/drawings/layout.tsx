@@ -4,12 +4,13 @@ import "./../globals.scss";
 import Search from "./../components/Search/Search";
 import Footer from "../components/Footer";
 import { AcuminPro } from "../_fonts";
+import { SITE_URL } from "@/app/consts";
 // import Search from "./components/Search/Search";
 
 export const metadata: Metadata = {
   title: "Drawings | Solander 38",
   description: "",
-  icons: "https://solander38.netlify.app/rising-tide.svg",
+  icons: `${SITE_URL}/rising-tide.svg`,
 };
 
 export default function RootLayout({

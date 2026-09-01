@@ -12,6 +12,8 @@ import {
   getModelManifest,
 } from "@/app/manifest-util";
 import { Metadata } from "next";
+import { SITE_URL } from "@/app/consts";
+import { getStoryStill } from "@/app/manifest-util";
 
 export async function generateStaticParams() {
   const articles = await fetchArticlesStatic();
@@ -37,11 +39,12 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
   const article = data[0];
   const isFirstArticle = firstArticle?.slug === slug;
+  const preview = getStoryStill(article.slug?.current ?? slug, "preview");
 
   return {
     title: isFirstArticle ? article.title : `${article.title} | Solander 38`,
     description: article.subtitle || "",
-    icons: "https://solander38.netlify.app/rising-tide.svg",
+    icons: `${SITE_URL}/rising-tide.svg`,
     authors: article.authors?.map(author => ({name: author.name})),
     publisher: 'Rising Tide Research Foundation',
     openGraph: {
@@ -50,9 +53,9 @@ export async function generateMetadata({ params }): Promise<Metadata> {
       modifiedTime: article.effectiveDate ?? article._updatedAt,
       images: [
         {
-          url: `https://solander38.netlify.app/preview/${article.slug?.current}.png`,
-          width: 1600,
-          height: 840,
+          url: `${SITE_URL}${preview.src}`,
+          width: preview.width,
+          height: preview.height,
           alt: `Model of ${article.title}`
         },
       ],

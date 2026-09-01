@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stills": "node scripts/capture-stills.mjs",
+    "stills:fast": "node scripts/capture-stills.mjs --skip-build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^16.0.6",
@@ -36,6 +38,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "jsdom": "^26.1.0",
+    "playwright": "^1.49.0",
     "react-range-slider-input": "^3.2.1",
     "sass": "^1.89.2",
     "three": "^0.178.0",

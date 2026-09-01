@@ -4,12 +4,13 @@ import { SanityLive } from "@/sanity/lib/live";
 
 import "./globals.scss";
 import "./home.module.scss";
+import { SITE_URL } from "@/app/consts";
 
 export const metadata: Metadata = {
   title: "Solander 38 | Rising Tide Research Foundation",
   description:
     "A self-sufficient, solar-electric, coastal cruising power catamaran.",
-  icons: "https://solander38.netlify.app/rising-tide.svg",
+  icons: `${SITE_URL}/rising-tide.svg`,
   openGraph: {
     images: [
       {

@@ -19,6 +19,7 @@ import { getReducedModelSet, slugToRhinoSystem } from "../utils";
 import { getModelURL } from "../manifest-util";
 import AnatomyControls from "./AnatomyControls";
 import Navigation, { URLS } from "../components/Navigation/Navigation";
+import { CaptureParams, parseCaptureParams } from "./capture";
 
 type AnatomyContent = {
   material_index: MaterialIndex;
@@ -56,29 +57,41 @@ export default function Anatomy({ content }: IAnatomy) {
   const memoModels = useMemo(() => processModels(content.models_manifest), []);
   const systems = useMemo(() => getSystemMap(memoModels), [memoModels]);
   const [loaded, setLoaded] = useState(false);
+
+  // Read once during the first client render so every dependent piece of state
+  // is correct from the start — see capture.ts.
+  const [capture] = useState<CaptureParams | null>(() =>
+    typeof window === "undefined"
+      ? null
+      : parseCaptureParams(window.location.search),
+  );
+
   const [settings, setSettings] = useState<ControlSettings>({
-    transparent: isDefaultTransparentBody(toc),
+    transparent: capture?.transparent ?? isDefaultTransparentBody(toc),
     units: Units.Feet,
     scalingLines: true,
-    showClipping: false,
+    // capture viewports are narrow, so don't let width decide
+    showClipping: capture ? true : false,
   });
 
   useLayoutEffect(() => {
+    if (capture) return;
     setSettings((prev) => ({ ...prev, showClipping: window.innerWidth >= 900 }));
-  }, []);
+  }, [capture]);
   const [clippingValues, setClippingValues] = useState<{
     value: [number, number];
     axis: "x" | "y" | "z";
   }>({
-    value: [0, 1],
-    axis: "x",
+    value: capture?.clip ?? [0, 1],
+    axis: capture?.axis ?? "x",
   });
 
   useEffect(() => {
+    if (capture) return;
     if (!settings.scalingLines || !settings.showClipping) {
       setClippingValues((prev) => ({ ...prev, value: [0, 1] }));
     }
-  }, [settings.scalingLines, settings.showClipping]);
+  }, [capture, settings.scalingLines, settings.showClipping]);
 
   const active =
     toc.system?.slug != "overview"
@@ -89,19 +102,22 @@ export default function Anatomy({ content }: IAnatomy) {
       : null;
 
   useEffect(() => {
+    if (capture?.transparent != null) return;
     setSettings((prev) => ({
       ...prev,
       transparent: isDefaultTransparentBody(toc),
     }));
-  }, [toc.article, toc.system, toc]);
+  }, [capture, toc.article, toc.system, toc]);
+
+  const effectiveSearch = capture?.search ?? search;
 
   const filteredLayers = useMemo(() => {
     let allModels = memoModels;
     let layerNames: string[] = allModels.map((m) => m.filename) || [];
 
-    if (search) {
+    if (effectiveSearch) {
       layerNames = layerNames.filter((layer) => {
-        return layer.toLowerCase().includes(search.toLowerCase());
+        return layer.toLowerCase().includes(effectiveSearch.toLowerCase());
       });
     } else if (
       !active &&
@@ -110,7 +126,7 @@ export default function Anatomy({ content }: IAnatomy) {
       !settings.transparent
     ) {
       // filter overview model when no clipping planes
-      allModels = getReducedModelSet(memoModels, false);
+      allModels = getReducedModelSet(memoModels, capture?.minimal ?? false);
       layerNames = allModels.map((m) => m.filename) || [];
     } else if (active) {
       if (toc.article) {
@@ -131,20 +147,23 @@ export default function Anatomy({ content }: IAnatomy) {
     return Array.from(new Set(layerNames));
   }, [
     active,
+    capture,
     systems,
-    search,
+    effectiveSearch,
     clippingValues,
     settings.transparent,
     toc.article,
   ]);
 
   useEffect(() => {
+    // keep the capture params in the URL so a shot can be re-opened by hand
+    if (capture) return;
     if (toc.article) {
       window.history.pushState(null, "", `/anatomy/${toc.article?.slug}`);
     } else if (toc.system.slug) {
       window.history.pushState(null, "", `/anatomy/${toc.system.slug}`);
     }
-  }, [toc.article, toc.system.slug]);
+  }, [capture, toc.article, toc.system.slug]);
 
   const visibleModelsBBoxes = memoModels
     .filter(
@@ -156,6 +175,13 @@ export default function Anatomy({ content }: IAnatomy) {
     .map((m) => m.bounding_box);
 
   const boundingBox = computeCombinedBoundingBox(visibleModelsBBoxes);
+
+  // Framing off the visible layers alone sizes and places the vessel
+  // differently in every still, so captures frame the whole vessel instead.
+  const fullBoundingBox = useMemo(
+    () => computeCombinedBoundingBox(memoModels.map((m) => m.bounding_box)),
+    [memoModels],
+  );
 
   // ensure contextual layers are rendered
   const layersToRender = useMemo(() => {
@@ -233,6 +259,8 @@ export default function Anatomy({ content }: IAnatomy) {
         memoModels={memoModels}
         handleLoaded={() => { setLoaded(true); setModelLoaded(true); }}
         loaded={loaded}
+        capture={capture}
+        frameBox={capture ? fullBoundingBox : null}
         slug={[toc.system?.slug, toc.article?.slug].filter(Boolean).join("-") || undefined}
       />
 

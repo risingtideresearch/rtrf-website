@@ -4,6 +4,7 @@ import { formatDate, toISODate } from "../utils";
 import { ArticleRow } from "../components/ArticleRow";
 import RangeChart from "../components/RangeChart/RangeChart";
 import Image from "next/image";
+import { getStoryStill } from "../manifest-util";
 
 export default async function Articles({ subtitles, description }) {
   const { data } = await fetchSystems();
@@ -31,9 +32,7 @@ export default async function Articles({ subtitles, description }) {
                         <RangeChart title={""} />
                       ) : (
                         <Image
-                          src={`/preview/${article.slug}.png`}
-                          width={1600}
-                          height={840}
+                          {...getStoryStill(article.slug, "thumbs")}
                           alt={`Preview of ${article.title}`}
                         />
                       )}
