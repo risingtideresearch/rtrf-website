@@ -67,11 +67,13 @@ export function VideoPlayer({
 
   const start = asset.startTime ?? 0;
   const end = asset.endTime ?? null;
-  const hasTrim = start > 0 || end != null;
 
-  const src = hasTrim
-    ? `${asset.url}#t=${start}${end != null ? `,${end}` : ""}`
-    : asset.url;
+  // iOS Safari paints nothing until playback begins unless the media fragment
+  // forces a seek, so always ask for a frame — 0.1s when there is no trim,
+  // since frame zero is often black.
+  const src = `${asset.url}#t=${start > 0 ? start : 0.1}${
+    end != null ? `,${end}` : ""
+  }`;
 
   // Scrubber works in trimmed-clip time, so 0 is always the visible start.
   const clipEnd = end != null ? end : duration;
@@ -259,7 +261,12 @@ export function VideoPlayer({
         {playing ? <LiaPauseSolid size={18} /> : <LiaPlaySolid size={18} />}
       </button>
 
-      <span className={styles.time}>{formatTime(clipTime)}</span>
+      <span
+        className={styles.time}
+        style={{ minWidth: `${formatTime(clipDuration).length}ch` }}
+      >
+        {formatTime(clipTime)}
+      </span>
 
       <input
         type="range"

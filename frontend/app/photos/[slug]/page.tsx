@@ -41,11 +41,15 @@ export default async function Page({
   }
 
   const imageOrder = new Map(orderedIds.map((id, i) => [id, i]));
-  const sortedPhotos = [...photos.data, ...(videos.data ?? [])].sort((a, b) => {
-    const ai = imageOrder.get(a._id) ?? Infinity;
-    const bi = imageOrder.get(b._id) ?? Infinity;
-    return ai - bi;
-  });
+  // Infinity - Infinity is NaN, which made sort() shuffle everything not used
+  // in a story; those fall back to date so photos and videos interleave.
+  const rankOf = (asset: { _id: string }) =>
+    imageOrder.get(asset._id) ?? orderedIds.length;
+  const dateOf = (asset: { photoDate?: string }) =>
+    asset.photoDate ? Date.parse(asset.photoDate) : Number.MAX_SAFE_INTEGER;
+  const sortedPhotos = [...photos.data, ...(videos.data ?? [])].sort(
+    (a, b) => rankOf(a) - rankOf(b) || dateOf(a) - dateOf(b),
+  );
 
   return (
     <>
