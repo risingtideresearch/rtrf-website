@@ -9,7 +9,7 @@ export default function PhotoMetadata({ asset, stories }) {
   return (
     <div className={`${styles.metadata}`}>
       <dl className={styles.metadata__table}>
-        <dt>Name</dt>
+        <dt>Title</dt>
         <dd>{asset.title || asset.originalFilename}</dd>
 
         {asset.metadata.date ? (

@@ -18,7 +18,6 @@ type SearchResult = {
   slug?: any;
   thumbnailUrl?: string;
   originalFilename?: string;
-  clean_filename?: string;
 };
 
 export default function SearchClient({ type }) {
@@ -314,7 +313,7 @@ export default function SearchClient({ type }) {
                                   <></>
                                 )}
                                 <span className={`link ${styles.search__result_title}`}>
-                                  {result.title || result.clean_filename}
+                                  {result.title}
                                 </span>
                               </a>
                             </div>

@@ -28,7 +28,7 @@ function sortDrawingsByGroup(drawings: Array<Drawing>) {
 
 function getGroupKey(drawing: Drawing, mode): string {
   if (mode === "date") {
-    return drawing.date_info?.date || "2024-01-01";
+    return drawing.date || "2024-01-01";
   }
   return drawing.group;
 }

@@ -215,11 +215,23 @@ def extract_title_block(pdf_path):
     return title or None
 
 
-def get_title(pdf_path, author):
+def get_title_block(pdf_path, author):
     """Title block text for authors whose drawings have one, else None."""
     if not author or author["slug"] not in TITLE_BLOCK_AUTHOR_SLUGS:
         return None
     return extract_title_block(pdf_path)
+
+
+def get_title(title_block, png_filename):
+    """
+    The drawing's display title, fully formatted.
+
+    This is the single string the frontend renders -- the title block when the PDF
+    carries one, otherwise the filename with dates, initials and "Solander 38"
+    stripped. Falling back per page rather than per PDF keeps the " page 2" suffix
+    on multi-page drawings that have no title block.
+    """
+    return title_block or clean_filename(png_filename)
 
 def rename_files_with_hash(root_directory):
     """
@@ -443,7 +455,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
             if len(group) < 2:
                 group = "unknown"
             author = get_author(pdf_path)
-            title = get_title(pdf_path, author)
+            title_block = get_title_block(pdf_path, author)
             file_info_list = []
             for i, out_f in enumerate(expected):
                 img = Image.open(out_f)
@@ -453,22 +465,18 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
                 global_uuids.add(uuid)
                 file_info_list.append({
                     "filename": os.path.basename(out_f),
-                    "clean_filename": clean_filename(os.path.basename(out_f)),
-                    "title": title,
+                    "title": get_title(title_block, os.path.basename(out_f)),
                     "uuid": uuid,
                     "rel_path": sanitize_path(os.path.relpath(out_f).replace('../frontend/public', '')),
                     "group": group,
-                    "normalized_group": normalize_group_name(group),
                     "system_index": get_system_index(group),
-                    "source_pdf": sanitize_path(os.path.basename(pdf_path)),
                     "source_pdf_full_path": sanitize_path(os.path.relpath(pdf_path)),
-                    "page_number": i + 1,
                     "total_pages_in_pdf": n_pages,
                     "page_set_label": f"{i + 1} of {n_pages}",
                     "width": width,
                     "height": height,
                     "file_size_bytes": os.path.getsize(out_f),
-                    "date_info": date_info,
+                    "date": date_info["date"] if date_info else None,
                     "author": dict(author) if author else None,
                     "extracted_text": "",
                 })
@@ -498,7 +506,7 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
         total_pages = len(images)
 
         author = get_author(pdf_path)
-        title = get_title(pdf_path, author)
+        title_block = get_title_block(pdf_path, author)
 
         file_info_list = []
 
@@ -526,28 +534,21 @@ def convert_pdf_to_png(pdf_path, output_folder="output_images", dpi=200, global_
             rel_path = sanitize_path(os.path.relpath(output_filename).replace('../frontend/public', ''))
             source_pdf_full_path = sanitize_path(os.path.relpath(pdf_path))
 
-            # Normalize group for sorting
-            normalized_group = normalize_group_name(group)
-            
             # Create file info dictionary WITHOUT id (will be assigned later)
             file_info = {
                 "filename": os.path.basename(output_filename),
-                "clean_filename": clean_filename(os.path.basename(output_filename)),
-                "title": title,
+                "title": get_title(title_block, os.path.basename(output_filename)),
                 "uuid": uuid,
                 "rel_path": rel_path,
                 "group": group,
-                "normalized_group": normalized_group,  # For sorting
                 "system_index": get_system_index(group),  # For sorting
-                "source_pdf": sanitize_path(os.path.basename(pdf_path)),
                 "source_pdf_full_path": source_pdf_full_path,
-                "page_number": i + 1,
                 "total_pages_in_pdf": total_pages,
                 "page_set_label": f"{i + 1} of {total_pages}",
                 "width": width,
                 "height": height,
                 "file_size_bytes": file_size,
-                "date_info": date_info,
+                "date": date_info["date"] if date_info else None,
                 "author": dict(author) if author else None,
                 "extracted_text": "" #full_text,
             }
@@ -611,21 +612,18 @@ def sort_files_by_system_and_date(all_files_info):
     
     def sort_key(file_info):
         system_idx = file_info["system_index"]
-        
+
         # For date sorting: use a very old date for None dates to push them to end
-        if file_info["date_info"]:
-            date_sort = file_info["date_info"]["date_iso"]
-        else:
-            date_sort = "0000-00-00"  # Sorts before any real date
-        
+        date_sort = file_info["date"] or "0000-00-00"  # Sorts before any real date
+
         filename = file_info["filename"]
-        
+
         return (system_idx, date_sort, filename)
-    
+
     # Sort with newest dates first within each system (reverse=True for date)
     sorted_files = sorted(all_files_info, key=lambda x: (
         x["system_index"],
-        x["date_info"]["date_iso"] if x["date_info"] else "0000-00-00",
+        x["date"] or "0000-00-00",
         x["filename"]
     ), reverse=False)
     
@@ -638,11 +636,11 @@ def sort_files_by_system_and_date(all_files_info):
         system_files = list(group)
         
         # Separate dated and undated files
-        dated = [f for f in system_files if f["date_info"]]
-        undated = [f for f in system_files if not f["date_info"]]
-        
+        dated = [f for f in system_files if f["date"]]
+        undated = [f for f in system_files if not f["date"]]
+
         # Sort dated files newest first
-        dated.sort(key=lambda x: x["date_info"]["date_iso"], reverse=True)
+        dated.sort(key=lambda x: x["date"], reverse=True)
         
         # Combine: dated first (newest to oldest), then undated
         final_sorted.extend(dated + undated)
@@ -651,9 +649,9 @@ def sort_files_by_system_and_date(all_files_info):
     
     print("\n=== Assigned IDs by System ===")
     for file_info in final_sorted:
-        normalized_group = file_info["normalized_group"]
-        
-        system_code = "DR" 
+        normalized_group = normalize_group_name(file_info["group"])
+
+        system_code = "DR"
         
         if system_code not in system_counters:
             system_counters[system_code] = 0
@@ -661,7 +659,7 @@ def sort_files_by_system_and_date(all_files_info):
         
         file_info["id"] = get_id(system_code, system_counters[system_code])
         
-        date_str = file_info['date_info']['formatted'] if file_info['date_info'] else 'No date'
+        date_str = file_info['date'] or 'No date'
         author_str = file_info['author']['name'] if file_info['author'] else UNATTRIBUTED
         print(f"{file_info['id']:8} | {normalized_group:25} | {date_str:20} | {author_str:15} | {file_info['uuid']}")
 
@@ -834,10 +832,10 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=False):
                 "average_width": sum(info["width"] for info in all_files_info) / len(all_files_info) if all_files_info else 0,
                 "average_height": sum(info["height"] for info in all_files_info) / len(all_files_info) if all_files_info else 0,
                 "average_pages_per_pdf": sum(pdf_page_counts.values()) / len(pdf_page_counts) if pdf_page_counts else 0,
-                "files_with_dates": sum(1 for info in all_files_info if info["date_info"] is not None),
-                "files_without_dates": sum(1 for info in all_files_info if info["date_info"] is None),
+                "files_with_dates": sum(1 for info in all_files_info if info["date"] is not None),
+                "files_without_dates": sum(1 for info in all_files_info if info["date"] is None),
                 "files_by_system": {
-                    system: sum(1 for info in all_files_info if info["normalized_group"] == system)
+                    system: sum(1 for info in all_files_info if normalize_group_name(info["group"]) == system)
                     for system in SYSTEM_ORDER
                 },
                 "files_by_author": count_files_by_author(all_files_info),
@@ -861,14 +859,13 @@ def convert_all_pdfs(dpi=200, preserve_structure=True, clear_output=False):
             uuid_mapping[info["uuid"]] = {
                 "rel_path": info["rel_path"],
                 "filename": info["filename"],
-                "clean_filename": info["clean_filename"],
+                "title": info["title"],
                 "id": info["id"],
                 "group": info["group"],
-                "normalized_group": info["normalized_group"],
                 "source_pdf_full_path": info["source_pdf_full_path"],
                 "width": info["width"],
                 "height": info["height"],
-                "date_info": info["date_info"]
+                "date": info["date"]
             }
         
         uuid_mapping_path = os.path.join(output_folder, "uuid_mapping.json")

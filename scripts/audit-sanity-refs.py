@@ -63,13 +63,13 @@ def load_model_filenames():
 
 
 def load_drawing_uuids():
-    """Returns {uuid: clean_filename} for all drawings in the conversion manifest."""
+    """Returns {uuid: title} for all drawings in the conversion manifest."""
     if not os.path.exists(DRAWING_MANIFEST_PATH):
         print(f"  WARNING: drawing manifest not found: {DRAWING_MANIFEST_PATH}", file=sys.stderr)
         return {}
     with open(DRAWING_MANIFEST_PATH) as f:
         manifest = json.load(f)
-    return {f["uuid"]: f.get("clean_filename", f["filename"]) for f in manifest.get("files", [])}
+    return {f["uuid"]: f.get("title", f["filename"]) for f in manifest.get("files", [])}
 
 
 def query_sanity(groq):

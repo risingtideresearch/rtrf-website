@@ -1,9 +1,4 @@
 import { Article } from "@/sanity/sanity.types";
-import { Drawing } from "./types";
-
-export function getDrawingName(drawing: Drawing): string {
-  return drawing.title || drawing.clean_filename;
-}
 
 /**
  *

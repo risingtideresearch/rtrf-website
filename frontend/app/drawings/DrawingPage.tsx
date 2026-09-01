@@ -29,7 +29,7 @@ export function DrawingPage({ asset, next, prev, drawingsArticleDictionary }) {
               height={asset.height}
               width={asset.width}
               priority
-              alt={`${asset.clean_filename}`}
+              alt={`${asset.title}`}
               style={{ maxWidth: "100%", height: "auto" }}
             />
           </div>

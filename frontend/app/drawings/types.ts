@@ -1,8 +1,7 @@
 export type Drawing = {
   id: string;
   filename: string;
-  clean_filename: string;
-  title?: string | null;
+  title: string;
   uuid: string;
   rel_path: string;
   source_pdf_full_path: string;
@@ -10,11 +9,7 @@ export type Drawing = {
   width: number;
   group: string;
   extracted_text: string;
-  date_info: {
-    date: string;
-    month: number;
-    year: number;
-  } | null;
+  date: string | null;
   author: {
     slug: string;
     name: string;

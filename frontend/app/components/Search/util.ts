@@ -7,7 +7,7 @@ export function searchDrawings(drawings, query: string): Array<unknown> {
     .filter((file: Drawing) => {
       const regex = new RegExp(`\\b${lowerQuery}`, "i");
       return (
-        regex.test(file.clean_filename) ||
+        regex.test(file.title) ||
         // regex.test(file.extracted_text || '') ||
         file.id.toLowerCase().includes(lowerQuery)
       );

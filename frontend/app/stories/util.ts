@@ -4,8 +4,6 @@ interface Drawing {
   uuid: string;
   rel_path: string;
   group: string;
-  source_pdf: string;
-  page_number: number;
   width: number;
   height: number;
 }

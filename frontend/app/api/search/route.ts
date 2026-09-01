@@ -28,9 +28,9 @@ export async function POST(request: Request) {
     const lowerQuery = query.toLowerCase();
     const pattern = new RegExp(`\\b${lowerQuery}`, "i");
     const drawingResults = allDrawings
-      .filter((f) => pattern.test(f.clean_filename) || f.id.toLowerCase().includes(lowerQuery))
+      .filter((f) => pattern.test(f.title) || f.id.toLowerCase().includes(lowerQuery))
       .slice(0, 20)
-      .map((f) => ({ clean_filename: f.clean_filename, uuid: f.uuid, id: f.id, _type: "drawing" }));
+      .map((f) => ({ title: f.title, uuid: f.uuid, id: f.id, _type: "drawing" }));
 
     return NextResponse.json({ results: enriched.concat(drawingResults) });
   } catch (error) {
