@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AcuminPro } from "../_fonts";
 
-import "./../globals.scss";
 import Search from "../components/Search/Search";
 import Footer from "../components/Footer";
 import { SITE_URL } from "@/app/consts";

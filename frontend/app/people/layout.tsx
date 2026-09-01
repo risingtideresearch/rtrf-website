@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import "./../globals.scss";
 import Navigation, { URLS } from "../components/Navigation/Navigation";
 import Search from "./../components/Search/Search";
 import Footer from "../components/Footer";

@@ -1,9 +1,11 @@
+// must stay above every other import: Turbopack's production build orders CSS
+// chunks by module-graph traversal, so any JS import listed first pulls in the
+// component tree's CSS modules and emits them *before* globals
+import "./globals.scss";
+
 import type { Metadata } from "next";
 import { AcuminPro } from "./_fonts";
 import { SanityLive } from "@/sanity/lib/live";
-
-import "./globals.scss";
-import "./home.module.scss";
 import { SITE_URL } from "@/app/consts";
 
 export const metadata: Metadata = {
