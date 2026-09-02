@@ -56,8 +56,8 @@ export function PhotoImage({
       <div
         style={
           !width && !height && aspectWidth && aspectHeight
-            ? { aspectRatio: `${aspectWidth} / ${aspectHeight}` }
-            : undefined
+            ? { aspectRatio: `${aspectWidth} / ${aspectHeight}`, maxWidth: aspectWidth, }
+            : {maxWidth: aspectWidth}
         }
       >
         <Image
@@ -65,6 +65,7 @@ export function PhotoImage({
           alt={altText || image.asset.altText || image.alt || ""}
           width={width}
           height={height}
+          style={{ margin: '0 auto'}}
           loading={resolvedLoading}
         />
       </div>

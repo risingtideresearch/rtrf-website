@@ -2,14 +2,12 @@ import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import styles from "./subnav.module.scss";
 
 export default function SubNav({ next, prev, urlPrefix, idKey = "uuid", noBorderBottom = false, showTitles = true }) {
-  // Neighbours that already know their own route (photo/video gallery, which
-  // mixes both types) pass an href; everything else is prefix + id.
   const hrefFor = (item) => item.href ?? `${urlPrefix}/${item[idKey]}`;
   const labelFor = (item, fallback) => (showTitles && item.title) || fallback;
 
   return (
-    <div className={`${styles["sub-nav"]} ${!noBorderBottom && styles["border-bottom"]}`}>
-      <div className={styles["sub-nav__container"]}>
+    <div className={`${styles["sub-nav"]} ${!noBorderBottom && (prev || next) && styles["border-bottom"]}`}>
+      {prev || next ? <div className={styles["sub-nav__container"]}>
         {prev && (
           <div>
             <a href={hrefFor(prev)}>
@@ -33,6 +31,8 @@ export default function SubNav({ next, prev, urlPrefix, idKey = "uuid", noBorder
           </div>
         )}
       </div>
+      :
+      <></>}
     </div>
   );
 }

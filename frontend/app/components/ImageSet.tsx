@@ -60,6 +60,7 @@ export default function ImageSet({ assets, title }: ImageSetProps) {
                 <Image
                   src={asset}
                   alt={asset.altText || asset.title}
+                  style={{ maxWidth: asset.asset.metadata?.dimensions?.width }}
                 />
               </a>
             </div>

@@ -18,20 +18,26 @@ export function PhotoPage({ asset, next, prev }) {
           </div>
         </div>
         <div>
-          <div
-            className="detail-page__image-container"
-            style={{ maxWidth: asset.metadata?.dimensions?.width ? `${asset.metadata.dimensions.width}px` : undefined }}
-          >
-            <Image
-              loading="eager"
-              src={{ asset: asset }}
-              alt={
-                asset.altText ||
-                asset.description ||
-                asset.title ||
-                asset.originalFilename
-              }
-            />
+          <div className="detail-page__image-container">
+            <div
+              style={{
+                maxWidth: asset.metadata?.dimensions?.width
+                  ? `${asset.metadata.dimensions.width}px`
+                  : undefined,
+                margin: "0 auto",
+              }}
+            >
+              <Image
+                loading="eager"
+                src={{ asset: asset }}
+                alt={
+                  asset.altText ||
+                  asset.description ||
+                  asset.title ||
+                  asset.originalFilename
+                }
+              />
+            </div>
           </div>
         </div>
       </div>
