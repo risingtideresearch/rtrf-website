@@ -36,7 +36,6 @@ export default async function Page() {
   ]);
   const drawings = getDrawingsManifest();
 
-  // system slug -> label and 1-based number, matching the drawings TOC
   const systemsBySlug = new Map<string, { name: string; index: number }>(
     (systems.data?.systems ?? []).map((system: any, i: number) => [
       system.slug,
@@ -44,7 +43,6 @@ export default async function Page() {
     ]),
   );
 
-  /** A person's drawings, broken out by the system they belong to. */
   const getDrawingSystems = (slug?: string) => {
     if (!slug) return [];
 
@@ -59,7 +57,6 @@ export default async function Page() {
       .map(([systemSlug, count]) => ({
         slug: systemSlug,
         count,
-        // rendered in the site's small all-caps treatment, like the drawings TOC
         name: systemsBySlug.get(systemSlug)?.name ?? systemSlug.replace(/-/g, " "),
         index: systemsBySlug.get(systemSlug)?.index ?? Number.MAX_SAFE_INTEGER,
       }))
