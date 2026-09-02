@@ -2,28 +2,28 @@
   "tiles": [
     {
       "name": "overview",
-      "src": "/homepage/solander-38-overview.png?v=80d5bbc3",
+      "src": "/homepage/solander-38-overview.png?v=349674d7",
       "width": 900,
       "height": 800,
       "alt": "Solander 38 3D model, overview"
     },
     {
       "name": "superstructure",
-      "src": "/homepage/solander-38-superstructure.png?v=b3e09494",
+      "src": "/homepage/solander-38-superstructure.png?v=5db93849",
       "width": 900,
       "height": 800,
       "alt": "Solander 38 3D model, superstructure"
     },
     {
       "name": "body",
-      "src": "/homepage/solander-38-body.png?v=8af22bc6",
+      "src": "/homepage/solander-38-body.png?v=1945653c",
       "width": 900,
       "height": 800,
       "alt": "Solander 38 3D model, body"
     },
     {
       "name": "cross-section",
-      "src": "/homepage/solander-38-cross-section.png?v=3611d8ef",
+      "src": "/homepage/solander-38-cross-section.png?v=e315bb08",
       "width": 900,
       "height": 800,
       "alt": "Solander 38 3D model, cross-section"
@@ -44,7 +44,7 @@
     },
     {
       "name": "steering",
-      "src": "/homepage/solander-38-steering.png?v=5719d089",
+      "src": "/homepage/solander-38-steering.png?v=5b745ccf",
       "width": 900,
       "height": 800,
       "alt": "Solander 38 3D model, steering"

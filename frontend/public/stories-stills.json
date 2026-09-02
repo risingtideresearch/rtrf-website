@@ -2,12 +2,12 @@
   "stories": {
     "battery": {
       "thumbs": {
-        "src": "/thumbs/battery.png?v=410ba36a",
+        "src": "/thumbs/battery.png?v=131bb856",
         "width": 800,
         "height": 420
       },
       "preview": {
-        "src": "/preview/battery.png?v=991d0139",
+        "src": "/preview/battery.png?v=335fe596",
         "width": 1600,
         "height": 840
       }
@@ -38,12 +38,12 @@
     },
     "can-bus": {
       "thumbs": {
-        "src": "/thumbs/can-bus.png?v=74208a9a",
+        "src": "/thumbs/can-bus.png?v=de660278",
         "width": 800,
         "height": 420
       },
       "preview": {
-        "src": "/preview/can-bus.png?v=bf1afde3",
+        "src": "/preview/can-bus.png?v=db998532",
         "width": 1600,
         "height": 840
       }
@@ -74,12 +74,12 @@
     },
     "electrical-steering": {
       "thumbs": {
-        "src": "/thumbs/electrical-steering.png?v=20cc34cd",
+        "src": "/thumbs/electrical-steering.png?v=3fdd1e10",
         "width": 800,
         "height": 420
       },
       "preview": {
-        "src": "/preview/electrical-steering.png?v=05acd56f",
+        "src": "/preview/electrical-steering.png?v=f32ed586",
         "width": 1600,
         "height": 840
       }
@@ -182,24 +182,24 @@
     },
     "solar-panels": {
       "thumbs": {
-        "src": "/thumbs/solar-panels.png?v=8ce4e7f7",
+        "src": "/thumbs/solar-panels.png?v=155a1c7e",
         "width": 800,
         "height": 420
       },
       "preview": {
-        "src": "/preview/solar-panels.png?v=647f6d14",
+        "src": "/preview/solar-panels.png?v=c80c4e9f",
         "width": 1600,
         "height": 840
       }
     },
     "wiring": {
       "thumbs": {
-        "src": "/thumbs/wiring.png?v=7995734a",
+        "src": "/thumbs/wiring.png?v=9dc5e029",
         "width": 800,
         "height": 420
       },
       "preview": {
-        "src": "/preview/wiring.png?v=616d8918",
+        "src": "/preview/wiring.png?v=0d597506",
         "width": 1600,
         "height": 840
       }
