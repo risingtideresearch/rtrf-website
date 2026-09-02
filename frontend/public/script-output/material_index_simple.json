@@ -10,9 +10,11 @@
     "Composite Sandwich",
     "Composite Sandwich (HULL)",
     "Composite Sandwich (INTERNALS)",
+    "Copper",
     "Delrin",
     "Fiberglass",
     "Glass",
+    "Lithium Cell",
     "Naval Brass",
     "Plastic",
     "Solar Panels",
@@ -160,7 +162,7 @@
     "SUPERSTRUCTURE__ALUM. PARTS+__flat bar base__3_8_ 316L SS bolts.glb": [
       "Stainless Steel"
     ],
-    "CONTROL__MECHANICAL STEERING__STEERING COMPONENTS__Washer, delrin ø50,5 x ø110 x 4,5mm.glb": [
+    "CONTROL__MECHANICAL STEERING__STEERING COMPONENTS__Washer, delrin \u00f850,5 x \u00f8110 x 4,5mm.glb": [
       "Delrin"
     ],
     "BODY__HULLS & DECKS__MESH H&D (for website)__DECK.glb": [
@@ -300,6 +302,27 @@
     ],
     "BODY__HULLS & DECKS__PORTLIGHTS__portlight surfs.glb": [
       "Acrylic"
+    ],
+    "BATTERY MODULE V2__SPINE FRONT STOP.glb": [
+      "Aluminum 6061",
+      "Stainless Steel"
+    ],
+    "BATTERY MODULE V1__CELLS.glb": [
+      "Lithium Cell"
+    ],
+    "BATTERY MODULE V2__SPINE.glb": [
+      "Aluminum 6061",
+      "Stainless Steel"
+    ],
+    "BATTERY MODULE V1__SPINE.glb": [
+      "Aluminum 6061",
+      "Stainless Steel"
+    ],
+    "BATTERY MODULE V2__CELLS.glb": [
+      "Lithium Cell"
+    ],
+    "BATTERY MODULE V1__BUSBAR.glb": [
+      "Copper"
     ]
   }
 }

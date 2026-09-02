@@ -4,24 +4,53 @@ set -e
 SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 PUBLIC_DIR="$SCRIPTS_DIR/../frontend/public"
 
-MODELS_MANIFEST_DIR="$PUBLIC_DIR/models"
-MODELS_JIG_MANIFEST_DIR="$PUBLIC_DIR/models-jig"
-
-# Resolve versioned GLB folders from manifests
-MODELS_DIR="$PUBLIC_DIR/$(python3 -c "import json; m=json.load(open('$MODELS_MANIFEST_DIR/export_manifest.json')); print(m['export_info'].get('models_folder','models'))")"
-MODELS_JIG_DIR="$PUBLIC_DIR/$(python3 -c "import json; m=json.load(open('$MODELS_JIG_MANIFEST_DIR/export_manifest.json')); print(m['export_info'].get('models_folder','models-jig'))")"
+# Collections to optimize: each is a stable manifest folder under public/ whose
+# export_info.models_folder points at the versioned folder holding the GLBs.
+COLLECTIONS=(models models-jig models-battery)
 
 GLTFPACK_BIN="$SCRIPTS_DIR/gltfpack"
 SIMPLIFY=0.92  # retain 92% of triangles; lower = smaller files
 DRY_RUN=0
+ONLY=""
 
 # Parse args
 for arg in "$@"; do
   case $arg in
     --dry-run) DRY_RUN=1 ;;
     --simplify=*) SIMPLIFY="${arg#*=}" ;;
+    --only=*) ONLY="${arg#*=}" ;;
+    *) echo "Unknown option: $arg"; exit 1 ;;
   esac
 done
+
+# gltfpack is destructive and in-place: a second pass simplifies an already
+# simplified mesh again. Use --only=<collection> to optimize a freshly exported
+# folder without touching the others.
+if [ -n "$ONLY" ]; then
+  COLLECTIONS=("$ONLY")
+fi
+
+MANIFEST_DIRS=()
+MODELS_DIRS=()
+for NAME in "${COLLECTIONS[@]}"; do
+  MANIFEST="$PUBLIC_DIR/$NAME/export_manifest.json"
+  if [ ! -f "$MANIFEST" ]; then
+    echo "Skipping $NAME — no export_manifest.json"
+    continue
+  fi
+  FOLDER="$(python3 -c "import json,sys; m=json.load(open(sys.argv[1])); print(m['export_info'].get('models_folder','$NAME'))" "$MANIFEST")"
+  if [ ! -d "$PUBLIC_DIR/$FOLDER" ]; then
+    echo "Skipping $NAME — $FOLDER does not exist"
+    continue
+  fi
+  MANIFEST_DIRS+=("$PUBLIC_DIR/$NAME")
+  MODELS_DIRS+=("$PUBLIC_DIR/$FOLDER")
+done
+
+if [ ${#MODELS_DIRS[@]} -eq 0 ]; then
+  echo "No model folders found — nothing to do."
+  exit 1
+fi
 
 # Download gltfpack binary if not present
 if [ ! -f "$GLTFPACK_BIN" ]; then
@@ -35,16 +64,15 @@ if [ ! -f "$GLTFPACK_BIN" ]; then
   echo "Downloaded to $GLTFPACK_BIN"
 fi
 
-# Count files across both folders
-TOTAL=$(find "$MODELS_DIR" "$MODELS_JIG_DIR" -name "*.glb" | wc -l | tr -d ' ')
+# Count files across every folder
+TOTAL=$(find "${MODELS_DIRS[@]}" -name "*.glb" | wc -l | tr -d ' ')
 echo "Found $TOTAL GLB files"
-echo "  Main: $MODELS_DIR"
-echo "  Jig:  $MODELS_JIG_DIR"
+for DIR in "${MODELS_DIRS[@]}"; do echo "  $DIR"; done
 echo "Simplify ratio: $SIMPLIFY  |  Meshopt compression: yes"
 [ "$DRY_RUN" -eq 1 ] && echo "(dry run — no files will be modified)"
 echo ""
 
-BEFORE_SIZE=$(du -sk "$MODELS_DIR" "$MODELS_JIG_DIR" | awk '{sum+=$1} END{print sum}')
+BEFORE_SIZE=$(du -sk "${MODELS_DIRS[@]}" | awk '{sum+=$1} END{print sum}')
 COUNT=0
 FAILED=0
 
@@ -77,7 +105,7 @@ while IFS= read -r -d '' INPUT; do
     echo "[$COUNT/$TOTAL] FAILED: $FILENAME"
     FAILED=$((FAILED + 1))
   fi
-done < <(find "$MODELS_DIR" "$MODELS_JIG_DIR" -name "*.glb" -print0 | python3 -c "
+done < <(find "${MODELS_DIRS[@]}" -name "*.glb" -print0 | python3 -c "
 import sys, os
 items = sys.stdin.buffer.read().split(b'\x00')
 items = [i for i in items if i]
@@ -86,15 +114,20 @@ for i in sorted(items):
 ")
 
 if [ "$DRY_RUN" -eq 0 ]; then
-  AFTER_SIZE=$(du -sk "$MODELS_DIR" "$MODELS_JIG_DIR" | awk '{sum+=$1} END{print sum}')
+  AFTER_SIZE=$(du -sk "${MODELS_DIRS[@]}" | awk '{sum+=$1} END{print sum}')
   TOTAL_SAVED=$(( (BEFORE_SIZE - AFTER_SIZE) * 100 / BEFORE_SIZE ))
   echo ""
   echo "Done. ${BEFORE_SIZE}K → ${AFTER_SIZE}K  (-${TOTAL_SAVED}%)"
   [ "$FAILED" -gt 0 ] && echo "  $FAILED file(s) failed to optimize"
 
-  # Update manifests with new file sizes
+  # Update manifests with new file sizes. Args come in as manifest/models pairs.
+  PAIRS=()
+  for i in "${!MANIFEST_DIRS[@]}"; do
+    PAIRS+=("${MANIFEST_DIRS[$i]}/export_manifest.json" "${MODELS_DIRS[$i]}")
+  done
+
   python3 -c "
-import json, os
+import json, os, sys
 
 def update_manifest(manifest_path, models_dir):
     if not os.path.exists(manifest_path):
@@ -113,9 +146,11 @@ def update_manifest(manifest_path, models_dir):
     manifest['export_info']['total_file_size'] = sum(l['file_size'] for l in manifest['exported_layers'])
     with open(manifest_path, 'w') as f:
         json.dump(manifest, f, indent=2)
-    print(f'  Updated {os.path.basename(manifest_path)}: {updated} entries')
+    parent = os.path.basename(os.path.dirname(manifest_path))
+    print(f'  Updated {parent}/{os.path.basename(manifest_path)}: {updated} entries')
 
-update_manifest('$MODELS_MANIFEST_DIR/export_manifest.json', '$MODELS_DIR')
-update_manifest('$MODELS_JIG_MANIFEST_DIR/export_manifest.json', '$MODELS_JIG_DIR')
-"
+args = sys.argv[1:]
+for i in range(0, len(args), 2):
+    update_manifest(args[i], args[i + 1])
+" "${PAIRS[@]}"
 fi

@@ -239,10 +239,14 @@ export function Canvas3D({
       tempBox.current.setFromObject(groupRef.current);
     }
     const center = tempBox.current.getCenter(tempCenter.current);
-    // adjust visual center
-    center.y -= 0.5;
-
     const size = tempBox.current.getSize(tempSize.current);
+
+    // Adjust visual center. The 0.5m nudge is tuned for the vessel; on a small
+    // standalone model — a battery module in a story, say — a flat half metre
+    // is most of its height and pushes it off the top of the frame. Anything
+    // over 2m tall, which includes every stills capture (those pass the full
+    // vessel as frameBox), is offset by the original 0.5m.
+    center.y -= Math.min(0.5, size.y * 0.25);
 
     const camera = cameraRef.current;
     const fov = camera.fov * (Math.PI / 180);

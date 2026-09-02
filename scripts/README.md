@@ -37,17 +37,41 @@ Older versions of the export script ran `_-Mesh` on every object before exportin
 
 ---
 
-#### 1b. `optimize-glb.sh`
+#### 1b. `step-to-glb.py`
 
-Compresses all GLBs using [gltfpack](https://github.com/zeux/meshoptimizer). Reads `models_folder` from both manifests to find the current versioned GLB directories, processes main and jig files together, and updates `file_size` entries in both manifests after completion. Downloads `gltfpack` automatically on first run. Typically, this reduces file size ~90%.
+Converts SolidWorks STEP assemblies to GLB, for geometry that lives outside the Rhino model — currently the battery modules in `step/`. Unlike the Rhino export this runs headless, so re-converting an updated SolidWorks file is one command.
 
-Run immediately after `export-layers-glb.py`, before `main.py`.
+Reads the STEP with OpenCASCADE (`cadquery-ocp`, in `requirements.txt`), which preserves the assembly tree, part names and per-part colours, then writes **one GLB per top-level sub-assembly** into `frontend/public/models-battery-{unix-timestamp}/`, with the manifest at the stable `models-battery/export_manifest.json` — the same versioning scheme as the Rhino export.
 
 ```bash
-./optimize-glb.sh               # optimize all GLBs (main + jig)
+python step-to-glb.py                     # convert everything in SOURCES
+python step-to-glb.py --list              # print each STEP's top-level parts
+python step-to-glb.py --only v2           # one source
+python step-to-glb.py --linear-deflection 0.005   # finer tessellation (inches)
+```
+
+The `SOURCES` and `MATERIALS` tables at the top of the script map STEP product names onto output filenames and material names — edit those if the SolidWorks part names change. STEP colour entities are unnamed, so material names are assigned here; the front end keys off them (`Model3D.tsx` tunes metalness by name, `HoverDisplay` lists them).
+
+Two conversion details worth knowing, both verified against the Rhino output:
+- OpenCASCADE reads the file as millimetres and its glTF writer emits metres, so geometry needs no scaling. It does **not** rotate, so the script adds the Z-up → Y-up turn Rhino's exporter also applies. Geometry ends up Y-up metres; manifest boxes stay Z-up inches, which is what `util.ts` expects.
+- The writer's label filter is matched against full path ids and needs the assembly root included, or it emits orphan nodes and an empty scene.
+
+---
+
+#### 1c. `optimize-glb.sh`
+
+Compresses all GLBs using [gltfpack](https://github.com/zeux/meshoptimizer). Reads `models_folder` from each collection's manifest to find the current versioned GLB directories, processes them together, and updates `file_size` entries in every manifest after completion. Downloads `gltfpack` automatically on first run. Typically, this reduces file size ~90%.
+
+Run immediately after `export-layers-glb.py` or `step-to-glb.py`, before `main.py`.
+
+```bash
+./optimize-glb.sh               # optimize all GLBs (main + jig + battery)
 ./optimize-glb.sh --dry-run     # preview which files would be processed
 ./optimize-glb.sh --simplify=0.85  # triangle retention ratio (default 0.92)
+./optimize-glb.sh --only=models-battery   # one collection
 ```
+
+It is destructive and in-place: a second pass simplifies an already simplified mesh again. After re-exporting one collection, use `--only=` so the others are left alone.
 
 The front end uses `useGLTF(..., undefined, true)` to decompress meshopt files automatically via `meshoptimizer`.
 

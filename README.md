@@ -33,7 +33,7 @@ Neither site renders drafts — the client pins `perspective: "published"` in bo
 ### Python scripts
 [/scripts/](/scripts/) — [README](scripts/README.md)
 
-Rhino export and post-processing pipeline: per-layer GLB export, leftover-mesh cleanup, GLB optimization, material extraction, PDF-to-PNG conversion, manifest copying, and Sanity reference audit.
+Rhino export and post-processing pipeline: per-layer GLB export, leftover-mesh cleanup, STEP-to-GLB conversion for CAD that lives outside the Rhino model, GLB optimization, material extraction, PDF-to-PNG conversion, manifest copying, and Sanity reference audit.
 
 The pipeline finishes in the front end with `npm run stills`, which re-renders the model stills used on the homepage, the stories index, and story Open Graph previews — see [frontend/README](frontend/README.md#regenerating-model-stills).
 
@@ -46,7 +46,7 @@ The pipeline finishes in the front end with `npm run stills`, which re-renders t
 | | License | Covers |
 |--|---------|--------|
 | **Code** | [MIT](LICENSE) | Everything in `frontend/app/`, `frontend/sanity/`, `studio/`, and `scripts/`: the Next.js front end, the Sanity Studio and schemas, and the Rhino export/optimization pipeline |
-| **Content & 3D assets** | [CC BY 4.0](LICENSE-CC-BY-4.0) | Everything under `frontend/public/`: the exported GLB models (`models*/`, `models-jig*/`), technical drawings, photographs, logos, and generated manifests — and all editorial content authored in Sanity (stories, captions, component data) |
+| **Content & 3D assets** | [CC BY 4.0](LICENSE-CC-BY-4.0) | Everything under `frontend/public/`: the exported GLB models (`models*/`, `models-jig*/`, `models-battery*/`), technical drawings, photographs, logos, and generated manifests — and all editorial content authored in Sanity (stories, captions, component data) |
 
 Both licenses require attribution: credit **Rising Tide Research Foundation** and link back to this repository or https://solander38.com.
 
