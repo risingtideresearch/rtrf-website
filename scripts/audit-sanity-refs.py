@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Audit Sanity article references against local manifests:
-  1. relatedModels  — GLB filenames vs models/models-jig export manifests
+  1. relatedModels  — GLB filenames vs model export manifests
+  1b. inlineModel   — GLB filenames in article body blocks
   2. drawings       — drawing UUIDs in image sets vs drawings conversion manifest
 """
 
@@ -18,6 +19,7 @@ ENV_PATH = os.path.join(SCRIPT_DIR, "..", "frontend", ".env")
 MODEL_MANIFEST_PATHS = [
     os.path.join(PUBLIC_DIR, "models", "export_manifest.json"),
     os.path.join(PUBLIC_DIR, "models-jig", "export_manifest.json"),
+    os.path.join(PUBLIC_DIR, "models-battery", "export_manifest.json"),
 ]
 DRAWING_MANIFEST_PATH = os.path.join(
     PUBLIC_DIR, "drawings", "output_images", "conversion_manifest.json"
@@ -111,6 +113,43 @@ def audit_related_models(valid_filenames):
         print()
 
 
+def audit_inline_models(valid_filenames):
+    """
+    Inline model blocks in article bodies. These hold plain filenames like
+    relatedModels, so re-exporting a layer under a new name silently unlinks
+    them — the block renders empty rather than erroring.
+    """
+    print("--- inlineModel blocks ---")
+    articles = query_sanity(
+        '*[_type == "article" && count(body[_type == "inlineModel"]) > 0]'
+        '{ _id, title, slug, "blocks": body[_type == "inlineModel"]{ title, models } }'
+    )
+    print(f"  {len(articles)} articles with inline models\n")
+
+    stale = []
+    for article in articles:
+        for block in article.get("blocks", []):
+            bad = [m for m in (block.get("models") or []) if m not in valid_filenames]
+            if bad:
+                stale.append((article, block, bad))
+
+    if not stale:
+        print("  ✓ All inlineModel references are valid.\n")
+        return
+
+    print(f"  ✗ Stale references in {len(stale)} block(s):\n")
+    for article, block, bad_models in stale:
+        slug = article.get("slug", {}).get("current", article["_id"])
+        print(f"    [{slug}] {article.get('title', '(untitled)')}"
+              f" → \"{block.get('title', '(untitled block)')}\"")
+        for m in bad_models:
+            print(f"      ✗ {m}")
+            stem = m.replace(".glb", "")
+            for s in [v for v in valid_filenames if v.startswith(stem + "__")][:6]:
+                print(f"          → {s}?")
+        print()
+
+
 def audit_drawings(valid_uuids):
     print("--- drawings (image sets) ---")
     articles = query_sanity(
@@ -149,6 +188,7 @@ def main():
     print(f"  {len(valid_uuids)} drawing UUIDs\n")
 
     audit_related_models(valid_filenames)
+    audit_inline_models(valid_filenames)
     audit_drawings(valid_uuids)
 
 

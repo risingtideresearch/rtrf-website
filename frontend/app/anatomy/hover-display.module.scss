@@ -47,6 +47,25 @@
   }
 }
 
+// two classes, to outrank the descendant `h6` rules of the article and pane
+// markup this mounts inside
+.tooltip,
+.panel {
+  .row {
+    display: grid;
+    grid-template-columns: 8.25rem 1fr;
+  }
+
+  .cell {
+    margin: 0;
+    padding: 0.5rem;
+    width: auto;
+    max-width: none;
+    line-height: 1.25;
+    text-align: left;
+  }
+}
+
 .connector {
   position: absolute;
   top: 0;

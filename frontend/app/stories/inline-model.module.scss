@@ -9,15 +9,16 @@
 }
 
 .container {
-  height: 26rem;
+  height: 29.9375rem;
   margin: 0 auto;
 
+  // fill the grid exactly — the pane's aspect ratio sets the shape
   @media screen and (max-width: 900px) {
-    aspect-ratio: 1.2;
-    max-width: 28rem;
-    height: auto;
-    padding: 0 2rem;
-    padding: 0 1rem;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    padding: 0;
   }
 }
 

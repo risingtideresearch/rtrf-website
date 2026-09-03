@@ -25,6 +25,24 @@ export default function RaycastHandler({ clippingPlanes, setHovered, onLock, fil
   const clickStartPos = useRef<{ x: number; y: number } | null>(null);
   const isDragging = useRef(false);
 
+  // Innermost named node at or above the pick — for a STEP export that is the
+  // individual instance ("CELL 3") rather than the layer. GLTFLoader invents
+  // names for unnamed meshes — "mesh_0", "mesh_0_6" (one per primitive), and
+  // "_instance_10" when the base name is empty — which are only these tokens
+  // and digits. It also replaces spaces in real names with underscores, which
+  // findPartName puts back.
+  const GENERATED_NAME = /^_?(mesh|instance)(_(mesh|instance|\d+))*$/i;
+  const findPartName = (object: THREE.Object3D) => {
+    let current = object;
+    while (current && !current.userData?.url) {
+      if (current.name && !GENERATED_NAME.test(current.name)) {
+        return current.name.replace(/_/g, " ");
+      }
+      current = current.parent as THREE.Object3D;
+    }
+    return null;
+  };
+
   const findParentLayer = (object: THREE.Object3D) => {
     let current = object;
     while (current) {
@@ -33,6 +51,7 @@ export default function RaycastHandler({ clippingPlanes, setHovered, onLock, fil
           name: current.userData.layerName,
           url: current.userData?.url || current.userData?.originalUrl,
           layer: current,
+          part: findPartName(object),
         };
       }
       current = current.parent as THREE.Object3D;
@@ -52,9 +71,15 @@ export default function RaycastHandler({ clippingPlanes, setHovered, onLock, fil
     return clippingPlanes.some((p: THREE.Plane) => p.distanceToPoint(point) < 0);
   };
 
+  // annotations share the scene but are not pickable — painting a label sprite
+  // drops its texture and leaves a grey box under the cursor
+  const isPickable = (object: THREE.Object3D) =>
+    !object.userData?.ignore && !!findParentLayer(object).url;
+
   const filterClippedIntersections = (intersects: THREE.Intersection[]) => {
-    if (!clippingPlanes) return intersects;
-    return intersects.filter(({ point, object }) => {
+    const pickable = intersects.filter(({ object }) => isPickable(object));
+    if (!clippingPlanes) return pickable;
+    return pickable.filter(({ point, object }) => {
       if (isLayerTransparent(object)) return false;
       if (isPointClipped(point)) return false;
       const box = new THREE.Box3().setFromObject(object);

@@ -280,6 +280,7 @@ export type Article = {
       }
     | {
         title?: string
+        tooltips?: boolean
         models?: Array<string>
         _type: 'inlineModel'
         _key: string

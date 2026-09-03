@@ -1,31 +1,21 @@
 """
-STEP → GLB converter for the battery module assemblies.
+STEP → GLB converter for CAD that lives outside the Rhino model.
 
-Reads SolidWorks STEP (AP214) assemblies with OpenCASCADE, tessellates them,
-and writes one meshopt-ready GLB per sub-assembly into a versioned folder under
-frontend/public/, alongside an export_manifest.json in the same shape the Rhino
-exporter produces (see export-layers-glb.py).
+Writes one GLB per sub-assembly into a versioned folder under frontend/public/,
+with an export_manifest.json in the same shape export-layers-glb.py produces.
+Run ./optimize-glb.sh afterwards to meshopt-compress the result.
 
-Unlike the Rhino pipeline this runs headless, so re-converting an updated
-SolidWorks export is a single command.
-
-Usage (from scripts/):
-    python step-to-glb.py                       # convert everything in SOURCES
-    python step-to-glb.py --only v2             # one source
-    python step-to-glb.py --linear-deflection 0.05
-    python step-to-glb.py --keep-folder         # reuse the current versioned folder
-
-Then run ./optimize-glb.sh to meshopt-compress the result.
+    python step-to-glb.py --list      # print each STEP's top-level parts
 """
 
 import argparse
 import json
 import math
 import os
+import re
 import shutil
 import time
-from collections import Counter
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set, Tuple
 
 from OCP.BRep import BRep_Builder
 from OCP.BRepBndLib import BRepBndLib
@@ -40,9 +30,14 @@ from OCP.TColStd import (
     TColStd_MapOfAsciiString,
 )
 from OCP.TDataStd import TDataStd_Name
+from OCP.Interface import Interface_Static
+from OCP.Quantity import Quantity_Color, Quantity_TOC_RGB
 from OCP.TDF import TDF_Label, TDF_LabelSequence
 from OCP.TDocStd import TDocStd_Document
-from OCP.TopoDS import TopoDS_Compound
+from OCP.TopAbs import TopAbs_ShapeEnum
+from OCP.TopExp import TopExp_Explorer
+from OCP.TopoDS import TopoDS_Compound, TopoDS_Shape
+from OCP.XCAFDoc import XCAFDoc_ColorType
 from OCP.XCAFApp import XCAFApp_Application
 from OCP.XCAFDoc import XCAFDoc_DocumentTool
 from OCP.XCAFPrs import (
@@ -52,69 +47,68 @@ from OCP.XCAFPrs import (
 
 from pygltflib import GLTF2
 
-# ---------------------------------------------------------------------------
-# Configuration
+# One GLB per distinct leaf part, named for its whole path through the assembly
+# — "BATTERY MODULE V2__SPINE__ROD.glb". The front end splits on "__", so hover
+# reports the leaf rather than the whole sub-assembly.
 #
-# `groups` maps the STEP's top-level component names (as authored in
-# SolidWorks) onto one output GLB each. Re-running against a renamed export is
-# a one-line edit here. Run with --list to print the tree of a STEP file.
-# ---------------------------------------------------------------------------
+# Every setting below is per model. A source overrides what it needs, DEFAULTS
+# covers the rest, and a command-line flag beats both. Run with --list to see
+# the layer paths a change produces before writing any files.
+DEFAULTS = {
+    # relabels a STEP component wherever it appears in a path; anything not
+    # listed falls back to clean_name()
+    "rename": {},
+    # solid bodies whose names are SolidWorks feature noise rather than part
+    # names, so the part is not split by body
+    "skip_bodies": r"^(brep_\d+(\[\d+\])?"
+                   r"|(Cut-|Boss-|Base-)?(Extrude|Revolve|Sweep|Loft|Fillet|Chamfer)\d*"
+                   r"|End[A-Z]\w*|.*Diameter Hole\d*)$",
+    # tessellation: chord tolerance in inches, angular tolerance in radians
+    "linear_deflection": 0.01,
+    "angular_deflection": 0.3,
+    # cap on layer path depth; deeper parts collapse into their ancestor
+    "depth": None,
+    # up axis of the STEP file — SolidWorks writes z
+    "up": "z",
+    # one glTF primitive per BRep face, or merged per material
+    "merge_faces": True,
+}
 
 SOURCES = [
     {
         "key": "v1",
         "step": "../step/module-asm-v1.stp",
         "system": "BATTERY MODULE V1",
-        "groups": [
-            {"name": "CELLS", "parts": ["battery-cell"]},
-            {"name": "BUSBAR", "parts": ["busbar_16A"]},
-            {"name": "SPINE", "parts": ["spine-assembly", "spine_M"]},
-        ],
+        "rename": {
+            "battery-cell": "CELLS",
+            "busbar_16A": "BUSBAR",
+            "spine-assembly": "SPINE",
+            "clamp-assembly": "CLAMP ASSEMBLY",
+        },
     },
     {
         "key": "v2",
         "step": "../step/module-asm-v2.stp",
         "system": "BATTERY MODULE V2",
-        "groups": [
-            {"name": "CELLS", "parts": ["battery-cell-base"]},
-            {"name": "SPINE", "parts": ["spine_asm"]},
-            {"name": "SPINE FRONT STOP", "parts": ["spine_asm_front-stop"]},
-        ],
+        "rename": {
+            "battery-cell-base": "CELLS",
+            "spine_asm": "SPINE",
+            "spine_asm_front-stop": "SPINE FRONT STOP",
+        },
     },
 ]
 
-# Leaf part name → (material name, metallicFactor, roughnessFactor).
-#
-# STEP colour entities are unnamed, but the front end keys off material *names*:
-# Model3D.tsx tunes metalness/roughness by name and HoverDisplay lists the names
-# harvested by extract_materials.py. Names are matched against the existing
-# vocabulary in script-output/material_index_simple.json where one fits.
-#
-# Avoid "Plastic" and "Wood" — Model3D.tsx force-overrides those (Plastic is
-# recoloured orange).
-MATERIALS: Dict[str, tuple] = {
-    "battery-cell": ("Lithium Cell", 0.0, 0.55),
-    "battery-cell-base": ("Lithium Cell", 0.0, 0.55),
-    "busbar_16A": ("Copper", 1.0, 0.35),
-    "clamp": ("Aluminum 6061", 1.0, 0.30),
-    "compression-plate": ("Aluminum 6061", 1.0, 0.30),
-    "front_bar": ("Aluminum 6061", 1.0, 0.30),
-    "spine_L": ("Aluminum 6061", 1.0, 0.30),
-    "spine_M": ("Aluminum 6061", 1.0, 0.30),
-    "spine_R": ("Aluminum 6061", 1.0, 0.30),
-    "spine_base": ("Aluminum 6061", 1.0, 0.30),
-    "spine_side_simple": ("Aluminum 6061", 1.0, 0.30),
-    "spine_side_simple_front-stop-a": ("Aluminum 6061", 1.0, 0.30),
-    "spine_side_simple_front-stop-b": ("Aluminum 6061", 1.0, 0.30),
-    "nut": ("Stainless Steel", 1.0, 0.25),
-    "pan-head-screw": ("Stainless Steel", 1.0, 0.25),
-    "rod": ("Stainless Steel", 1.0, 0.25),
-    "tension-rod": ("Stainless Steel", 1.0, 0.25),
-    "flat washer type a narrow_ai_Preferred Narrow FW 0.3125": ("Stainless Steel", 1.0, 0.25),
-    "hex nut_ai_HNUT 0.3125-18-D-N": ("Stainless Steel", 1.0, 0.25),
-}
 
-FALLBACK_MATERIAL = ("Aluminum 6061", 1.0, 0.30)
+def setting(source: Dict, key: str, override=None):
+    """Per-model value for `key`: a command-line flag wins, then the source."""
+    if override is not None:
+        return override
+    return source.get(key, DEFAULTS[key])
+
+# STEP records colors but no material identity, so materials are left unnamed
+# and given one neutral dielectric response rather than an inferred material.
+NEUTRAL_METALLIC = 0.0
+NEUTRAL_ROUGHNESS = 0.45
 
 PUBLIC_DIR = "../frontend/public"
 MANIFEST_DIR = PUBLIC_DIR + "/models-battery"
@@ -122,16 +116,10 @@ FOLDER_PREFIX = "models-battery"
 
 MM_PER_INCH = 25.4
 
-# OpenCASCADE reads this STEP as millimetres and RWGltf_CafWriter emits metres,
-# so geometry needs no scaling — only the Z-up → Y-up swap that Rhino's glTF
-# exporter also performs. See util.ts INCHES_TO_METERS and its "Rhino Z →
-# Three.js Y" mapping: manifest boxes stay Z-up inches, geometry is Y-up metres.
+# OpenCASCADE reads mm and its glTF writer emits meters, so geometry needs no
+# scaling — but it does not rotate. Geometry ends up Y-up meters and manifest
+# boxes stay Z-up inches, which is the split util.ts expects.
 ZUP_TO_YUP_QUAT = [-math.sqrt(0.5), 0.0, 0.0, math.sqrt(0.5)]
-
-
-# ---------------------------------------------------------------------------
-# OpenCASCADE helpers
-# ---------------------------------------------------------------------------
 
 
 def label_name(label) -> str:
@@ -142,13 +130,92 @@ def label_name(label) -> str:
     return "?"
 
 
+def clean_name(part: str) -> str:
+    """
+    A SolidWorks component name as a layer segment: "pan-head-screw" → "PAN HEAD
+    SCREW". Toolbox parts carry a configuration after "_ai_" ("hex nut_ai_HNUT
+    0.3125-18-D-N") which is dropped — it is a size code, not a name.
+    """
+    name = part.split("_ai_")[0]
+    # solid bodies repeat as "pos-studs[1]", "pos-studs[2]" — one layer each
+    name = re.sub(r"\[\d+\]\s*$", "", name)
+    name = name.replace("_", " ").replace("-", " ")
+    # "__" separates path segments and "." would break the .glb suffix
+    name = name.replace("__", " ").replace(".", " ")
+    return " ".join(name.split()).upper() or "PART"
+
+
+def named_bodies(shape_tool, part_label, skip: "re.Pattern") -> List[Tuple[str, TopoDS_Shape]]:
+    """
+    Named solid bodies of a multi-body part, as (name, shape).
+
+    Empty for a single-body part, whose one body is just the part itself, and
+    Bodies whose names match `skip` are ignored — SolidWorks names an unnamed
+    body after the feature that made it ("brep_3[1]", "Cut-Extrude1").
+    """
+    subs = TDF_LabelSequence()
+    if not shape_tool.GetSubShapes_s(part_label, subs):
+        return []
+
+    bodies = []
+    for i in range(1, subs.Length() + 1):
+        label = subs.Value(i)
+        name = label_name(label)
+        if name in ("?", "NONE") or skip.match(name):
+            continue
+        shape = shape_tool.GetShape_s(label)
+        if shape.ShapeType() == TopAbs_ShapeEnum.TopAbs_SOLID:
+            bodies.append((name, shape))
+
+    # Deliberately not skipped when there is only one body, even though the
+    # segment is then redundant ("CELLS::CELL"): naming a second body later
+    # would otherwise rename the first one and break every link to it. A part's
+    # layer path depends only on that part, never on its siblings.
+    return bodies
+
+
+def body_color(color_tool, solid: TopoDS_Shape) -> Optional[Quantity_Color]:
+    """
+    A solid body's own color.
+
+    Face styles are checked before the solid's, because a solid with no style of
+    its own inherits the part's — which paints a steel stud with the blue of the
+    cell it sits in. Bodies here carry at most one face color; where a body had
+    several, the dominant one stands in for the rest.
+    """
+    counts: Dict[Tuple[float, float, float], int] = {}
+    explorer = TopExp_Explorer(solid, TopAbs_ShapeEnum.TopAbs_FACE)
+    while explorer.More():
+        face_color = Quantity_Color()
+        if color_tool.GetColor(
+            explorer.Current(), XCAFDoc_ColorType.XCAFDoc_ColorSurf, face_color
+        ):
+            rgb = (face_color.Red(), face_color.Green(), face_color.Blue())
+            counts[rgb] = counts.get(rgb, 0) + 1
+        explorer.Next()
+
+    if counts:
+        red, green, blue = max(counts, key=lambda rgb: counts[rgb])
+        return Quantity_Color(red, green, blue, Quantity_TOC_RGB)
+
+    color = Quantity_Color()
+    if color_tool.GetColor(solid, XCAFDoc_ColorType.XCAFDoc_ColorSurf, color):
+        return color
+    return None
+
+
 def read_step(path: str) -> TDocStd_Document:
-    """Read a STEP file into an XCAF document, preserving names and colours."""
+    """Read a STEP file into an XCAF document, preserving names and colors."""
     app = XCAFApp_Application.GetApplication_s()
     doc = TDocStd_Document(TCollection_ExtendedString("BinXCAF"))
     app.NewDocument(TCollection_ExtendedString("BinXCAF"), doc)
 
     reader = STEPCAFControl_Reader()
+    # solid body names (MANIFOLD_SOLID_BREP) come in as sub-shape labels, which
+    # is the only place a multi-body part names its pieces. The STEP statics are
+    # not registered until a reader exists, so setting this earlier silently
+    # no-ops — it has to come after the constructor above.
+    Interface_Static.SetIVal_s("read.stepcaf.subshapes.name", 1)
     reader.SetColorMode(True)
     reader.SetNameMode(True)
     reader.SetLayerMode(True)
@@ -166,55 +233,137 @@ def explore(doc: TDocStd_Document, roots: TDF_LabelSequence):
         it.Next()
 
 
-def index_assembly(doc: TDocStd_Document, roots: TDF_LabelSequence):
-    """
-    Walk the tree once, rename instance labels to their part names, and bucket
-    every node id under the top-level component it belongs to.
+class Group:
+    """The leaf parts sharing one assembly path — one output GLB."""
 
-    STEP instances are named NAUO1, NAUO2, … — renaming the instance label to
-    the referenced product name is what makes RWGltf_CafWriter emit useful glTF
+    def __init__(self, path: Tuple[str, ...]):
+        self.path = path
+        self.node_ids: Set[str] = set()
+        self.shapes: List[TopoDS_Shape] = []
+        # a body group is a slice of a multi-body part, so it cannot be selected
+        # with the writer's node filter and is written from its own document
+        self.color: Optional[Quantity_Color] = None
+        self.is_body = False
+
+
+def index_assembly(doc: TDocStd_Document, roots: TDF_LabelSequence,
+                   shape_tool, color_tool, rename: Dict[str, str],
+                   skip_bodies: "re.Pattern", depth_cap: Optional[int]):
+    """
+    Walk the tree and group every leaf part by its path through the assembly,
+    returning (root_id, {path: Group}).
+
+    Also renames instance labels, which STEP calls NAUO1, NAUO2, …, to their
+    referenced product name — that is what makes the writer emit useful glTF
     node names, which RaycastHandler shows on hover.
-
-    Returns (root_id, {top_level_part_name: [node ids]}, {node id: part name}).
     """
-    buckets: Dict[str, List[str]] = {}
-    part_of: Dict[str, str] = {}
+    groups: Dict[Tuple[str, ...], Group] = {}
     root_id: Optional[str] = None
-    current: Optional[str] = None
+    stack: List[Tuple[str, str]] = []  # (node id, segment name) per depth
 
     for depth, node in explore(doc, roots):
         part = label_name(node.RefLabel)
         node_id = node.Id.ToCString()
-        TDataStd_Name.Set_s(node.Label, TCollection_ExtendedString(part))
-        part_of[node_id] = part
 
         if depth == 0:
             root_id = node_id
+            TDataStd_Name.Set_s(node.Label, TCollection_ExtendedString(clean_name(part)))
             continue
-        if depth == 1:
-            current = part
-        if current is not None:
-            buckets.setdefault(current, []).append(node_id)
+
+        TDataStd_Name.Set_s(node.Label, TCollection_ExtendedString(clean_name(part)))
+
+        # ancestors of this node are the entries shallower than it
+        stack = stack[: depth - 1]
+        stack.append((node_id, rename.get(part) or clean_name(part)))
+        if node.IsAssembly:
+            continue
+
+        path = tuple(name for _, name in stack)
+        if depth_cap:
+            path = path[:depth_cap]
+
+        bodies = [] if depth_cap and len(path) >= depth_cap else named_bodies(
+            shape_tool, node.RefLabel, skip_bodies
+        )
+        if bodies:
+            # a multi-body part: one layer per named body rather than one for
+            # the whole part, so hover reports "POS TERMINAL STUD" not "CELLS"
+            for body_name, body in bodies:
+                body_path = path + (clean_name(body_name),)
+                group = groups.setdefault(body_path, Group(body_path))
+                group.is_body = True
+                group.shapes.append(body.Moved(node.Location))
+                if group.color is None:
+                    group.color = body_color(color_tool, body)
+            continue
+
+        group = groups.setdefault(path, Group(path))
+        # every ancestor has to be written too, or the leaf has no parent chain
+        group.node_ids.update(nid for nid, _ in stack)
+        group.shapes.append(shape_tool.GetShape_s(node.RefLabel).Moved(node.Location))
 
     if root_id is None:
         raise RuntimeError("no root node found")
-    return root_id, buckets, part_of
+    return root_id, groups
 
 
-def group_compound(shape_tool, roots: TDF_LabelSequence, parts: List[str]) -> TopoDS_Compound:
-    """Build a compound of the located top-level components named in `parts`."""
+def document_unit() -> float:
+    """
+    The length unit the reader gives shapes, in meters.
+
+    `xstep.cascade.unit` is left at its default, so STEP arrives as millimeters
+    whatever the file declares — these assemblies are authored in inches and
+    read as mm. Reading it back off the document would be tidier, but
+    FindAttribute on XCAFDoc_LengthUnit segfaults in these bindings.
+    """
+    unit = Interface_Static.CVal_s("xstep.cascade.unit") or "MM"
+    return {"MM": 0.001, "M": 1.0, "CM": 0.01, "INCH": 0.0254}.get(unit.upper(), 0.001)
+
+
+def write_body_glb(group: "Group", label: str, out_path: str, merge_faces: bool,
+                   unit: float) -> bool:
+    """
+    Write a group of solid bodies to GLB via a document of its own.
+
+    The writer's label filter matches assembly node ids, and bodies are
+    sub-shapes rather than nodes, so they cannot be selected out of the source
+    document. Their triangulation is shared with it, so this needs no remeshing.
+    """
+    app = XCAFApp_Application.GetApplication_s()
+    doc = TDocStd_Document(TCollection_ExtendedString("BinXCAF"))
+    app.NewDocument(TCollection_ExtendedString("BinXCAF"), doc)
+    # the writer scales to meters using the document's unit; without it a fresh
+    # document emits raw millimeters while the filtered path emits meters
+    XCAFDoc_DocumentTool.SetLengthUnit_s(doc, unit)
+    shape_tool = XCAFDoc_DocumentTool.ShapeTool_s(doc.Main())
+    color_tool = XCAFDoc_DocumentTool.ColorTool_s(doc.Main())
+
+    # one node per instance rather than one compound, so hover can name the
+    # individual body — "CELL 3" out of a stack of eight
+    for index, shape in enumerate(group.shapes, start=1):
+        shape_label = shape_tool.AddShape(shape, False)
+        name = label if len(group.shapes) == 1 else "%s %d" % (label, index)
+        TDataStd_Name.Set_s(shape_label, TCollection_ExtendedString(name))
+        if group.color is not None:
+            color_tool.SetColor(
+                shape_label, group.color, XCAFDoc_ColorType.XCAFDoc_ColorSurf
+            )
+
+    writer = RWGltf_CafWriter(TCollection_AsciiString(out_path), True)
+    writer.SetTransformationFormat(RWGltf_WriterTrsfFormat_TRS)
+    writer.SetMergeFaces(merge_faces)
+    writer.SetParallel(True)
+    return writer.Perform(
+        doc, TColStd_IndexedDataMapOfStringString(), Message_ProgressRange()
+    )
+
+
+def compound_of(shapes: List[TopoDS_Shape]) -> TopoDS_Compound:
     builder = BRep_Builder()
     compound = TopoDS_Compound()
     builder.MakeCompound(compound)
-    for i in range(1, roots.Length() + 1):
-        comps = TDF_LabelSequence()
-        shape_tool.GetComponents_s(roots.Value(i), comps)
-        for j in range(1, comps.Length() + 1):
-            comp = comps.Value(j)
-            ref = TDF_Label()
-            target = ref if shape_tool.GetReferredShape_s(comp, ref) else comp
-            if label_name(target) in parts:
-                builder.Add(compound, shape_tool.GetShape_s(comp))
+    for shape in shapes:
+        builder.Add(compound, shape)
     return compound
 
 
@@ -246,50 +395,34 @@ def normalized_size(bbox: Dict) -> Dict:
     }
 
 
-# ---------------------------------------------------------------------------
-# glTF post-processing
-# ---------------------------------------------------------------------------
-
-
 def postprocess(path: str, group_label: str, rotate: bool) -> None:
     """
-    Fix up what OpenCASCADE's writer leaves out:
-
-    * wrap the scene in a node carrying the Z-up → Y-up rotation
-    * name the materials and give them sane metallic/roughness values (STEP
-      colours arrive unnamed, and glTF defaults both factors to 1.0, which
-      renders every part as rough metal)
+    Wrap the scene in a node carrying the Z-up → Y-up rotation, and set the
+    metallic/roughness factors glTF would otherwise default to 1.0 — which
+    renders every part as rough metal.
     """
     gltf = GLTF2().load(path)
     scene = gltf.scenes[gltf.scene or 0]
 
-    # Materials are shared across parts, so attribute each one to the part name
-    # that uses it most and take that part's material definition.
-    users: Dict[int, Counter] = {}
+    # Number repeated nodes so every name in the file is unique. A sub-assembly
+    # shares one set of labels across its instances, so the writer emits the
+    # same name several times; left alone, GLTFLoader appends a suffix of its
+    # own and hover reads "CLAMP 5 1".
+    totals: Dict[str, int] = {}
     for node in gltf.nodes:
-        if node.mesh is None:
-            continue
-        for prim in gltf.meshes[node.mesh].primitives:
-            if prim.material is None:
-                continue
-            users.setdefault(prim.material, Counter())[node.name or "?"] += 1
+        if node.name:
+            totals[node.name] = totals.get(node.name, 0) + 1
+    numbered: Dict[str, int] = {}
+    for node in gltf.nodes:
+        if node.name and totals[node.name] > 1:
+            numbered[node.name] = numbered.get(node.name, 0) + 1
+            node.name = "%s %d" % (node.name, numbered[node.name])
 
-    unknown = set()
-    for index, material in enumerate(gltf.materials or []):
-        counts = users.get(index)
-        part = counts.most_common(1)[0][0] if counts else None
-        if part not in MATERIALS:
-            if part:
-                unknown.add(part)
-            name, metallic, roughness = FALLBACK_MATERIAL
-        else:
-            name, metallic, roughness = MATERIALS[part]
-        material.name = name
+    for material in gltf.materials or []:
+        material.name = None
         if material.pbrMetallicRoughness is not None:
-            material.pbrMetallicRoughness.metallicFactor = metallic
-            material.pbrMetallicRoughness.roughnessFactor = roughness
-    if unknown:
-        print("     ! no MATERIALS entry for: " + ", ".join(sorted(unknown)))
+            material.pbrMetallicRoughness.metallicFactor = NEUTRAL_METALLIC
+            material.pbrMetallicRoughness.roughnessFactor = NEUTRAL_ROUGHNESS
 
     if rotate:
         from pygltflib import Node
@@ -307,7 +440,7 @@ def postprocess(path: str, group_label: str, rotate: bool) -> None:
 
 
 def convert_source(source: Dict, out_dir: str, args) -> List[Dict]:
-    """Convert one STEP file into one GLB per configured group."""
+    """Convert one STEP file into one GLB per leaf part path."""
     step_path = source["step"]
     if not os.path.exists(step_path):
         print("⚠️  missing STEP file: " + step_path)
@@ -319,68 +452,71 @@ def convert_source(source: Dict, out_dir: str, args) -> List[Dict]:
     roots = TDF_LabelSequence()
     shape_tool.GetFreeShapes(roots)
 
-    root_id, buckets, part_of = index_assembly(doc, roots)
+    color_tool = XCAFDoc_DocumentTool.ColorTool_s(doc.Main())
+    doc_unit = document_unit()
+    depth_cap = setting(source, "depth", args.depth)
+    merge_faces = setting(source, "merge_faces", args.merge_faces)
+    root_id, groups = index_assembly(
+        doc, roots, shape_tool, color_tool,
+        setting(source, "rename"),
+        re.compile(setting(source, "skip_bodies"), re.IGNORECASE),
+        depth_cap,
+    )
 
     if args.list:
-        for part, ids in buckets.items():
-            leaves = Counter(part_of[i] for i in ids if part_of[i] != part)
-            print("   - %-24s %d node(s)  %s" % (part, len(ids), dict(leaves) or "leaf"))
+        for path, group in groups.items():
+            print("   - %-52s %d part(s)" % ("::".join(path), len(group.shapes)))
         return []
 
-    # Tessellate once — every group reuses the triangulation stored on the faces.
+    # Once for the whole doc — groups reuse the triangulation stored on the faces.
     for i in range(1, roots.Length() + 1):
         BRepMesh_IncrementalMesh(
             shape_tool.GetShape_s(roots.Value(i)),
-            args.linear_deflection * MM_PER_INCH,
+            setting(source, "linear_deflection", args.linear_deflection) * MM_PER_INCH,
             False,
-            args.angular_deflection,
+            setting(source, "angular_deflection", args.angular_deflection),
             True,
         )
 
     entries = []
-    for group in source["groups"]:
-        missing = [p for p in group["parts"] if p not in buckets]
-        if missing:
-            print("   ⚠️  %s: no such top-level part(s): %s" % (group["name"], ", ".join(missing)))
-        node_ids = [i for p in group["parts"] for i in buckets.get(p, [])]
-        if not node_ids:
-            continue
-
-        filename = "%s__%s.glb" % (source["system"], group["name"])
+    for path, group in groups.items():
+        segments = (source["system"],) + path
+        filename = "__".join(segments) + ".glb"
         out_path = os.path.join(out_dir, filename)
 
-        # The filter is matched against full path ids, and the assembly root has
-        # to be in it too — otherwise the writer emits orphan nodes and an empty
-        # scene.
-        label_filter = TColStd_MapOfAsciiString()
-        label_filter.Add(TCollection_AsciiString(root_id))
-        for node_id in node_ids:
-            label_filter.Add(TCollection_AsciiString(node_id))
+        if group.is_body:
+            ok = write_body_glb(group, path[-1], out_path, merge_faces, doc_unit)
+        else:
+            # Matched against full path ids, and the root has to be in it too or
+            # the writer emits orphan nodes and an empty scene.
+            label_filter = TColStd_MapOfAsciiString()
+            label_filter.Add(TCollection_AsciiString(root_id))
+            for node_id in group.node_ids:
+                label_filter.Add(TCollection_AsciiString(node_id))
 
-        writer = RWGltf_CafWriter(TCollection_AsciiString(out_path), True)
-        writer.SetTransformationFormat(RWGltf_WriterTrsfFormat_TRS)
-        writer.SetMergeFaces(args.merge_faces)
-        writer.SetParallel(True)
-        ok = writer.Perform(
-            doc,
-            roots,
-            label_filter,
-            TColStd_IndexedDataMapOfStringString(),
-            Message_ProgressRange(),
-        )
+            writer = RWGltf_CafWriter(TCollection_AsciiString(out_path), True)
+            writer.SetTransformationFormat(RWGltf_WriterTrsfFormat_TRS)
+            writer.SetMergeFaces(merge_faces)
+            writer.SetParallel(True)
+            ok = writer.Perform(
+                doc,
+                roots,
+                label_filter,
+                TColStd_IndexedDataMapOfStringString(),
+                Message_ProgressRange(),
+            )
         if not ok:
             print("   ❌ %s — writer failed" % filename)
             continue
 
-        postprocess(out_path, "%s %s" % (source["system"], group["name"]), args.up == "z")
+        postprocess(out_path, " ".join(segments), setting(source, "up", args.up) == "z")
 
-        compound = group_compound(shape_tool, roots, group["parts"])
-        bbox = bounding_box(compound)
-        leaf_count = len([i for i in node_ids if part_of[i] not in group["parts"]]) or len(node_ids)
+        bbox = bounding_box(compound_of(group.shapes))
+        leaf_count = len(group.shapes)
 
         entries.append(
             {
-                "layer_name": "%s::%s" % (source["system"], group["name"]),
+                "layer_name": "::".join(segments),
                 "filename": filename,
                 "file_size": os.path.getsize(out_path),
                 "object_count": leaf_count,
@@ -392,7 +528,7 @@ def convert_source(source: Dict, out_dir: str, args) -> List[Dict]:
         )
         dims = bbox["dimensions"]
         print(
-            "   ✅ %-40s %6.0fK  %d part(s)  %.1f × %.1f × %.1f in"
+            "   ✅ %-56s %6.0fK  %2d part(s)  %.1f × %.1f × %.1f in"
             % (
                 filename,
                 os.path.getsize(out_path) / 1024,
@@ -410,18 +546,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Convert STEP assemblies to web GLB")
     parser.add_argument("--only", help="convert a single source by key (e.g. v2)")
     parser.add_argument("--list", action="store_true",
-                        help="print each STEP's top-level parts and exit")
-    parser.add_argument("--linear-deflection", type=float, default=0.01,
-                        help="tessellation chord tolerance in inches (default: 0.01)")
-    parser.add_argument("--angular-deflection", type=float, default=0.3,
-                        help="tessellation angular tolerance in radians (default: 0.3)")
-    parser.add_argument("--up", choices=["z", "y"], default="z",
-                        help="up axis of the STEP file (default: z, matching SolidWorks)")
+                        help="print each STEP's layer paths and exit")
+    parser.add_argument("--depth", type=int,
+                        help="override the per-model layer path depth cap")
+    parser.add_argument("--linear-deflection", type=float,
+                        help="override the per-model chord tolerance, in inches")
+    parser.add_argument("--angular-deflection", type=float,
+                        help="override the per-model angular tolerance, in radians")
+    parser.add_argument("--up", choices=["z", "y"],
+                        help="override the per-model up axis")
     parser.add_argument("--no-merge-faces", dest="merge_faces", action="store_false",
                         help="keep one glTF primitive per BRep face")
     parser.add_argument("--keep-folder", action="store_true",
                         help="write into the folder the current manifest points at")
-    parser.set_defaults(merge_faces=True)
+    parser.set_defaults(merge_faces=None)
     args = parser.parse_args()
 
     sources = [s for s in SOURCES if not args.only or s["key"] == args.only]
@@ -441,8 +579,6 @@ def main() -> None:
         folder = "%s-%d" % (FOLDER_PREFIX, int(time.time()))
     out_dir = os.path.join(PUBLIC_DIR, folder)
 
-    # The versioned folder is served with an immutable Cache-Control, so it is
-    # replaced wholesale rather than merged into.
     if os.path.exists(out_dir) and not args.keep_folder:
         shutil.rmtree(out_dir)
     os.makedirs(out_dir, exist_ok=True)

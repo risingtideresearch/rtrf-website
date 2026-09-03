@@ -16,7 +16,11 @@ interface HoverDisplayProps {
   materials: MaterialIndex;
   settings: ControlSettings;
   componentParts: Array<Component>;
+  // the picked instance inside the layer, when the caller resolves that far
+  partName?: string;
   lockedAt?: { x: number; y: number } | null;
+  // align to this element's top rather than the viewport
+  containerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function HoverDisplay({
@@ -24,7 +28,9 @@ export default function HoverDisplay({
   materials,
   settings,
   componentParts,
+  partName,
   lockedAt,
+  containerRef,
 }: HoverDisplayProps) {
   const [displayLayer, setDisplayLayer] = useState(layer);
   const [isVisible, setIsVisible] = useState(false);
@@ -82,7 +88,13 @@ export default function HoverDisplay({
 
     const pos = lockedAt ?? mouse;
     let x = Math.round(pos.x + offset);
-    let y = window?.innerWidth < 800 ? 130 : 80;
+    const containerTop = containerRef?.current?.getBoundingClientRect().top;
+    let y =
+      containerTop !== undefined
+        ? Math.max(containerTop, padding)
+        : window?.innerWidth < 800
+          ? 130
+          : 80;
 
     if (x + tooltipWidth + padding > viewportWidth) {
       x = pos.x - tooltipWidth - offset;
@@ -149,7 +161,8 @@ export default function HoverDisplay({
         <div className={styles.row}>
           <h6 className={`${styles.cell} ${styles["cell--label"]}`}>Part</h6>
           <h6 className={`${styles.cell} ${styles["cell--value"]}`}>
-            {last
+            {partName ??
+              last
               .toLowerCase()
               .replace(
                 /\b(surfs|surfaces|mesh|simplified|approx\.|outside)\b/g,

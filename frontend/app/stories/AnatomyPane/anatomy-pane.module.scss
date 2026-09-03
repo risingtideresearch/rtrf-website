@@ -12,7 +12,9 @@
     display: inline-flex;
     flex-direction: row;
   }
-  h6 {
+  // direct child only — as a descendant selector this also caught h6s rendered
+  // inside the pane, collapsing the hover tooltip's cells
+  > h6 {
     margin: 0;
     position: absolute;
     bottom: -1.1875rem;

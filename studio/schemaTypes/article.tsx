@@ -2,6 +2,7 @@ import {defineField, defineType} from 'sanity'
 import {RiArticleLine} from 'react-icons/ri'
 import {ChartUpwardIcon, CubeIcon, InlineIcon, PlayIcon} from '@sanity/icons'
 import ModelDropdownInput from '../components/ModelDropdownInput'
+import ModelListInput from '../components/ModelListInput'
 import DrawingDropdownInput, {
   getDrawingId,
   getDrawingTitle,
@@ -138,10 +139,12 @@ export const article = defineType({
             {
               type: 'string',
               name: 'title',
+              description: 'Text above images'
             },
             {
               type: 'string',
               name: 'caption',
+              description: 'Text below images'
             },
             defineField({
               name: 'imageSet',
@@ -305,9 +308,18 @@ export const article = defineType({
               name: 'title',
               type: 'string',
             },
+            defineField({
+              name: 'tooltips',
+              title: 'Interactive tooltips',
+              type: 'boolean',
+              initialValue: false,
+            }),
             {
               name: 'models',
               type: 'array',
+              components: {
+                input: ModelListInput,
+              },
               validation: (Rule) =>
                 Rule.custom((models: string[] | undefined) => {
                   if (!models || models.length === 0) return true
@@ -336,15 +348,7 @@ export const article = defineType({
 
                   return true
                 }),
-              of: [
-                defineField({
-                  name: 'model',
-                  type: 'string',
-                  components: {
-                    input: ModelDropdownInput,
-                  },
-                }),
-              ],
+              of: [defineField({name: 'model', type: 'string'})],
             },
           ],
         }),

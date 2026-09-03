@@ -94,7 +94,7 @@ while IFS= read -r -d '' INPUT; do
 
   TMPFILE="${INPUT%.glb}.tmp.glb"
 
-  if "$GLTFPACK_BIN" -i "$INPUT" -o "$TMPFILE" -si "$SIMPLIFY" -cc 2>/dev/null; then
+  if "$GLTFPACK_BIN" -i "$INPUT" -o "$TMPFILE" -si "$SIMPLIFY" -cc -kn 2>/dev/null; then
     AFTER=$(stat -f%z "$TMPFILE" 2>/dev/null || stat -c%s "$TMPFILE")
     SAVED=$(( (BEFORE - AFTER) * 100 / BEFORE ))
     mv "$TMPFILE" "$INPUT"

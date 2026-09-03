@@ -31,27 +31,11 @@ if __name__ == "__main__":
             manifest = json.load(f)
         return '../frontend/public/' + manifest['export_info'].get('models_folder', default)
 
+    # Only the Rhino models carry material names. STEP files record colors but
+    # no material identity, so the battery modules are deliberately left out of
+    # the index rather than have one inferred for them.
     folder_path = resolve_models_folder(model_manifest_path, 'models')
     create_material_index(folder_path, output_json)
-
-    # The battery modules come from STEP rather than Rhino (step-to-glb.py) and
-    # live in their own folder, but HoverDisplay reads one merged index.
-    battery_folder = resolve_models_folder(battery_manifest_path, 'models-battery')
-    if battery_folder:
-        battery_json = '../frontend/public/script-output/material_index_battery.json'
-        create_material_index(battery_folder, battery_json, verbose=False)
-        with open(output_json) as f:
-            merged = json.load(f)
-        with open(battery_json) as f:
-            battery_index = json.load(f)
-        merged['material_index'].update(battery_index['material_index'])
-        merged['unique_materials'] = sorted(
-            set(merged['unique_materials']) | set(battery_index['unique_materials'])
-        )
-        with open(output_json, 'w') as f:
-            json.dump(merged, f, indent=2)
-        os.remove(battery_json)
-        print(f"✅ Merged {len(battery_index['material_index'])} battery model(s) into material index")
 
     # copy files to sanity
     drawing_manifest_path = '../frontend/public/drawings/output_images/conversion_manifest.json'

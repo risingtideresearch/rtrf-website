@@ -35,7 +35,11 @@ const components = {
       />
     ),
     inlineModel: ({ value }) => (
-      <InlineModel title={value.title} models={value.models || []} />
+      <InlineModel
+        title={value.title}
+        models={value.models || []}
+        tooltips={value.tooltips}
+      />
     ),
     chart: ({ value }) =>
       value.type == "range chart" ? <RangeChart title={value.title} /> : <></>,
