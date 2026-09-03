@@ -15,6 +15,7 @@ import * as THREE from "three";
 import { Model3D } from "./Model3D";
 import ScalingLines3D from "./ScalingLines3D";
 import RaycastHandler from "./RaycastHandler";
+import { ModelBoundary } from "./ModelBoundary";
 import { contextualLayers, MaterialIndex, Model } from "./util";
 import HoverDisplay from "../HoverDisplay";
 import { ControlSettings } from "../Anatomy";
@@ -528,21 +529,27 @@ export function Canvas3D({
 
           <group ref={groupRef}>
             {filteredLayers.map((url: string) => (
-              <Suspense key={url} fallback={null}>
-                <Model3D
-                  url={url}
-                  onLoad={() => handleModelLoad(url)}
-                  partHover={partHover}
-                  clippingPlanes={clippingPlanes}
-                  transparent={
-                    (settings.transparent &&
-                      (contextualLayers.includes(url) ||
-                        url ==
-                          "BODY__CTR BEAM__ctr beam inside surfaces.glb")) ||
-                    false
-                  }
-                />
-              </Suspense>
+              <ModelBoundary
+                key={url}
+                url={url}
+                onFailure={() => handleModelLoad(url)}
+              >
+                <Suspense fallback={null}>
+                  <Model3D
+                    url={url}
+                    onLoad={() => handleModelLoad(url)}
+                    partHover={partHover}
+                    clippingPlanes={clippingPlanes}
+                    transparent={
+                      (settings.transparent &&
+                        (contextualLayers.includes(url) ||
+                          url ==
+                            "BODY__CTR BEAM__ctr beam inside surfaces.glb")) ||
+                      false
+                    }
+                  />
+                </Suspense>
+              </ModelBoundary>
             ))}
           </group>
 

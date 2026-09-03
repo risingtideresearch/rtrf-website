@@ -7,6 +7,7 @@ import ImageSet from "../components/ImageSet";
 import { Image } from "../components/Image";
 import { formatDate, toISODate } from "../utils";
 import { contextualLayers } from "../anatomy/three-d/util";
+import { knownModels } from "../manifest-util";
 import MaterialsTable from "../components/MaterialsTable";
 import { PhotoImage } from "../components/PhotoImage";
 import { InlineVideo } from "../components/InlineVideo";
@@ -107,10 +108,10 @@ const components = {
 };
 
 export default async function Article({ data, materials = [] }) {
-  const articleModels = [
+  const articleModels = knownModels([
     ...data.relatedModels.filter((layer) => !contextualLayers.includes(layer)),
     ...contextualLayers,
-  ];
+  ]);
 
   const isPreviewSite = process.env.NEXT_PUBLIC_PREVIEW_SITE === "true";
 
