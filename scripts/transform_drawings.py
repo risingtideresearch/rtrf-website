@@ -945,7 +945,7 @@ def cleanup_source_directory(root_directory):
 
     Archived folders are left alone apart from DELETE_EXTENSIONS, which are purged
     wherever they appear -- keeping the archive intact while dropping the large
-    working files nobody publishes. The generated output tree is never touched.
+    working files nobody publishes. Generated trees (see GENERATED_DIR_NAMES) are never touched.
     """
     deleted = []
 

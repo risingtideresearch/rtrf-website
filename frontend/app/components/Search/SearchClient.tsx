@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { getPhotoURL } from "@/app/photos/util";
 import { getVideoURL } from "@/app/videos/util";
 import { MdPerson, MdPlayCircleOutline } from "react-icons/md";
+import Image from "next/image";
 import { URLS } from "../Navigation/Navigation";
 
 type SearchResult = {
@@ -18,6 +19,8 @@ type SearchResult = {
   slug?: any;
   thumbnailUrl?: string;
   originalFilename?: string;
+  width?: number;
+  height?: number;
 };
 
 export default function SearchClient({ type }) {
@@ -294,25 +297,45 @@ export default function SearchClient({ type }) {
                                 tabIndex={-1}
                                 onFocus={() => setSelectedIndex(flatIndex)}
                               >
-                                {result.id || result.articleId ? (
-                                  <h6>{result.id || result.articleId}</h6>
-                                ) : result.thumbnailUrl ? (
-                                  <img
+                                {result.thumbnailUrl ? (
+                                  <Image
                                     src={result.thumbnailUrl}
                                     alt={
-                                      result.title || result.originalFilename
+                                      result.title ||
+                                      result.originalFilename ||
+                                      ""
                                     }
-                                    width={64}
-                                    height={64}
+                                    width={result.width ?? 64}
+                                    height={result.height ?? 64}
+                                    unoptimized={
+                                      !result.thumbnailUrl.startsWith("/") ||
+                                      result.thumbnailUrl
+                                        .toLowerCase()
+                                        .endsWith(".svg")
+                                    }
+                                    className={
+                                      resultType == 'drawing'
+                                        ? styles.search__drawing_thumb
+                                        : undefined
+                                    }
                                   />
+                                ) : result.id || result.articleId ? (
+                                  <h6>{result.id || result.articleId}</h6>
                                 ) : resultType == 'person' ?
-                                <span><MdPerson size={16} className={styles.search__person_icon} /></span>
+                                <span>
+                                  {/* <MdPerson size={16} className={styles.search__person_icon} /> */}
+                                  </span>
                                 : resultType == 'sanity.fileAsset' ?
                                 <span><MdPlayCircleOutline size={16} className={styles.search__person_icon} /></span>
                                 : (
                                   <></>
                                 )}
                                 <span className={`link ${styles.search__result_title}`}>
+                                  {resultType == 'drawing' && result.id && (
+                                    <span className={styles.search__result_id}>
+                                      {result.id}
+                                    </span>
+                                  )}
                                   {result.title}
                                 </span>
                               </a>

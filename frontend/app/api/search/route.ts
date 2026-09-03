@@ -30,7 +30,17 @@ export async function POST(request: Request) {
     const drawingResults = allDrawings
       .filter((f) => pattern.test(f.title) || f.id.toLowerCase().includes(lowerQuery))
       .slice(0, 20)
-      .map((f) => ({ title: f.title, uuid: f.uuid, id: f.id, _type: "drawing" }));
+      .map((f) => ({
+        title: f.title,
+        uuid: f.uuid,
+        id: f.id,
+        thumbnailUrl: f.thumbnail_path || f.rel_path,
+        // Full-size dimensions, but the thumbnail preserves aspect ratio, so this
+        // is what next/image needs to reserve the right space.
+        width: f.width,
+        height: f.height,
+        _type: "drawing",
+      }));
 
     return NextResponse.json({ results: enriched.concat(drawingResults) });
   } catch (error) {

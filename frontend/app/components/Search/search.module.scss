@@ -146,6 +146,19 @@
     font-size: 0.8125rem;
   }
 
+  // Drawings are landscape, so they keep their aspect ratio rather than being
+  // forced into the square box the photo thumbnails use.
+  &__drawing_thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__result_id {
+    color: var(--muted);
+    margin-right: 0.5rem;
+  }
+
   &__person_icon {
     display: block;
     margin: 0 0.5rem;

@@ -265,6 +265,10 @@ section {
     width: 100%;
     border-right: 1px solid var(--black);
 
+    @media screen and (max-width: 900px) {
+      border-right: none;
+    }
+
     img {
       display: block;
       width: 100%;
