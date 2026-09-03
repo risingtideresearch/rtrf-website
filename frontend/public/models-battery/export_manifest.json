@@ -1,0 +1,1293 @@
+{
+  "exported_layers": [
+    {
+      "layer_name": "BATTERY MODULE V1::BUSBAR",
+      "filename": "BATTERY MODULE V1__BUSBAR.glb",
+      "file_size": 14608,
+      "object_count": 1,
+      "bounding_box": {
+        "min": {
+          "x": -4.525636975284445,
+          "y": -19.429633043315942,
+          "z": -1.1355385501774242
+        },
+        "max": {
+          "x": 4.5256369752844465,
+          "y": -19.27087877274705,
+          "z": 0.4405385499977654
+        },
+        "center": {
+          "x": 8.881784197001252e-16,
+          "y": -19.350255908031496,
+          "z": -0.3475000000898294
+        },
+        "dimensions": {
+          "width": 9.051273950568891,
+          "depth": 0.1587542705688918,
+          "height": 1.5760771001751896
+        }
+      },
+      "normalized_size": {
+        "length": 9.051273950568891,
+        "width": 1.5760771001751896,
+        "height": 0.1587542705688918,
+        "world_aligned": {
+          "x": 9.051273950568891,
+          "y": 0.1587542705688918,
+          "z": 1.5760771001751896
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 90252
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::CELLS",
+      "filename": "BATTERY MODULE V1__CELLS.glb",
+      "file_size": 35460,
+      "object_count": 16,
+      "bounding_box": {
+        "min": {
+          "x": -4.529153164748944,
+          "y": -19.76489476333044,
+          "z": -1.7876531647489422
+        },
+        "max": {
+          "x": 4.5291531647489425,
+          "y": 19.76489476333044,
+          "z": 1.7876531647489422
+        },
+        "center": {
+          "x": -8.881784197001252e-16,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "dimensions": {
+          "width": 9.058306329497887,
+          "depth": 39.52978952666088,
+          "height": 3.5753063294978844
+        }
+      },
+      "normalized_size": {
+        "length": 39.52978952666088,
+        "width": 9.058306329497887,
+        "height": 3.5753063294978844,
+        "world_aligned": {
+          "x": 9.058306329497887,
+          "y": 39.52978952666088,
+          "z": 3.5753063294978844
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 229528
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE M",
+      "filename": "BATTERY MODULE V1__SPINE M.glb",
+      "file_size": 3508,
+      "object_count": 1,
+      "bounding_box": {
+        "min": {
+          "x": -0.12551730145849138,
+          "y": -19.1693755692778,
+          "z": -1.5005173014584916
+        },
+        "max": {
+          "x": 0.12551730145849138,
+          "y": 19.169375569277804,
+          "z": 1.5005173014584918
+        },
+        "center": {
+          "x": 0.0,
+          "y": 1.7763568394002505e-15,
+          "z": 1.1102230246251565e-16
+        },
+        "dimensions": {
+          "width": 0.25103460291698276,
+          "depth": 38.33875113855561,
+          "height": 3.0010346029169837
+        }
+      },
+      "normalized_size": {
+        "length": 38.33875113855561,
+        "width": 3.0010346029169837,
+        "height": 0.25103460291698276,
+        "world_aligned": {
+          "x": 0.25103460291698276,
+          "y": 38.33875113855561,
+          "z": 3.0010346029169837
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 12648
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::CLAMP ASSEMBLY::CLAMP",
+      "filename": "BATTERY MODULE V1__SPINE__CLAMP ASSEMBLY__CLAMP.glb",
+      "file_size": 6840,
+      "object_count": 6,
+      "bounding_box": {
+        "min": {
+          "x": -4.71293691062745,
+          "y": -17.47709832805306,
+          "z": -2.5939408476353227
+        },
+        "max": {
+          "x": 4.71293691062745,
+          "y": 17.47709832805306,
+          "z": 2.593940847635322
+        },
+        "center": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 9.4258738212549,
+          "depth": 34.95419665610612,
+          "height": 5.187881695270645
+        }
+      },
+      "normalized_size": {
+        "length": 34.95419665610612,
+        "width": 9.4258738212549,
+        "height": 5.187881695270645,
+        "world_aligned": {
+          "x": 9.4258738212549,
+          "y": 34.95419665610612,
+          "z": 5.187881695270645
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 27036
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::CLAMP ASSEMBLY::COMPRESSION PLATE",
+      "filename": "BATTERY MODULE V1__SPINE__CLAMP ASSEMBLY__COMPRESSION PLATE.glb",
+      "file_size": 5440,
+      "object_count": 6,
+      "bounding_box": {
+        "min": {
+          "x": -4.775436910627452,
+          "y": -17.47709832805306,
+          "z": -2.500436910627449
+        },
+        "max": {
+          "x": 4.775436910627451,
+          "y": 17.47709832805306,
+          "z": 2.500436910627454
+        },
+        "center": {
+          "x": -4.440892098500626e-16,
+          "y": 0.0,
+          "z": 2.4424906541753444e-15
+        },
+        "dimensions": {
+          "width": 9.550873821254903,
+          "depth": 34.95419665610612,
+          "height": 5.000873821254903
+        }
+      },
+      "normalized_size": {
+        "length": 34.95419665610612,
+        "width": 9.550873821254903,
+        "height": 5.000873821254903,
+        "world_aligned": {
+          "x": 9.550873821254903,
+          "y": 34.95419665610612,
+          "z": 5.000873821254903
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 14436
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::CLAMP ASSEMBLY::FLAT WASHER TYPE A NARROW",
+      "filename": "BATTERY MODULE V1__SPINE__CLAMP ASSEMBLY__FLAT WASHER TYPE A NARROW.glb",
+      "file_size": 7072,
+      "object_count": 12,
+      "bounding_box": {
+        "min": {
+          "x": -4.840961897706684,
+          "y": -17.32066142136262,
+          "z": -2.532461897706682
+        },
+        "max": {
+          "x": 4.840961897706683,
+          "y": 17.32066142136262,
+          "z": 2.5324618977066886
+        },
+        "center": {
+          "x": -4.440892098500626e-16,
+          "y": 0.0,
+          "z": 3.3306690738754696e-15
+        },
+        "dimensions": {
+          "width": 9.681923795413368,
+          "depth": 34.64132284272524,
+          "height": 5.064923795413371
+        }
+      },
+      "normalized_size": {
+        "length": 34.64132284272524,
+        "width": 9.681923795413368,
+        "height": 5.064923795413371,
+        "world_aligned": {
+          "x": 9.681923795413368,
+          "y": 34.64132284272524,
+          "z": 5.064923795413371
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 15736
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::CLAMP ASSEMBLY::HEX NUT",
+      "filename": "BATTERY MODULE V1__SPINE__CLAMP ASSEMBLY__HEX NUT.glb",
+      "file_size": 10208,
+      "object_count": 12,
+      "bounding_box": {
+        "min": {
+          "x": -5.11436420024104,
+          "y": -17.266700752261464,
+          "z": -2.438864200241038
+        },
+        "max": {
+          "x": 5.114364200241039,
+          "y": 17.266700752261464,
+          "z": 2.438864200241045
+        },
+        "center": {
+          "x": -4.440892098500626e-16,
+          "y": 0.0,
+          "z": 3.552713678800501e-15
+        },
+        "dimensions": {
+          "width": 10.22872840048208,
+          "depth": 34.53340150452293,
+          "height": 4.877728400482083
+        }
+      },
+      "normalized_size": {
+        "length": 34.53340150452293,
+        "width": 10.22872840048208,
+        "height": 4.877728400482083,
+        "world_aligned": {
+          "x": 10.22872840048208,
+          "y": 34.53340150452293,
+          "z": 4.877728400482083
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 29568
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::CLAMP ASSEMBLY::TENSION ROD",
+      "filename": "BATTERY MODULE V1__SPINE__CLAMP ASSEMBLY__TENSION ROD.glb",
+      "file_size": 5508,
+      "object_count": 6,
+      "bounding_box": {
+        "min": {
+          "x": -5.126052597721185,
+          "y": -17.163193921422497,
+          "z": -2.3745525977211854
+        },
+        "max": {
+          "x": 5.126052597721186,
+          "y": 17.163193921422497,
+          "z": 2.3745525977211868
+        },
+        "center": {
+          "x": 4.440892098500626e-16,
+          "y": 0.0,
+          "z": 6.661338147750939e-16
+        },
+        "dimensions": {
+          "width": 10.252105195442372,
+          "depth": 34.326387842844994,
+          "height": 4.749105195442372
+        }
+      },
+      "normalized_size": {
+        "length": 34.326387842844994,
+        "width": 10.252105195442372,
+        "height": 4.749105195442372,
+        "world_aligned": {
+          "x": 10.252105195442372,
+          "y": 34.326387842844994,
+          "z": 4.749105195442372
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 13752
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::FLAT WASHER TYPE A NARROW",
+      "filename": "BATTERY MODULE V1__SPINE__FLAT WASHER TYPE A NARROW.glb",
+      "file_size": 4708,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -4.840961897706684,
+          "y": -19.131362208661415,
+          "z": -1.1556626850054794
+        },
+        "max": {
+          "x": 4.840961897706682,
+          "y": 19.131362208661418,
+          "z": 1.155662685005479
+        },
+        "center": {
+          "x": -8.881784197001252e-16,
+          "y": 1.7763568394002505e-15,
+          "z": -2.220446049250313e-16
+        },
+        "dimensions": {
+          "width": 9.681923795413367,
+          "depth": 38.26272441732283,
+          "height": 2.3113253700109584
+        }
+      },
+      "normalized_size": {
+        "length": 38.26272441732283,
+        "width": 9.681923795413367,
+        "height": 2.3113253700109584,
+        "world_aligned": {
+          "x": 9.681923795413367,
+          "y": 38.26272441732283,
+          "z": 2.3113253700109584
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 12832
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::HEX NUT",
+      "filename": "BATTERY MODULE V1__SPINE__HEX NUT.glb",
+      "file_size": 7608,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -5.11436420024104,
+          "y": -19.07740153956026,
+          "z": -1.062064987539836
+        },
+        "max": {
+          "x": 5.114364200241038,
+          "y": 19.07740153956026,
+          "z": 1.0620649875398358
+        },
+        "center": {
+          "x": -8.881784197001252e-16,
+          "y": 0.0,
+          "z": -1.1102230246251565e-16
+        },
+        "dimensions": {
+          "width": 10.228728400482078,
+          "depth": 38.15480307912052,
+          "height": 2.124129975079672
+        }
+      },
+      "normalized_size": {
+        "length": 38.15480307912052,
+        "width": 10.228728400482078,
+        "height": 2.124129975079672,
+        "world_aligned": {
+          "x": 10.228728400482078,
+          "y": 38.15480307912052,
+          "z": 2.124129975079672
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 26536
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::SPINE L",
+      "filename": "BATTERY MODULE V1__SPINE__SPINE L.glb",
+      "file_size": 3908,
+      "object_count": 1,
+      "bounding_box": {
+        "min": {
+          "x": 4.524482698541509,
+          "y": -19.169375569277804,
+          "z": -1.5005173014584916
+        },
+        "max": {
+          "x": 4.775517301458492,
+          "y": 19.1693755692778,
+          "z": 1.5005173014584918
+        },
+        "center": {
+          "x": 4.65,
+          "y": -1.7763568394002505e-15,
+          "z": 1.1102230246251565e-16
+        },
+        "dimensions": {
+          "width": 0.25103460291698276,
+          "depth": 38.33875113855561,
+          "height": 3.0010346029169837
+        }
+      },
+      "normalized_size": {
+        "length": 38.33875113855561,
+        "width": 3.0010346029169837,
+        "height": 0.25103460291698276,
+        "world_aligned": {
+          "x": 0.25103460291698276,
+          "y": 38.33875113855561,
+          "z": 3.0010346029169837
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 14788
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::SPINE R",
+      "filename": "BATTERY MODULE V1__SPINE__SPINE R.glb",
+      "file_size": 3928,
+      "object_count": 1,
+      "bounding_box": {
+        "min": {
+          "x": -4.7755173014584935,
+          "y": -19.169375569277804,
+          "z": -1.5005173014584916
+        },
+        "max": {
+          "x": -4.524482698541511,
+          "y": 19.1693755692778,
+          "z": 1.5005173014584918
+        },
+        "center": {
+          "x": -4.650000000000002,
+          "y": -1.7763568394002505e-15,
+          "z": 1.1102230246251565e-16
+        },
+        "dimensions": {
+          "width": 0.25103460291698276,
+          "depth": 38.33875113855561,
+          "height": 3.0010346029169837
+        }
+      },
+      "normalized_size": {
+        "length": 38.33875113855561,
+        "width": 3.0010346029169837,
+        "height": 0.25103460291698276,
+        "world_aligned": {
+          "x": 0.25103460291698276,
+          "y": 38.33875113855561,
+          "z": 3.0010346029169837
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 14820
+    },
+    {
+      "layer_name": "BATTERY MODULE V1::SPINE::TENSION ROD",
+      "filename": "BATTERY MODULE V1__SPINE__TENSION ROD.glb",
+      "file_size": 4148,
+      "object_count": 2,
+      "bounding_box": {
+        "min": {
+          "x": -5.126052597721185,
+          "y": -18.973894708721293,
+          "z": -0.9977533850199832
+        },
+        "max": {
+          "x": 5.126052597721185,
+          "y": 18.973894708721293,
+          "z": 0.9977533850199826
+        },
+        "center": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -3.3306690738754696e-16
+        },
+        "dimensions": {
+          "width": 10.25210519544237,
+          "depth": 37.947789417442586,
+          "height": 1.9955067700399658
+        }
+      },
+      "normalized_size": {
+        "length": 37.947789417442586,
+        "width": 10.25210519544237,
+        "height": 1.9955067700399658,
+        "world_aligned": {
+          "x": 10.25210519544237,
+          "y": 37.947789417442586,
+          "z": 1.9955067700399658
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v1.stp",
+      "original_file_size": 12280
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::CELL",
+      "filename": "BATTERY MODULE V2__CELLS__CELL.glb",
+      "file_size": 3660,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -18.602362208661418,
+          "y": -2.204724413385827,
+          "z": -1.781496066929135
+        },
+        "max": {
+          "x": 18.602362208661418,
+          "y": 2.2047244133858293,
+          "z": 1.7814960669291353
+        },
+        "center": {
+          "x": 0.0,
+          "y": 1.1102230246251565e-15,
+          "z": 1.1102230246251565e-16
+        },
+        "dimensions": {
+          "width": 37.204724417322836,
+          "depth": 4.409448826771657,
+          "height": 3.5629921338582706
+        }
+      },
+      "normalized_size": {
+        "length": 37.204724417322836,
+        "width": 4.409448826771657,
+        "height": 3.5629921338582706,
+        "world_aligned": {
+          "x": 37.204724417322836,
+          "y": 4.409448826771657,
+          "z": 3.5629921338582706
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 3556
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::NEG STUDS",
+      "filename": "BATTERY MODULE V2__CELLS__NEG STUDS.glb",
+      "file_size": 4564,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -18.720926552623133,
+          "y": -2.0919895447491186,
+          "z": -1.6441548990798285
+        },
+        "max": {
+          "x": -18.601908093046156,
+          "y": 2.091989544749121,
+          "z": -1.210629917322834
+        },
+        "center": {
+          "x": -18.661417322834644,
+          "y": 1.1102230246251565e-15,
+          "z": -1.4273924082013312
+        },
+        "dimensions": {
+          "width": 0.11901845957697788,
+          "depth": 4.183979089498239,
+          "height": 0.4335249817569944
+        }
+      },
+      "normalized_size": {
+        "length": 4.183979089498239,
+        "width": 0.4335249817569944,
+        "height": 0.11901845957697788,
+        "world_aligned": {
+          "x": 0.11901845957697788,
+          "y": 4.183979089498239,
+          "z": 0.4335249817569944
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 8584
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::NEG TERMINAL STUD",
+      "filename": "BATTERY MODULE V2__CELLS__NEG TERMINAL STUD.glb",
+      "file_size": 5536,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -19.429849425918203,
+          "y": -2.1857549377292247,
+          "z": -0.266463599146549
+        },
+        "max": {
+          "x": -18.601646637073923,
+          "y": 2.1857549377292274,
+          "z": 0.44291338976378036
+        },
+        "center": {
+          "x": -19.015748031496063,
+          "y": 1.3322676295501878e-15,
+          "z": 0.08822489530861569
+        },
+        "dimensions": {
+          "width": 0.8282027888442798,
+          "depth": 4.371509875458452,
+          "height": 0.7093769889103294
+        }
+      },
+      "normalized_size": {
+        "length": 4.371509875458452,
+        "width": 0.8282027888442798,
+        "height": 0.7093769889103294,
+        "world_aligned": {
+          "x": 0.8282027888442798,
+          "y": 4.371509875458452,
+          "z": 0.7093769889103294
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 13820
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::POS STUDS",
+      "filename": "BATTERY MODULE V2__CELLS__POS STUDS.glb",
+      "file_size": 7364,
+      "object_count": 16,
+      "bounding_box": {
+        "min": {
+          "x": 18.601908093046156,
+          "y": -2.0919895447491186,
+          "z": -1.6437007913385833
+        },
+        "max": {
+          "x": 18.720926552623133,
+          "y": 2.091989544749121,
+          "z": 1.5417926943554192
+        },
+        "center": {
+          "x": 18.661417322834644,
+          "y": 1.1102230246251565e-15,
+          "z": -0.05095404849158203
+        },
+        "dimensions": {
+          "width": 0.11901845957697788,
+          "depth": 4.183979089498239,
+          "height": 3.1854934856940025
+        }
+      },
+      "normalized_size": {
+        "length": 4.183979089498239,
+        "width": 3.1854934856940025,
+        "height": 0.11901845957697788,
+        "world_aligned": {
+          "x": 0.11901845957697788,
+          "y": 4.183979089498239,
+          "z": 3.1854934856940025
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 15932
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::POS TERMINAL STUD",
+      "filename": "BATTERY MODULE V2__CELLS__POS TERMINAL STUD.glb",
+      "file_size": 5504,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": 18.601646637073923,
+          "y": -2.1857549377292247,
+          "z": -0.9547244133858273
+        },
+        "max": {
+          "x": 19.429849425918203,
+          "y": 2.185754937729227,
+          "z": -0.2453474244754983
+        },
+        "center": {
+          "x": 19.015748031496063,
+          "y": 1.1102230246251565e-15,
+          "z": -0.6000359189306628
+        },
+        "dimensions": {
+          "width": 0.8282027888442798,
+          "depth": 4.371509875458452,
+          "height": 0.709376988910329
+        }
+      },
+      "normalized_size": {
+        "length": 4.371509875458452,
+        "width": 0.8282027888442798,
+        "height": 0.709376988910329,
+        "world_aligned": {
+          "x": 0.8282027888442798,
+          "y": 4.371509875458452,
+          "z": 0.709376988910329
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 13820
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::CELLS::PRESSURE RELEASE",
+      "filename": "BATTERY MODULE V2__CELLS__PRESSURE RELEASE.glb",
+      "file_size": 4572,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -18.64222767766475,
+          "y": -2.106794606798609,
+          "z": 0.836118779028161
+        },
+        "max": {
+          "x": -18.601866810524225,
+          "y": 2.106794606798611,
+          "z": 1.5452755944881897
+        },
+        "center": {
+          "x": -18.62204724409449,
+          "y": 1.1102230246251565e-15,
+          "z": 1.1906971867581753
+        },
+        "dimensions": {
+          "width": 0.04036086714052445,
+          "depth": 4.213589213597221,
+          "height": 0.7091568154600287
+        }
+      },
+      "normalized_size": {
+        "length": 4.213589213597221,
+        "width": 0.7091568154600287,
+        "height": 0.04036086714052445,
+        "world_aligned": {
+          "x": 0.04036086714052445,
+          "y": 4.213589213597221,
+          "z": 0.7091568154600287
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 8672
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::FRONT BAR",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__FRONT BAR.glb",
+      "file_size": 3916,
+      "object_count": 2,
+      "bounding_box": {
+        "min": {
+          "x": -18.852680694335138,
+          "y": -2.4550428990595465,
+          "z": -1.8024838439414355
+        },
+        "max": {
+          "x": 18.85268069433514,
+          "y": 2.4550428990595456,
+          "z": 1.8024838439414343
+        },
+        "center": {
+          "x": 1.7763568394002505e-15,
+          "y": -4.440892098500626e-16,
+          "z": -5.551115123125783e-16
+        },
+        "dimensions": {
+          "width": 37.70536138867028,
+          "depth": 4.910085798119092,
+          "height": 3.60496768788287
+        }
+      },
+      "normalized_size": {
+        "length": 37.70536138867028,
+        "width": 4.910085798119092,
+        "height": 3.60496768788287,
+        "world_aligned": {
+          "x": 37.70536138867028,
+          "y": 4.910085798119092,
+          "z": 3.60496768788287
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 10296
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::NUT",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__NUT.glb",
+      "file_size": 7724,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -17.696083917623596,
+          "y": -2.5714461223480014,
+          "z": -2.4185339266374997
+        },
+        "max": {
+          "x": 17.696083917623596,
+          "y": 2.5714461223480005,
+          "z": 2.4185339266374983
+        },
+        "center": {
+          "x": 0.0,
+          "y": -4.440892098500626e-16,
+          "z": -6.661338147750939e-16
+        },
+        "dimensions": {
+          "width": 35.39216783524719,
+          "depth": 5.142892244696002,
+          "height": 4.837067853274998
+        }
+      },
+      "normalized_size": {
+        "length": 35.39216783524719,
+        "width": 5.142892244696002,
+        "height": 4.837067853274998,
+        "world_aligned": {
+          "x": 35.39216783524719,
+          "y": 5.142892244696002,
+          "z": 4.837067853274998
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 21832
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::PAN HEAD SCREW",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__PAN HEAD SCREW.glb",
+      "file_size": 9232,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -18.19394376991478,
+          "y": -0.654131779207489,
+          "z": -2.789504305072415
+        },
+        "max": {
+          "x": 18.19394376991478,
+          "y": 0.6542488390361256,
+          "z": 2.789504305072414
+        },
+        "center": {
+          "x": 0.0,
+          "y": 5.852991431831711e-05,
+          "z": -4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 36.38788753982956,
+          "depth": 1.3083806182436146,
+          "height": 5.579008610144829
+        }
+      },
+      "normalized_size": {
+        "length": 36.38788753982956,
+        "width": 5.579008610144829,
+        "height": 1.3083806182436146,
+        "world_aligned": {
+          "x": 36.38788753982956,
+          "y": 1.3083806182436146,
+          "z": 5.579008610144829
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 28724
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::ROD",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__ROD.glb",
+      "file_size": 10272,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -17.59993815834645,
+          "y": -2.60059325114352,
+          "z": -2.2795893141356474
+        },
+        "max": {
+          "x": 17.599938158346454,
+          "y": 2.60059325114352,
+          "z": 2.279589314135646
+        },
+        "center": {
+          "x": 1.7763568394002505e-15,
+          "y": 0.0,
+          "z": -6.661338147750939e-16
+        },
+        "dimensions": {
+          "width": 35.19987631669291,
+          "depth": 5.20118650228704,
+          "height": 4.559178628271294
+        }
+      },
+      "normalized_size": {
+        "length": 35.19987631669291,
+        "width": 5.20118650228704,
+        "height": 4.559178628271294,
+        "world_aligned": {
+          "x": 35.19987631669291,
+          "y": 5.20118650228704,
+          "z": 4.559178628271294
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 44304
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::SPINE BASE",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__SPINE BASE.glb",
+      "file_size": 9820,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -18.290168113249806,
+          "y": -2.405817720100199,
+          "z": -2.406801971517519
+        },
+        "max": {
+          "x": 18.29016811324981,
+          "y": 2.4058177201002,
+          "z": 2.406801971517518
+        },
+        "center": {
+          "x": 1.7763568394002505e-15,
+          "y": 4.440892098500626e-16,
+          "z": -4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 36.58033622649961,
+          "depth": 4.811635440200399,
+          "height": 4.813603943035037
+        }
+      },
+      "normalized_size": {
+        "length": 36.58033622649961,
+        "width": 4.813603943035037,
+        "height": 4.811635440200399,
+        "world_aligned": {
+          "x": 36.58033622649961,
+          "y": 4.811635440200399,
+          "z": 4.813603943035037
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 37940
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::SPINE SIDE SIMPLE FRONT STOP A",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__SPINE SIDE SIMPLE FRONT STOP A.glb",
+      "file_size": 23644,
+      "object_count": 2,
+      "bounding_box": {
+        "min": {
+          "x": -19.040966708774857,
+          "y": -2.455828913499265,
+          "z": -2.626104504050445
+        },
+        "max": {
+          "x": 19.04096670877486,
+          "y": -2.2036199053983743,
+          "z": 2.6261045040504443
+        },
+        "center": {
+          "x": 1.7763568394002505e-15,
+          "y": -2.3297244094488194,
+          "z": -4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 38.08193341754972,
+          "depth": 0.25220900810089075,
+          "height": 5.252209008100889
+        }
+      },
+      "normalized_size": {
+        "length": 38.08193341754972,
+        "width": 5.252209008100889,
+        "height": 0.25220900810089075,
+        "world_aligned": {
+          "x": 38.08193341754972,
+          "y": 0.25220900810089075,
+          "z": 5.252209008100889
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 140580
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE FRONT STOP::SPINE SIDE SIMPLE FRONT STOP B",
+      "filename": "BATTERY MODULE V2__SPINE FRONT STOP__SPINE SIDE SIMPLE FRONT STOP B.glb",
+      "file_size": 23760,
+      "object_count": 2,
+      "bounding_box": {
+        "min": {
+          "x": -19.04096670877486,
+          "y": 2.203619905398373,
+          "z": -2.626104504050446
+        },
+        "max": {
+          "x": 19.040966708774864,
+          "y": 2.4558289134992637,
+          "z": 2.6261045040504447
+        },
+        "center": {
+          "x": 1.7763568394002505e-15,
+          "y": 2.3297244094488185,
+          "z": -6.661338147750939e-16
+        },
+        "dimensions": {
+          "width": 38.08193341754972,
+          "depth": 0.25220900810089075,
+          "height": 5.252209008100891
+        }
+      },
+      "normalized_size": {
+        "length": 38.08193341754972,
+        "width": 5.252209008100891,
+        "height": 0.25220900810089075,
+        "world_aligned": {
+          "x": 38.08193341754972,
+          "y": 0.25220900810089075,
+          "z": 5.252209008100891
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 140908
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE::NUT",
+      "filename": "BATTERY MODULE V2__SPINE__NUT.glb",
+      "file_size": 7540,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -7.294509114473987,
+          "y": -2.5714461223480005,
+          "z": -2.4185339266374983
+        },
+        "max": {
+          "x": 7.294509114473987,
+          "y": 2.5714461223480014,
+          "z": 2.418533926637499
+        },
+        "center": {
+          "x": 0.0,
+          "y": 4.440892098500626e-16,
+          "z": 4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 14.589018228947975,
+          "depth": 5.142892244696002,
+          "height": 4.8370678532749976
+        }
+      },
+      "normalized_size": {
+        "length": 14.589018228947975,
+        "width": 5.142892244696002,
+        "height": 4.8370678532749976,
+        "world_aligned": {
+          "x": 14.589018228947975,
+          "y": 5.142892244696002,
+          "z": 4.8370678532749976
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 21416
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE::PAN HEAD SCREW",
+      "filename": "BATTERY MODULE V2__SPINE__PAN HEAD SCREW.glb",
+      "file_size": 9052,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -7.7925362406109295,
+          "y": -0.6542488390361256,
+          "z": -2.789504305072415
+        },
+        "max": {
+          "x": 7.792368966765173,
+          "y": 0.654131779207489,
+          "z": -2.0299878209118396
+        },
+        "center": {
+          "x": -8.36369228780498e-05,
+          "y": -5.852991431831711e-05,
+          "z": -2.4097460629921272
+        },
+        "dimensions": {
+          "width": 15.584905207376103,
+          "depth": 1.3083806182436146,
+          "height": 0.7595164841605753
+        }
+      },
+      "normalized_size": {
+        "length": 15.584905207376103,
+        "width": 1.3083806182436146,
+        "height": 0.7595164841605753,
+        "world_aligned": {
+          "x": 15.584905207376103,
+          "y": 1.3083806182436146,
+          "z": 0.7595164841605753
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 28464
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE::ROD",
+      "filename": "BATTERY MODULE V2__SPINE__ROD.glb",
+      "file_size": 9996,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -7.198363355196843,
+          "y": -2.60059325114352,
+          "z": -2.279589314135646
+        },
+        "max": {
+          "x": 7.198363355196843,
+          "y": 2.60059325114352,
+          "z": 2.279589314135646
+        },
+        "center": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "dimensions": {
+          "width": 14.396726710393686,
+          "depth": 5.20118650228704,
+          "height": 4.559178628271292
+        }
+      },
+      "normalized_size": {
+        "length": 14.396726710393686,
+        "width": 5.20118650228704,
+        "height": 4.559178628271292,
+        "world_aligned": {
+          "x": 14.396726710393686,
+          "y": 5.20118650228704,
+          "z": 4.559178628271292
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 43912
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE::SPINE BASE",
+      "filename": "BATTERY MODULE V2__SPINE__SPINE BASE.glb",
+      "file_size": 9656,
+      "object_count": 8,
+      "bounding_box": {
+        "min": {
+          "x": -7.888593310100199,
+          "y": -2.4058177201002,
+          "z": -2.4068019715175186
+        },
+        "max": {
+          "x": 7.888593310100199,
+          "y": 2.405817720100199,
+          "z": 2.4068019715175186
+        },
+        "center": {
+          "x": 0.0,
+          "y": -4.440892098500626e-16,
+          "z": 0.0
+        },
+        "dimensions": {
+          "width": 15.777186620200398,
+          "depth": 4.811635440200399,
+          "height": 4.813603943035037
+        }
+      },
+      "normalized_size": {
+        "length": 15.777186620200398,
+        "width": 4.813603943035037,
+        "height": 4.811635440200399,
+        "world_aligned": {
+          "x": 15.777186620200398,
+          "y": 4.811635440200399,
+          "z": 4.813603943035037
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 37664
+    },
+    {
+      "layer_name": "BATTERY MODULE V2::SPINE::SPINE SIDE SIMPLE",
+      "filename": "BATTERY MODULE V2__SPINE__SPINE SIDE SIMPLE.glb",
+      "file_size": 21820,
+      "object_count": 4,
+      "bounding_box": {
+        "min": {
+          "x": -8.139391905625248,
+          "y": -2.4558289134992606,
+          "z": -2.626104504050443
+        },
+        "max": {
+          "x": 8.139391905625248,
+          "y": 2.455828913499263,
+          "z": 2.626104504050444
+        },
+        "center": {
+          "x": 0.0,
+          "y": 1.1102230246251565e-15,
+          "z": 4.440892098500626e-16
+        },
+        "dimensions": {
+          "width": 16.278783811250495,
+          "depth": 4.911657826998523,
+          "height": 5.252209008100887
+        }
+      },
+      "normalized_size": {
+        "length": 16.278783811250495,
+        "width": 5.252209008100887,
+        "height": 4.911657826998523,
+        "world_aligned": {
+          "x": 16.278783811250495,
+          "y": 4.911657826998523,
+          "z": 5.252209008100887
+        }
+      },
+      "export_method": "step",
+      "notes": "converted from module-asm-v2.stp",
+      "original_file_size": 126220
+    }
+  ],
+  "failed_layers": [],
+  "skipped_layers": [],
+  "export_info": {
+    "total_layers_found": 31,
+    "timestamp_start": "2026-09-02 17:12:42",
+    "timestamp_end": "2026-09-02 17:12:43",
+    "format": "GLB",
+    "models_folder": "models-battery-1788394362",
+    "units": {
+      "id": 8,
+      "name": "inch"
+    },
+    "successful_exports": 31,
+    "failed_exports": 0,
+    "skipped_exports": 0,
+    "total_file_size": 290576,
+    "source": "step-to-glb.py"
+  }
+}

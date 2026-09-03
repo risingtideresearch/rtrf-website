@@ -40,6 +40,14 @@ type Canvas3DProps = {
   slug?: string;
   // use for article models
   interaction?: "all" | "limited" | "none";
+  tooltips?: boolean;
+  // "object" trades sky for a key/fill/bounce rig, for a single component
+  lighting?: "vessel" | "object";
+  zoom?: boolean;
+  pan?: boolean;
+  // name the picked instance inside a layer rather than the layer itself. Off
+  // for the anatomy view, where two boat GLBs carry node names of their own
+  partHover?: boolean;
   // set by ?capture=1 — pins the canvas size and exposes the window hooks
   capture?: CaptureParams | null;
   // frame the camera on this box rather than the visible layers, so every
@@ -128,6 +136,11 @@ function fitDistanceForBox(
   return distance;
 }
 
+// ScalingLines3D destructures this, so an unclipped scene still has to pass one
+const FULL_EXTENT = { axis: "x", value: [0, 1] } as ClippingValues;
+
+const VESSEL_LENGTH_M = 12;
+
 const CAMERA_INITIAL_POSITION = [0, 0, 0] as const;
 const CAMERA_FOV = 30;
 const LIGHT_POSITIONS: { pos: Vector3; intensity: number }[] = [
@@ -143,6 +156,11 @@ export function Canvas3D({
   boundingBox,
   filteredLayers,
   interaction = "all",
+  tooltips = false,
+  lighting = "vessel",
+  zoom = false,
+  pan = false,
+  partHover = false,
   height = "100vh",
   materials = {},
   memoModels = [],
@@ -154,16 +172,21 @@ export function Canvas3D({
   frameBox = null,
 }: Canvas3DProps) {
   const groupRef = useRef<Group>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<PerspectiveCamera>(null);
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const [centered, setCentered] = useState(false);
   const [modelsLoaded, setModelsLoaded] = useState<Set<string>>(new Set());
   const [hovered, setHovered] = useState<Model | null>(null);
+  const [hoveredPart, setHoveredPart] = useState<string | null>(null);
   const [autoRotate, setAutoRotate] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [lockedAt, setLockedAt] = useState<{ x: number; y: number } | null>(
     null,
   );
+  const [derivedBox, setDerivedBox] = useState<Box3 | null>(null);
+  // the framing distance, which is as far out as a story model may be zoomed
+  const [zoomOutLimit, setZoomOutLimit] = useState<number | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
@@ -238,11 +261,13 @@ export function Canvas3D({
     } else {
       tempBox.current.setFromObject(groupRef.current);
     }
+    setDerivedBox(tempBox.current.clone());
     const center = tempBox.current.getCenter(tempCenter.current);
-    // adjust visual center
-    center.y -= 0.5;
-
     const size = tempBox.current.getSize(tempSize.current);
+
+    // the 0.5m nudge is tuned for the vessel; on a small model it would be most
+    // of its height
+    center.y -= Math.min(0.5, size.y * 0.25);
 
     const camera = cameraRef.current;
     const fov = camera.fov * (Math.PI / 180);
@@ -276,6 +301,7 @@ export function Canvas3D({
     }
 
     const fitDistance = (baseDistance * fitMultiplier) / (capture?.zoom ?? 1);
+    setZoomOutLimit(fitDistance);
 
     const newPos = tempNewPos.current
       .copy(center)
@@ -328,6 +354,21 @@ export function Canvas3D({
       )),
     [],
   );
+
+  const scalingBox = boundingBox ?? derivedBox;
+
+  const annotationScale = useMemo(() => {
+    if (boundingBox || !derivedBox) return 1;
+    const size = derivedBox.getSize(new Vector3());
+    return Math.min(1, 1.5 * Math.max(size.x, size.y, size.z) / VESSEL_LENGTH_M);
+  }, [boundingBox, derivedBox]);
+
+  const labelScale = annotationScale < 1 ? 0.14 : 0.08;
+
+  // a fraction of the framing distance, so how close you can get scales with
+  // the model rather than being fixed at the vessel's 0.8m
+  const minDistance =
+    interaction == "all" || !zoomOutLimit ? 0.8 : zoomOutLimit * 0.5;
 
   const captureRef = useRef<(() => string) | null>(null);
 
@@ -425,6 +466,7 @@ export function Canvas3D({
         </div>
       </div>
       <div
+        ref={wrapperRef}
         style={{ height: captureSize ? "100%" : height }}
         className={styles["canvas-wrapper"]}
         data-mounted={centered || undefined}
@@ -441,11 +483,12 @@ export function Canvas3D({
           <Environment
             // background
             blur={0.02}
+            environmentIntensity={lighting == "object" ? 0.35 : 1}
             backgroundRotation={[0, -Math.PI / 6, 0]}
             files="/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr"
           />
 
-          {interaction == "all" && (
+          {(interaction == "all" || tooltips) && (
             <RaycastHandler
               clippingPlanes={clippingPlanes}
               filteredLayers={filteredLayers}
@@ -458,21 +501,26 @@ export function Canvas3D({
                       ) || null
                     : null,
                 );
+                setHoveredPart(layer?.part ?? null);
               }}
               onLock={setLockedAt}
             />
           )}
 
-          <ambientLight intensity={0.75} />
-          {/* {directionalLights} */}
+          {/* the sky HDRI is strongly top-lit, so vertical faces fall to black */}
+          <ambientLight intensity={lighting == "object" ? 0.18 : 0.75} />
+          {lighting == "object" && directionalLights}
 
           <Suspense fallback={null}>
-            {boundingBox && clippingValues && settings.scalingLines && (
+            {scalingBox && settings.scalingLines && (
               <group userData={{ capture_exclude: true }}>
                 <ScalingLines3D
-                  boundingBox={boundingBox}
+                  boundingBox={scalingBox}
                   unit={settings.units}
-                  clippingValues={clippingValues}
+                  annotationScale={annotationScale}
+                  textScale={labelScale}
+                  clipMarkers={!!clippingValues}
+                  clippingValues={clippingValues ?? FULL_EXTENT}
                 />
               </group>
             )}
@@ -484,6 +532,7 @@ export function Canvas3D({
                 <Model3D
                   url={url}
                   onLoad={() => handleModelLoad(url)}
+                  partHover={partHover}
                   clippingPlanes={clippingPlanes}
                   transparent={
                     (settings.transparent &&
@@ -502,10 +551,12 @@ export function Canvas3D({
             enableDamping={false}
             autoRotate={autoRotate && !hovered && interaction != "all"}
             autoRotateSpeed={interaction == "none" ? 0.4 : 0.2}
-            maxDistance={50}
-            minDistance={0.8}
-            enableZoom={interaction == "all"}
-            enablePan={interaction == "all"}
+            maxDistance={
+              interaction == "all" ? 50 : (zoomOutLimit ?? 50)
+            }
+            minDistance={minDistance}
+            enableZoom={interaction == "all" || zoom}
+            enablePan={interaction == "all" || pan}
             zoomSpeed={0.7}
             makeDefault
           />
@@ -527,13 +578,15 @@ export function Canvas3D({
           )}
           <CanvasCaptureHelper captureRef={captureRef} />
         </Canvas>
-        {loaded && (
+        {(loaded || tooltips) && (
           <HoverDisplay
             layer={hovered}
             materials={materials}
             settings={settings}
             componentParts={componentParts ?? []}
+            partName={(partHover && hoveredPart) || undefined}
             lockedAt={lockedAt}
+            containerRef={interaction == "all" ? undefined : wrapperRef}
           />
         )}
       </div>

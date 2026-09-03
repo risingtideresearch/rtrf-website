@@ -9,6 +9,10 @@ interface ScalingLines3DProps {
   offset?: number;
   textScale?: number;
   unit?: Units;
+  // scales the decorations, otherwise sized in absolute metres for the vessel
+  annotationScale?: number;
+  // rings marking the clipping planes, only meaningful beside their controls
+  clipMarkers?: boolean;
   clippingValues: { axis: "x" | "y" | "z"; value: [number, number] };
 }
 
@@ -18,8 +22,11 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
   textScale = 0.08,
   unit = Units.Feet,
   clippingValues = {},
+  annotationScale = 1,
+  clipMarkers = true,
 }) => {
   const linesAndLabels = useMemo(() => {
+    const k = annotationScale;
     const min = boundingBox.min;
     const max = boundingBox.max;
     const size = new THREE.Vector3();
@@ -103,7 +110,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       // Circle markers at clip boundaries
       clippingLabels.push({
         position: new THREE.Vector3(
-          clipMinPos + 0.00,
+          clipMinPos + 0.0,
           min.y - offset,
           max.z + offset,
         ),
@@ -116,7 +123,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
 
       clippingLabels.push({
         position: new THREE.Vector3(
-          clipMaxPos - 0.00,
+          clipMaxPos - 0.0,
           min.y - offset,
           max.z + offset,
         ),
@@ -130,7 +137,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingLabels.push({
         position: new THREE.Vector3(
           (clipMinPos + clipMaxPos) / 2,
-          min.y - offset - 0.2,
+          min.y - offset - 0.2 * k,
           max.z + offset,
         ),
         color: "#030303",
@@ -155,7 +162,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingLabels.push({
         position: new THREE.Vector3(
           max.x - offset,
-          clipMinPos + 0.00,
+          clipMinPos + 0.0,
           min.z + offset,
         ),
         color: "#030303",
@@ -168,7 +175,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingLabels.push({
         position: new THREE.Vector3(
           max.x - offset,
-          clipMaxPos - 0.00,
+          clipMaxPos - 0.0,
           min.z + offset,
         ),
         color: "#030303",
@@ -180,9 +187,9 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
 
       clippingLabels.push({
         position: new THREE.Vector3(
-          max.x - offset + 0.3,
+          max.x - offset + 0.3 * k,
           (clipMinPos + clipMaxPos) / 2,
-          min.z - 0.32 + offset,
+          min.z - 0.32 * k + offset,
         ),
         color: "#030303",
         texture: createTextTexture(
@@ -207,7 +214,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
         position: new THREE.Vector3(
           max.x - offset,
           min.y - offset,
-          clipMinPos + 0.00
+          clipMinPos + 0.0,
         ),
         color: "#030303",
         isCircle: true,
@@ -220,7 +227,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
         position: new THREE.Vector3(
           max.x - offset,
           min.y - offset,
-          clipMaxPos - 0.00,
+          clipMaxPos - 0.0,
         ),
         color: "#030303",
         isCircle: true,
@@ -232,7 +239,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingLabels.push({
         position: new THREE.Vector3(
           max.x - offset,
-          min.y - offset - 0.2,
+          min.y - offset - 0.2 * k,
           (clipMinPos + clipMaxPos) / 2,
         ),
         color: "#030303",
@@ -257,16 +264,16 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       // X-axis tick marks
       {
         points: [
-          new THREE.Vector3(min.x, min.y - offset + 0.1, max.z + offset),
-          new THREE.Vector3(min.x, min.y - offset - 0.1, max.z + offset),
+          new THREE.Vector3(min.x, min.y - offset + 0.1 * k, max.z + offset),
+          new THREE.Vector3(min.x, min.y - offset - 0.1 * k, max.z + offset),
         ],
         color: colors.x,
         key: "x-tick-start",
       },
       {
         points: [
-          new THREE.Vector3(max.x, min.y - offset + 0.1, max.z + offset),
-          new THREE.Vector3(max.x, min.y - offset - 0.1, max.z + offset),
+          new THREE.Vector3(max.x, min.y - offset + 0.1 * k, max.z + offset),
+          new THREE.Vector3(max.x, min.y - offset - 0.1 * k, max.z + offset),
         ],
         color: colors.x,
         key: "x-tick-end",
@@ -284,16 +291,16 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       // Y-axis tick marks
       {
         points: [
-          new THREE.Vector3(max.x - offset + 0.1, min.y, min.z + offset),
-          new THREE.Vector3(max.x - offset - 0.1, min.y, min.z + offset),
+          new THREE.Vector3(max.x - offset + 0.1 * k, min.y, min.z + offset),
+          new THREE.Vector3(max.x - offset - 0.1 * k, min.y, min.z + offset),
         ],
         color: colors.y,
         key: "y-tick-start",
       },
       {
         points: [
-          new THREE.Vector3(max.x - offset + 0.1, max.y, min.z + offset),
-          new THREE.Vector3(max.x - offset - 0.1, max.y, min.z + offset),
+          new THREE.Vector3(max.x - offset + 0.1 * k, max.y, min.z + offset),
+          new THREE.Vector3(max.x - offset - 0.1 * k, max.y, min.z + offset),
         ],
         color: colors.y,
         key: "y-tick-end",
@@ -311,16 +318,16 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       // Z-axis tick marks
       {
         points: [
-          new THREE.Vector3(max.x - offset + 0.1, min.y - offset, min.z),
-          new THREE.Vector3(max.x - offset - 0.1, min.y - offset, min.z),
+          new THREE.Vector3(max.x - offset + 0.1 * k, min.y - offset, min.z),
+          new THREE.Vector3(max.x - offset - 0.1 * k, min.y - offset, min.z),
         ],
         color: colors.z,
         key: "z-tick-start",
       },
       {
         points: [
-          new THREE.Vector3(max.x - offset + 0.1, min.y - offset, max.z),
-          new THREE.Vector3(max.x - offset - 0.1, min.y - offset, max.z),
+          new THREE.Vector3(max.x - offset + 0.1 * k, min.y - offset, max.z),
+          new THREE.Vector3(max.x - offset - 0.1 * k, min.y - offset, max.z),
         ],
         color: colors.z,
         key: "z-tick-end",
@@ -331,7 +338,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingValues.axis != "x" && {
         position: new THREE.Vector3(
           (min.x + max.x) / 2,
-          min.y - offset - 0.2,
+          min.y - offset - 0.2 * k,
           max.z + offset,
         ),
         color: colors.x,
@@ -343,9 +350,9 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       },
       clippingValues.axis != "y" && {
         position: new THREE.Vector3(
-          max.x - offset + 0.3,
+          max.x - offset + 0.3 * k,
           (min.y + max.y) / 2,
-          min.z - 0.32 + offset,
+          min.z - 0.32 * k + offset,
         ),
         color: colors.y,
         texture: createTextTexture(
@@ -357,7 +364,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
       clippingValues.axis != "z" && {
         position: new THREE.Vector3(
           max.x - offset,
-          min.y - offset - 0.2,
+          min.y - offset - 0.2 * k,
           (min.z + max.z) / 2,
         ),
         color: colors.z,
@@ -370,23 +377,26 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
     ].filter((d) => !!d);
 
     return { lines, labels, clippingLines, clippingLabels };
-  }, [boundingBox, offset, unit, clippingValues]);
+  }, [boundingBox, offset, unit, clippingValues, annotationScale]);
 
   const { lines, labels, clippingLines, clippingLabels } = linesAndLabels;
+
+  const tubeRadius = 0.003 * annotationScale;
 
   return (
     <group>
       {lines.map((line) => (
-        <TubeLine key={line.key} line={line} />
+        <TubeLine key={line.key} line={line} radius={tubeRadius} />
       ))}
 
       {clippingLines.map((line) => (
-        <TubeLine key={line.key} line={line} />
+        <TubeLine key={line.key} line={line} radius={tubeRadius} />
       ))}
 
       {labels.map((label) => (
         <sprite
           key={label.key}
+          userData={{ ignore: true }}
           position={[label.position.x, label.position.y, label.position.z]}
           scale={[1.5 * textScale, 0.375 * textScale, 1]}
         >
@@ -401,6 +411,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
 
       {clippingLabels.map((label) => {
         if (label.isCircle) {
+          if (!clipMarkers) return null;
           return (
             <group key={label.key}>
               <mesh
@@ -412,7 +423,9 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
                 ]}
                 rotation={label.rotation}
               >
-                <torusGeometry args={[0.08, 0.003]} />
+                <torusGeometry
+                  args={[0.08 * annotationScale, 0.003 * annotationScale]}
+                />
                 <meshBasicMaterial color="#030303" />
               </mesh>
               <mesh
@@ -424,7 +437,13 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
                 ]}
                 rotation={label.cylinderRotation}
               >
-                <cylinderGeometry args={[0.08, 0.08, 0.003]} />
+                <cylinderGeometry
+                  args={[
+                    0.08 * annotationScale,
+                    0.08 * annotationScale,
+                    0.003 * annotationScale,
+                  ]}
+                />
                 <meshBasicMaterial toneMapped={false} color="#ffffff" />
               </mesh>
             </group>
@@ -433,6 +452,7 @@ const ScalingLines3D: React.FC<ScalingLines3DProps> = ({
         return (
           <sprite
             key={label.key}
+            userData={{ ignore: true }}
             position={[label.position.x, label.position.y, label.position.z]}
             scale={[1.5 * textScale, 0.375 * textScale, 1]}
           >

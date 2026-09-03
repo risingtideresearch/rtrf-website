@@ -1,1 +1,5 @@
 pygltflib==1.16.5
+
+# OpenCASCADE bindings, used only by step-to-glb.py to read STEP assemblies.
+# Large (~165 MB wheel); skip it if you are not converting CAD files.
+cadquery-ocp==7.7.2

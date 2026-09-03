@@ -9,6 +9,8 @@ type Model3DProps = {
   onLoad?: () => void;
   clippingPlanes?: Plane[];
   transparent: boolean;
+  // give each mesh its own material, so hover paints one instance at a time
+  partHover?: boolean;
 };
 
 const ORIGINAL_POSITION = [0, 0, 0] as const;
@@ -20,6 +22,7 @@ export function Model3D({
   onLoad,
   clippingPlanes = [],
   transparent,
+  partHover = false,
 }: Model3DProps) {
   const { scene } = useGLTF(getModelURL(url), undefined, true);
 
@@ -80,12 +83,16 @@ export function Model3D({
 
     scene.traverse((child) => {
       if ((child as Mesh).isMesh) {
-        configureMesh(child as Mesh);
+        const mesh = child as Mesh;
+        if (partHover && !Array.isArray(mesh.material)) {
+          mesh.material = mesh.material.clone();
+        }
+        configureMesh(mesh);
       }
     });
 
     onLoad?.();
-  }, [scene, layerName, url, configureMesh]);
+  }, [scene, layerName, url, configureMesh, partHover]);
 
   useEffect(() => {
     if (!ref.current) return;
