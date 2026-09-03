@@ -4,8 +4,8 @@ export type Drawing = {
   title: string;
   uuid: string;
   rel_path: string;
-  source_pdf_full_path: string;
-  source_pdf_size_bytes: number;
+  source_path: string;
+  source_size_bytes: number;
   height: number;
   width: number;
   group: string;

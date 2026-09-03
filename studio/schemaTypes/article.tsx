@@ -5,6 +5,7 @@ import ModelDropdownInput from '../components/ModelDropdownInput'
 import ModelListInput from '../components/ModelListInput'
 import DrawingDropdownInput, {
   getDrawingId,
+  getDrawingPreviewUrl,
   getDrawingTitle,
 } from '../components/DrawingDropdownInput'
 
@@ -174,9 +175,11 @@ export const article = defineType({
                       drawing: 'drawing',
                     },
                     prepare({drawing}) {
+                      const previewUrl = getDrawingPreviewUrl(drawing)
                       return {
                         title: getDrawingTitle(drawing),
                         subtitle: getDrawingId(drawing),
+                        media: previewUrl ? <img src={previewUrl} alt="" /> : undefined,
                       }
                     },
                   },

@@ -39,6 +39,7 @@ export function DrawingPage({ asset, next, prev, drawingsArticleDictionary }) {
                 src={asset.rel_path}
                 height={asset.height}
                 width={asset.width}
+                unoptimized={asset.rel_path.toLowerCase().endsWith(".svg")}
                 priority
                 alt={`${asset.title}`}
                 style={{ maxWidth: "100%", height: "auto" }}

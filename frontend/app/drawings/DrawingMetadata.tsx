@@ -56,17 +56,14 @@ export default function DrawingMetadata({
             href={
               "/drawings/" +
               encodeURIComponent(
-                drawing.source_pdf_full_path.replace(
-                  "../frontend/public/drawings",
-                  "",
-                ),
+                drawing.source_path.replace("../frontend/public/drawings", ""),
               )
             }
           >
             <span>
-              PDF
-              {drawing.source_pdf_size_bytes
-                ? ` (${formatFileSize(drawing.source_pdf_size_bytes)})`
+              {drawing.source_path.split(".").pop()?.toUpperCase()}
+              {drawing.source_size_bytes
+                ? ` (${formatFileSize(drawing.source_size_bytes)})`
                 : ""}
             </span>
             <LiaDownloadSolid size={16} />

@@ -1,5 +1,5 @@
 from extract_materials import create_material_index
-from pdf_to_png import convert_all_pdfs
+from transform_drawings import transform_all_drawings
 import shutil
 import json
 import os
@@ -11,11 +11,13 @@ if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Process 3D models and drawings')
     parser.add_argument('--skip-pdf', action='store_true',
-                        help='Skip PDF conversion and only process models')
+                        help='Skip drawing transformation and only process models')
     parser.add_argument('--skip-audit', action='store_true',
                         help='Skip Sanity reference audit')
     parser.add_argument('--full-pdf', action='store_true',
-                        help='Clear output directory and reconvert all PDFs (default: skip unchanged)')
+                        help='Clear output directory and reprocess all drawings (default: skip unchanged)')
+    parser.add_argument('--skip-thumbnails', action='store_true',
+                        help='Skip generating drawing thumbnails')
     args = parser.parse_args()
 
     manifest_dir = '../frontend/public/models'
@@ -56,9 +58,10 @@ if __name__ == "__main__":
         else:
             print(f"⚠️  Model manifest not found: {src}")
     
-    # Convert drawings to pngs (skip if flag is set)
+    # Transform source drawings into web assets (skip if flag is set)
     if not args.skip_pdf:
-        convert_all_pdfs(clear_output=args.full_pdf)
+        transform_all_drawings(clear_output=args.full_pdf,
+                               thumbnails=not args.skip_thumbnails)
         
         # Copy drawing manifest
         if os.path.exists(drawing_manifest_path):

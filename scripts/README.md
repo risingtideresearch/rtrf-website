@@ -8,7 +8,7 @@ cd scripts
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-pip install pdf2image pypdf pillow  # for pdf_to_png.py
+pip install pdf2image pypdf pillow  # for transform_drawings.py
 ```
 
 ---
@@ -122,11 +122,13 @@ Requires `NEXT_PUBLIC_SANITY_PROJECT_ID` and `SANITY_API_READ_TOKEN` in `fronten
 
 ---
 
-#### 2a. `pdf_to_png.py`
+#### 2a. `transform_drawings.py`
 
-Called by `main.py`. Converts drawing PDFs in `frontend/public/drawings/` to PNGs under `frontend/public/drawings/output_images/`. Maintains a `conversion_manifest.json` with UUIDs, filenames, and metadata used by the Sanity drawings dropdowns.
+Called by `main.py`. Turns source drawings in `frontend/public/drawings/` into web assets under `frontend/public/drawings/output_images/`: PDFs are rasterised to PNG (one per page) and SVGs are copied as-is. Maintains a `conversion_manifest.json` with UUIDs, titles, authors, and metadata used by the Sanity drawings dropdowns.
 
-Skips PDFs whose output PNG is already newer than the source file — only new or modified PDFs are converted. Use `--full-pdf` in `main.py` to force a clean rebuild (e.g. after changing DPI). UUIDs are derived from image content so they remain stable across incremental runs.
+Source files live at `drawings/<INITIALS>/<SYSTEM>/...`, where the top-level initials folder identifies the author (see `AUTHOR_FOLDERS`). That folder is dropped on output, so every author's drawings for a system land in one folder together. A file under an unrecognised initials folder is reported as `unattributed` at the end of the run rather than being credited to anyone.
+
+Skips files whose output is already newer than the source — only new or modified drawings are processed. Use `--full-pdf` in `main.py` to force a clean rebuild (e.g. after changing DPI). UUIDs are derived from content so they remain stable across incremental runs.
 
 ---
 

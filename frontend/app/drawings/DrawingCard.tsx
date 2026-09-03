@@ -35,6 +35,7 @@ export function DrawingCard({ drawing, hideMetadata, autoScale }: IDrawingCard) 
       >
         <Image
           src={drawing.rel_path}
+          unoptimized={drawing.rel_path.toLowerCase().endsWith(".svg")}
           alt={drawing.title}
           height={drawing.height}
           width={drawing.width}
