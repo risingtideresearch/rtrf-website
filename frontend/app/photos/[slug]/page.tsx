@@ -26,7 +26,8 @@ export default async function Page({
     fetchSystems(),
   ]);
 
-  // Story order first (photos and videos as they appear in each story), then everything else
+  // Story order first (photos and videos as they appear in each story), then
+  // everything else most to least recent
   const orderedIds: string[] = [];
   const seen = new Set<string>();
   for (const system of orderData?.systems ?? []) {
@@ -45,10 +46,11 @@ export default async function Page({
   // in a story; those fall back to date so photos and videos interleave.
   const rankOf = (asset: { _id: string }) =>
     imageOrder.get(asset._id) ?? orderedIds.length;
+  // undated assets sort last, so they take the smallest value under desc
   const dateOf = (asset: { photoDate?: string }) =>
-    asset.photoDate ? Date.parse(asset.photoDate) : Number.MAX_SAFE_INTEGER;
+    asset.photoDate ? Date.parse(asset.photoDate) : Number.MIN_SAFE_INTEGER;
   const sortedPhotos = [...photos.data, ...(videos.data ?? [])].sort(
-    (a, b) => rankOf(a) - rankOf(b) || dateOf(a) - dateOf(b),
+    (a, b) => rankOf(a) - rankOf(b) || dateOf(b) - dateOf(a),
   );
 
   return (

@@ -52,8 +52,8 @@ const isNavigable = (asset: MediaAsset) =>
 /**
  * Order photos and videos the way the gallery presents them: system by system,
  * story images and videos in the order they appear, then anything merely tagged
- * with that system. Assets that match nothing keep their incoming order at the
- * end.
+ * with that system. Assets that match nothing keep their incoming order — the
+ * queries return newest first — at the end.
  */
 export function orderMedia<T extends MediaAsset>(
   images: T[],
