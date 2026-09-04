@@ -11,10 +11,10 @@
 
     &__img {
       display: none;
-      margin: 1rem 0;
 
       @media screen and (max-width: 900px) {
         display: block;
+        margin: 0 0 1rem 0;
       }
     }
   }
@@ -75,18 +75,21 @@
       &:nth-child(2) {
         order: 2;
       }
-
-      &:nth-child(4) {
+       &:nth-child(3) {
         order: 3;
       }
-      &:nth-child(6) {
+       &:nth-child(5) {
         order: 4;
       }
-      &:nth-child(5) {
+       &:nth-child(6) {
         order: 5;
       }
-      &:nth-child(3) {
+      &:nth-child(7) {
         order: 6;
+      }
+
+      &:nth-child(4) {
+        order: 7;
       }
     }
   }
@@ -168,19 +171,14 @@
 
 .anatomy-crossfade {
   position: relative;
-  // aspect-ratio is set inline from the stills manifest so the box always
-  // matches the render; the tiles are framed identically and must not be refit
   width: 100%;
   overflow: hidden;
 
   img {
     position: absolute;
     inset: 0;
-    // contain, not cover: the stills are wider than this box, and cropping
-    // them to fill it threw away ~22% of the width
     object-fit: contain;
     opacity: 0;
     margin: 0 auto;
-    // timing and keyframes are generated in page.tsx from the tile count
   }
 }
