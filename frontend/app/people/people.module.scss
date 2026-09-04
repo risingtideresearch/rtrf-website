@@ -61,6 +61,12 @@
   display: flex;
   flex-direction: column;
 
+  // these read as a per-person index, not as headlines like on the homepage
+  // and stories index, so the row titles stay unbolded
+  a p {
+    font-weight: 400;
+  }
+
   @media screen and (max-width: 900px) {
     margin-top: 1rem;
   }
